@@ -1,8 +1,0 @@
-/******* Reportes ESR *******/
-
-En la carpeta se encuentran los siguientes archivos en Excel:
-
- - Tracking de ESR por WO
- - Reporte de Tracking  de Ingeniería
-
- 
