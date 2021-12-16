@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->
+            
+            <!-- script que transforma el div en un modal -->
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModal61', '400px');
+                });
+            </h:outputScript>
+        </h:head>
+        <h:body>
+            <div style="padding: 0px 30px">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            
+                            <div id="slideDer11" class="menut11" style="display: none;">
+                                
+                            </div>
+                            <div class="c-hamburger c-hamburger--rot is-active" id="c-hamburger11" >
+                                <span>toggle menu</span>
+                            </div>
+                        </div> 
+                        <script>
+                                 (function() {
+                                    "use strict";
+
+                                    var toggles = document.querySelectorAll("#c-hamburger11");
+
+                                    for (var i = toggles.length - 1; i >= 0; i--) {
+                                      var toggle = toggles[i];
+                                      toggleHandler(toggle);
+                                    };
+
+                                    function toggleHandler(toggle) {
+                                      toggle.addEventListener( "click", function(e) {
+                                        e.preventDefault();
+                                        $('#slideDer11').toggle("slow");
+                                       
+                                      });
+                                    }
+
+                                  })();
+                        </script>
+                        <!-- modal para el ingreso de información -->
+                        <h:panelGroup id="inputModal61" style="display:none;" pt:title="#{gen_msg['genAddEdit']}">
+                            <h:form id="inputForm61">
+                                <!-- grid de dos columnas para el ingreso de datos -->
+                                <h:panelGrid columns="2" style="min-width: 300px;">
+                                    <h:outputLabel value="#{aees_msg['DlcId']}:" for="dlcId" />
+                                <h:inputText id="dlcId" value="#{engDistlistConfig.elemento.dlcId}" rendered="#{engDistlistConfig.elemento.dlcId eq null}" title="DlcId" class="form-control" required="true" requiredMessage="The DlcId field is required."/>
+                                <h:outputLabel id="dlcId2" value="#{engDistlistConfig.elemento.dlcId}" rendered="#{engDistlistConfig.elemento.dlcId ne null}" class="form-control" title="DlcId"/>
+                                <h:outputLabel value="#{gen_msg['description']}:" for="dlcDescription" />
+                                <h:inputText id="dlcDescription" value="#{engDistlistConfig.elemento.dlcDescription}" title="DlcDescription" class="form-control" required="true" requiredMessage="The DlcDescription field is required."/>
+                                <h:outputLabel value="#{gen_msg['status']}:" for="dlcStatus" />
+                                <h:selectBooleanCheckbox id="dlcStatus"  class="form-control"/>
+                                </h:panelGrid>
+                                
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!engDistlistConfig.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engDistlistConfig.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccess61 @form resultForm61 refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engDistlistConfig.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccess61 @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputForm:dlcDateIns"', "${resource['styleAE:img/calendar.gif']}");
+                                    basicDTP('[name="inputForm:dlcDateUpd"', "${resource['styleAE:img/calendar.gif']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccess61">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModal61").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>                                  
+                        <h:form id="resultForm61" style="width:100% !important;">
+                            <h:dataTable id="tblListado61" class="table table-striped dt-responsive nowrap" pt:name="tblListado61" value="#{engDistlistConfig.listado}" var="item" style="width: 100% !important">
+                                 <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['DlcId']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dlcId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['description']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dlcDescription}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['status']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dlcStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModal');">
+                                        <f:setPropertyActionListener target="#{engDistlistConfig.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{engDistlistConfig.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="inputForm61 webtable refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" action="#{engDistlistConfig.eliminar(item)}">
+                                        <f:ajax execute="@this" render=" webtable @form refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                            
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListado61]','${swtLanguage.language}','#inputModal61','.menut11');</h:outputScript>
+                        </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

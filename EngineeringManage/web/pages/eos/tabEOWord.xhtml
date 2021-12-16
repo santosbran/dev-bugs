@@ -1,0 +1,779 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<f:view>
+        <h:head >
+            <title></title>  
+            <style>
+                table{
+                    margin-bottom: 10px;
+                }
+                .ui-datepicker-trigger{
+                    
+                    height: 60%;
+                }
+                #ui-datepicker-div{
+                    background: darkgray;
+                }                
+            </style>
+            
+             <style type="text/css">
+                .classDrag{
+                    border: dashed 2px #ec1c24;
+                    border-radius: 9px;
+                }
+            </style>
+            <h:outputScript>
+             function remSpaces(obj){
+                        am=obj;
+                        if(am==undefined){
+                            am=" ";
+                        }
+                        if(am.trim()==""){
+                            return "";
+                        }
+                        return am;
+                    }
+    
+                    
+                    $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:eoMaterials0").value;
+                        
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:eoMaterials").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:eoEffectWb0").value;
+                        
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:eoEffectWb").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:equip0").value;
+                        
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:equip").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:herra0").value;
+                       
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:herra").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:otros0").value;
+                       
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:otros").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:retroal0").value;
+                       
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:retroal").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:men0").value;
+                       
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:men").checked = true;
+                        }
+                    });
+                     $(document).ready(function (){                
+                    var check1 = document.getElementById("inputs1:may0").value;
+                       
+                        if(check1 == "S"){
+                        document.getElementById("forrrrm1:may").checked = true;
+                        }
+                    });
+                    
+                       
+                    
+                    
+                    $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:eoMaterials").checked){
+                        document.getElementById("inputs1:eoMaterials0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:eoMaterials0").value="N";
+                    });
+                    
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:eoEffectWb").checked){
+                        document.getElementById("inputs1:eoEffectWb0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:eoEffectWb0").value="N";
+                    });
+                     $(document).ready(function (){                
+                     if(document.getElementById("forrrrm1:equip").checked){
+                        document.getElementById("inputs1:equip0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:equip0").value="N";
+                    });
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:herra").checked){
+                        document.getElementById("inputs1:herra0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:herra0").value="N";
+                    });
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:otros").checked){
+                        document.getElementById("inputs1:otros0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:otros0").value="N";
+                    });
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:retroal").checked){
+                        document.getElementById("inputs1:retroal0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:retroal0").value="N";
+                    });
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:men").checked){
+                        document.getElementById("inputs1:men0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:men0").value="N";
+                    });
+                     $(document).ready(function (){                
+                       if(document.getElementById("forrrrm1:may").checked){
+                        document.getElementById("inputs1:may0").value="S";
+                        }
+                        else
+                        document.getElementById("inputs1:may0").value="N";
+                    });
+                    
+                     
+                    </h:outputScript>
+                                    
+            
+        </h:head>
+        <h:body style="width: 100%; height: 100%;">
+            <h:panelGroup id="inptEO" style="margin: auto;">  
+                <div id="formEO" style="font-size: 100%; margin: auto">
+                        <div id="tinyeo" style="text-align: center !important; height: 12%;">
+                        </div>
+                    <h:form id="forrrrm1" style="margin: auto; width: 90%; background: white">
+                            
+                            
+                            
+                              <script>                                        
+                                  /* Events fired on the drag target */
+                        function dragStartEO(event) {
+                            event.dataTransfer.setData("Text", event.target.id);
+                            $("#dropDiveo").addClass("classDrag");
+                        }
+
+                        function dragEndEO(event) {
+                            $("#dropDiveo").removeClass("classDrag");
+                        }
+
+                        /* Events fired on the drop target */
+                        function allowDropEO(event) {
+                            event.preventDefault();
+                        }
+                             
+                        function dropataeo(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                             var objSelect= document.getElementById("forrrrm1:ATA");
+                             for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:ATA").value=data;
+                                            }
+                                    }  
+
+                            }
+                            
+                            
+                             function dropAT(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm1:actcod");
+                           for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:ACTCOD").value=data;
+                                        }
+                                    }  
+
+                            }
+                            
+                            function dropWT(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm1:wtycod");
+                           for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:wtycod").value=data;
+                                           }
+                                    }  
+
+                            }
+                            
+                            
+                             function dropTailEo(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm1:statusSelect");
+                              for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:Estatus").value=data;
+                                            //return; Estatus
+                                        }
+                                    }                           
+                              }
+                              
+                              function dropPRI(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm1:priCod");
+//                            document.getElementById("inputForm70:nameATA").value=objSelect
+                              for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:pricod").value=data;
+                            
+
+                            }
+                              }
+                          }
+                          
+                                                  
+                          function dropPREFX(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                             var objSelect= document.getElementById("forrrrm1:preCod1");
+                             for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:precod1").value=data;
+                                            }
+                                    }  
+                                }
+                            
+                                                     
+                            function dropFLT(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm1:fltcod");
+                              for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs1:Flota").value=data.value;
+                            
+
+                            }
+                              }
+                          }
+                     </script>
+                            <table border="1"  style=" border-collapse: collapse; margin: auto;width: 80%; color: black; " id="tdaa" class="widd">
+                                <tbody>
+                                    <tr style="height: 50%;">
+                                        <td rowspan="4">
+                                            <p style=" text-align: center; margin: 0;color: black;">
+                                                <h:graphicImage library="styleAE" name="img/logo.png" style="width: 100% !important;"/>
+                                            </p>
+                                        </td>
+                                        <td rowspan="4" style="width: 40%;">
+                                            <p style=" text-align: center; margin: 0;color: black;">
+                                                #{gen_msg['paneleo']}:
+                                            </p>
+                                        </td>
+                                        <td style="width: 15%; ">
+                                            <p  style="margin: 0;color: black;">                                               
+                                              #{aees_msg['codEO']}:
+                                            </p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="eoidor1">
+                                            <p>#{engOrdersBean.elemento.eoIdord}</p>
+                                    
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td  >
+                                            <p  style=" margin: 0; color: black;">
+                                                    #{aees_msg['nEO']}:
+                                            </p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="eorev1" class="editable" >
+                                    
+                                        </td>
+                                    </tr>
+                                       <tr>
+                                        <td  >
+                                            <p  style=" margin: 0; color: black;" >
+                                         #{gen_msg['correlative']}:
+                                            </p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="eocorre" class="editable" >
+                                     
+                                        </td>
+                                    </tr>
+                                                       <tr>
+                                        <td  >
+                                            <p  style=" margin: 0;color: black;" >
+                                           #{aees_msg['idMessage']}:
+                                            </p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="eomess"  >
+                                            #{engOrdersBean.elemento.reqMessageid}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>
+                            <table  style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr style="border-collapse: collapse;">
+                                        <td  style="background: #cecece;  border: solid 1px #000  ;border-collapse: collapse; text-align: center; width: 7.5%" >
+                                                <p>#{gen_msg['RAS']}: </p>
+                                        </td>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; " >
+                                                <p>#{aees_msg['workType']}:</p>
+                                        </td>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;" >
+                                                <p>#{aees_msg['acctionType']}:</p>
+                                        </td>
+                                        <td  style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;" >
+                                                <p>#{aees_msg['dateExe']}: </p>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                        <td id="eoras1"  style="border: solid 1px !important;border-collapse: collapse;" class="editable" >                                            
+                                      
+                                            
+                                        </td>   
+                                        <td  style="border: solid 1px !important;border-collapse: collapse;" id="workType" >
+                                            
+                                                                                        
+                                            <div class="droptarget" ondrop="dropWT(event)" id="dropDivwt" style="align-content: center">
+                                                <h:selectOneMenu id="wtycod"  onchange="$('#inputs1\\:wtycod').val(this.value);"  value="#{engOrdersBean.wtycod}"  class="form-control"  pt:data-live-search="true" >       
+                                                    <f:selectItem itemLabel="....." itemValue="0"/>  
+                                                    <f:selectItems   value="#{engWorktypes.listado}" var="option" itemLabel="#{option.wtyCod}-#{option.wtyDescription}" itemValue="#{option.wtyCod}"/>
+                                                  </h:selectOneMenu> 
+                                               </div>
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="acctionType">
+                                            
+                                             <div class="droptarget" ondrop="dropAT(event)" id="dropDivat" style="align-content: center" >                                                 
+                                          <h:selectOneMenu onchange="$('#inputs1\\:ACTCOD').val(this.value);" id="actcod"  class="form-control" value="#{engOrdersBean.actcod}" style="width: 100%;height: 100%">
+                                            <f:selectItem itemLabel="....." itemValue="0"/>
+                                              <f:selectItems value="#{engActionTypes.listado}" var="option" itemLabel="#{option.actCod}-#{option.actDescription}" itemValue="#{option.actCod}"/>
+                                          </h:selectOneMenu>
+                              
+                                                 </div>
+                    
+                                        </td>
+                                        <td  style="border: solid 1px !important;border-collapse: collapse;"  >  
+                                            <h:inputText value="#{engOrdersBean.elemento.eoExeDate}" id="dateExe1" class="form-control" style="width: 100%; height: 100%;" onchange="$('#inputs1\\:dateExe').val(this.value)">
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                            </h:inputText>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr style="border-collapse: collapse;">
+                                        <td  style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['ATA']}:</p>
+                                        </td>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;" >
+                                                <p>#{gen_msg['status']}:</p>
+                                        </td>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['priority']}:</p>
+                                        </td>  
+                                        <td style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{aees_msg['dateRev']}:</p>
+                                        </td>
+                                    
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                     
+                    <td style="border: solid 1px #000 ;border-collapse: collapse; padding: 0;" id="ata1"> 
+                        
+                               
+                     <div class="droptarget" ondrop="dropataeo(event)" id="dropDiveo" >
+                       
+             <h:selectOneMenu onchange="$('#inputs1\\:ATA').val(this.value);" id="ATA"  class="form-control" value="#{engOrdersBean.elemento.ataNumata}" style="width: 100%;height: 100%">
+                 <f:selectItem itemLabel="....." itemValue="0"/> 
+                 <f:selectItems   value="#{contAtas.listado}" var="option" itemLabel="#{option.ataNumata}-#{option.ataDescription}" itemValue="#{option.ataNumata}"/>
+               </h:selectOneMenu>                                      
+                          </div>                       
+<!--                        Revisar el value de status del onemenu-->                            
+                            </td>                                      
+                                        
+                                        
+                 <td style="border: solid 1px #000 ;border-collapse: collapse;padding: 0;" id="estatus1" >  
+                     
+                     
+                     <div class="droptargettail" ondrop="dropTailEo(event)" id="dropDivestu" >
+                         <h:selectOneMenu onchange="getIdSelected(this)" id="statusSelect" value="#{engOrdersBean.elemento.stsEoCod}" style="width: 100%;height: 100%" class="form-control">
+                             <f:selectItem itemLabel="....." itemValue="0"/>
+                             <f:selectItems value="#{engEoStatus.listado}" var="option" itemLabel="#{option.stsDescription}" itemValue="#{option.stsEoCod}"/>
+                         </h:selectOneMenu>  
+                         
+                   
+                     </div>
+                     
+                                            
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse; padding: 0;" id="priority">   
+                                            
+                                  <div class="droptarget" ondrop="dropPRI(event)" id="dropDivPri">    
+                                      <h:selectOneMenu id="priCod"  onchange="$('#inputs1\\:pricod').val(this.value);" value="#{engOrdersBean.priCod}" class="form-control"  pt:data-live-search="true" >       
+                                          <f:selectItem itemLabel="....." itemValue="0"/> 
+                                          <f:selectItems   value="#{engPriorities.listado}" var="option" itemLabel="#{option.priCod}-#{option.priDescription}" itemValue="#{option.priCod}"/>
+                                      </h:selectOneMenu> 
+                                      
+                                  </div>
+                                             
+                                            
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse;" id="feechaa" >
+                                            <h:inputText value="#{engOrdersBean.elemento.eoRevDate}" id="eoRevDate1" class="form-control" style="width: 100%;height: 100%;"  autocomplete="on" onchange="$('#inputs1\\:eoRevDate').val(this.value)" >
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                            </h:inputText>                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto" class="widd">
+                                <tbody>
+                                    <tr style="border-collapse: collapse;">
+                                        <td style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;" >
+                                                <p>#{gen_msg['prefix']}:</p>
+                                        </td>
+                                        <td  style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['fleet']}:</p>
+                                        </td>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['warranty']}:</p>
+                                        </td> 
+                                             <td style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{aees_msg['revRecord']}:</p>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                        <td  style="border: solid 1px !important;border-collapse: collapse;" id="prefix1">
+
+                                            <div class="droptargetPREFX" ondrop="dropPREFX(event)" id="dropDivPrefx" > 
+                                                <h:selectOneMenu id="preCod1"  onchange="$('#inputs1\\:precod1').val(this.value);" value="#{engOrdersBean.codpre}" class="form-control"  pt:data-live-search="true" >       
+                                                    <f:selectItem itemLabel="....." itemValue="0"/>
+                                                    <f:selectItems   value="#{engPrefixes.listado}" var="option" itemLabel="#{option.preDescription}" itemValue="#{option.preCod}"/>
+                                                </h:selectOneMenu> 
+                                            </div>
+                                        </td>
+
+
+                                        
+                                        
+                                     
+                     <td  style="border: solid 1px !important;border-collapse: collapse;" id="fltcod1"  > 
+                         <div class="droptargetFLT" ondrop="dropFLT(event)" id="dropDivFlt">
+                             <h:selectOneMenu id="fltcod"  onchange="$('#inputs1\\:Flota').val(this.value);" value="#{engOrdersBean.elemento.fltCod}" class="form-control"  pt:data-live-search="true" >       
+                                 <f:selectItem itemLabel="....." itemValue="0"/>      
+                                 <f:selectItems   value="#{contFleets.listado}" var="option" itemLabel="#{option.codflt}-#{option.description}" itemValue="#{option.codflt}"/>
+                             </h:selectOneMenu> 
+                        </div>       
+                       </td>
+                                        
+                                        
+                                         
+                                        <td  style="border: solid 1px !important;border-collapse: collapse;" class="editable" id="Warranty1">
+                                
+                                        </td>
+                                        
+                     <td  style="border: solid 1px !important;border-collapse: collapse;">
+                         <h:inputText value="#{engOrdersBean.elemento.eoRevRecord}" id="RevRecordd1" class="form-control" style="width: 100%;height: 100%;" onchange="$('#inputs1\\:RevRecord').val(this.value)" >
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                            </h:inputText>  
+                                        </td>
+                                        
+                                  
+                                        
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr style="border-collapse: collapse;">
+                                        <td  style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse;width: 50%; text-align: center;">
+                                                <p>#{aees_msg['hrHombre']}:</p>
+                                        </td>
+                                        <td  style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse;width: 50%; text-align: center; ">
+                                                <p>#{aees_msg['repEvery']}:</p>
+                                        </td> 
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;">
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse; width: 50%;" id="hrHombre1" class="editable" >  
+                                          
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse; width: 50%;" id="repEvery1" class="editable" onkeyup="validarrep(this)"> 
+                                 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>
+                            <table border="1" style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>                                    
+                                    <tr style="width: 100%;">
+                                        <td style="width: 50%;">
+                               
+                                            <h:panelGrid class="tableeo" columns="2" columnClasses="colum1, colum2" >
+                                                <h:outputLabel value="#{gen_msg['materials']}: " for="eoMaterials" />                                    
+                                                <h:selectBooleanCheckbox id="eoMaterials" onchange="getIdChecked(this)"/>
+                                                <h:outputLabel value="#{aees_msg['efectWeight']}:" for="eoEffectWb" />
+                                                <h:selectBooleanCheckbox id="eoEffectWb" onchange="getIdChecked(this)" />
+                                                <h:outputLabel value="#{aees_msg['setNDT']}: " for="equip" />
+                                                <h:selectBooleanCheckbox id="equip" onchange="getIdChecked(this)" />
+                                                <h:outputLabel value="#{aees_msg['toolsSpecial']}:" for="may" />                                                
+                                                <h:selectBooleanCheckbox id="may" onchange="getIdChecked(this)"/>
+                                            </h:panelGrid>
+                                        </td>                                                          
+                                                
+                                                <h:inputHidden id="eoIdord0" value="#{engOrdersBean.idmaxea}"/>
+                   
+                                           
+                                        <td style="width: 50%;">
+                                           
+                                                <h:panelGrid class="tableeo" columns="2" columnClasses="colum1, colum2">
+                                                <h:outputLabel value="#{gen_msg['others']}: " for="wtycod" />
+                                                <h:selectBooleanCheckbox id="herra" onchange="getIdChecked(this)" />
+                                                <h:outputLabel value="#{gen_msg['feedback']}: " for="wtycod" />
+                                                <h:selectBooleanCheckbox id="otros" onchange="getIdChecked(this)" />
+                                                <h:outputLabel value="#{gen_msg['minor']}:" for="wtycod" />
+                                                <h:selectBooleanCheckbox id="retroal" onchange="getIdChecked(this)" />
+                                                <h:outputLabel value="#{aees_msg['majorSTC']}:" for="wtycod" />
+                                                <h:selectBooleanCheckbox id="men" onchange="getIdChecked(this)" />
+                                                
+                                            </h:panelGrid>
+                                        </td>
+                                    </tr>                                    
+                                </tbody>
+                            </table>
+                            
+                           <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; height: 7%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr>
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; height: 40%;">
+                                            <p>#{aees_msg['engiManag']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse;padding: 0;" id="inge1" >
+                                                
+                                            <h:selectOneMenu id="eoOwner" onchange="getIdfromMenu(this)" style="width: 100%;height: 100%" class="form-control">
+                                                <f:selectItem itemLabel="....." itemValue="0"/>
+                                                <f:selectItems value="#{coreUsers.listado}" var="option" itemLabel="#{option.fullUserName}" itemValue="#{option.codigo86}"/>
+                                           </h:selectOneMenu>  
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                           <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; ">
+                                            <p>#{gen_msg['title']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" class="editable" id="subject1" >
+                                                                         
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>    
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto;" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; ">
+                                            <p>#{gen_msg['topic']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" class="editable" id="topic1" >
+                                                
+                                       </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>  
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto;" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; ">
+                                            <p>#{gen_msg['summary']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" class="editable"  id="summary1" >
+                                                                    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>  
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto;" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; ">
+                                            <p>#{gen_msg['comments']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="eoComments1" class="editable" >
+                                   
+                                            
+                                     </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                             
+                                   <p style="margin: 0; padding: 0;"></p>  
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto;" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; " >
+                                            <p>#{gen_msg['hinyear']}: </p>
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" class="editable"  id="eoyear" onkeyup="validarAnio(this)">
+                                                
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                             
+                            <p style="margin: 0; padding: 0;"></p>  
+                            
+                            <div id="editor"></div>
+                            <h:outputScript>
+                                basicDTP('[name="forrrrm1:eoRevDate1"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="forrrrm1:dateExe1"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="forrrrm1:RevRecordd1"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                            </h:outputScript>
+                            <h:messages class="msgError" style="text-align: left;"/>
+                            <div id="msj"></div>
+                            <div id="msjrev"></div>
+                            <div id="msjras"></div>
+                            <div id="msjwarr"></div>
+                            <div id="msjhrsman"></div>
+                            <div id="msjrep"></div>
+                            <div id="msjsub"></div>
+                            <div id="msjtopic"></div>
+                            <div id="msjresumen"></div>
+                            <div id="msjcomen"></div>
+                            <div id="msjcorr"></div>
+                            <div id="msjyear"></div>
+                            
+                        </h:form>
+                    </div>
+                             
+                    
+                <h:form id="botonnes" style="text-align: center;"> 
+                         
+    <h:commandButton id="btn" onclick="cargar2()" value ="#{!engOrdersBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" 
+                     class="btn btn-signin" rendered="#{engOrdersBean.usrCoduser ne '0' }"><f:ajax render="@this refremeta"  execute="@this"/>
+    </h:commandButton>                             
+                                
+                                 
+                        <h:commandButton class="btn btn-signin" value="#{gen_msg['discard']}"  action="#{tabEsrEaEoBean.limpiar2(3)}" onclick="clean();" >
+                            <f:ajax render="inputs1 forrrrm1 botonnes refremeta"/>
+                        </h:commandButton>
+                              
+                    </h:form>
+                    
+                    
+                   
+                </h:panelGroup>
+                 
+            <div style="display: none;">
+                <h:form id="inputs1">
+                    <label>EORev: </label><h:inputText id="Revision" value="#{engOrdersBean.elemento.eoRev}" required="true" requiredMessage="#{aees_msg['requiredEORev']}"/><br/>   
+                   <label>Ras:</label><h:inputText id="Ras" value="#{engOrdersBean.elemento.eoRas}" required="true" requiredMessage="#{aees_msg['requiredRas']}"/><br/>                                                  
+                   <label>Tipo trabajo</label><h:inputText id="wtycod" value="#{engOrdersBean.wtycod}" /><br/>
+                   <label>Tipo Accion</label><h:inputText id="ACTCOD" value="#{engOrdersBean.actcod}" /><br/>
+                   <label>Fecha de Ejecucion:</label><h:inputText id="dateExe" value="#{engOrdersBean.elemento.eoExeDate}" required="true" requiredMessage="#{aees_msg['requiredDateExe']}"/><br/>
+                   <label>ATA:</label><h:inputText id="ATA" value="#{engOrdersBean.elemento.ataNumata}" /><br/>                
+                   <label>Estatus:</label><h:inputText id="Estatus" value="#{engOrdersBean.elemento.stsEoCod}" /><br/>
+                   <label>Prioridad:</label><h:inputText id="pricod" value="#{engOrdersBean.priCod}" ><f:ajax event="change" execute="@this"/></h:inputText><br/>
+                   <label>Fecha Revision</label><h:inputText id="eoRevDate" value="#{engOrdersBean.elemento.eoRevDate}" required="true" requiredMessage="#{aees_msg['requiredEoRevDate']}"> <f:ajax event="change" execute="@form"/>
+                   <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/></h:inputText> <br/>    
+                   <label>Prefijo</label><h:inputText id="precod1" value="#{engOrdersBean.codpre}" /><br/>  
+                   <label>Flota:</label><h:inputText id="Flota" value="#{engOrdersBean.elemento.fltCod}" /><br/>
+                   <label>Garantia</label><h:inputText id="Warranty" value="#{engOrdersBean.elemento.eoWarranty}" required="true" requiredMessage="#{aees_msg['requiredWarranty']}"/><br/>
+                   <label>Hr. Hombre</label><h:inputText id="Hrs" value="#{engOrdersBean.elemento.eoManHourCost}" required="true" requiredMessage="#{aees_msg['requiredHrs']}"/><br/>
+                   <label>Rept Cada</label><h:inputText id="ReptCda" value="#{engOrdersBean.elemento.eoReptType}" required="true" requiredMessage="#{aees_msg['requiredReptCda']}"/><br/>
+                   <label>Ingeniero encargado:</label><h:inputText id="Ingeniero" value="#{engOrdersBean.elemento.eoOwner}" /><br/>
+                   <label>Subject:</label><h:inputText id="Subject" value="#{engOrdersBean.elemento.eoSubject}" required="true" requiredMessage="#{aees_msg['requiredSubject']}"/><br/>
+                   <label>Asunto:</label><h:inputText id="Asunto" value="#{engOrdersBean.elemento.eoEngAssmnt}" required="true" requiredMessage="#{aees_msg['requiredAsunto']}"/><br/>
+                   <label>Resumen:</label><h:inputText id="Resumen" value="#{engOrdersBean.elemento.eoSummary}" /><br/>
+                   <label>Comments:</label><h:inputText id="eoComments" value="#{engOrdersBean.elemento.eoComments}" required="true" requiredMessage="#{aees_msg['requiredEoComments']}"/><br/>
+                   <label>Rev. Record:</label><h:inputText id="RevRecord" value="#{engOrdersBean.elemento.eoRevRecord}" required="true" requiredMessage="#{aees_msg['requiredRevRecord']}"/><br/>
+                   <label>Tail:</label><h:inputText id="Tail" value="#{engOrdersBean.elemento.eoTail}" required="false" /><br/>
+                   <label>id:</label><h:inputText id="id1" value="#{engOrdersBean.elemento.eoIdord}" /><br/>
+                   <label>Correlativo: </label><h:inputText id="corri" value="#{engOrdersBean.elemento.eoCorrelative}" required="true" requiredMessage="#{aees_msg['requiredCorri']}"/><br/>
+                   <label>Año: </label><h:inputText id="yeari" value="#{engOrdersBean.elemento.eoYear}" required="true" requiredMessage="#{aees_msg['requiredYeari']}"/><br/>
+                   <label>Message Id: </label><h:inputText id="mess1" value="#{engOrdersBean.elemento.reqMessageid}" /><br/>
+                   <label>Check materials: </label><h:inputText id="eoMaterials0" value="#{engOrdersBean.elemento.eoMaterials}" />
+                   <label>Check Effect </label><h:inputText id="eoEffectWb0" value="#{engOrdersBean.elemento.eoEffectWb}" />
+                   <label>Check Equipo </label><h:inputText id="equip0" value="#{engOrdersBean.elemento.eoNdtequipment}" />
+                   <label>Check Herramientas </label><h:inputText id="herra0" value="#{engOrdersBean.elemento.eoSpecialTool}" />                                
+                   <label>Check Otros </label><h:inputText id="otros0" value="#{engOrdersBean.elemento.eoOther}" />
+                   <label>Check Feedback </label><h:inputText id="retroal0" value="#{engOrdersBean.elemento.eoFeedback}" />
+                   <label>Check Minor </label><h:inputText id="men0" value="#{engOrdersBean.elemento.eoMinor}" />
+                   <label>Check Major </label><h:inputText id="may0" value="#{engOrdersBean.elemento.eoMajorref}" />
+                   <h:inputText id="format" value="#{engOrdersBean.elemento.formatWord}" required="false"/>
+                    
+                   <h:commandButton id="carga" action="#{tabEsrEaEoBean.inserteo()}" >
+         
+                        <f:ajax execute="@form"  render="ontabwordeo @form inptEO taskeng tasksup" />
+                    </h:commandButton>    
+                   
+                </h:form>
+                
+                <h:panelGroup id="onsuccess888">
+                  
+                </h:panelGroup>
+            </div>
+            <h:panelGroup id="ontabwordeo">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                    clean();
+                </h:outputScript>
+            </h:panelGroup>
+        </h:body>
+    </f:view>
+</html>

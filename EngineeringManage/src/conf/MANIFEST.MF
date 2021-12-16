@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Extension-List: Style International
+Style-Extension-Name: StyleResourcesAE
+International-Extension-Name: InternacionalizationAE

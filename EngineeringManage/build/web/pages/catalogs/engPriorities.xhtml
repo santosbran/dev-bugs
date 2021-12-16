@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            
+             <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+             <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+             <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+             <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModal4', '400px');
+                    crearModal('#alert6', '250px');
+                });
+            </h:outputScript>
+             <style>
+                .menutPrio{
+                    position: absolute;
+                    top: 10px;
+                    right: 2% !important;
+                    float: right;
+                    z-index: 999;
+                }
+            </style>
+        </h:head>
+        <h:body>
+            <div style="padding: 0px 10px">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <h:panelGroup id="slither4">
+                                <div id="slideDer4" class="menutPrio" >
+
+                                </div>
+                            </h:panelGroup>
+                            
+                            
+                            <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburger4" >
+                                <span>toggle menu</span>
+                            </div>
+                        </div>
+                        <script>
+                                  function funalert6(idModal,id){
+                                        $(idModal).dialog("open");
+                                        $('#removeprioridad\\:idprioridad').val(id);
+                                    return false;
+                                  }
+                        </script>
+                        
+                        
+                          <script>
+                            
+                             function dragStartPRI(event) {
+                            event.dataTransfer.setData("Text", event.target.id);
+                            $("#dropDivPri").addClass("classDrag");
+//                           //document.getElementById("demo").innerHTML = "Started to drag the p element";
+                       }
+                       function dragEndPRI(event) {
+                            $("#dropDivPri").removeClass("classDrag");
+                        }
+
+                        /* Events fired on the drop target */
+                        function allowDropPRI(event) {     
+                            event.preventDefault();
+                        }       
+                        </script>
+                        
+                          <h:panelGroup id="scriptPrio">
+                            <script>
+                      $(document).ready(function (){
+                    crearModal('#inputModal4', '400px');
+                    crearModal('#alert6', '250px');
+                });
+                            </script>                            
+                        </h:panelGroup>
+                        <h:panelGroup id="inputModal4" style="display:none;" pt:title="#{gen_msg['genAddEdit']}">
+                            <h:form id="inputForm4">
+                                <h:panelGrid columns="2" style="min-width: 300px;">
+                                    
+                                    <h:outputLabel value="#{gen_msg['despri']}" for="priDescription" />
+                                    <h:inputText id="priDescription" value="#{engPriorities.elemento.priDescription}" class="form-control" title="PriDescription" required="true" requiredMessage="The PriDescription field is required."/>                                                                                                                                               
+                                </h:panelGrid>
+                                <h:messages for="priDescription" class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!engPriorities.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engPriorities.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccess4 @form resultForm4 inputForm69 slither4 refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engPriorities.limpiar()}" >
+                                        <f:ajax execute="@this" render="ondescar6 @form resultForm4 inputForm69 slither4 refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccess4">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModal4").dialog("close");
+                                    $("#alert6").dialog("close");
+                                    alertify.success("#{aees_msg['exito']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                            <h:panelGroup id="ondelete6">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModal4").dialog("close");
+                                    $("#alert6").dialog("close");
+                                    alertify.log("#{aees_msg['removeitem']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                            <h:panelGroup id="ondescar6">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModal4").dialog("close");
+                                    $("#alert6").dialog("close");
+                                    alertify.custom = alertify.extend("custom");
+                                    alertify.custom("#{aees_msg['descardoperation']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    
+                        <h:form id="resultForm4" style="width:100% !important;font-size: 10px;">
+                            <h:dataTable id="tblListado4" class="table table-striped dt-responsive " pt:name="tblListado4" value="#{engPriorities.listado}" var="item" style="width: 100% !important">
+                                <h:column>
+                                    <h:panelGroup class="draggablePrior2" >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{gen_msg['codpri']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer" >
+                                            <h:outputText value="#{gen_msg['code']}"/>
+                                        </f:facet>
+
+
+
+                                        <div id="contenedor#{item.priCod}" class="droptargetPRI"  ondragover="allowDropPRI(event)" style="cursor:pointer;">
+                                            <p ondragstart="dragStartPRI(event)" ondragend="dragEndPRI(event)" style="padding: 0%"
+                                               draggable="true" id="#{item.priCod}">#{item.priCod}</p></div> 
+                                    </h:panelGroup>
+
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['despri']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+
+                                    <div id="contenedor#{item.priCod}" class="droptargetPRI"  ondragover="allowDropPRI(event)" style="cursor:pointer;">
+                                        <p ondragstart="dragStartPRI(event)" ondragend="dragEndPRI(event)" style="padding: 0%"
+                                           draggable="true" id="#{item.priCod}">#{item.priDescription}</p></div> 
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModal4');">
+                                        <f:setPropertyActionListener target="#{engPriorities.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{engPriorities.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="inputForm4 resultForm4 slither4 refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" onclick="funalert6('#alert6','${item.priCod}');">
+                                        <f:ajax execute="@this" render="@form inputForm4 resultForm4 slither4 refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListado4]','${swtLanguage.language}','#inputModal4','.menutPrio');</h:outputScript>
+                        </h:form>
+                        <h:panelGroup id="alert6" style="display:none;" pt:title="#{gen_msg['delete']}">
+                                <h:form id="removeprioridad">
+                                    <h:inputText value="#{engPriorities.idalert1}" style="display: none;" id="idprioridad"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                                    
+                                    <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                                       <h:outputLabel value="¿#{aees_msg['deleteitem']}?"/> 
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="2" style="margin:auto;">
+                                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{engPriorities.delete(engPriorities.idalert1)}" >
+                                            <f:ajax execute="@form" render="ondelete6 @form resultForm4 inputForm69 slither4 refremeta"/>
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" >
+                                            <f:ajax execute="@this" render="ondescar6 @form  resultForm4 inputForm69 slither4 refremeta" />
+                                        </h:commandButton>
+                                    </h:panelGrid>
+                                </h:form>
+                        </h:panelGroup>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

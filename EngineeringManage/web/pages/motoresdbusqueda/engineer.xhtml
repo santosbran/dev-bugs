@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>    
+        <style>
+            
+            header, footer {
+                height: 0px !important;
+            }
+            table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+                content: '-';
+                background-color: #e5412d !important; /* #bf1e2d;*/
+            }
+            table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+                top: 8px;
+                left: 6px;
+                background-color: darkcyan !important;/*#55a106 !important; #003f72;*/
+                display: block;
+                height: 18px !important;
+                width: 19px !important;
+                border: hidden !important; 
+                border-radius: 16px !important;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 1.1em !important;
+                position: absolute !important;
+                color: white;
+                text-align: left;
+                text-indent: 5px !important; 
+                line-height: 19px !important; 
+                content: '+';
+                background-color: darkcyan !important;/*#55a106 !important; #003f72;*/
+                font-weight: 400 !important;
+                margin-top: -3px !important;
+                box-shadow: 0 0 3px #444;
+                box-sizing: content-box;
+            }
+            
+            .dataTables_wrapper {
+                background: rgba(205,204,204,0.65) !important; 
+            }
+            /*Nuevos estilos MroHolding*/
+            .tablehand>tbody>tr:hover{
+                background-color: gray !important;
+                color: white !important;
+            }
+            table.dataTable thead {
+                background-color: gray !important;
+            }
+            .row {
+                background: white !important;
+            }
+            #das1{
+                /*height: 122% !important;*/
+            }
+            
+        /* *********************************************************************************************************************************************** */    
+        .estiloFormuButea{         
+            width: 100%;
+            margin-top: 42%;
+        }
+        .estiloFormuDispo{
+            width: 100%;
+            margin-top: 31%;
+            position: absolute;
+        }
+        .estiloFormuEA{
+            width: 100%;
+            margin-top: -4%;
+            position: absolute;
+            margin-left: -30%;
+        }
+
+        .divBotonesCoverEA{
+            
+            margin-left: 18%;
+                     
+            width: 100%;
+
+        }
+        .botonMasIngenieros {                        
+            bottom: 6% !important;
+            position: absolute;
+            margin-right: 46%;
+            margin-left: 95%;
+        }
+        
+        .anchoTableMantenimientos {
+            padding: 0 0 10px 0;
+        }
+        .dataTables_wrapper {
+            width: 100% !important;
+        }
+        
+        .divBotonDispo{
+            margin: auto;
+            margin-left: 15%;
+            margin-right: 30%;
+        }
+        .divBotonEA{
+            margin: auto;
+            margin-left: 30%;
+            margin-right: 15%;
+        }
+
+        .divBotonesCoverEA > .col-md-2 > .btn,
+        .divBotonesCoverEA > .col-sm-2 > .btn,
+        .divBotonesCoverEA > .col-lg-2 > .btn,
+        .divBotonesCoverEA > .col-xs-2 > .btn{
+            white-space: normal !important;
+            word-wrap: break-word !important; 
+        }
+        .divBotonesEA > .col-md-4 > .btn,
+        .divBotonesEA > .col-sm-4 > .btn,
+        .divBotonesEA > .col-lg-4 > .btn,
+        .divBotonesEA > .col-xs-4 > .btn{
+            white-space: normal !important;
+            word-wrap: break-word !important; 
+        }
+        .estiloParam {
+            display:block;
+            height: 94% !important;
+        }
+
+
+        @media (min-width: 1150px) and (max-width: 1430px){
+            .estiloFormuButea {
+                margin-top: 53% !important;
+            }
+        }
+
+        @media (min-width: 1000px) and (max-width: 1149px){
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                margin-right: -2% !important;
+                width: 19% !important;
+            }
+            .estiloFormuButea {
+                margin-top: 75% !important;
+            }
+        }
+        @media (min-width: 895px) and (max-width: 999px){
+            .estiloFormuButea {
+                width: 105% !important;
+                margin-top: 82% !important;
+            }
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                margin-right: -3% !important;
+                width: 20% !important;
+            }
+        }
+        @media (min-width: 770px) and (max-width: 894px){
+            
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                margin-right: -2% !important;
+                width: 19% !important;
+            }
+        }
+
+
+
+        @media (min-width: 695px) and (max-width: 769px){
+            
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                margin-right: -2% !important;
+                width: 19% !important;
+            }
+            .divBotonesCoverEA > .col-md-2 > .btn,
+            .divBotonesCoverEA > .col-sm-2 > .btn,
+            .divBotonesCoverEA > .col-lg-2 > .btn,
+            .divBotonesCoverEA > .col-xs-2 > .btn{
+                width: 100% !important;
+                margin-top: 0 !important;
+                font-size: 12px !important;
+            }
+
+        }      
+        @media (min-width: 475px) and (max-width: 694px){
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                width: 41% !important;
+                margin-bottom: 1% !important;
+
+            }
+            .divBotonesEA{
+                width: 86% !important;                  
+                margin-left: 19% !important;
+
+            }
+        }
+        @media (max-width: 474px){
+            .divBotonesCoverEA {
+                margin: auto;
+                margin-left: 14%;
+            }
+            .divBotonesCoverEA > .col-md-2,
+            .divBotonesCoverEA > .col-sm-2,
+            .divBotonesCoverEA > .col-lg-2,
+            .divBotonesCoverEA > .col-xs-2{
+                width: 100%;
+                margin-bottom: 1%;
+            }
+            .divBotonesEA > .col-md-4,
+            .divBotonesEA > .col-sm-4,
+            .divBotonesEA > .col-lg-4,
+            .divBotonesEA > .col-xs-4{
+                width: 100%;
+                margin-bottom: 1% !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }                
+            .divBotonesEA{
+                margin: auto !important;
+                width: 80% !important;
+
+            }           
+        }
+
+
+        @media screen and (max-height: 785px){
+            .estiloParam {
+                display:block;
+                height: 94% !important;
+                overflow: auto;
+            }
+
+            .estiloFormuButea {
+                margin-top: 46% !important;
+            }
+            #ea > .fondo {
+                height: 150% !important;
+            }
+            #engineer {
+                height: 82% !important;
+                } 
+             #engineerTools {
+                height: 99% !important;
+            }               
+            .divBotonesCoverEA > .col-md-2 > .btn,
+            .divBotonesCoverEA > .col-sm-2 > .btn,
+            .divBotonesCoverEA > .col-lg-2 > .btn,
+            .divBotonesCoverEA > .col-xs-2 > .btn{                       
+                font-size: 12px !important;
+                height: 50% !important;
+
+            }
+            /*            .handleParamIngenieros {
+                            margin-top: 0.6% !important;
+                        }*/
+
+        }
+        ul.form2 {
+            position: absolute;
+            background: white;
+            width: auto;
+            padding: 0px;
+            right: 68%;
+            z-index: 999;
+            top: 0%;
+            border-radius: 5px;
+        }
+                
+        
+        /* Nuevo */
+        .mainIngenieros > article{
+            margin-top: 9px;
+        }
+         .divSearchESRIng2{
+            width: 30% !important;
+            margin-left: 88% !important;
+            margin-top: -3.5%;
+            position: absolute;
+        }
+        @media (min-width: 1200px) and (max-width: 1328px){
+            .divSearchESRIng2{
+                width: 36% !important;
+                margin-left: 87% !important;
+                margin-top: -5%;
+            }
+        }
+        @media (min-width: 1130px) and (max-width: 1199px){
+            .divSearchESRIng2{
+                width: 45% !important;
+                margin-left: 84% !important;
+                margin-top: -5.5%;
+            }
+        }
+        @media (min-width: 1030px) and (max-width: 1129px){
+            .divSearchESRIng2{
+                width: 61% !important;
+                margin-left: 80% !important;
+                margin-top: -5.5%;
+            }
+        }
+        @media (min-width: 911px) and (max-width: 1029px){
+            .divSearchESRIng2{
+                margin-left: 76% !important;
+                margin-top: -6.5%;
+            }
+        }
+        @media (min-width: 0px) and (max-width: 910px){
+            .divSearchESRIng2{
+                width: 83% !important;
+                margin-left: 62% !important;
+                margin-top: 0%;
+            }
+        }
+        
+        @media (min-width: 1300px){
+            /*.menuPI {
+                position: relative;
+                display: block !important;
+            }
+            
+            .btnEng .btnEng2 .btnEng3{
+                display: none !important;
+            }*/
+        }
+        
+        .btnEng3{
+            display: block !important;
+        }
+        .menuPI3 {
+                display: none !important;
+            }
+         .menuPI4 {
+                display: none !important;
+            }   
+            
+            @media (min-width: 1230px) and(max-width: 1329px){ 
+                .campb {
+                    margin-right: -6% !important;
+                    width: 37% !important; 
+                     
+                }
+            }
+            @media (min-width: 1230px) and (max-width: 1329px) {
+                .divSearchChequeoIng > .col-md-3, 
+                .divSearchChequeoIng > .col-sm-3, 
+                .divSearchChequeoIng > .col-xs-3, 
+                .divSearchChequeoIng > .col-lg-3 { 
+                    width: 32% !important;
+                }
+            }
+            @media (min-width: 1230px) and (max-width: 1329px) {
+                .divSearchESRIng{
+                    width: 100% !important;
+                    margin-left: 54.2% !important;
+                    margin-top: -5%;
+                    position: absolute;
+                    padding: 0% 24% !important;
+                }
+                .campoBusquedaIng{
+                    position: relative !important;
+                    right: 22px !important;
+                }
+                .botonBusquedaIng{
+                    position: relative !important;
+                    right: 13px !important;
+                }
+            }
+            
+             @media (min-width: 1188px) and (max-width: 1230px) { 
+                .divSearchESRIng{
+                    width:100% !important;
+                    margin-left: 53.4% !important;
+                    margin-top: -5%;
+                    position: absolute;
+                    padding: 0% 24% !important;
+                }
+            }
+            
+            @media (min-width: 1329px) and (max-width: 1425px) {
+                .divSearchESRIng{
+                    width: 82% !important;
+                    margin-left: 58.7% !important;
+                    margin-top: -4%;
+                    position: absolute;
+                    padding: 0% 24% !important;
+                }
+            }
+            
+            @media (min-width: 1200px){
+                .col-md-4{
+                    width: 30% !important;
+                }
+            }
+            #formCompanhy{
+                position: absolute;
+                width: 102%;
+                top: 83%;
+            }
+            .alturaCollapse2Ingenieros2{
+                height: 81%;
+            }
+            #das {
+                position: fixed;
+                z-index: 99999; 
+                left: 75%;
+            }
+            @media screen and (max-width:894px){
+                #das {
+                    left: 0%;
+                    display: block!important;
+                }
+                #das1 {
+                    display: block!important;
+                }
+            }
+            
+            
+            
+             @media screen and (min-height:400px) and (max-height:499px){
+                #formCompanhy{
+                    top: 70%!important;
+                }
+                .hecien{
+                     height: 93%!important;
+                }
+                #das{
+                    height:70%!important;
+                }
+            }
+            
+            @media screen and (min-height:500px) and (max-height:599px){
+                #formCompanhy{
+                    top: 72%!important;
+                    transform: scale(0.7);
+                }
+                .hecien{
+                     height: 95%!important;
+                }
+                #das{
+                    height:73%!important;
+                }
+                .posicionCompanyIngenieros{
+                    margin-left: -21%!important;
+                    width: 142%;
+                }
+            }
+            
+            @media screen and (min-height:600px) and (max-height:699px){
+                #formCompanhy{
+                    top: 72%!important;
+                }
+                .hecien{
+                     height: 95%!important;
+                }
+                #das{
+                    height:73%!important;
+                }
+            }
+            
+            @media screen and (min-height:700px) and (max-height:799px){
+                #formCompanhy{
+                    top: 71%!important;
+                }
+                .hecien{
+                     height:95%!important;
+                }
+                #das{
+                    height:73%!important;
+                }
+                
+            }
+            
+            @media screen and (min-height:800px) and (max-height:899px){
+                #das{
+                    height:85%!important;
+                }
+                .hecien{
+                     height:102.9%!important;
+                }
+            }
+            
+            .handle1Eng {
+                display: block !important;
+                left: 31px!important;
+                top: 102px!important;
+                position: fixed!important;
+                border-radius: 50px !important;
+                width: 22px !important;
+                height: 22px !important;
+                margin-left: -0.3% !important;
+                cursor: pointer;
+                padding: 0px 16px 0 0;
+            }
+            .handleEng {
+                display: block !important;
+                right: 50px!important;
+                top: 102px!important;
+                position: fixed;
+                border-radius: 50px !important;
+                width: 22px !important;
+                height: 22px !important;
+                margin-right: -0.3% !important;
+                cursor: pointer;
+                padding: 1px 5px 0px 16px;
+            }
+            .btnNone{
+                 display: none !important;
+            }
+            
+            @media screen and (min-width:897px) and (max-width:1400px){
+                .handle1Eng{
+                    left: 20px!important;
+                }
+            }
+            
+            @media screen and (min-width:0px) and (max-width:900px){
+                .handle1Eng{
+                    display: none!important;
+                }
+
+                .handleEng{
+                     display: none!important;
+                }
+            }
+            
+             @media screen and (min-width:0px) and (max-width:890px){
+                #icoBack{
+                    top: 86px!important;
+                    left: 1px;
+                }
+            }
+            
+            @media screen and (max-width: 768px){
+                .anchoModalBodyDispositionStatus, .anchoModalBodyAffectType, .anchoModalBodyDamageType, .anchoModalBodyDimension, .anchoModalBodyDamageDim {
+                     margin-left:  0% !important;
+                }
+            } 
+            .posicionCompanyIngenieros{
+                margin-left: 0%;
+            }
+            #btngrp{
+                display: none!important;
+            }
+
+            .alertify-logs {
+                        position: fixed;
+                        z-index: 9999999;
+                        bottom: 10px;
+                        right: 10px;
+                        width: 300px;
+                }
+               
+          
+               
+                
+               
+        </style>
+        <script>   
+            
+             
+             
+            function addmenuTablaNWS(){ 
+                $("#botonesOcultosDASH\\:idAirCraftButton2").trigger("click"); 
+                $("#botonOcultarEngi\\:btRenderBtnadd2").click();                
+            }
+        
+            function ocultarbtn(){
+                $("#menuDhashBordx2").addClass("btnNone"); 
+            }
+            function mostrarbtn(){
+                $("#menuDhashBordx2").removeClass("btnNone"); 
+            }
+            function menuESREngi() {
+                //funcion para mostrar el menu respectivo en la tabla de ESRs
+                // y ocultar los otros botones
+                $("#ico0").css("display", "none");
+                $("#ico1").css("display", "none");
+                $("#ico2").css("display", "none");
+                $("#ico3").css("display", "none");
+
+                $("#openAcMenu").css("display", "none");
+                $("#menuNewAirPlane").css("display", "none");
+
+                $("#menuPrintReport").css("display", "");
+                $("#menuHours").css("display", "");
+                $("#menuACInfo").css("display", "");
+
+                $("#botoneraESR").css("display", "none");
+            }
+        </script>
+<style>
+    .imageRet{    
+        background-image: url("#{resource['styleAE:img/main/back13.svg']}") !important;
+        background-repeat: no-repeat !important;
+        background-position: 40% -5px !important;
+        background-size: 23px 45px;
+    }	
+   .imageRet:hover{    
+  	 border-color: #bf1e2d !important;
+   }
+   
+
+@media (max-width: 895px) and (min-width: 0){
+ .imageRet {   
+    margin-top: 10% !important;
+    margin-left: 1% !important;
+}
+}
+@media screen and (max-width:630px){
+ .imageRet {   
+    margin-top: 11% !important;
+      
+}
+}
+@media screen and (max-width:580px){
+ .imageRet {   
+    margin-top: 12% !important;
+}
+}
+@media screen and (max-width:515px){
+ .imageRet {   
+    margin-top: 13% !important;
+    }
+}
+
+@media screen and (max-height:800px){
+ .handle1Eng {   
+    top: 92px !important;
+    }
+}
+@media screen and (max-height:700px){
+ .handle1Eng {   
+    top: 90px !important;
+    }
+}
+@media (max-width: 799px) and (min-width: 668px){
+.posicionMenuManten {
+    margin-left: 1% !important;
+}
+}
+@media (max-width: 946px) and (min-width: 895px){
+.posicionMenuManten {
+    margin-left: 30% !important;
+}
+}
+    </style>
+    </h:head> 
+    <h:body>
+        
+        <h:form id="menuDhashBordx2" class="flex py-1 w-full absolute"  style="height: 48px;">
+             <div class="flex items-center pl-4 w-full justify-between">
+                <h:commandButton id="icoBack" title="Back" onclick=" menuESREngi(); addmenuTablaNWS()"
+                    class="btn-menu backButton bg-aes-blue hover:bg-aes-red text-gray-800 font-bold py-2 px-4 m-px flex justify-center cursor-pointer z-10">
+                    <f:ajax execute="@this" render="@this refremeta"/>
+                </h:commandButton>
+             </div>
+        </h:form> 
+        <h:form id="busqFormESR" class="flex mt-16 it:mt-0 w-full absolute"  style="height: 48px;">       
+            <div class="flex py-1 pr-4 w-full h-full justify-end">
+                <div class="flex align-center">
+                    <h:inputText value="#{tabEsrEaEoBean.airWork}" class="w-80 h-40px px-2" id="txtBusquedaESR1"
+                        pt:placeholder="#{aees_msg['workOrder']} /  #{aees_msg['colAirp']}" autocomplete="off" readonly="true">
+                        <f:ajax execute="@this" event="keyup" render="@this refremeta"/>
+                    </h:inputText>
+                    <h:inputText value="#{tabEsrEaEoBean.workOrderJob}" class="form-control" id="txtBusquedaESR"
+                                 pt:placeholder="#{aees_msg['workOrder']} /  #{aees_msg['colAirp']}" autocomplete="off" style="display: none">
+                        <f:ajax execute="@this" event="keyup" render="@this refremeta"/>
+                    </h:inputText>
+                </div>
+                    <div style="display: none">
+                    <h:commandButton id="busqueESR" value="#{gen_msg['search']}" action="#{tabEsrEaEoBean.buscarWorkOrderJob()}"
+                        class="w-20 bg-aes-blue text-white text-center py-3 mx-1 h-40px">
+                        <f:ajax execute="@form txtBusquedaESR" render="collapse2 tabs-all das1 close-bt2 matrona idorder nombs scrip autocom esrcompanyscrip res idesr
+                             compnay idGrupoIngSup resultabtodosComp panelTODOS refremeta totalesr txtBusquedaESR1 txtBusquedaESR"/>
+                    </h:commandButton>
+                </div>
+                <div style="display: none">
+                    <h:commandButton id="discarESR" value="#{gen_msg['discard']}" action="#{engtabEsrnwsVwBean.llenarESRTab()}"
+                        class="w-20 bg-aes-blue text-white text-center py-3 mx-1 h-40px">
+                        <f:ajax execute="@form" render="@form ondescarTaskCard collapse2 tabs-all das1 close-bt2 matrona idorder nombs scrip autocom esrcompanyscrip res idesr
+                             compnay idGrupoIngSup resultabtodosComp panelTODOS refremeta totalesr "/>
+                    </h:commandButton>
+                </div>
+                <h:commandButton id="ocBusqueESR" value="#{gen_msg['search']}" style="display: none" action="#{tabEsrEaEoBean.buscarWorkOrderJobIng()}">
+                    <f:ajax execute="@form" listener="#{contCheckBean.setParamer()}" render="@form collapse2 tabs-all das1 close-bt2 matrona idorder nombs 
+                            scrip autocom esrcompanyscrip res idesr
+                        compnay idGrupoIngSup resultabtodosComp panelTODOS refremeta totalesr"/>
+                </h:commandButton>
+                <h:commandButton id="refreshListESRLeft" value="#{gen_msg['refreshListESR']}" style="display: none" action="#{contCheckBean.setParamer()}">
+                    <f:ajax execute="@form" render="@form collapse2 tabs-all das1 close-bt2 matrona idorder nombs 
+                            scrip autocom esrcompanyscrip res idesr
+                        compnay idGrupoIngSup resultabtodosComp panelTODOS refremeta totalesr"/>
+                </h:commandButton>
+                <h:commandButton id="ocDiscarESR" value="#{gen_msg['discard']}" style="display: none" action="#{engtabEsrnwsVwBean.llenarESRTab()}">
+                    <f:ajax execute="@form" render="@form totalesr refremeta"/>
+                </h:commandButton>
+                <h:commandButton id="ocRenderESR" value="#{gen_msg['discard']}" style="display: none">
+                    <f:ajax execute="@form" render="@this inputForm70 refremeta"/>
+                    <f:ajax execute="@form" render="@this inputForm70 refremeta"/>
+                </h:commandButton>
+            </div>
+        </h:form>
+        <!--id='main' rodrigo--> 
+        <div class="flex lg:flex-row lg:flex-no-wrap pt-32 it:pt-16 px-4 pb-4 h-full w-full sm:flex-col overflow-y-auto md:flex-row md:flex-wrap" >
+<!--        <a id="handle1Eng" class="handle1Eng"  onclick="viewm();">
+                <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon parametroflechaESRIngenieros2" aria-hidden="true"/><label class="slide-label1"></label>
+            </a>-->
+        <h:form id="botonOcultarEngi">
+            <h:commandButton id="btRenderBtnadd2" style="display: none" action="#{tabEsrEaEoBean.limpiar2(2)}">
+                <f:ajax execute="btRenderBtnadd2" render="btnadd1:btnadd2 refremeta"/>
+            </h:commandButton>
+        </h:form>
+            <nav id="panel-esr" class="flex flex-col lg:pr-0 md:pr-1 lg:h-1/2 md:h-auto lg:w-3/12 flex-grow md:flex-grow-0 sm:w-full lg:h-full md:w-2/4 lg:order-1">
+                <div id="close-bt2" class="styleHeaderMroholdings">ESR (<h:panelGroup id="totalesr" style="display: inline;">#{tabEsrEaEoBean.listfiltro.size()}</h:panelGroup>)
+                    <div id="divOcultarEsrTabns" class="image"  title="#{gen_msg['hide']}">
+                        <a class="nav-toggle" >
+                            <i id="tog1Eng" class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaESRIngenieros" onclick="switchESR(false);"/>                                
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse2" class="w-full" style="height: calc(100% - 30px);display:block;">
+                    <ui:insert name="newContent">
+                        <ui:include src="/pages/tabsCompany.xhtml"/>
+                    </ui:insert>
+
+                </div>
+                <h:form id="formCompanhy">
+                    <div id="btngrp" class="btn-group fuenteCompany posicionCompanyIngenieros" role="group" style="/*margin-top: 10px;margin-left: 7px;*/">
+                        <h:commandButton id="butCompany" action="#{tabEsrEaEoBean.allEsrCompany()}" class="btn btn-default active" value="#{gen_msg['all']}" onclick="addactive(this);">
+                            <f:ajax  render="matrona idorder nombs scrip autocom panelCompany esrcompanyscrip res idesr 
+                                     compnay idGrupoIngSup resultabtodosComp panelTODOS totalesr refremeta" execute="@form"  />
+                        </h:commandButton>
+                        <c:forEach  items="#{companyBean.listado}" var="item" >
+                            <h:commandButton id="but#{item.ciaCode}" action="#{tabEsrEaEoBean.esrcompany(item.ciaCode)}" title="#{item.ciaName}"
+                                             class="btn btn-default" onclick="addactive(this);" value="#{item.ciaCode}">
+                                <f:ajax  render="matrona idorder nombs scrip autocom esrcompanyscrip res idesr
+                                         compnay idGrupoIngSup resultabtodosComp panelTODOS totalesr refremeta" execute="@form"  />
+                            </h:commandButton>
+                        </c:forEach>
+                    </div>
+                    <script type="text/javascript">
+                        function addactive(id)
+                        {
+                            //var divgrop=$("#btngrp input[type=submit]");
+                            var idbut=id.id;
+                            $("#btngrp input[type=submit]").each(function () {
+                                $(this).removeClass("active");
+                            });
+                            document.getElementById(idbut).className += " active";
+
+
+                        }
+                    </script>
+                </h:form>
+
+            </nav>   
+            <article id="form-esr" class="flex flex-col lg:order-2 md:h-auto w-full order-1 md:order-last md:mt-2 sm:w-full md:w-4/4 lg:h-full lg:w-6/12 md:my-2 lg:my-0 lg:mx-2">
+                <div id="" class="styleHeaderMroholdings justify-between" style="display: flex; padding-top: 0 !important;">
+                    <h:panelGroup id="nombs" style="padding-top: 6px;">
+                        <h:outputText value="#{gen_msg['panelea']}" rendered="#{tabEsrEaEoBean.idor eq 1}" class=""/>
+                        <h:outputText value="#{gen_msg['paneleo']}" rendered="#{tabEsrEaEoBean.idor eq 3}" class=""/>
+                        <h:outputText value="#{gen_msg['panelesr']}" rendered="#{tabEsrEaEoBean.idor eq 2}" class=""/>
+                        <h:outputText value="#{aees_msg['eaLoadDocs']}" rendered="#{tabEsrEaEoBean.idor eq 4}" class=""/>
+                        <h:outputText value="#{gen_msg['references']}" rendered="#{tabEsrEaEoBean.idor eq 15}" class=""/>
+                    </h:panelGroup>             
+                    <div class="flex">
+                        <div id="open-esr" class="badge-min h-full flex px-3 mr-2 hidden"  onclick="switchESR(true)">
+                            <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                            <div class="flex items-center h-full cursor-pointer">
+                                <label class="text-white mb-0 cursor-pointer">ESR</label>
+                            </div>
+                        </div>
+                        <div id="open-parameter" class="badge-min h-full flex px-3 mr-2 hidden" onclick="switchParams(true)">
+                            <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                            <div class="flex items-center h-full cursor-pointer">
+                                <label class="text-white mb-0 cursor-pointer">#{gen_msg['parameter']}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse3" class="w-full overflow-y-auto bg-white" style="display:block; height: calc(100% - 30px)" onscroll="onscrollfnction();">
+                    <h:panelGroup id="divSup">
+                        <div id="esr" class="flex w-full h-full">
+                            <ui:insert name="newContent">
+                                <ui:include src="/pages/esr/tabESR.xhtml"/>
+                            </ui:insert>
+
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup id="divInicialESR">
+                        <div id="inicialPageESR" class="styleacordeon scroll panelesr"
+                             style="display: none;">
+
+                            <ui:insert name="newContent">
+                                <ui:include src="/pages/esr/tabESRInicial.xhtml"/>
+                            </ui:insert>
+                        </div>
+                    </h:panelGroup>
+                    
+                    <div id="spinnerhms" class="dimensionesSpinner" style="display: none;margin:0 auto;" >
+                        <div id="loader-wrapper" class="loadingif">
+                            <div id="loader">
+                            </div>
+                            <div id="content">
+                                <h3>#{gen_msg['loading']}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="tracking" class="styleacordeon scroll"
+                        style="display:none;overflow: auto;width: 90%;
+                        height: 100% !important;
+                        margin-left: 5%;
+                        margin-bottom: 5%;">
+                        <ui:insert name="newContent">
+                            <ui:include src="/pages/esr/trackingea.xhtml"/>
+                        </ui:insert>
+                    </div>
+                    <div id="cover" class="styleacordeon scroll" style="display:none;">
+                        <ui:insert name="newContent">
+                            <ui:include src="/pages/eas/cover.xhtml"/>
+                        </ui:insert>
+                    </div>
+                    <div id="parts" class="styleacordeon scroll" style="display:none;">
+                        <ui:insert name="newContent">
+                            <ui:include src="/pages/eas/parts.xhtml"/>
+                        </ui:insert>
+                    </div>
+                </div>
+                <h:form  id="Dispo" class="estiloFormuDispo" style="display: none;">
+                    <div class="divBotonDispo">
+                        <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 d-flex">
+                            <h:commandButton class="btn btn-signin srbuton" value ="ESR">
+                                <f:ajax execute="@form" listener="#{tabEsrEaEoBean.volverEsrs()}" render="matrona scrip converea inputForm70:status refremeta"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+                <h:form  id="DocEA" class="estiloFormuEA" style="display: none;">                               
+                    <h:commandButton class="btn btn-signin srbuton" value ="EA" id="btnBackDoc" style="display: none;">
+                        <f:ajax execute="@form" listener="#{tabEsrEaEoBean.eas()}" render="matrona scrip converea refremeta"/>
+                    </h:commandButton>                 
+                </h:form>
+                <h:form  id="EmailEA" style="width: 100%;display: none;">
+                     <h:panelGrid columns="2" style="margin: auto;" >
+                         <h:commandButton class="btn btn-signin srbuton" value ="EA"  style="margin-top: 0;" >
+                            <f:ajax execute="@form" listener="#{tabEsrEaEoBean.eas()}" render="matrona scrip converea refremeta"/>
+                        </h:commandButton>
+                         <h:commandButton class="btn btn-signin srbuton" value ="Document EA"  style="margin-top: 0;" >
+                            <f:ajax execute="@form" listener="#{tabEsrEaEoBean.ea(engAutorizationBean.elemento.eagId)}" render="@form matrona scrip part scripea resultForm71 refremeta"/>
+                        </h:commandButton>
+                         </h:panelGrid>
+                </h:form>
+                <h:form  id="EsrRep" style="width: 100%;display: none;">
+                     <h:panelGrid columns="2" style="margin: auto;" >
+                        <h:commandButton class="btn btn-signin srbuton" value ="ESR"  style="margin-top: 0;" >
+                            <f:ajax execute="@form" listener="#{tabEsrEaEoBean.volverEsrs()}" render="matrona scrip converea inputForm70 refremeta"/>
+                        </h:commandButton>                             
+                       <h:commandButton class="btn btn-signin srbuton" value ="#{gen_msg['rep']}" style="margin-top: 0;" >
+                           <f:ajax listener="#{tabEsrEaEoBean.reporteESR(esrBean.elemento.reqMessageid)}" render="matrona scrip viewReportes refremeta" />
+                       </h:commandButton>
+                         </h:panelGrid>
+                </h:form>
+                <h:form  id="trackidiv" style="width: 100%;display: none;">
+                     <h:panelGrid columns="1" style="margin: auto;" >
+                         <h:commandButton class="btn btn-signin srbuton" value ="ESR"  style="margin-top: 0;" >
+                            <f:ajax execute="@form" listener="#{tabEsrEaEoBean.volverEsrs()}" render="matrona scrip converea inputForm70:status refremeta"/>
+                        </h:commandButton>
+                         </h:panelGrid>
+                </h:form>
+                <h:form  id="butesr" style="width: 100%;display: none;" >
+                    <script type="text/javascript">
+
+
+                        function mostrarusersolicita(){
+                            var valoruser= $("#inputForm70\\:userhiden").val();
+                            $("#inputForm70\\:slcReqM").val(valoruser);
+                        }
+                    </script>
+                </h:form>
+                <script>
+                    function saveorclean(ope) {
+                            if (ope == 1) {
+                                $("#inputForm70\\:save").trigger("click");
+                                $("#butesr\\:usersolicita").trigger("click");
+
+                            } else {
+                                $("#inputForm70\\:clean").trigger("click");
+                                $("#butesr\\:usersolicita").trigger("click");
+                            }
+                        }
+                </script>
+                <ui:insert name="newContent">
+                    <ui:include src="/pages/esr/renderEsr.xhtml"/>
+                </ui:insert>
+            </article>
+<!--            <a id="handleEng" class="handleEng" >
+                <span class="parametroflecha gli-a glyphicon glyphicon-chevron-left colorGlyphicon posicionGlyleft parametroflechaParameterIng2" aria-hidden="true"/>
+                <label class="slide-label"></label>
+            </a>-->
+            <aside id="panel-params" class="lg:h-full lg:pl-0 md:pl-1 lg:order-3 md:h-auto lg:w-2/4  flex flex-col flex-grow md:flex-grow-0 sm:w-full lg:w-3/12 md:w-2/4" >
+                <div id="close-bt4" class="styleHeaderMroholdings">#{gen_msg['parameter']}
+                    <div class="image" >
+                        <a class="nav-toggle" >
+                            <i id="togEng" class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaParameterIng" onclick="switchParams(false)"/>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse4" class="w-full overfloy-y-auto bg-gray" style="height: calc(100% - 30px)">
+                    <section id="secdas" class="ac-container" >
+                        <div id="acor1" class="borderBlancoAcordion" style="display: none">
+                            <input id="ac-eat" class="input" name="accordion-1" type="checkbox"/>
+                            <label class="label backcolor" for="ac-eat">#{aees_msg['engActionTypes']}</label>
+                            <article class="ac-large">
+
+                                <div class="styleacordeon">
+                                </div>
+                            </article>
+                        </div>
+                            <div id="acor2" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-ewt" class="input" name="accordion-1" type="checkbox"/>
+                                <label class="label backcolor" for="ac-ewt">#{aees_msg['engWorktypes']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor3" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-estatus" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-estatus">#{aees_msg['eoStatus']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor4" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-prx" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-prx">#{gen_msg['prefixes']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor5" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-prio" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-prio">#{gen_msg['priorities']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor6" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-act" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-act">#{aees_msg['activity']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor7" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-ord" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-ord">#{aees_msg['ordernotes']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor8" class="borderBlancoAcordion" style="display: none">
+                                <input id="ac-apr" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-apr">#{gen_msg['approvals']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div style="z-index: 1;" id="acor9" class="borderBlancoAcordion">
+                                <input id="ac-ata" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-ata">#{gen_msg['ATA']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon" style="z-index: 1;">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/catalogs/contAtas.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor10" class="borderBlancoAcordion">
+                                <input id="ac-cke" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-cke">#{aees_msg['contCheckEmails']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                         <ui:insert name="newContent">
+                                            <ui:include src="/pages/catalogs/contCheckEmails.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor11" class="borderBlancoAcordion">
+                                <input id="ac-flt" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-flt">#{gen_msg['fleets']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor12" class="borderBlancoAcordion">
+                                <input id="ac-dist" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-dist">#{aees_msg['engDistlistConfig']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor13" class="borderBlancoAcordion">
+                                <input id="ac-mat" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-mat">#{gen_msg['mUnits']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor14" class="borderBlancoAcordion">
+                                <input id="ac-eastados" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-eastados">#{gen_msg['eaStados']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/catalogs/engEaStatus.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor15" style="display: none;" class="borderBlancoAcordion">
+                                <input id="ac-workorder" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-workorder">#{aees_msg['workOrder']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor16" style="display: none;" class="borderBlancoAcordion">
+                                <input id="ac-tail" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-tail">#{aees_msg['tailPlane']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor17" style="display: none;" class="borderBlancoAcordion">
+                                <input id="ac-cus" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-cus">#{gen_msg['cus']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor18" style="display: none;" class="borderBlancoAcordion">
+                                <input id="ac-com" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label" for="ac-com">#{gen_msg['company']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor19" class="borderBlancoAcordion">
+                                <input id="ac-rep" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-rep">#{gen_msg['rep']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor27" class="borderBlancoAcordion">
+                                <input id="ac-Actor" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-Actor">#{gen_msg['actor']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engActorDisposition.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor20" class="borderBlancoAcordion">
+                                <input id="ac-dispo" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-dispo">#{gen_msg['disposition']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engDispositionStatus.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor21" class="borderBlancoAcordion">
+                                <input id="ac-plantillas" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-plantillas">Plantillas cover part</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/Plantillas/plantillaUpload.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                     </article>
+                            </div>                                    
+                            <div id="acor22" class="borderBlancoAcordion">
+                                <input id="ac-affectedpart" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-affectedpart">#{gen_msg['affpartTitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engAffectedPart.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor23" class="borderBlancoAcordion">
+                                <input id="ac-damagetype" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-damagetype">#{gen_msg['damtypeTitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engDamageType.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor24" class="borderBlancoAcordion">
+                                <input id="ac-dimension" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-dimension">#{gen_msg['dimtitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engDimension.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor25" class="borderBlancoAcordion" style="display: none;">
+                                <input id="ac-damagedim" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-damagedim">#{gen_msg['damdimtitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engDamageDim.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                             
+                            <div id="acor32" class="borderBlancoAcordion">
+                                <input id="ac-excepDT" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-excepDT">Exception by Damage Type</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/exceptionDamageType.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            
+                            <div id="acor33" class="borderBlancoAcordion">
+                                <input id="ac-DTManuf" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-DTManuf">Damage Type by Manufacturer</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engDamageTypeManufact.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            
+                            <div id="acor26" class="borderBlancoAcordion">
+                                <input id="ac-Measure" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-Measure">Measure</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engMeasure.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor27" class="borderBlancoAcordion">
+                                <input id="ac-TempData" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-TempData">#{gen_msg['tempDataTitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engTempData.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor28" class="borderBlancoAcordion">
+                                <input id="ac-Question" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-Question">#{gen_msg['question']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/EngQuestion.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor29" class="borderBlancoAcordion">
+                                <input id="ac-DamageQuestion" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-DamageQuestion">#{gen_msg['damquetitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/EngDamageQuestion.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor30" class="borderBlancoAcordion">
+                                <input id="ac-RequestType" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-RequestType">#{gen_msg['reqtypeTitle']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engRequestType.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor31" class="borderBlancoAcordion">
+                                <input id="ac-RepairClassif" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor" for="ac-RepairClassif">Repair Classification</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">                                      
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/engRepairClassification.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+
+            </div>
+        
+        <h:panelGroup id="alertCancelEA" style="display:none;" pt:title="#{gen_msg['delete']}">
+
+            <h:form id="removeCancel">
+
+                <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                    <h:outputLabel value="#{aees_msg['deleteitem']}?"/> 
+                </h:panelGrid>
+
+                <h:panelGrid columns="2" style="margin:auto;">
+                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{tabEsrEaEoBean.cancelarEA()}" >
+                        <f:ajax execute="@form" render="onsuccessCancel inputForm68 resultFormEAList butea:cancelea refremeta"/>
+                    </h:commandButton>
+                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" onclick="$('#alertCancelEA').dialog('close');">
+                        <f:ajax execute="@this" render="@this refremeta" />
+                    </h:commandButton>
+                </h:panelGrid>
+
+            </h:form>
+
+        </h:panelGroup>
+        <h:panelGroup id="onsuccessCancel">
+            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                $("#alertCancelEA").dialog("close");
+                alertify.success("#{aees_msg['exito']}");
+            </h:outputScript>
+        </h:panelGroup>
+        <script>
+            var stateESR = false;
+                var stateParams = false;
+            
+                function calcFormEr() {
+                var panel = document.getElementById('form-esr');
+                var params = document.getElementById('panel-params');
+                       
+                if (stateESR &amp;&amp; stateParams) {
+                    
+               
+                    panel.classList.add('md:w-2/4');
+                    params.classList.add('pl-2');
+                    panel.classList.add('h-1/2');
+                    panel.classList.add('mt-2');
+                    stateESR = false;
+                    stateParams = false;
+                } else if (stateESR || stateParams) {
+                    
+                  
+                    var item = document.getElementById('form-esr');
+                    var hasClase2 = item.classList.contains( 'lg:w-full' );
+                    if(hasClase2){
+                         
+                        panel.classList.remove('lg:w-full');
+                        panel.classList.remove('md:w-full');
+                        panel.classList.remove('h-full');
+                        panel.classList.remove('mt-0');
+                    }
+                   
+                    /**----------------------------**/
+                       
+                        
+                    panel.classList.add('md:w-4/4');
+                    params.classList.remove('pl-2');
+                    panel.classList.add('h-1/2');
+                    panel.classList.add('mt-2');
+                    stateESR = false;
+                    stateParams = false;
+                } else {
+                var panelMedio = document.getElementById('form-esr');
+                    var hasClase2 = panelMedio.classList.contains( 'lg:w-full' );
+                    if(hasClase2){
+                         
+                        stateESR = false;
+                        stateParams = false;
+                    } else {
+                         
+                        
+                        panelMedio.classList.add('lg:w-full');
+                        panel.classList.add('md:w-full');
+                        panel.classList.add('h-full');
+                        panel.classList.add('mt-0');
+                        stateESR = false;
+                        stateParams = false;
+                    }
+                   
+                    }
+                }
+
+                function switchESR(state) {
+                var panel = document.getElementById('panel-esr');
+                var button = document.getElementById('open-esr');
+                stateESR = state;
+                if(state) {
+                    panel.classList.remove('hidden');
+                    button.classList.add('hidden');
+                } else {
+                    panel.classList.add('hidden');
+                    button.classList.remove('hidden');
+                }
+                calcFormEr()
+                }
+
+                function switchParams(state) {
+                var panel = document.getElementById('panel-params');
+                var button = document.getElementById('open-parameter');
+                var panelMedio = document.getElementById('form-esr');
+                stateParams = state;
+                if (state) {
+                    panel.classList.remove('hidden');
+                    button.classList.add('hidden');
+                    
+                } else {
+                    panel.classList.add('hidden');
+                    button.classList.remove('hidden');
+                }
+                calcFormEr()
+                }
+
+        </script>
+                
+    </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
+    <f:view  rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title>AEES - Sistema de ingenieria </title>
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#inputModal', '300px');
+                crearModal('#inputModalMotor1', '300px');
+                crearModal('#inputModalEO2', '300px');
+                crearModal('#inputModalEO3', '300px');
+                crearModal('#inputFormEO5', '900px');
+                });
+                function verModal(id){
+                $("#openM\\:idElemnt").val(id);
+                $( "#openM\\:seteelement" ).trigger( "click" );
+                mostrarModal('#inputFormEO5');return false
+                }
+
+            </h:outputScript>
+            <style type="text/css">
+                html .ui-autocomplete {
+                    height: 200px;
+                    overflow-y: auto;
+                    overflow-x: hidden;                   
+                    background: #f0f0f0; 
+                    color: #0F1957;
+                }
+                
+                html .ui-state-focus{
+                    font-weight: bold !important;
+                    color: #0F1957 !important;
+                    border: none !important;
+                }
+                
+                
+                .cl1{
+                    width: 17.5%;
+                }
+                .cl2{
+                    width:70%; 
+                }
+                th, tr{
+                    border-top: none !important;
+                    border-bottom: none !important;
+                }
+                               
+            </style>
+        </h:head>
+        <h:body>
+                    <h:panelGroup id="ontabesrBusEo">
+                        <h:outputScript rendered="#{facesContext.postback and facesContext.validationFailed}">
+                            alertify.error("#{aees_msg['complCamp']}");
+                        </h:outputScript>
+                    </h:panelGroup>
+                    
+                    <!--result-->
+                    <h:form id="resultFormEO" class="estiloFormTablasIngenieria">   
+                        <h:dataTable id="tblListado" pt:name="tblListadoeo" value="#{motorBusquedaEO.listado}" var="item" cellpadding="0" class="anchoTablasIngenieria">
+                            <c:set var="objeto" value="#{item}" />                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{gen_msg['ATA']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{gen_msg['ATA']}"/>
+                                </f:facet>
+                                <div class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.ataNumata}" />
+                                </div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{aees_msg['eoStatus']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{aees_msg['eoStatus']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.eoCodstseo}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{aees_msg['engFleets']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{aees_msg['engFleets']}"/>
+                                </f:facet>
+                                <div class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.fltCod}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{aees_msg['acctionType']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{aees_msg['acctionType']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.actCod.actCod}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{gen_msg['priority']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{gen_msg['priority']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.priCod.priCod}" /></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{aees_msg['revision']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{aees_msg['revision']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.eoRev}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{gen_msg['title']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{gen_msg['title']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.eoSubject}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{gen_msg['year']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{gen_msg['year']}"/>
+                                </f:facet>
+                                <div class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.eoYear}"/></div>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{gen_msg['type']} #{gen_msg['document']}"/>
+                                </f:facet>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{gen_msg['type']} #{gen_msg['document']}"/>
+                                </f:facet>
+                                <div  class="estiloItemTablasSearch" onclick="verModal('#{item.eoIdord}')">
+                                    <h:outputText value="#{item.eoDocType}" /></div>
+                            </h:column>
+
+                        </h:dataTable>
+                        <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                        <h:outputScript>formatTable('table[name=tblListadoeo]','${swtLanguage.language}', 'menu4');</h:outputScript>
+                        
+                    </h:form>
+                    
+        </h:body>
+    </f:view>
+</html>

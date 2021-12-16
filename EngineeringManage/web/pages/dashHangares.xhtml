@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title></title>
+        <style>
+            .butomclassesr{  
+                width: 3%;
+                height: 0%;
+                margin: 0% 0% 0% 0.456%;
+            }
+            .divDashBord{
+                background: rgb(245,243,243); 
+                border-radius: 10px;
+                box-shadow: 1px 5px 3px 2px rgba(0, 0, 0, 0.3);
+                margin: 10px 10px 10px 10px; 
+                padding: 10px;  
+                margin-left: 5%;
+                margin-block-end: 40px;
+            }
+            .divDashBordRampa{            
+                background: #dedede; 
+                border-radius: 10px;                
+                margin: 4px 0px 0px 0px; 
+                padding: 0px;
+                /*border: solid;*/
+                float: left;
+                width: 100%;
+/*                right: 8px; */
+                height: 156px;              
+            }
+            .divRMH5{
+                width: 102%
+            }
+            .divRMH6{
+                width: 102%
+            }
+            .scrollDash{            
+                overflow: overlay;
+                height: 500px;
+                position: fixed;
+                top: 70px;
+            }
+            a:hover {
+                filter: opacity(.5);
+            }
+            .divHangarDash1{
+                height:83%;
+            }
+            .divHangarDash2{
+                width: 40%;
+            }            
+            .divAirplaneDash1{
+                height:auto;
+                margin-left: 5%;
+                    margin-top: 4%;
+            }
+               .divAirplaneDash2{          
+                    margin-top: 1%;
+            }
+            .divAirplaneImg1{
+                width: 100%;
+            }
+            .divAirplaneImg2{
+                width: 100%;
+            }
+            .imgCapability{
+                width:50%;
+                height:50%;
+            }
+            .divAirplaneImg2:hover,
+            .divAirplaneImg1:hover{
+                cursor: pointer;
+            }
+            .divRampDash1{
+               /*border: solid;*/
+                position: relative; 
+                bottom: auto; 
+                top:4%;
+            }
+            .divRampDash2{
+                /*border: solid;*/  
+                position: relative; 
+                bottom: auto; 
+                top: 26%;
+            }
+            .divContAirPlane{
+                margin-left: 12px;
+                position: relative;
+                top: 13px;
+            }
+            .divRowAir{
+                margin-left: 36%;
+                float: left;
+                width: 30%
+            }
+            
+                    
+            @media (min-width: 1650px)  and (max-width: 1780px) {
+                .butomclassesr{  
+                    width: 3%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                .divHangarDash1{
+                    height:119%;
+                }
+                .scrollDash {
+                    height: 640px;
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 1%;
+                }               
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 25%;
+                }
+
+            }
+            @media (min-width: 1500px)  and (max-width: 1649px) {
+                .divHangarDash1{
+                    height:111%;
+                }
+                .scrollDash {
+                    height: 550px;
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 0%;
+                }
+                
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 24%;
+                }
+                .butomclassesr{  
+                    width: 3%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+
+            }
+            @media (min-width: 1300px)  and (max-width: 1499px) {
+                .butomclassesr{  
+                    width: 4%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                .divHangarDash1{
+                    height:104%;
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: -1%;
+                }
+               
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 24%;
+                }
+
+            }
+            @media (min-width: 1250px)  and (max-width: 1299px) {
+                .butomclassesr{  
+                    width: 4%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                .divHangarDash1{
+                    height:101%;
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: -0%;
+                }
+               
+                .divRampDash2 {
+                   /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 24%;
+                }
+
+            }
+            @media (min-width: 1100px)  and (max-width: 1249px) {
+                .butomclassesr{  
+                    width: 4%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                .divHangarDash1{
+                    height:618px;
+                    width: 26%
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 6%;
+                }
+               
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 26%;
+                }
+                .divHangarDash2 {
+                    width: 58%;
+                }
+
+             }
+            @media (min-width: 950px)   and (max-width: 1099px) {
+                .butomclassesr{  
+                    width: 5%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                .divHangarDash1{
+                    height:575px;
+                    width: 26%
+                }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 6%;
+                }               
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 28%;
+                }
+                .divHangarDash2 {
+                    width: 58%;
+                }
+             }
+            @media (min-width: 910px)   and (max-width: 949px)  {
+                .butomclassesr{  
+                    width: 5%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                 .divHangarDash1{
+                     height: 512px;
+                     width: 24%;
+                 }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 9.5%;
+                }                
+                .divRampDash2 {
+                   /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 31%;
+                }
+                .divHangarDash2 {
+                    width: 58%;
+                }
+
+             }             
+            @media (min-width: 801px)   and (max-width: 909px)  {
+                .butomclassesr{  
+                    width: 6%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                 .divHangarDash1{
+                     height: 714px;
+                     width: 42% !important;
+                 }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 9.5%;
+                }
+               
+                .divAirplaneImg2 {
+                    width: 100%;
+                }
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 28%;
+                }
+                .divHangarDash2 {
+                    width: 89%;
+                }                
+                
+                .scrollDash>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;                  
+                }               
+                       
+                .scrollDash>.col-md-2>div>.col-md-5 {
+                    width: 41.66666667%;
+                }
+                .scrollDash>.col-md-3>div>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;
+                }
+
+                .col-md-3, .col-md-5 {
+                    float: left;
+                }
+                .divDashBordRampa>.col-md-5 {
+                    width: 36.66666667%;
+                    left: 10%;
+                }
+                .divDashBordRampa>.col-md-2 {
+                    width: 18.66666667%;
+                    float: left;
+                    left: 10%;
+                } 
+                .divRMH6{ 
+                    height: 330px!important; 
+                }
+            }
+            @media (min-width: 691px)   and (max-width: 800px)  {
+                .butomclassesr{  
+                    width: 7%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                 .divHangarDash1{
+                     height: 558px;
+                     width: 42% !important;
+                 }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 1.2%;
+                }
+               
+                .divAirplaneImg2 {
+                    width: 100%;
+                }
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 22%;
+                }
+                .divHangarDash2 {
+                    width: 89%;
+                }                
+                
+                .scrollDash>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;                  
+                }               
+                       
+                .scrollDash>.col-md-2>div>.col-md-5 {
+                    width: 36.66666667%;
+                    margin: 0% 0% 0% 9%
+                }
+                .scrollDash>.col-md-3>div>.col-md-2 {
+                    width: 18.66666667%;
+                    float: left;
+                }
+                .col-md-2 {
+                    width: 18.66666667%;
+                    float: left;
+                } 
+                .col-md-5 {
+                    width: 36.66666667%;
+                    margin: 0% 0% 0% 9%
+                }
+                .col-md-3, .col-md-5 {
+                    float: left;
+                }
+                .divRMH6{ 
+                    height: 300px!important; 
+                }
+            }
+            @media (min-width: 526px)   and (max-width: 690px)  {
+                .butomclassesr{  
+                    width: 8%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                 .divHangarDash1{
+                     height: 568px; 
+                     width: 42% !important;
+                 }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 0.2%;
+                }
+               
+                .divAirplaneImg2 {
+                    width: 100%;
+                }
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 23%;
+                }
+                .divHangarDash2 {
+                    width: 89%;
+                }                
+                
+                .scrollDash>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;                  
+                }               
+                       
+                .scrollDash>.col-md-2>div>.col-md-5 {
+                    width: 41.66666667%;
+                }
+                .scrollDash>.col-md-3>div>.col-md-2 {
+                    width: 18.66666667%;
+                    float: left;
+                }
+                .col-md-3, .col-md-5 {
+                    float: left;
+                }
+                .divDashBordRampa>.col-md-5 {
+                    width: 36.66666667%;
+                    left: 10%;
+                }
+                .divDashBordRampa>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;
+                    left: 3%;
+                }
+            }
+            @media (min-width: 500px)   and (max-width: 525px)  {
+                .butomclassesr{  
+                    width: 9%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 9.5%;
+                }
+                
+                 .divHangarDash1{
+                     height: 511px;
+                     width: 42% !important;
+                 }
+                
+               
+                .divAirplaneImg2 {
+                    width: 100%;
+                }
+                
+                .divHangarDash2 {
+                    width: 89%;
+                }
+                
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 31%;
+                }
+                
+                
+                .scrollDash>.col-md-2>div>.col-md-5 {
+                    width: 41.66666667%;
+                }
+                
+                .scrollDash>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;                  
+                }              
+                       
+                
+                .col-md-3, .col-md-5 {
+                    float: left;
+                }
+                .scrollDash>.col-md-3>div>.col-md-2 {
+                    width: 18.66666667%;
+                    float: left;
+                }
+                .divContAirPlane{
+                    width: 41%;
+                }
+                .scrollDash{
+                    height: 600px;
+                }
+                .divRMH5 > .divContAirPlane{
+                    width: 23%;
+                    float: left;
+                }
+                .divRMH5{ 
+                    height: 240px!important;
+                }
+                .divRMH6 > .divContAirPlane{
+                    width: 23%;
+                    float: left;
+                }
+                .divRMH6{ 
+                    height: 240px!important;
+                }
+            }
+            @media (min-width: 0px) and (max-width: 499px)  {
+                
+                .handleParamIngenieros > .posicionGlyleft {
+                    margin-top: 87% !important;
+                    left: -14% !important;
+                }
+                .butomclassesr{  
+                    width: 16%;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+                 .divHangarDash1{
+                     height: 470px;
+                     width: 73% !important;
+                     margin: 0% 0% 5% 15%;
+                 }
+                .divRampDash1 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 0.5%;
+                }
+               
+                .divAirplaneImg2 {
+                    width: 100%;
+                }
+                .divRampDash2 {
+                    /*border: solid;*/
+                    position: relative;
+                    bottom: auto;
+                    top: 8%;
+                }
+                .divHangarDash2 {
+                    width: 89%;
+                }                
+                
+                .scrollDash>.col-md-2 {
+                    width: 16.66666667%;
+                    float: left;                  
+                }               
+                       
+                .scrollDash>.col-md-2>div>.col-md-5 {
+                    width: 41.66666667%;
+                }
+                .scrollDash>.col-md-3>div>.col-md-2 {
+                    width: 32.66666667%;
+                    float: left;
+                }
+
+                .col-md-3, .col-md-5 {
+                    float: left;
+                }               
+                .scrollDash {
+                    overflow: scroll;
+                    height: 430px;
+                }
+            }
+
+            .spanH{
+                font-size: 16px;
+                color: #bf1e2d;
+                font-weight: bold;
+            }
+            .spanAV{
+                font-size: 13px;
+                color: black;
+                font-weight: bold;
+            }
+            #icoBack{
+                position: relative;
+                top:-73px; 
+                z-index: 999999999999;
+            }
+            #icoBackDash{
+                position: relative;
+                top:-73px; 
+                z-index: 999999999999;
+            }
+            .fieldsetR{
+                width: 100%;
+                position: sticky;
+                top: 69%;
+                float: left;
+                left: 1px;
+            }
+            legend{
+                color: black !important;
+                font-size: 16px !important;
+                font-weight: bold !important;
+                border-bottom: 0px solid #003c72 !important;
+                position: relative;
+                top: 25px;
+            }
+            @media (min-height: 0 px)and (max-height: 400px){
+                #img{
+                    height: 2300px!important;
+                }
+            }
+             @media (min-width: 0 px)and (max-width: 900px){
+                #img{
+                    height: 2300px!important;
+                }
+            }
+            
+             @media (min-width: 1781px)  and (max-width: 1880px) {
+                .divHangarDash1 {
+                    height: 700px;
+                }
+                .scrollDash {
+                    height: 640px;
+                }
+            }
+            
+            @media (min-width: 1881px)  and (max-width: 2100px) {
+                .divHangarDash1 {
+                    height: 700px;
+                } 
+                
+                .scrollDash {
+                    height: 750px;
+                }
+            }
+            
+            @media (min-width: 2101px)  and (max-width: 2400px) {
+                .divHangarDash1 {
+                    height: 700px;
+                } 
+                
+                .scrollDash {
+                    height: 900px;
+                }
+            }
+            @media (min-width: 2401px)  and (max-width: 2600px) {
+                .divHangarDash1 {
+                    height: 800px;
+                } 
+                
+                .scrollDash {
+                    height: 1000px;
+                }
+            }
+            
+            .estiloHea{
+                    border-bottom: 1px solid #bf1e2d;
+            } 
+                        
+               
+               
+            .imageRet3{    
+                background-image: url("#{resource['styleAE:img/main/back13.svg']}") !important;
+                background-repeat: no-repeat !important;
+                background-position: 40% -5px !important;
+                background-size: 23px 45px;
+                margin-top: -6% !important;
+            }	
+            .imageRet3:hover{    
+                border-color: #bf1e2d !important;
+            }
+
+            
+            @media screen and (max-width:1280px){
+                .imageRet3 {
+                    margin-top: -6% !important;
+                }
+
+            }
+            @media screen and (max-width:1180px){
+                .imageRet3 {
+                    margin-top: -6% !important;         
+                }
+
+            }
+            @media screen and (max-width:1130px){
+                .imageRet3 {
+                    margin-top: -10% !important;
+                }
+            }
+            
+            @media (max-width: 895px) and (min-width: 0){
+                .imageRet3 {   
+                 /*   margin-top: 10% !important;*/
+                    margin-left: 1% !important;
+                   margin-top: 1% !important;
+                }
+                #formDashBord > .scrollDash{
+                        margin-top: 8% !important;
+                    
+                }
+            }
+
+            @media  screen and (max-width: 800px) {
+                .imageRet3 {  
+                    margin-top: 1% !important;
+                }
+            }
+                @media screen and (max-width:580px){
+                 #formDashBord > .scrollDash{
+                        margin-top: 13% !important;
+                    
+                }
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                crearModal('#ACSearchDialog', '50%');
+                /*   $( "#ACSearchDialog" ).dialog("option", "heigth", "auto !important");*/
+                //$( "#ACSearchDialog" ).dialog({ dialogClass: 'estiloModalHorasIngenieria' });
+                $( "#ACSearchDialog" ).dialog( "option", "title", "AC SEARCH" );
+            });
+            
+            
+            function airCraft(var1,var2,var3,avion){
+                console.log(avion);
+                $("#botonesOcultosDASH\\:idAirCraft").val(var1);
+                $("#botonesOcultosDASH\\:idCiaCode").val(var2);
+                $("#botonesOcultosDASH\\:validarCheckID").val(var3);                 
+                $("#botonesOcultosDASH\\:avionName").val(avion);
+                $("#busqFormESR\\:txtBusquedaESR").val(var1); 
+                //PF('ACSearchDialog').hide();
+                $("#busqFormESR\\:ocBusqueESR").trigger("click");
+                $("#botonesOcultosDASH\\:idAirCraftButton").trigger("click"); 
+                $("#busqFormESR\\:refreshListESRLeft").trigger("click");
+                $('#ACSearchDialog').dialog('close');
+                menuESRHangares();
+            } 
+            
+            function menuESRHangares() {
+                //funcion para mostrar el menu respectivo en la tabla de ESRs
+                // y ocultar los otros botones
+                $("#ico0").css("display", "none");
+                $("#ico1").css("display", "none");
+                $("#ico2").css("display", "none");
+                $("#ico3").css("display", "none");
+
+                $("#openAcMenu").css("display", "none");
+                $("#menuNewAirPlane").css("display", "none");
+
+                $("#menuPrintReport").css("display", "");
+                $("#menuHours").css("display", "");
+                $("#menuACInfo").css("display", "");
+
+                $("#botoneraESR").css("display", "none");
+            }
+            
+            function airCraftETR(var2){
+          //      $("#botonesOcultosDASH\\:idAirCraft").val(var1);
+                console.log("Valores al onclick funcion aircraft ETR: ---------------------------");
+           //     console.log("idAircraft: "+var1);
+                console.log("idCiaCode: "+var2);
+           //     console.log("validarCheckID: "+var3);
+                $("#botonesOcultosDASH\\:idCiaCode").val(var2);
+             //   $("#botonesOcultosDASH\\:validarCheckID").val(var3); 
+             //   $("#busqFormETR\\:txtBusquedaETR").val(var1);
+            
+        
+        
+        
+             //   $("#busqFormETR\\:ocBusqueETR").trigger("click");
+                $("#botonesOcultosDASH\\:idAirCraftButtonETR2").trigger("click");              
+            }
+            
+            function airCraftECR(varEmp,varCustomer) 
+            {
+                debugger;
+                console.log("Valores al onclick funcion aircraft ECR: ---------------------------");
+                console.log("idCiaCode: "+varEmp);
+                $("#botonesOcultosDASH\\:idCiaCode").val(varEmp);
+                $("#botonesOcultosDASH\\:customerECR").val(varCustomer);
+                $("#botonesOcultosDASH\\:requestType").val('ECR');
+                $("#botonesOcultosDASH\\:idAirCraftButtonECR").trigger("click");              
+                menuESRHangares();
+            }
+            
+            //load Event ECR:
+            function loadDashECR(data) {
+                var spinnerevents = document.getElementById("spinnerDash");
+                var validarAvionESR = document.getElementById("botonesOcultosDASH:validarAirCraft").value;
+                var statuseve = data.status;
+                console.log(statuseve);
+                console.log("Valor encontrado:");
+                if (statuseve === "begin" ) {
+                    $("#divengTabECR").hide();
+                    $("#dashNavigationHangares").hide();
+                    spinnerevents.style.display = "block";
+                } else { 
+                    spinnerevents.style.display = "none";
+                    if(statuseve === "success"){
+                        if(validarAvionESR==="Not Exists"){                                     
+                            $("#engineerTools").hide();
+                            $("#mainETR").hide();
+                            $("#engineer").hide();
+                            //Nueva ECR
+                            $("#engineerECR").hide();
+                            //$("#mainecr").hide();
+                            $("#mainecr").show();
+                            $("#divengTabEcrNWS").show();
+                            console.log("entro a SUCSESS:");
+                        }
+                        else{
+                        $("#divengTabECR").hide();
+                        $("#divengTabEcrNWS").hide();
+                        console.log("No es SUCSESS:");
+                    }
+                    }		
+                    else{
+                                $("#divengTabEsrNWS").hide();
+                        }	
+                }
+            }
+            
+            
+            function volverEmpresa(){                
+                $("#customerFilters").show();
+                $("#dashNavigationHangares").hide();
+                menuMain();
+             }
+             
+            function cargareventssupDashETR(data) {
+                    var spinnerevents = document.getElementById("spinnerDash");
+                    var validarAvionESR = document.getElementById("botonesOcultosDASH:validarAirCraft").value;
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                            $("#divengTabEsrNWSETR").hide();
+                            $("#dashNavigationHangares").hide();
+                           console.log("Ocultando dashboard de hangares");
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                if(validarAvionESR==="Not Exists"){                                     
+                                    console.log("Mostrando engineer y main porque validaAvionesESR no existe");
+//                                    $("#engineer").hide();
+//                                    $("#main").hide();
+//                                    $("#engineerTools").show();                                                                      
+//                                    $("#mainETR").show();
+//                                    $("#formESRForAir\\:addESRForAirETR").trigger("click");                                    
+//                                    $("#busqFormESR\\:ocRenderETR").trigger("click");
+//                                    $("#EsrRep\\:ocRenderETR2").trigger("click");
+//                                }else{
+                                    console.log("Mostrando divengTabEsrNWSETR");
+                                    $("#divengTabEsrNWS").hide();
+                                    $("#divengTabEsrNWSETR").show();                                    
+                                    $("#dasTabESR").hide();
+                                    $("#dasTabESRN").hide();
+                                    $("#dasTabECRN").hide();
+                                }
+                               
+                            }else{
+                                $("#divengTabEsrNWSETR").hide();
+                                $("#divengTabEsrNWS").hide();
+                            }		
+                    }
+            }
+            
+            function cargareventssupDash(data) {
+                    var spinnerevents = document.getElementById("spinnerDash");
+                    var validarAvionESR = document.getElementById("botonesOcultosDASH:validarAirCraft").value;
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                        $("#divengTabEsrNWSETR").hide();
+                            $("#divengTabEsrNWS").hide();
+                            $("#dashNavigationHangares").hide();
+
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                if(validarAvionESR==="Not Exists"){                                     
+                                    $("#engineerTools").hide();
+                                    $("#mainETR").hide();
+                                    $("#engineer").show();
+                                    $("#main").show();
+                                    $("#formESRForAir\\:addESRForAir").trigger("click")                                    
+                                    $("#busqFormESR\\:ocRenderESR").trigger("click");
+                                    $("#EsrRep\\:ocRenderESR2").trigger("click")
+                                }else{
+                                    console.log("Mostrando divengTabEsrNWS");
+                                    $("#divengTabEsrNWSETR").hide();
+                                    $("#divengTabEsrNWS").show();
+                                    $("#dasTabESR").hide();
+                                }
+                               
+                            }else{
+                                $("#divengTabEsrNWS").hide();
+                            }		
+                    }
+            }
+            function cargarEventeRebderD (data){
+                var spinnerevents = document.getElementById("spinnerDash");                    
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                            $("#customerFilters").hide();
+                            $("#dashNavigationHangares").hide();
+
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){                                
+                                $("#dashNavigationHangares").show(); 
+                            }else{
+                                $("#dashNavigationHangares").hide();
+                            }		
+                    }
+            }
+            function cargareventsTabESR(data) {
+                    var spinnerevents = document.getElementById("spinnerTabESR");
+                    var statuseve = data.status;                  
+                
+                    if (statuseve === "begin" ) {
+                            $("#dasTabESR").hide();
+                            $("#engineer").hide();   
+                            $("#tabTackingESRNew").hide();
+                            $("#divengTabEsrNWS").hide();
+                            $("#main").hide();
+                            
+                            $("#engineerTools").hide(); 
+                            $("#divengTabEsrNWSETR").hide();
+                            $("#mainETR").hide();
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                $("#divengTabEsrNWSETR").hide();
+                                $("#divengTabEsrNWS").show();
+                            }		
+                    }
+            }
+            
+            function cargareventsTabECR(){
+	$("#mainecr").hide();
+	$("#menuDhashBordxecr").hide();
+	$("#dashNavigationHangares").show(); 
+	menuDash();
+}
+
+            function actionTest(){
+                console.log("actionTest");
+                $("#ACSearchForm\\:openACTable tbody tr").each(function (index) {
+                    if($(this).children("td")[1] !== undefined){
+                        var chel=$(this);
+                        var registry=$(this).children("td")[3].textContent;
+                        var company=$(this).children("td")[6].textContent;
+                        var checkID=$(this).children("td")[7].textContent;
+                        
+                        chel.attr('onclick', "airCraft('"+checkID+"','"+company+"','"+checkID+"','"+registry+"');");                        
+                    }
+                });
+            }
+            
+            function cargareventsTabETR(data) {
+                    var spinnerevents = document.getElementById("spinnerTabESR");
+                    var statuseve = data.status;                  
+                
+                    if (statuseve === "begin" ) {
+                            $("#dasTabESR").hide();
+                            $("#engineer").hide();   
+                            $("#tabTackingESRNew").hide();
+                            $("#divengTabEsrNWS").hide();
+                            $("#main").hide();
+                            
+                            $("#engineerTools").hide(); 
+                            $("#divengTabEsrNWSETR").hide();
+                            $("#mainETR").hide();
+                              
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                 $("#divengTabEsrNWS").hide();
+                                $("#divengTabEsrNWSETR").show();
+                            }		
+                    }
+            }
+        </script>
+    </h:head>
+    <h:body>  
+        <h:form id="botonesOcultosDASH">       
+            <h:inputText id="idAirCraft" value="#{engtabEsrnwsVwBean.airCraft}" style="display: none;"/>
+            <h:inputText id="idCiaCode" value="#{engtabEsrnwsVwBean.company}" style="display: none;"/>
+            <h:inputText id="customerECR" value="#{engtabEsrnwsVwBean.customerSelected}" style="display: none;"/>
+            <h:inputText id="requestType" value="#{contCheckBean.requestType}" style="display: none;"/>
+            <h:inputText id="validarAirCraft" value="#{engtabEsrnwsVwBean.valAirCraft}" style="display: none;"/>
+            <h:inputText id="validarCheckID" value="#{engtabEsrnwsVwBean.checkID}" style="display: none;"/>
+            <h:inputText id="avionName" value="#{engtabEsrnwsVwBean.avion}" style="display: none;"/>
+            
+            <h:commandButton id="idAirCraftButton" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId(engtabEsrnwsVwBean.checkID)}" render="fmEsrTabNw fmInfoWork validarAirCraft refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" onevent="cargareventssupDash"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButtonETR" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId(engtabEsrnwsVwBean.checkID)}" render="fmEsrTabNwETR fmInfoWork validarAirCraft refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" onevent="cargareventssupDashETR"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButtonETR2" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarOpcos(engtabEsrnwsVwBean.company)}" render="fmEsrTabNwETR fmInfoWork validarAirCraft refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" onevent="cargareventssupDashETR"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButton2" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId(engtabEsrnwsVwBean.checkID)}" render="fmEsrTabNw fmInfoWork fmEsrTabNw:tblListadosEsrTabNw scroptP refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" 
+                        onevent="cargareventsTabESR"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButton232" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@this" render="fmEsrTabNw fmInfoWork fmEsrTabNw:tblListadosEsrTabNw scroptP refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" 
+                        onevent="cargareventsTabESR"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButton2ETR" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId(engtabEsrnwsVwBean.checkID)}" 
+                        render="fmEsrTabNwETR fmInfoWork fmEsrTabNw:tblListadosEsrTabNw scroptP 
+                        refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 
+                        resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" 
+                        onevent="cargareventsTabETR"/>
+            </h:commandButton>
+            <!--Load ECR: -->
+            <h:commandButton id="idAirCraftButtonECR" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaECR()}" >
+                <f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId('01')}" 
+                        render="fmEsrTabNwECR fmInfoWorkEcr validarAirCraft refremeta formChecks 
+                        matrizCheckbox reports hoursView tool 
+                        resultForm6 resultForm789 slithermail resultFormEngHours6 
+                        inputFormemail refremeta panRenderESR" 
+                        onevent="loadDashECR"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButton232ETR" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+                <f:ajax execute="@this" render="fmEsrTabNwETR fmInfoWork fmEsrTabNw:tblListadosEsrTabNw scroptP refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" 
+                        onevent="cargareventsTabETR"/>
+            </h:commandButton>
+            <h:commandButton id="renderDashNW" value="Renderizar" style="display: none;">
+                <f:ajax execute="@this" render="@this formDashBord refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" onevent="cargarEventeRebderD"/>
+            </h:commandButton>
+            <h:commandButton id="idAirCraftButton2ECR" style="display: none;" action="#{engtabEsrnwsVwBean.llenarListaESR()}" >
+	<f:ajax execute="@form" listener="#{contCheckBean.cargarCheckId(engtabEsrnwsVwBean.checkID)}" render="fmEsrTabNw fmInfoWork fmEsrTabNw:tblListadosEsrTabNw scroptP refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" 
+			onevent="cargareventsTabECR"/>
+            </h:commandButton>
+        </h:form>
+       <!--        <h:form id="menuDhashBord"> 
+            <h:commandButton  id="icoBack"
+                class="btn btn-signin butomclassesr imageRet3" title="Back" onclick="volverEmpresa()">
+                <f:ajax execute="@this" render="@this refremeta"/>                             
+            </h:commandButton>        
+        </h:form>-->
+        <h:form id="menuDhashBord" class="flex py-1 w-full absolute"  style="height: 48px;">
+            <div class="flex items-center pl-4 w-full justify-between">
+                <h:commandButton  id="icoBack" title="Back" onclick="volverEmpresa()"
+                    class="btn-menu backButton bg-aes-blue hover:bg-aes-red text-gray-800 font-bold py-2 px-4 m-px flex justify-center cursor-pointer z-10">
+                    <f:ajax execute="@this" render="@this refremeta"/>                             
+                </h:commandButton>
+            </div>
+        </h:form>       
+        <h:form id="formDashBord">   
+            <div class="py-4 text-center scrollDash">
+                
+                    <c:forEach items="#{esrBean.listaHangares}" var="item" id="esrRepeatHangar" varStatus="loop" >
+                        <div  class="col-md-#{item.hrgMaxH le 5 ? '2':'3'} divDashBord divHangarDash#{item.hrgMaxH le 5 ? '1':'2'}">                          
+                            <div>                            
+                                <div class="estiloHea"> 
+                                    <span class="spanH">#{item.hangarCode} - #{item.hangarName}</span>                         
+                                </div> 
+                                <c:set var="contadorA" value="${0}" />
+                                <c:forEach items="#{esrBean.listaAviones}" var="item3" id="esrRepeatHangar2" varStatus="loop1">
+                                    
+                                    <c:if test="#{item.hangarCode == item3.hangar}">
+                                         
+                                        <div class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and contadorA==2 ? 'row divRowAir':item.hrgMaxH le 5 ? 'col-md-5 divAirplaneDash1':'col-md-2 divAirplaneDash2'}" style="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and contadorA==2 ? 'background: transparent !important':''}">
+                                            
+                                            <div style="background: ##{empty item3.color ? '000000;' : item3.color}">
+                                                 <c:if test="#{item3.airCraft == 'N / A'}">
+                                                    <h:graphicImage library="styleAE" name="img/main/airplaneTransp5.png" class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and loop1.index==2 ? 'divAirplaneImg1':'divAirplaneImg2'}"/>
+                                                </c:if>
+                                                <c:if test="#{item3.airCraft != 'N / A'}">
+                                                    <a><h:graphicImage library="styleAE" name="img/main/airplaneTransp52.png" class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and loop1.index==2 ? 'divAirplaneImg1':'divAirplaneImg2'}" onclick="airCraft('#{item3.checkID}','#{item.ciaCode}','#{item3.checkID}','#{item3.airCraft}');"/> </a>
+                                                </c:if>
+                                            </div>
+                                            <div>
+                                                    <c:set var="contadorA" value="${contadorA + 1}" />
+                                                    <span class="spanAV">#{item3.airCraft}</span><br/>
+                                                    
+                                            </div>
+                                            <div>
+                                                  <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item3.qtyESRA}</span>
+                                                  <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item3.qtyESRT}</span>
+                                            </div>                                    
+                                        </div>
+                                    </c:if>
+                                </c:forEach>                                
+                            </div>
+                            <fieldset class="fieldsetR"> 
+                                <legend>RAMPA #{item.hangarCode}</legend>
+                            <div class="divDashBordRampa #{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 ? 'divRampDash1': 'divRampDash2'} divRM#{item.hangarCode}">
+                            <c:forEach items="#{esrBean.listaAvionesEnRampa}" var="item4" id="esrRepeatHangar" varStatus="loop" >  
+                                
+                                <c:if test="#{item.rampaCode == item4.hangar or item.hangarCode == item4.hangar}">
+                                    <div class="col-md-#{item.hrgMaxH le 5 ? '5':'2'} divContAirPlane">
+                                        <div style="background: ##{empty item4.color ? '000000' : item4.color};">
+                                            <c:if test="#{item4.airCraft == 'N / A'}">
+                                                <h:graphicImage library="styleAE" name="img/main/airplaneTransp5.png" class="divAirplaneImg2"/>
+                                            </c:if>
+                                            <c:if test="#{item4.airCraft != 'N / A'}">
+                                                <a><h:graphicImage library="styleAE" name="img/main/airplaneTransp53.png" class="divAirplaneImg2" onclick="airCraft(#{item4.checkID},'#{item4.airCraft}','#{item4.checkID}','#{item4.airCraft}')"/></a>
+                                            </c:if>
+                                            
+                                        </div>
+                                        <div>
+                                            <span class="spanAV">#{item4.airCraft}</span>
+                                            
+                                        </div>
+                                        <div>
+                                            <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item4.qtyESRA}</span>
+                                            <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item4.qtyESRT}</span>
+                                        </div>                                    
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                            
+                        </div>   
+                            </fieldset>
+                    </div>
+                </c:forEach>
+                <!-- Capability:-->
+                <div class="col-md-#{item.hrgMaxH le 5 ? '2':'3'} divDashBord divHangarDash#{item.hrgMaxH le 5 ? '1':'2'}" style="background: #FFF;">
+                    <h:outputLabel value="Capability" style="font-size: 23px;color: #c1212f;font-weight: 700;border-bottom: 2px solid #c1212f;width: 100%;" />   
+                    <c:set var="contadorA" value="${0}" />
+                    <!--
+                    <div class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 
+                                  and contadorA==2 ? 'row divRowAir':item.hrgMaxH le 5 ? 'col-md-5 divAirplaneDash1':'col-md-2 divAirplaneDash2'}" style="#{item.hrgColumn == 2 
+                                  and item.hgrRow== 2 and item.hrgMaxH == 5 and contadorA==2 ? 'background: transparent !important':''}">
+                        <div style="width:60px;height: 50px ; background-color: #ffffff;background: #{empty item3.color ? '000000;' : item3.color}">
+                            <c:if test="#{item3.airCraft == 'N / A'}">
+                                <h:graphicImage  library="styleAE" name="img/engineering/ecr_motor_gris.svg" class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and loop1.index==2 ? 'divAirplaneImg1':'divAirplaneImg2'}"/>
+                            </c:if>
+                            <c:if test="#{item3.airCraft != 'N / A'}">
+                                <a>
+                                    <h:graphicImage  library="styleAE" name="img/engineering/ecr_motor_gris.png" 
+                                                class="#{item.hrgColumn == 2 and 
+                                                         item.hgrRow== 2 and item.hrgMaxH == 5 and 
+                                                         loop1.index==2 ? 'divAirplaneImg1':'divAirplaneImg2'}" 
+                                                onclick="airCraftECR(11)"/>
+                                </a>
+                            </c:if>
+                        </div>
+                        <div>
+                            <c:set var="contadorA" value="${contadorA + 1}" />
+                            <span class="spanAV">N/A</span><br/>
+                        </div>
+                        <div>
+                            <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">0</span>
+                            <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">0</span>
+                        </div> 
+                    </div>
+                    -->
+                    <!-- CAPABILITY YEGAR -->
+                    <c:forEach items="#{esrBean.customersByOpco}" var="itemCapaCus" id="capaCustomersMotor" varStatus="loopCap">
+                        <div class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and contadorA==2 ? 'row divRowAir':item.hrgMaxH le 5 ? 'col-md-5 divAirplaneDash1':'col-md-2 divAirplaneDash2'}" 
+                             style="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and contadorA==2 ? 'background: transparent !important':''}">
+                            <div style="background: ##{empty itemCapaCus.color ? '000000;' : itemCapaCus.color}">
+                                 <a><h:graphicImage library="styleAE" name="img/engineering/ecr_motor_gris.png" 
+                                                    class="#{item.hrgColumn == 2 and item.hgrRow== 2 and item.hrgMaxH == 5 and loop1.index==2 ? 'divAirplaneImg1':'divAirplaneImg2'}" 
+                                                    onclick="airCraftECR('#{itemCapaCus.company}','#{itemCapaCus.customer}');"
+                                                    title="#{itemCapaCus.customer}"/> </a>                                
+                            </div>
+                            <div>
+                                    <c:set var="contadorA" value="${contadorA + 1}" />
+                                    <span class="spanAV">#{item3.airCraft}</span><br/>
+
+                            </div>
+                            <div>
+                                  <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item3.qtyESRA}</span>
+                                  <span class="badge label-success anchoESR" style="background-color: #003f72 !important; padding: 2px 5px !important;">#{item3.qtyESRT}</span>
+                            </div>                                    
+                        </div>
+                        
+                    </c:forEach> 
+                    <!-- FIN CAPABILITY YEGAR -->
+
+                </div>
+                <img id="img" style="width: 0%;height: 20px;"/> 
+                
+                <div class="col-md-3 divDashBord divHangarDash2" style="    width: 28%;    height: 50%;"> 
+                    <h:outputLabel value="Tools" style="font-size: 23px;color: #c1212f;font-weight: 700;border-bottom: 2px solid #c1212f;width: 100%;" />   
+              <div style="background: #sincolor;margin-top: 10%">
+                  <h:graphicImage library="styleAE" name="img/main/configuraciones.svg" id="btnHerramientas" class="divAirplaneImg2" style="width: 36%"
+                                  onclick="airCraftETR('#{esrBean.companyCia}')"/>
+                    </div>
+            </div>
+                
+                
+            </div>
+        
+<!--        <div id="divModuloHerramientas" class="py-4 text-center scrollDash">
+            
+        </div>
+        -->
+        </h:form> 
+        <h:panelGroup class="dialog-maintenance" id="ACSearchDialog" style="display: none;" pt:title="AC SEARCH">
+            <ui:include src="openACSearch.xhtml"/>
+        </h:panelGroup>
+    </h:body>
+    
+</html>

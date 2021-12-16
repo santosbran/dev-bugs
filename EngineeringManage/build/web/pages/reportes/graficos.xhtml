@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title><!-- Nombre de la página - aplicación -->
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/graficos/bootstrap-responsive.css"/>
+            <h:outputStylesheet library="styleAE" name="css/graficos/style.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/>
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="js/menu-slow.js" />
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>
+            
+            <style type="text/css">
+                .panel {
+                    border-color: #ddd!important;
+                    margin-bottom: 0px !important;
+                }
+                .span5 {
+                    width: 100%!important;
+                }
+                
+                @media (max-width: 979px) and (min-width: 768px) {
+                    .row-fluid [class*="span"]{
+                        float: none !important;
+                        margin-left: 0% !important;
+                    }
+                    
+                }
+                
+                .panel {
+                    border: none !important;
+                    margin-left: 0.2% !important;
+                }
+                
+                /*Nuevas Modificaciones*/
+                .panel-default>.panel-heading {
+                    color: white;
+                    background-color: gray !important;/*#bf1e2d;*/
+                    /* border-color: #ddd; */
+                    border-bottom: 2px solid #bf1e2d  !important;
+                    border-left: 2px solid #bf1e2d  !important;
+                }
+                    table{
+                        top: -227px !important;
+                }
+          
+            
+                /********************************************************************* leyenda del grafico de pastel */
+               
+                  
+                
+            </style>
+            <script type="text/javascript">
+                $(function () {
+                    $(document).tooltip({
+                            position: {
+                                my: "center bottom-20",
+                                at: "center top",
+                                using: function (position, feedback) {
+                                    $(this).css(position);
+                                    $("<div></div>")
+                                            .addClass("arrow")
+                                            .addClass(feedback.vertical)
+                                            .addClass(feedback.horizontal)
+                                            .appendTo(this);
+                                }
+                            }
+                        });
+                });
+                
+                
+            </script>
+        </h:head>
+        <h:body onload="mobileGrafic();">
+            
+            <div id='main' class="mainGraficosIng">
+                <div class="panel-body panelBodyGraficos">                    
+                    <div class="container contenedorPrimerGrafico">
+                        <div class="col-sm-6 panel panel-default panelPrimerGrafico">
+                            <!-- Default panel contents 1 -->
+                            <div class="panel-heading">#{aees_msg['ingeTag']}</div>
+                            <div class="panel-body borderGraficos panelBodyPrimerGrafico">
+
+                                
+                                
+                                <div class="box-content">
+
+                                    <div id="piechartEsrIngeniero" class="estiloGraficoIngenieros"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div> 
+                    <div class="container contenedorSegundosGraficos">
+                        <div class="col-sm-6 panel panel-default panelSegundoGrafico"> 
+                            <!-- Default panel contents 2 -->
+                            <div class="panel-heading">ESR</div>
+                            <div class="panel-body borderGraficos panelBodyGraficoESR">
+                                <!-- *****************************************  --> 
+                                    <div class="row-fluid hideInIE8 circleStats rowGraficosESR">
+                                        
+                                        <!-- ************** SUCCESS **************************************************************  -->                                        
+                                      
+                                            <div class="span2 ContenedoresGraficoESR" onTablet="span4" onDesktop="span2">
+                                                <div class="circleStatsItemBox green">
+                                                    <div class="header headerGraficosESR">#{gen_msg['success']}</div>
+                                                    <span class="percent percentGraficosESR">#{gen_msg['percent']}</span>
+
+                                                    <div class="circleStat circleGraficosESR"> 
+                                                            <input type="text" value="#{graficas.porcentajeVerde}" class="whiteCircle" />                                              
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        <!-- ************* WARNING *****************************************************************  -->                                       
+                                                
+                                            <div class="span2 ContenedoresGraficoESR" onTablet="span4" onDesktop="span2">
+                                                <div class="circleStatsItemBox yellow">
+                                                    <div class="header headerGraficosESR">#{gen_msg['warning']}</div>
+                                                    <span class="percent percentGraficosESR">#{gen_msg['percent']}</span>
+
+                                                    <div class="circleStat circleGraficosESR"> 
+                                                        <input type="text" value="#{graficas.porcentajeAmarillo}" class="whiteCircle" />                                              
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        
+                                        <!-- ************** DANGER *******************************************************************  -->                                       
+                                       
+                                            <div class="span2 ContenedoresGraficoESR" onTablet="span4" onDesktop="span2">
+                                                <div class="circleStatsItemBox red">
+                                                    <div class="header headerGraficosESR">#{gen_msg['danger']}</div>
+                                                    <span class="percent percentGraficosESR">#{gen_msg['percent']}</span>
+                                                    <div class="circleStat circleGraficosESR"> 
+                                                        <input type="text" value="#{graficas.porcentajeRojo}" class="whiteCircle" />                                              
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        <!-- *****************************************  -->
+                                    </div>
+                                <!-- *****************************************  -->
+                            </div>
+
+                        </div>               
+                        <div class="col-sm-3 panel panel-default panelTercerGrafico">
+                            <!-- Default panel contents 1 -->
+                            <div class="panel-heading">#{aees_msg['Chks']}</div>
+                            <div class="panel-body borderGraficos panelBodyGraficoChequeo">
+
+                                <div class="box-content">
+
+                                    <div id="piechartEsrAvion" class="estiloGraficoChequeo"></div>
+                                </div>
+                                                                
+                            </div>
+                        </div>                    
+                        <div class="col-sm-3 panel panel-default panelCuartoGrafico">
+                            <!-- Default panel contents 1 -->
+                            <div class="panel-heading">#{aees_msg['mb_abclient']}</div>
+                            <div class="panel-body borderGraficos panelBodyGraficoClientes">
+
+                                <div class="box-content">
+                                    
+                                    <div id="piechartClientes" class="estiloGraficoClientesIng"></div>
+                                </div>
+                                                                
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Missing div here -->
+            </div>
+
+
+            <!--Grafico-->
+            <h:outputScript library="styleAE" name="js/graficos/jquery-migrate-1.0.0.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/fullcalendar.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.flot.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.flot.pie.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.chosen.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.uniform.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.cleditor.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.elfinder.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.raty.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.uploadify-3.1.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.masonry.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.knob.modified.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/jquery.sparkline.min.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/counter.js"/>
+            <h:outputScript library="styleAE" name="js/graficos/custom.js"/>
+
+            <script type="text/javascript">
+                var data = [];
+                var datoos =#{graficas.label};
+                var datoos2 =#{graficas.dato};
+                for (var i = 0; i &lt; datoos.length; i++){
+                    var da = {label: datoos[i], data: datoos2[i]};
+                    data.push(da);
+                }
+                
+                var countEsrAvion = 0;
+                var dataEsrAvion = [];
+                var datoosEsrAvion =#{graficas.labelEsrAvion};
+                var datoosEsrAvion2 =#{graficas.datoEsrAvion};
+                for (var i = 0; i &lt; datoosEsrAvion.length; i++){
+                    var daEsrAvion = {label: datoosEsrAvion[i], data: datoosEsrAvion2[i]};
+                    dataEsrAvion.push(daEsrAvion);
+                    countEsrAvion++;
+                }
+                
+                if(countEsrAvion == 0){
+                    var daEsrAvion = {label: '', data: 0};
+                    dataEsrAvion.push(daEsrAvion);
+                }
+                
+                var countEsrIngeniero = 0;
+                var dataEsrIngeniero = [];
+                var axisEsrIngeniero = [];                
+                var datoosEsrIngeniero =#{graficas.labelEsrIngeniero};
+                var datoosEsrIngeniero2 =#{graficas.datoEsrIngeniero};
+                for (var i = 0; i &lt; datoosEsrIngeniero.length; i++){
+                    //var daEsrIngeniero = {label: datoosEsrIngeniero[i], data: datoosEsrIngeniero2[i]};
+                    var daEsrIngeniero = [i, datoosEsrIngeniero[i]];
+                    dataEsrIngeniero.push(daEsrIngeniero);
+                    
+                    var daAxisEsrIngeniero = [i, datoosEsrIngeniero2[i]];
+                    axisEsrIngeniero.push(daAxisEsrIngeniero);
+                    countEsrIngeniero++;
+                }
+                
+                if(countEsrIngeniero == 0){
+                    var daEsrIngeniero = [0, ''];
+                    dataEsrIngeniero.push(daEsrIngeniero);
+                    
+                    var daAxisEsrIngeniero = [0, 0];
+                    axisEsrIngeniero.push(daAxisEsrIngeniero);
+                    countEsrIngeniero++;
+                }
+                
+                var dataClientes = [];
+                var datoosClientes =#{graficas.labelClientes};
+                var datoosClientes2 =#{graficas.datoClientes};
+                for (var i = 0; i &lt; datoosClientes.length; i++){
+                    var daCliente = {label: datoosClientes[i], data: datoosClientes2[i]};
+                    dataClientes.push(daCliente);
+                }
+                
+                function loadPieChart(divChart,dataChart ){
+                $.plot($(divChart), dataChart,
+                            {
+                                series: {
+                                    pie: {
+                                        show: true
+                                    }
+                                },
+                                grid: {
+                                    hoverable: true,
+                                    clickable: true
+                                },
+                                legend: {
+                                    show: true,
+                                    labelFormatter: function(label, series) {
+                                        var percent= Math.round(series.percent);
+                                        var number= series.data[0][1]; //kinda weird, but this is what it takes
+                                        return('&nbsp;<b>'+label+'</b>:&nbsp;'+ percent + '%');
+                                    }
+                                },
+                                colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51", "#3371fa", "#fa3371", "#33fabc", "#bc33fa", "#fa3333", "#33fa60", "#5833fa", "#b2fa33", "#893d3d", "#397b85", "#395585", "#616353", "#e3ff00", "#6b95a1", "#b8ae70", "#a0acd0"]
+                            });
+
+                    function pieHoverEsrAvion(event, pos, obj)
+                    {
+                        if (!obj)
+                            return;
+                        percent = parseFloat(obj.series.percent).toFixed(2);
+                        $("#hover").html('<span   style="font-weight: bold; color: ' + obj.series.color + '">' + obj.series.label + ' (' + percent + '%)</span>');
+                    }
+                    $(divChart).bind("plothover", pieHoverEsrAvion);
+                    
+    }
+                
+               
+                if ($("#piechartEsrAvion").length)
+                {
+                   loadPieChart("#piechartEsrAvion",dataEsrAvion);
+                }
+                
+                if ($("#piechartEsrIngeniero").length)
+                {
+                    
+                    var data = [
+                            {
+                                data: axisEsrIngeniero,
+                                //color: '#409628',
+                                bars: {show: true, align:'center', barWidth:0.3}
+                            }    
+                        ];
+
+                    var options = {
+                        xaxis: { ticks:dataEsrIngeniero},
+                        colors: ["#00A300"]
+                    };
+                    
+                    $.plot($("#piechartEsrIngeniero"), data, options);
+                                                
+                    function pieHoverEsrAvion(event, pos, obj)
+                    {
+                        if (!obj)
+                            return;
+                        percent = parseFloat(obj.series.percent).toFixed(2);
+                        $("#hover").html('<span   style="font-weight: bold; color: ' + obj.series.color + '">' + obj.series.label + ' (' + percent + '%)</span>');
+                    }
+                    $("#piechartEsrIngeniero").bind("plothover", pieHoverEsrAvion);
+                }
+                
+                if ($("#piechartClientes").length)
+                {
+                    loadPieChart("#piechartClientes",dataClientes);
+                }
+                
+                //
+                window.onresize = function(event) {
+                    if ($("#piechartClientes").length)
+                    {
+                        loadPieChart("#piechartClientes",dataClientes);
+                    }
+                    
+                    if ($("#piechartEsrAvion").length)
+                    {
+                        loadPieChart("#piechartEsrAvion",dataEsrAvion);
+                    }
+                }
+                
+            </script>
+
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            <!-- script que transforma el div en un modal -->
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#inputModal64', '400px');
+                });
+            </h:outputScript>
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#inputModal65', '400px');
+                });
+            </h:outputScript>
+        </h:head>
+        <h:body>
+                <div style="padding: 0px 30px">
+                    <!-- Page Heading -->
+                    <div class="row">
+                        
+                        <div id="slideDer7" class="menut7" style="display: none;">
+                                
+                            </div>
+                            <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburger7" >
+                                <span>toggle menu</span>
+                            </div>
+                    </div>  
+                    <script>
+                                 (function() {
+                                    "use strict";
+
+                                    var toggles = document.querySelectorAll("#c-hamburger7");
+
+                                    for (var i = toggles.length - 1; i >= 0; i--) {
+                                      var toggle = toggles[i];
+                                      toggleHandler(toggle);
+                                    };
+
+                                    function toggleHandler(toggle) {
+                                      toggle.addEventListener( "click", function(e) {
+                                        e.preventDefault();
+                                        $('#slideDer7').toggle("slow");
+                                        
+                                      });
+                                    }
+
+                                  })();
+                        </script>
+                    <!-- modal para el ingreso de información -->                 
+                    <h:panelGroup id="inputModal64" style="display:none;" pt:title="#{gen_msg['genAddEdit']}">
+                        <h:form id="inputForm64">                              
+                            <h:panelGrid columns="2" style="min-width: 300px;">
+                                <h:outputLabel value="#{gen_msg['code']}:" for="acfId" />
+                                <h:inputText id="acfId" value="#{engApprovalConfig.elemento.acfId}" rendered="#{engApprovalConfig.elemento.acfId eq null}" class="form-control" title="AcfId" required="true" requiredMessage="The AcfId field is required."/>
+                                <h:outputLabel id="acfId2" value="#{engApprovalConfig.elemento.acfId}" rendered="#{engApprovalConfig.elemento.acfId ne null}" class="form-control" title="AcfId"/>
+                                <h:outputLabel value="#{gen_msg['description']}:" for="acfDescription" />
+                                <h:inputText id="acfDescription" value="#{engApprovalConfig.elemento.acfDescription}" class="form-control" title="AcfDescription" required="true" requiredMessage="The AcfDescription field is required."/>
+                               <h:outputLabel value="#{aees_msg['usrInsert']}:" for="acfUseStart" />
+                                <h:inputText id="acfUseStart" value="#{engApprovalConfig.elemento.acfUseStart}" class="form-control datepicker" title="AcfUseStart" required="true" requiredMessage="The AcfUseStart field is required.">                                      
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" />
+                                </h:inputText>
+                               <h:outputLabel value="#{aees_msg['userEnd']}:" for="acfUseEnd" />
+                                <h:inputText id="acfUseEnd" value="#{engApprovalConfig.elemento.acfUseEnd}" class="form-control datepicker" title="AcfUseEnd" >                                       
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateUI']}" />
+                                </h:inputText>
+                                <h:outputLabel value="#{aees_msg['usrInsert']}:" for="acfUsrIns" />
+                                <h:inputText id="acfUsrIns" value="#{engApprovalConfig.elemento.acfUsrIns}" class="form-control" title="AcfUsrIns" />
+                                <h:outputLabel value="#{gen_msg['date']}:" for="acfDateIns" />
+                                <h:inputText id="acfDateIns" value="#{engApprovalConfig.elemento.acfDateIns}" class="form-control datepicker" title="AcfDateIns" >                                        
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" />
+                                </h:inputText>
+                                <h:outputLabel value="#{aees_msg['usrUpd']}:" for="acfUsrUpd" />
+                                <h:inputText id="acfUsrUpd" value="#{engApprovalConfig.elemento.acfUsrUpd}" class="form-control" title="AcfUsrUpd" />
+                                <h:outputLabel value="#{aees_msg['dateUpd']}" for="acfDateUpd" />
+                                <h:inputText id="acfDateUpd" value="#{engApprovalConfig.elemento.acfDateUpd}" class="form-control datepicker" title="AcfDateUpd" >
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateUI']}" />
+                                </h:inputText>
+                                <h:outputLabel value="#{aees_msg['fltCod']}" for="fltCod" />                                  
+
+                                <h:selectOneMenu id="fltCod" value="#{engApprovalConfig.elemento.fltCod}" class="form-control" title="FltCod" required="true" requiredMessage="The FltCod field is required.">
+                                    <f:selectItems value="#{contFleets.listado}" var="item" itemValue="#{item.codflt}" itemLabel="#{item.codflt} - #{item.description}"/>                                    
+                                </h:selectOneMenu>   
+                                
+                                
+                            </h:panelGrid>
+                            <h:messages class="msgError"/>
+                            <h:panelGrid columns="2" style="margin:auto;">
+                                <h:commandButton class="btn btn-signin" value ="#{!engApprovalConfig.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engApprovalConfig.guardar()}" >
+                                    <f:ajax execute="@form" render="onsuccess64 @form resultForm64 refremeta"/>
+                                </h:commandButton>
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engApprovalConfig.limpiar()}" >
+                                    <f:ajax execute="@this" render="onsuccess64 @form refremeta" />
+                                </h:commandButton>
+                            </h:panelGrid>
+                            <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                            <h:outputScript>
+                                basicDTP('[name="inputForm:acfUseStart"', "${resource['styleAE:img/calendar.gif']}","${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="inputForm:acfUseEnd"', "${resource['styleAE:img/calendar.gif']}",  "${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="inputForm:acfDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="inputForm:acfDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                            </h:outputScript>
+                        </h:form>
+                        <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                        <h:panelGroup id="onsuccess64">
+                            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                $("#inputModal64").dialog("close");
+                            </h:outputScript>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <!-- segundo modal para el ingreso de información -->
+                    <h:panelGroup id="inputModal65" style="display:none;" pt:title="#{gen_msg['genAddEdit']}">
+                        <h:form id="inputForm65">
+                            <!-- grid de dos columnas para el ingreso de datos -->
+                            <h:panelGrid columns="2" style="min-width: 300px;">
+                                <h:outputLabel value="AspApprovalOrder:" for="aspApprovalOrder" />
+                                <h:inputText id="aspApprovalOrder" value="#{engApprovalEsp.elemento.aspApprovalOrder}" class="form-control" title="AspApprovalOrder" required="true" requiredMessage="The AspApprovalOrder field is required."/>
+                                <h:outputLabel value="AspSpecialApp:" for="aspSpecialApp" />
+                                <h:inputText id="aspSpecialApp" value="#{engApprovalEsp.elemento.aspSpecialApp}" class="form-control" title="AspSpecialApp" required="true" requiredMessage="The AspSpecialApp field is required."/>
+                                <h:outputLabel value="AspUsrIns:" for="aspUsrIns" />
+                                <h:inputText id="aspUsrIns" value="#{engApprovalEsp.elemento.aspUsrIns}" class="form-control" title="AspUsrIns" />
+                                <h:outputLabel value="AspDateIns:" for="aspDateIns" />
+                                <h:inputText id="aspDateIns" value="#{engApprovalEsp.elemento.aspDateIns}" class="form-control datepicker" title="AspDateIns" >
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" />
+                                </h:inputText>
+                                <h:outputLabel value="AspUsrUpd:" for="aspUsrUpd" />
+                                <h:inputText id="aspUsrUpd" value="#{engApprovalEsp.elemento.aspUsrUpd}" class="form-control" title="AspUsrUpd" />
+                                <h:outputLabel value="AspDateUpd:" for="aspDateUpd" />
+                                <h:inputText id="aspDateUpd" value="#{engApprovalEsp.elemento.aspDateUpd}" class="form-control datepicker" title="AspDateUpd" >
+                                    <f:convertDateTime pattern="#{gen_msg['frmtDateUI']}" />
+                                </h:inputText>
+                               
+                            </h:panelGrid>
+                            <h:messages class="msgError2"/>
+                            <h:panelGrid columns="2" style="margin:auto;">
+                                <h:commandButton class="btn btn-signin" value ="#{!engApprovalEsp.edit ? gen_msg['genAdd'] : 'Actualizar'}" action="#{engApprovalEsp.guardar()}" >
+                                    <f:ajax execute="@form" render="onsuccess65 @form resultForm65 refremeta"/>
+                                </h:commandButton>
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engApprovalEsp.limpiar()}" >
+                                    <f:ajax execute="@this" render="onsuccess65 @form refremeta" />
+                                </h:commandButton>
+                            </h:panelGrid>
+                            <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                            <h:outputScript>
+                                basicDTP('[name="inputForm65:aspDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                basicDTP('[name="inputForm65:aspDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                            </h:outputScript>
+                        </h:form>
+                        <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                        <h:panelGroup id="onsuccess65">
+                            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                $("#inputModal65").dialog("close");
+                            </h:outputScript>
+                        </h:panelGroup>
+                    </h:panelGroup>            
+
+                    <h:form id="resultForm64" style="width:100% !important;">
+                        <h:dataTable id="tblListado64" class="table table-striped dt-responsive nowrap" pt:name="tblListado64" value="#{engApprovalConfig.listado}" var="item" style="width:100% !important;">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfId"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfId}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfDescription"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfDescription}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfUseStart"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfUseStart}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfUseEnd"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfUseEnd}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfUsrIns"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfUsrIns}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfDateIns"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfDateIns}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfUsrUpd"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfUsrUpd}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AcfDateUpd"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.acfDateUpd}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FltCod"/>
+                                </f:facet>
+                                <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                <h:outputText value="#{item.fltCod}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModal64');">
+                                    <f:setPropertyActionListener target="#{engApprovalConfig.elemento}" value="#{item}"/>
+                                    <f:setPropertyActionListener target="#{engApprovalConfig.edit}" value="#{true}"/>
+                                    <f:ajax execute="@this" render="inputForm64 refremeta" />
+                                </h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="btn-round-69 icon-remove-69" action="#{engApprovalConfig.eliminar(item)}">
+                                    <f:ajax execute="@this" render="@form refremeta" />
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                        
+                        <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                        <h:outputScript>formatTable('table[name=tblListado64]','${swtLanguage.language}','#inputModal64');</h:outputScript>
+                    </h:form>     
+
+                    <h:form id="resultForm65" style="width:100% !important;">
+                        <h:dataTable id="tblListado65" pt:name="tblListado65" value="#{engApprovalsEsp.listado}" var="item" class="table table-striped dt-responsive nowrap" style="width: 100% !important">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspApprovalOrder"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.aspApprovalOrder}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspSpecialApp"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.aspSpecialApp}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspUsrIns"/>
+                                </f:facet>
+                               
+                                <h:outputText value="#{item.aspUsrIns}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspDateIns"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.aspDateIns}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspUsrUpd"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.aspUsrUpd}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AspDateUpd"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.aspDateUpd}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="EngApprovalConfig"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.engApprovalConfig}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="EngGroupsFleets"/>
+                                </f:facet>
+                                
+                                <h:outputText value="#{item.engGroupsFleets}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModal65');">
+                                    <f:setPropertyActionListener target="#{engApprovalConfig.elemento}" value="#{item}"/>
+                                    <f:setPropertyActionListener target="#{engApprovalConfig.edit}" value="#{true}"/>
+                                    <f:ajax execute="@this" render="inputForm65 refremeta" />
+                                </h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="btn-round-69 icon-remove-69" action="#{engApprovalConfig.eliminar(item)}">
+                                    <f:ajax execute="@this" render="@form refremeta" />
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                           
+                        <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                        <h:outputScript>formatTable('table[name=tblListado65]','${swtLanguage.language}','#inputModal65','.menut7');</h:outputScript>
+                    </h:form>
+                </div>
+        </h:body>
+    </f:view>
+</html>

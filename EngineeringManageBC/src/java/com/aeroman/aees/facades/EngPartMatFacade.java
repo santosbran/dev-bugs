@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.aeroman.aees.facades;
+
+import com.aeroman.aees.entities.EngPartMat;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+/**
+ *
+ * @author pc
+ */
+@Stateless
+public class EngPartMatFacade extends AbstractFacade<EngPartMat> {
+    @PersistenceContext(unitName = "EngineeringManageBCPU")
+    private EntityManager em;
+
+    public EngPartMatFacade() {
+        super(EngPartMat.class);
+    }
+    
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    
+    
+    public List<EngPartMat> findByeoid(long eoid){
+        return em.createQuery("SELECT e FROM EngPartMat e WHERE e.eoIdord.eoIdord = :obj").setParameter("obj", eoid).getResultList();        
+    }
+}

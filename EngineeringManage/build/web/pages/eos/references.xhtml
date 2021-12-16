@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title> </title>
+             
+             <h:outputScript> 
+            $(document).ready(function (){
+                    crearModal('#inputModalA', '675px');
+                    document.getElementById("inputFormA:idordenes").value=document.getElementById("inputFormA:idordenes1").value;
+                    });
+        
+             </h:outputScript>
+        </h:head>
+        <h:body>
+            
+                <div class="fondo">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red;">
+                                    #{gen_msg['references']}
+                                </h1>
+                            </div>
+                        
+                            
+                            <div id="slideDer14" class="menut14" style="display: none;">
+                                
+                            </div>
+                            <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburger14" >
+                                <span>toggle menu</span>
+                            </div>
+                        </div>
+                        <script>
+                                 (function() {
+                                    "use strict";
+
+                                    var toggles = document.querySelectorAll("#c-hamburger14");
+
+                                    for (var i = toggles.length - 1; i >= 0; i--) {
+                                      var toggle = toggles[i];
+                                      toggleHandler(toggle);
+                                    };
+
+                                    function toggleHandler(toggle) {
+                                      toggle.addEventListener( "click", function(e) {
+                                        e.preventDefault();
+                                        $('#slideDer14').toggle("slow");
+                                        
+                                      });
+                                    }
+
+                                  })();
+                        </script>
+                        <h:panelGroup id="inputModalA" style="display:none;" pt:title="#{gen_msg['references']}">
+                            <h:form id="inputFormA">
+                                <h:panelGrid style="width: 100%" columns="2" columnClasses="twentyfive-prc right-aling, seventyfive-prc " >
+                                    <h:outputLabel value="#{gen_msg['references']}:" for="references" />
+                                    <h:selectOneMenu id="references" value="#{engEoRefBean.elemento.refCompliance}" >
+                                        <f:selectItem itemLabel="Seleccione..." itemValue="2"/>
+                                        <f:selectItem itemLabel="A" itemValue="A"/>
+                                        <f:selectItem itemLabel="B" itemValue="B"/>
+                                    </h:selectOneMenu>
+                                
+                                <h:outputLabel value="ORDEN: " for="idDoc" />
+                                <h:inputText id="idordenes" value="#{engEoRefBean.llave.eoIdord}"/>
+                                
+                                </h:panelGrid>
+                                <h:inputHidden id="idordenes1" value="#{engEoRefBean.valor}" />
+                                
+                               <h:panelGrid style="width: 100%; margin-top: 3%" columns="2" columnClasses="twentyfive-prc right-aling, seventyfive-prc">
+                                    <h:outputLabel value="#{gen_msg['comments']}:" for="coments"/>
+                                    <h:inputTextarea id="coments"  value="#{engEoRefBean.elemento.refComments}" class="form-control"  style="resize: none" />
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!engEoRefBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engEoRefBean.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccessA @form inputModalA inputFormA resultFormA refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engEoRefBean.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccessA @form resultFormA refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputFormA:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="inputFormA:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccessA">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalA").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <h:form id="resultFormA">
+                            <h:dataTable id="tblListadoA" pt:name="tblListadoA" value="#{engEoRefBean.listado2}" var="item" style="width: 100%;" class="table table-striped dt-responsive nowrap" >
+                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['idDoc']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['idDoc']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.engEoRefPK.codId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['numSec']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['numSec']}"/>
+                                    </f:facet>
+                                     <h:outputText value="#{item.engEoRefPK.secNum}"/>             
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['compW']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['compW']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.refCompliance}"/> 
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['comments']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{gen_msg['comments']}"/>
+                                    </f:facet>
+                                    <h:outputText id="idordenes0" value="#{item.refComments}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModalA');">
+                                        <f:setPropertyActionListener target="#{engEoRefBean.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{engEoRefBean.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="@form inputFormA refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" action="#{engEoRefBean.eliminar(item)}">
+                                        <f:ajax execute="@this" render="@form refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                            
+                            
+                            </h:dataTable>
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListadoA]','${swtLanguage.language}','#inputModalA','.menut14');</h:outputScript>
+                        </h:form>
+                    
+                </div>
+        </h:body>
+    </f:view>
+</html>

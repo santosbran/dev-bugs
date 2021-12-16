@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <script>
+                function abrirmodal(idModal) {
+                    $(idModal).dialog("open");
+                    return false;
+                }
+                function addactive(id) {
+                    //var divgrop=$("#btngrp input[type=submit]");
+                    var idbut=id.id;
+                    $("#btngrp input[type=submit]").each(function () {
+                        $(this).removeClass("active");
+                    });
+                    document.getElementById(idbut).className += " active";
+                }   
+            </script>
+            <style>               
+                .ui-tooltip{
+                    z-index: 100;
+                }
+                .h-ie {
+                    height: 54px;
+                }
+                @media screen and (min-width:0\0) {
+                    .h-ie {
+                        height: 82px !important;
+                    }
+                }
+                @media all and (max-height: 700px) and (min-width: 894px){
+                    .mainSupervisores {
+                        margin-top: -1% !important;
+                        height: 74% !important;
+                    }
+                }
+            </style>
+        </h:head>
+        <h:body>
+<!--            <h:form class="w-full flex justify-center md:justify-start absolute bottom-0 py-2">
+                <div id="btngrp" class="group-btn-company inline-flex ml-2">
+                    <h:commandButton id="butCompany" action="{ingenierBean.cargarTodas()}"
+                        class="btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 px-4 text-sm active" value="{gen_msg['all']}" onclick="addactive(this);">
+                        <f:ajax  render="matrona idorder nombs scrip autocom panelCompany esrcompanyscrip res idesr 
+                            compnay idGrupoIngSup panelTODOS totalesr refremeta" execute="@form"  />
+                    </h:commandButton>
+                    <c:forEach  items="{companyBean.listado}" var="item" >
+                        <h:commandButton id="but{item.ciaCode}" action="{ingenierBean.filtroIngenieroPorCia(item.ciaCode)}" title="{item.ciaName}"
+                            class="btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 px-4 text-sm" onclick="addactive(this);" value="{item.ciaCode}">
+                            <f:ajax  render="matrona idorder nombs scrip autocom esrcompanyscrip res idesr
+                                compnay idGrupoIngSup panelTODOS totalesr refremeta" execute="@form"  />
+                        </h:commandButton>
+                    </c:forEach>
+                </div>
+            </h:form>-->
+         
+           
+            <div id="container-esr" class="flex flex-col h-screen px-4 w-full lg:h-screen pt-16 pb-4">
+                <div class="flex flex-col lg:flex-row h-full overflow-y-auto">
+                <section id="lists" class="flex flex-row lg:flex-row w-full lg:w-2/4 lg:h-full mr-2">
+                    <nav id="das1" class="flex flex-col w-full h-full">
+                        <div id="engclose-bt2" class="estiloHeaderMroholdings">#{gen_msg['engi']}
+                            <div class="image">
+                                <a class="nav-toggle" >
+                                    <i class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaESRIngenieros cursor-pointer" onclick="handleING(false);"/>                                
+                                </a>
+                            </div>
+                        </div> 
+                        <section class="h-full bg-white border-left-bottom overflow-y-auto">                       
+                            <div>
+                                <ui:insert name="newContent">
+                                    <ui:include src="/pages/tabsIngenieros.xhtml"/>
+                                </ui:insert>
+                            </div>
+                        </section>
+                    </nav>         
+                    <aside id="das" class="flex flex-col mx-2 w-full h-full lg:ml-2">
+                        <div class="h-subtitle-ing">
+                            <div id="engclose-bt3" class="estiloHeaderMroholdings">ESR (<h:panelGroup id="totalesr">#{ingenierBean.taskList.size()}</h:panelGroup>)
+                                <div class="image">
+                                    <a class="nav-toggle" >
+                                        <i class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaESRIngenieros cursor-pointer" onclick="handleESR(false);"/>                                
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex w-full py-5 h-ie border-left-right bg-white">
+                                <div class="flex w-2/4">
+                                    <div class="w-10 flex justify-center">
+                                        <label class="glyphicon glyphicon-arrow-down estiloArrowDownESR iconosAssigned"/>
+                                    </div>
+                                    <div class="w-auto">
+                                        <label class="text-xs md:text-base"> EA Assigned to ESR</label>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end w-auto w-2/4 pr-3 md:pr-5">
+                                    <div class="w-10 flex justify-center">
+                                        <label class="glyphicon glyphicon-warning-sign flotarWarningESR iconosAssigned"/>
+                                    </div>
+                                    <div class="w-auto">
+                                        <label class="text-xs md:text-base"> ESR not Assigned</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-calc-subtitle-ing overflow-y-scroll  border-left-bottom bg-white">
+                            <ui:insert name="newContent">
+                                <ui:include src="/pages/tabsCompanySup.xhtml"/>
+                            </ui:insert>
+                        </div>
+
+                    </aside>           
+                </section>
+                <article id="formESR" class="flex flex-col md:mt-2 w-full lg:w-2/4 lg:h-full lg:ml-0 lg:mt-0 pb-2 lg:ml-0 lg:pb-0">
+                    <div id="engclose-bt4" class="styleHeaderMroholdings justify-between" style="display: flex; padding-top: 0 !important; margin-bottom: 0;">
+                        <h:panelGroup id="nombs" style="padding-top: 6px;">
+                            <h:outputText value="#{gen_msg['panelea']}" rendered="#{tabEsrEaEoBean.idor eq 1}"/>
+                            
+                            <h:outputText value="#{gen_msg['paneleo']}" rendered="#{tabEsrEaEoBean.idor eq 3}"/>
+                            
+                            <h:outputText value="#{gen_msg['panelesr']}" rendered="#{tabEsrEaEoBean.idor eq 2}"/>
+                        </h:panelGroup>
+                        <div class="flex">
+                            <div id="btn-eng" class="badge-min h-full flex px-3 mr-2 hidden" onclick="handleING(true)">
+                                <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                    aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                                <div class="flex items-center h-full cursor-pointer">
+                                    <label class="text-white mb-0 cursor-pointer">#{gen_msg['engi']}</label>
+                                </div>
+                            </div>
+                            <div id="btn-esr" class="badge-min h-full flex px-3 mr-2 hidden" onclick="handleESR(true)">
+                                <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                    aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                                <div class="flex items-center h-full cursor-pointer">
+                                    <label class="text-white mb-0 cursor-pointer">ESR</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="form-esr" class="overflow-auto bg-white" style="height: calc(100% - 30px)">
+                        <div onscroll="onscrollfnction();">
+                            <!--<div id="ea">
+                                <ui:insert name="newContent">
+                                    <ui:include src="/pages/eas/tabEa.xhtml"/>
+                                </ui:insert>
+                            </div>-->
+
+                            <div id="viewReportes" class="styleacordeon scroll" style="display:none;">
+                                <ui:insert name="newContent">
+                                    <ui:include src="/pages/reportes/viewReportes.xhtml"/>
+                                </ui:insert>
+                            </div>
+
+                            <h:panelGroup id="divSup">
+                                <div id="esr" >
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/esr/tabESR.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                            </h:panelGroup>
+
+                            <h:panelGroup id="divInicialESR">
+                                <div id="inicialPageESR"
+                                    style="display: none;">
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/esr/tabESRInicial.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                            </h:panelGroup>
+
+                            <!--<h:panelGroup id="panelOtrosDocs">
+                                <div id="divOtrosDocs" class="styleacordeon scroll panelesr divpanelCentralIngenierosESR"
+                                    style="display: none;">
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/esr/engEsrProv.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                            </h:panelGroup>-->
+                        </div>
+
+                        <div id="spinnerhms" class="dimensionesSpinner" style="display: none;" >
+                            <div id="loader-wrapper" class="loadingif">
+                                <div id="loader">
+                                </div>
+                                <div id="content">
+                                    <h3>#{gen_msg['loading']}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h:form  id="EsrRep" style="display: none;">
+                            <h:panelGrid columns="2" style="margin: auto;" >
+                                <h:commandButton class="btn btn-signin srbuton" value ="ESR">
+                                    <f:ajax execute="@form" listener="#{tabEsrEaEoBean.esrs()}" render="matrona scrip converea refremeta"/>
+                                </h:commandButton>  
+
+                                <h:commandButton class="btn btn-signin srbuton" value ="#{gen_msg['rep']}">
+                                    <f:ajax listener="#{tabEsrEaEoBean.reporteESR(esrBean.elemento.reqMessageid)}" render="matrona scrip viewReportes refremeta" />
+                                </h:commandButton>
+                            </h:panelGrid>
+                        </h:form>
+
+                        <h:form  id="butesr" style="display: none;">
+                            <script type="text/javascript">
+                                function saveorclean(ope) {
+                                    if (ope == 1) {
+                                        $("#inputForm70\\:save").trigger("click");
+                                    } else {
+                                        $("#inputForm70\\:clean").trigger("click");
+                                    }
+                                }
+                            </script>
+                        </h:form>
+
+                        <ui:insert name="newContent">
+                            <ui:include src="/pages/esr/renderEsr.xhtml"/>
+                        </ui:insert>
+                    </div>
+                </article>
+                </div>
+                <h:form id="btngrp" class="menu-company w-auto absolute bottom-0 flex justify-start items-center z-10" style="position: fixed;">
+                     <div class="label-company bg-aes-blue"><div class="plus-company"/></div>
+                     <h:commandButton id="butCompany" action="#{ingenierBean.cargarTodas()}"
+                         class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm active" value="#{gen_msg['all']}" onclick="addactive(this);">
+                         <f:ajax  render="matrona idorder nombs scrip autocom panelCompany esrcompanyscrip res idesr 
+                             compnay idGrupoIngSup panelTODOS totalesr refremeta" execute="@form"  />
+                     </h:commandButton>
+                     <c:forEach items="#{companyBean.listado}" var="item" >
+                         <h:commandButton id="but#{item.ciaCode}" action="#{ingenierBean.filtroIngenieroPorCia(item.ciaCode)}" title="#{item.ciaName}"
+                             class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm" onclick="addactive(this);" value="#{item.ciaCode}">
+                             <f:ajax  render="matrona idorder nombs scrip autocom esrcompanyscrip res idesr
+                                 compnay idGrupoIngSup panelTODOS totalesr refremeta" execute="@form"  />
+                         </h:commandButton>
+                     </c:forEach>
+                 </h:form>
+            </div>
+                
+            <script>
+                var containerEsr = document.getElementById('container-esr');
+                var form = document.getElementById('formESR');
+                var lists = document.getElementById('lists');
+                var listING = document.getElementById('das1');
+                var listESR = document.getElementById('das');
+                var btnEsr = document.getElementById('btn-esr');
+                var btnEng = document.getElementById('btn-eng');
+                
+                var stateING = true;
+                var stateESR = true;
+                
+                function handleING(state) {
+                    stateING = state;
+                    if(state) {
+                        btnEng.classList.add('hidden');
+                        listING.classList.remove('hidden');
+                        listESR.classList.add('ml-2');                    
+                    } else {
+                        btnEng.classList.remove('hidden');                       
+                        listING.classList.add('hidden');                    
+                        listESR.classList.remove('ml-2');                    
+                    }                        
+                    responsive();                  
+                }
+                function handleESR(state) {
+                    stateESR = state;
+                    if(state) {
+                        btnEsr.classList.add('hidden');
+                        listESR.classList.remove('hidden');
+                    } else {
+                        btnEsr.classList.remove('hidden');
+                        listESR.classList.add('hidden');
+                    }                        
+                    responsive(); 
+                }
+                
+                function responsive() {
+                    //form
+                    containerEsr.classList.remove('justify-center');
+                    form.classList.remove('lg:w-2/4');
+                    form.classList.remove('lg:w-3/4');
+                    form.classList.remove('lg:w-full');
+                    form.classList.remove('h-full');
+                    form.classList.remove('h-1/2');
+                    form.classList.add('mt-2');
+                    form.classList.add('pb-2');
+                    //section lists
+                    lists.classList.remove('hidden');
+                    lists.classList.remove('lg:w-2/4');
+                    lists.classList.remove('lg:w-1/4');
+                    //list ing
+                    listING.classList.remove('w-2/4');
+                    listING.classList.remove('w-full');
+                    //list esr
+                    listESR.classList.remove('w-2/4');
+                    listESR.classList.remove('w-full');
+                    
+                    if (stateING &amp;&amp; stateESR) {
+                        form.classList.add('lg:w-2/4');
+                        lists.classList.add('lg:w-2/4');
+                        listING.classList.add('w-2/4');
+                        listESR.classList.add('w-2/4');
+                    } else if (stateING) {
+                        form.classList.add('lg:w-3/4');
+                        form.classList.add('h-1/2');
+                        lists.classList.add('lg:w-1/4');
+                        listING.classList.add('w-full');
+                    } else if (stateESR){
+                        form.classList.add('lg:w-3/4');
+                        lists.classList.add('lg:w-1/4');
+                        listESR.classList.add('w-full');
+                    } else {
+                        form.classList.add('lg:w-full');
+                        form.classList.add('h-full');
+                        form.classList.remove('mt-2');
+                        form.classList.remove('pb-2');
+                        lists.classList.add('hidden');
+                        containerEsr.classList.add('justify-center');
+                    }
+                }
+            </script>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view>
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->              
+        </h:head>
+        <h:body>                                                                             
+            <h:form id="resultFormEngHours6" class="anchoformularioTablasModalIng">
+
+                <h:inputHidden id="llevavalores" value="#{engHorasIngBean.listadoId}" > </h:inputHidden>
+                <style type="text/css">
+                    .anchoTablasIngenieria {
+                        overflow: scroll !important;
+                    }
+               
+                    
+                </style>
+                <h:dataTable  id="tblListado456" class="table table-striped dt-responsive anchoTablasIngenieria"  pt:name="tblListado456" value="#{engHorasIngBean.aux}" var="item">                           
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{aees_msg['esrNo']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{aees_msg['esrNo']}"/>
+                        </f:facet>
+                        <h:outputLabel  value="#{item.esr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{gen_msg['description']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{gen_msg['description']}"/>
+                        </f:facet>
+                        <h:outputLabel value="#{item.descripcion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{aees_msg['eaCompleted']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{aees_msg['eaCompleted']}"/>
+                        </f:facet>
+                        <h:outputLabel value="#{item.eacompletado}"/>
+                    </h:column> 
+                    <h:column> 
+                        <f:facet name="header">
+                            <h:outputLabel value="#{aees_msg['eaCheckIn']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{aees_msg['eaCheckIn']}"/>
+                        </f:facet>
+                                               <h:selectOneMenu id="eacompleted" value="#{item.comboindex}" class="form-control" style="width:60% !important; white-space: pre-wrap;">                                    
+                            <f:selectItems value="#{engEaHrsBean.listado}" var="option" itemLabel="#{option.ehiName}" itemValue="#{option.ehiId}"/>
+                            <f:ajax  render="@this refremeta" event="change" listener="#{engHorasIngBean.addElement(item)}"/>
+                        </h:selectOneMenu>
+                    </h:column>                            
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{aees_msg['engHours']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{aees_msg['engHours']}"/>
+                        </f:facet>
+                        <h:outputLabel value="#{item.horasing}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{aees_msg['checkInHours']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{aees_msg['checkInHours']}"/>
+                        </f:facet>
+                                                <h:inputText value="#{item.eafacturar}" class="form-control" style="width:60% !important; white-space: pre-wrap;"  maxlength="9" autocomplete="off">
+                            <f:ajax event="change" render="@this refremeta" />
+                        </h:inputText>     
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="#{gen_msg['checkIn']}"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputLabel value="#{gen_msg['checkIn']}"/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox id="checkFacturar" value="#{item.chequeado}">
+                            <f:ajax event="click" render="@this refremeta" />
+                        </h:selectBooleanCheckbox>                                   
+
+                    </h:column>
+
+
+                </h:dataTable>
+                <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+
+                <h:outputScript>formatTable('table[name=tblListado456]','${swtLanguage.language}','#inputModal66','.menut8');
+                </h:outputScript>
+            </h:form>
+                        <h:form id="dialogCall">
+                           <div class="alinearIzqmsgError">
+                               
+                                    <h:outputText value="•  #{aees_msg['ChkExHour']}" rendered="#{engHorasIngBean.export == 1}" class="msgError"/>
+                      
+                            </div>
+                            <div class="flex flex-row justify-center w-full sm:flex-col md:flex-row justify-around sm:ml-8 lg:ml-0 md:ml-0">
+                                <div class="flex flex-col lg:w-4/12 md:w-4/12 sm:w-full">  
+                                <div class="lg:w-full md:w-full sm:w-10/12 sm:mt-2" rendered="#{engHorasIngBean.export == 2}">
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['genUpdate']}" action="#{engHorasIngBean.actualizar()}" rendered="#{engHorasIngBean.export == 2}">
+                                        <f:ajax render="resultFormEngHours6 successH discardH refremeta"/>   
+                                    </h:commandButton>
+                                </div>
+                                <div class="lg:w-full md:w-full sm:w-10/12 sm:mt-2">
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{contCheckBean.descartarCambiosHours()}" >
+                                        <f:ajax render="resultFormEngHours6 refremeta" /> 
+                                    </h:commandButton>
+                               </div>
+                                    </div> 
+                                <div class="flex flex-col lg:w-4/12 md:w-4/12 sm:w-full"> 
+                                <div class="lg:w-full md:w-full sm:w-10/12 sm:mt-2">
+                                    <h:commandButton class="btn btn-signin imageExcel btn-export-hours" value ="#{gen_msg['genexcel']}" action="#{engHorasIngBean.llenarExcel()}" disabled="#{engHorasIngBean.aux.size() eq 0}"/>                                
+
+                                 </div>
+                                <div class="lg:w-full md:w-full sm:w-10/12 sm:mt-2" rendered="#{engHorasIngBean.export == 2}">
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['exHoras']}" action="#{engHorasIngBean.exporHoras()}"  rendered="#{engHorasIngBean.export == 2}">
+                                        <f:ajax execute="@this" render="@form dialogCall successH refremeta"/>
+                                    </h:commandButton>
+                                  </div>
+                                </div>
+                            </div>
+                        
+     
+                     
+                            
+                        </h:form>
+                        <h:panelGroup id="successH">
+                            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                alertify.success("#{aees_msg['exito']}");
+                            </h:outputScript>
+                        </h:panelGroup>
+                        <h:panelGroup id="discardH">
+                            <h:outputScript rendered="#{facesContext.postback and facesContext.validationFailed}">                            
+                                alertify.custom = alertify.extend("custom");
+                                alertify.custom("#{aees_msg['descardoperation']}");
+                            </h:outputScript>
+                        </h:panelGroup>
+                    
+                
+           
+        </h:body>
+    </f:view>
+</html>

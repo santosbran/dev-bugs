@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#removeEngEsrProv', '325px');
+                crearModal('#actualizarEngEsrProv', '600px');
+                });
+            </h:outputScript>
+            <style>
+                .menutPlantilla{
+                    position: absolute;
+                    top: 1%;
+                    float: right;
+                    z-index: 999;
+                    margin-left: 5% !important;
+                }
+                .ui-widget-content {   
+                    background: #fff !important;
+
+                }
+                .divBotonesModalTaskCard{
+                    padding-bottom: 5%!important; 
+                }
+                #fmEngEsrProv{
+                    background: white;
+                     height: 76%!important;
+                }
+                #fEsrProv{
+                    background: white;
+                    
+                }
+                #divOtrosDocs{
+                    height: 85%!important;
+                }
+                
+                @media screen and (min-width:0px) and (max-width:890px){
+                    #icoBack4{
+                        top: 86px!important;
+                        left: 6%;
+                    }
+                }
+                #icoBack4{
+                    margin: 0 0 0 -5%!important;
+                }
+                
+                      .backClassOtherTrack{
+                    position: absolute;
+                    height: 38px; 
+                    margin-top: 527px !important;
+                    margin-left: 39% !important;
+                    width: 9%
+                }
+                @media screen and (max-width:850px){
+                    .divBotonesModalTaskCard{
+                        width: 68% !important;
+                        margin-left: 21%  !important;
+                    }
+                     
+                }
+                @media screen and (max-width:600px){
+                    .divBotonesModalTaskCard{
+                        width: 90% !important;
+                        margin-left: 5% !important;
+                        margin-top: 4%;
+                    }
+                }
+                .twenty-five-prc{
+                   width: 25%; 
+                }
+            </style>  
+            <script>
+                function funalertcoreAF1(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#removeUploadEngEsrProv\\:idDocumentUploadEsrProv').val(id);
+                    return false;
+                }
+                function funalertcoreAF2(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#factualizarEngEsrProv\\:idEsrProv23').val(id);
+                    return false;
+                }
+                function backTabOtherDocNew(){
+                    $("#otherDocESR").hide(); 
+                    $("#engineer").show();
+                    $("#main").show();    
+                    $("#supervisor").show();
+                    window.switchSpaceNav();
+                    mostrarbtn();
+                }
+            </script>
+        </h:head>
+        <h:body>
+         
+            <div class="row" style="display: none;">
+                <h:panelGroup id="panelEngEsrProv">
+                    <div id="divlEsrTabNw"  class="menutPlantilla" >
+                    </div>
+                </h:panelGroup>
+                <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburgerStatusDispo1" >
+                    <span>toggle menu</span>
+                </div>
+            </div> 
+             <h:panelGroup id="removeEngEsrProv" style="display:none;" pt:title="#{gen_msg['delete']}">
+                    <h:form id="removeUploadEngEsrProv">
+                        <h:inputText value="#{engEsrProvBean.idEsrProv}" style="display:none;" id="idDocumentUploadEsrProv">
+                            <f:ajax event="change" render="@this refremeta" />
+                        </h:inputText>
+                        <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                            <h:outputLabel value="¿#{aees_msg['deleteitem']}?" class="margenlabelDelete"/> 
+                        </h:panelGrid>
+                        <div class="divBotonesModales flex flex-row justify-center">
+                            <div class="flex w-4/12">
+                                <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['acept']}" action="#{engEsrProvBean.delete(engEsrProvBean.idEsrProv)}" >
+                                    <f:ajax execute="@form" render="@form fmEngEsrProv ondeleteUploadEngEsrProv slither25 refremeta"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="flex w-4/12">
+                                <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['cancel']}" >
+                                    <f:ajax execute="@this" render="descartarEliminacionEngEsrProv refremeta" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            
+            <h:panelGroup id="actualizarEngEsrProv" style="display:none;" pt:title="#{gen_msg['genUpdate']}">
+                    <h:form id="factualizarEngEsrProv">
+                        <div class="divBotonesModales">
+                        <h:inputText value="#{engEsrProvBean.idEsrProv}" style="display:none;" id="idEsrProv23">
+                            <f:ajax event="change" render="@this refremeta" />
+                        </h:inputText>
+                            <h:inputText value="#{engEsrProvBean.elemento.numeo}" pt:placeholder="#{gen_msg['mtoDesc']}" class="form-control"  id="idUploadeEsrProv" style="alignment-adjust: central">                             
+                        </h:inputText>
+                        </div>
+                        <div class="divBotonesModales">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                                <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['acept']}" action="#{engEsrProvBean.actualizarEsrProv(engEsrProvBean.idEsrProv)}" >
+                                    <f:ajax execute="@form" render="@form fmEngEsrProv messagActualizarEngEsrProv slither25 refremeta"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+                                <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['cancel']}" >
+                                    <f:ajax execute="@this" render="descartarActualizaionEngEsrProv refremeta" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+             </h:panelGroup>
+            <div id="panelEAuto" style="overflow-y: auto; overflow-x: hidden; background: white;" class="dashboard-content-h pb-16">
+                <h:form id="fEsrProv" style="height: 120px !important;"> 
+                <div style="top:1%">
+                    
+                </div>
+                <h:panelGrid class="paraResponsive tasktable" columns="2" columnClasses="ten-prc right-align,twenty-prc" style="margin: 0% 25% 0% 0%;">
+                    <h:column></h:column><h:column></h:column>
+                    <h:column></h:column><h:column></h:column>
+                    <h:column>
+                        <h:outputLabel value="#{gen_msg['mtoDesc']}"/> 
+                        <h:outputText value="  *  " class="msgError"/>
+                    </h:column>
+                    <h:column>
+                        <h:inputTextarea id="desEsrProv" pt:placeholder="#{gen_msg['mtoDesc']}" class="form-control" value="#{engEsrProvBean.elemento.numeo}" style="font-size: 20px;" required="true" requiredMessage="#{gen_msg['mtoDesc']} #{gen_msg['adjNecesario']}">
+                            <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                        </h:inputTextarea>
+                        <h:messages id="mesEsrProv" for="desEsrProv" class="msgError"/>
+                    </h:column>
+                </h:panelGrid>
+                <div class="flex justify-center">                        
+                    <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['genAdd']}" action="#{engEsrProvBean.agregar()}">
+                            <f:ajax execute="@form"  render="@form fmEngEsrProv messagActualizarEngEsrProv refremeta"/>
+                        </h:commandButton>
+                    
+                         <h:commandButton class="w-40 bg-aes-blue text-white text-center py-2 m-1 " value ="#{gen_msg['discard']}" action="#{engEsrProvBean.limpiar()}">
+                            <f:ajax execute="@this" render="@form descartarActualizaionEngEsrProv refremeta"/>
+                        </h:commandButton>  
+                    </div> 
+                
+            </h:form>
+                <h:form id="fmEngEsrProv" style="height: auto !important;">                
+                <h:dataTable id="tblListadosEngEsrProv" class="table table-striped dt-responsive anchoTableMantenimientos" value='#{engEsrProvBean.listado}'
+                             pt:name="tblListadosEngEsrProv" var="item" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['msj']} ID"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="#{gen_msg['msj']} ID"/>
+                        </f:facet>   
+                        <h:outputText value="#{item.messageid}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['correlative']} ID"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="#{gen_msg['correlative']} ID"/>
+                        </f:facet>      
+                        <h:outputText value="#{item.idpord}"/>
+                    </h:column>                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['mtoDesc']}"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="#{gen_msg['mtoDesc']}"/>
+                        </f:facet>      
+                        <h:outputText value="#{item.numeo}"/>
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Delete"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="Delete"/>
+                        </f:facet>    
+                        <h:commandButton class="btn-round-69 icon-remove-69" onclick="funalertcoreAF1('#removeEngEsrProv','${item.idpord}');">
+                            <f:ajax execute="@this" render="@this refremeta" />
+                        </h:commandButton>                        
+                    </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                            <h:outputText value="Update"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="Update"/>
+                        </f:facet>  
+                       <h:commandButton class="btn-round-24 icon-edit-24" onclick="funalertcoreAF2('#actualizarEngEsrProv','${item.idpord}');">
+                           <f:setPropertyActionListener target="#{engEsrProvBean.elemento}" value="#{item}"/>
+                            <f:ajax execute="@this" render="@this factualizarEngEsrProv refremeta" />
+                       </h:commandButton>
+                     </h:column>
+
+                </h:dataTable>   
+                 
+                
+                <h:outputScript>
+
+                    formatTable('table[name=tblListadosEngEsrProv]','${swtLanguage.language}','#ghhghf','.menutPlantilla');
+                </h:outputScript>
+            </h:form>
+            </div>  
+
+            <h:panelGroup id="rendEerrorDuplicadoEngEsrProv">
+                <h:outputScript rendered="#{facesContext.postback and  facesContext.validationFailed and plantillasBeen.contolador eq 1}">
+                    alertify.error("#{gen_msg['ifexist']}");
+                </h:outputScript>
+            </h:panelGroup>
+           
+            <h:panelGroup id="messagActualizarEngEsrProv">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#actualizarEngEsrProv").dialog("close");
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="descartarActualizaionEngEsrProv">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                  
+                    $("#actualizarEngEsrProv").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondeleteUploadEngEsrProv">
+                <h:outputScript rendered="#{facesContext.postback}">
+                    $("#removeEngEsrProv").dialog("close");
+                    alertify.log("#{aees_msg['removeitem']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="descartarEliminacionEngEsrProv">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                  
+                    $("#removeEngEsrProv").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+            
+        </h:body>
+    </f:view>
+</html>

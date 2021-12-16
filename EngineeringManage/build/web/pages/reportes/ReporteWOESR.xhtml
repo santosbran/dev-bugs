@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js" />
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+        </h:head>
+        <h:body>
+            <div id="page-wrapper0">
+                    <div class="container-fluid0">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red">
+                                    #{aees_msg['eaLoadDocs']}
+                                    
+                                   
+                                </h1>
+                            </div>
+                        </div>
+                        
+                        
+                        <h:form id="resultForm90" style="width:84% ;float:left; margin-right: 1%">
+                            <h:panelGrid columns="4" style="margin:auto;">
+                                <h:outputLabel value="Fecha Inicio"/>
+                                <h:inputText  id="dateini" value="#{reporteWoEsrBean.fechaini}">
+                                    <f:ajax event="change" render="@this refremeta" execute="@this"/>
+                                </h:inputText>
+                              
+                                <h:outputLabel value="Fecha Finn"/>
+                                <h:inputText id="datefin" value="#{reporteWoEsrBean.fechafin}">
+                                    <f:ajax event="change" render="@this refremeta" execute="@this"/>
+                                </h:inputText>
+                            </h:panelGrid>
+                            
+                            <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!eaPdfBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{eaPdfBean.addfile()}" >
+                                        <f:ajax execute="@form" render="onsuccess71 @form resultForm71 refremeta"/>
+                                    </h:commandButton>
+                                <h:commandButton class="btn btn-signin" value ="Generar" action="#{reporteWoEsrBean.excelReport()}" >
+                                        
+                                    </h:commandButton>
+                                </h:panelGrid>
+                            <h:outputScript>                                 
+                                    basicDTP('[name="resultForm90:dateini"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="resultForm90:datefin"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");                                
+                                </h:outputScript>
+                        </h:form>
+                    </div>
+                </div>
+            
+            
+            
+                               
+            
+        </h:body>
+    </f:view>
+</html>

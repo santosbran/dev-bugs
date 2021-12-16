@@ -1,0 +1,1078 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" style="overflow-x: hidden;" id="home-manager">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la pÃ¡gina - aplicaciÃ³n -->
+            <h:panelGroup id="refremeta">
+                <meta http-equiv="refresh" name="viewport-refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/pages/error/error.xhtml"/>   
+             <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            </h:panelGroup>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+                       <h:outputStylesheet library="styleAE" name="css/bootstrap.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/>
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputStylesheet library="styleAE" name="css/spinnergif.css"/>
+            <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>
+            <h:outputScript library="styleAE" name="js/homeManagerScript1.js"/>
+            <link rel="stylesheet" href="../css/tailwind.min.css"/>
+            <link rel="stylesheet" href="../css/tailwind.css"/>
+            <script src="../js/Chart.min.js"></script>
+            <link rel="stylesheet" href="../css/Chart.min.css"/>
+            <style type="text/css">
+               .ui-dialog{
+                   height: 90% !important;
+                    overflow: hidden;
+                }
+                .ui-tooltip{
+                    background: #616365 !important;
+                        /*border: 2px solid white;*/
+                }
+                @media (max-width: 799px) {
+                    
+                    .ac-container .label{ font-size: 11px !important;}
+                }
+                @media (min-width: 800px) and (max-width: 1004px){
+                    
+                    .ac-container .label{ font-size: 10px !important;}
+                }
+                @media (min-width: 1005px) and (max-width: 1200px){
+                    
+                    .ac-container .label{ font-size: 12px !important;}
+                }
+            </style>
+            <script>
+                function showGrafic(idCustomer) {
+                    //$("#tabGrafic").toggle(); 
+                    if ($('#tabGrafic').css('display') == 'none') {
+                        $("#logos\\:customer").val(idCustomer);
+                        $("#logos\\:buttonCusto").trigger("click");
+                        $("#flota").toggle();
+                        $("#tabGrafic").show();
+                        $("#total-grafic").show();
+                        $("#totalflota").toggle();
+                    } else {
+                        $("#logos\\:customer").val(idCustomer);
+                        $("#logos\\:buttonCusto").trigger("click");
+                    }
+                    return false;
+                }
+
+                function  closeGrafic() {
+                    switchPadding(false);
+                    if ($('#flota').css('display') == 'none') {
+                        $("#tabGrafic").hide();
+                        $("#total-grafic").hide();
+                        $("#flota").toggle();
+                        $("#totalflota").toggle();
+                    }
+                }
+                
+                function showSpinner(data) {
+                    var spinner = document.getElementById("spinnerManager");
+                    var status = data.status;
+                    if (status === "begin") {
+                        $("#formrefre").hide();
+                        $("#main").hide();
+                        $("#formcompany").hide(); 
+                        spinner.style.display = "block";
+                    } else {
+                        location.reload();
+                        spinner.style.display = "none";
+                    }
+                }
+$(document).ready(function(event) {
+
+    window.addEventListener("message", recepcionResize, false);
+    recepcionResize(window.addEventListener("message", recepcionResize, false));
+
+    function recepcionResize(event) {
+        if (event !== undefined){
+            var mesage = event.data.message;
+
+            if(mesage === "close"){
+                document.getElementById("cerrarSes:logout").click();
+            }
+        }
+
+    }
+});
+function mensajeNavegadorprincipal(e) { 
+    window.alert = function alert(msg) {
+    console.log('Browser: ' + msg);
+    };              
+}
+            </script>
+            <style type="text/css">
+                .modalhe{
+                    height: 80% !important;
+                }
+
+                header, footer {
+                    display: block;
+                    margin: 4px;
+                    padding: 8px !important;
+                    height: 0%;
+                    background: transparent;
+                }
+         
+                .ac-container .label {                 
+                    color: #000;
+                    font-weight: 700;
+                }
+                table {
+                    border-collapse: initial !important;
+                }
+                .slide-label{
+                    top: 4px;
+                    position: absolute;
+                    left: 4px;
+                }
+                .slide-label1{
+                    position: absolute;
+                    top: 3px;
+                    left: 5px;
+                }
+                .Contenendor1Graphic{
+                    height: 60%;
+                    background: rgba(205,204,204,0.3);
+                }
+                .estilopiechart{
+                    width:255px; 
+                    height: 255px
+                }
+                .totalGraphic{
+                    background: #337ab7;
+                    width: 35%;
+                    height: 10%;
+                    position: relative;
+                    margin: auto;
+                    text-align: center;
+                    color: white;
+                    font-size: medium;
+                    padding-top: 1%;
+                    margin-top: 5%;
+                    border: 2px solid #337ab7;
+                    border-radius: 9px;
+                }
+                .lineadivisionGraphic{
+                    height: 3px;
+                    background-color: #bf1e2d;    
+                    margin-left: 7%;    
+                    margin-right: 7%;
+                }
+                .contenedor2Conteos{
+                  height: 20%; 
+                  background: transparent;
+                }
+                .styledataTableConteos{
+                    margin: auto; 
+                    padding-top: 10%;
+                }
+                .styleLabelTituloConteo{
+                    margin-bottom: 10%;
+                    margin-left: 25%; 
+                    font-size: 15px;
+                }
+                .contenedor3filtros{
+                    height: 19%; 
+                    background: transparent;
+                }
+                .panelOpcionesfiltro{
+                    margin: auto; 
+                    padding-top: 10%;
+                }
+                .posicionFormCompanyManager{
+                    margin-left: 41%;
+                    margin-right: 39%;
+                    width: 40%;
+                }
+                .companyDefectoManager{
+                    background: #bf1e2d;
+                    color: white;
+                }                                 
+                .spinnerManagerTitle{
+                    min-height: 0 !important;
+                }
+                     .lineadivisionCombo{
+                    height: 3px;
+                    background-color: transparent;    
+                    margin-left: 7%;    
+                    margin-right: 7%;
+                }
+                @media screen and (max-height: 800px){
+                    .posicionFormCompanyManager{
+                        margin-top: 1% !important;
+                        width: 100% !important;
+                    }
+                    .mainhomeManager {
+                        height: 80% !important;
+                    }
+                }
+                    @media screen and (max-height: 675px){
+                    .posicionFormCompanyManager{
+                        margin-top: 2% !important;
+                    }
+                    .mainhomeManager {
+                        height: 74% !important;
+                    }
+                }
+               @media screen and (max-height: 600px){
+
+                    .mainhomeManager {
+                        height: 68% !important;
+                    }
+                }
+
+            </style>
+            <style type="text/css">
+                             
+                .coman:hover a{
+                    text-decoration: none;
+                    color: white;
+                }
+
+
+                .ui-widget-content{
+                    border: 0 !important;
+                }
+                .widthGrafic{
+                    width: 65px !important;
+                }
+
+                /**************************************************/              
+                .ingclas {
+                    background-color: transparent !important;
+                }              
+                .tablehand>tbody>tr:hover{
+                    background-color: gray !important;
+                    color: white !important;
+                }             
+
+                /*Nuevas clases migradas desde ingenieria*/
+
+                ul {
+                    margin-top: 0;
+                    margin-bottom: 0px;
+                }
+
+                header, footer {
+                    display: none;
+                }      
+                
+/*                            .imagenesDashBoard{        
+                    background:url("#{resource['styleAE:img/main/user-gray.svg']}");
+                    width: 52px !important;         
+                    background-repeat: no-repeat !important;
+                    background-size: 35px;
+                }
+                .dashboardClassUser:hover > td > .imagenesDashBoard{        
+                    background:url("#{resource['styleAE:img/main/user-white.svg']}") !important;
+                    width: 52px !important;          
+                    background-repeat: no-repeat !important;
+                    background-size: 35px;
+                }*/
+                .imagenesDashBoard{        
+                    background:url("#{resource['styleAE:img/menu/movil/Menu-Icon-02-blue.svg']}");
+                    width: 52px !important;         
+                    background-repeat: no-repeat !important;
+                    background-size: 51px;
+                    background-position-y: -6px;
+                    height: 35px !important;
+                }
+                .dashboardClassUser:hover > td > .imagenesDashBoard{        
+                    background:url("#{resource['styleAE:img/menu/movil/Menu-Icon-White-02.svg']}") !important;  
+                    width: 52px !important;          
+                    background-repeat: no-repeat !important;
+                    background-size: 51px !important;
+                    background-position-y: -6px !important;
+                    height: 35px !important;
+                }
+
+                .imagenesDashBoardAirplane{                       
+                      background:url("#{resource['styleAE:img/main/airplane-blue.svg']}");
+                   width: 55px !important;
+                    background-repeat: no-repeat !important;
+                    background-size: 35px;
+                    height: 35px;
+                    background-position-x: 12px;
+                }
+                .dashboardClassAir:hover > td > .imagenesDashBoardAirplane{        
+                    background:url("#{resource['styleAE:img/main/airplane32.svg']}") !important;
+                    width: 55px !important;
+                    background-repeat: no-repeat !important;
+                    background-size: 35px;
+                    height: 35px;
+                    background-position-x: 12px !important;
+}
+                
+                .dashboardClassAir > td{
+                    width: 30% !important;
+                }
+                     .dashboardClassUser > td{
+                    width: 0% !important;
+                }
+                
+                #collapse4 > .formDashBoardManager > .ac-container{
+                    height: 100%;
+                }
+                
+                /*Medias para ajustes de los dashboards */
+                
+/*                (max-height: 840px) and (max-width: 1510px) and (min-height: 500px) and (min-width: 950px)*/
+                
+                @media(max-width: 1510px) and (min-width: 950px) and (max-height:840px) and (min-height: 500px){
+                    #formcompany > .btn-group{
+                        width: 50%;
+                        margin-left: -8%;
+                        margin-top: 2%
+                    }
+                       #formcompany > .btn-group > .btn{
+                        width: 10% !important;
+                    } 
+                }
+/*                944 alto y 514 de ancho 826 450*/
+                    @media (max-height: 549px) and (max-width: 999px) and (min-height: 451px) and (min-width: 827px){
+                        #formcompany > .btn-group{
+                            width: 59%;
+                            margin-left: -14%;
+                            margin-top: 2.5%;
+                        }
+                    }
+    </style>
+        </h:head>
+        <!--rodrigo-->
+        <h:body class="main">
+            <header>
+                <h:form id="cerrarSes" style="display: none;">
+                    <h:commandLink id="logout" action="#{tabEsrEaEoBean.logout()}" >
+                    </h:commandLink>
+                </h:form>
+            </header>
+            <h:form id="manager">
+                <h:inputHidden id="refrepanel" value="#{customerManagerBean.refresh}" ></h:inputHidden>
+            </h:form>
+            <h:form id="logos" >
+                <div class="menudes" style="background: transparent;display: none;">                        
+                    <h:graphicImage library="styleAE" name="img/main/AEIS-Logo-01.png" class="img-responsive hidden-xs ninety-prc" onclick="window.parent.location.reload();"/> 
+                </div>
+                <h:inputText value="#{graficas.idCusto}" style="display: none" id="customer">
+                    <f:ajax event="change" render="@this refremeta"/>
+                </h:inputText>
+                <h:commandButton id="buttonCusto" style="display: none" action="#{graficas.generarGrafica()}">
+                    <f:ajax execute="@form" render="panelGrafic formDropList total-grafic refremeta"/>
+                </h:commandButton>
+            </h:form>
+            <h:form id="formrefre" class="dimensionesformrefre absolute">
+                <h:panelGroup id="showrefresh">
+                    <script >
+                        $(function () {
+                            var sel = document.getElementById("manager:refrepanel").value;
+                            var checkcom=#{customerManagerBean.aaaa==""?'\'\'':customerManagerBean.aaaa};
+                            if (sel == 1) {
+                                $("#formrefre\\:btnrefre").show();
+                                $("#bread").show();
+                                switchPadding(true);
+                            } else {
+                                $("#formrefre\\:btnrefre").hide();
+                                $("#bread").hide();
+                                switchPadding(false);
+                            }
+                            
+                            if(checkcom == '')
+                            {
+                            $("#btngrp input[type=submit]").each(function () {
+                                $(this).removeClass("active");
+                            });
+                            document.getElementById("formcompany:butall").className += " active";
+                                }
+
+                        });
+                    </script>               
+                </h:panelGroup>
+                <div class="absolute w-full py-2 px-4">
+                    <div class="w-full flex flex-nav">
+                        <div class="flex">
+                            <div class="flex">
+                                <h:commandButton id="btnrefre" action="#{customerManagerBean.init()}" value="#{gen_msg['filcle']}"
+                                    class="w-40 bg-aes-blue text-white text-center" onclick="closeGrafic();">
+                                    <f:ajax execute="@form" render="@this refremeta" onevent="showSpinner"/>
+                                </h:commandButton>
+                            </div>   
+                            <div class="flex w-filter ml-4">
+                                <ul class="breadcrumb w-full flex justify-center" id="bread">
+                                    <c:forEach var="res" items="#{customerManagerBean.filtros}">
+                                        <li>
+                                            <h:commandLink action="#{customerManagerBean.quitarindices(res)}" value="#{res}" >
+                                                <f:ajax execute="@form" render="@this refremeta" onevent="showSpinner"/>
+                                            </h:commandLink>
+                                        </li> 
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="menu-min" class="flex flex-row md:flex-co dashboard-nav-hl items-center w-full justify-nav dashboard-nav-h">
+                            <div id="iCustomer" class="badge-gerente cursor-pointer hidden" onclick="minList('customer', false)">
+                                <div>
+                                    <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon posicionGlytoContent2"
+                                    aria-hidden="true" style="position: relative;"/>
+                                </div>
+                                <div class="ml-3">
+                                    <span>#{gen_msg['cus']}</span>
+                                </div>
+                            </div>
+                            <div id="iOrder" class="badge-gerente cursor-pointer hidden" onclick="minList('order', false)">
+                                <div>
+                                    <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon posicionGlytoContent2"
+                                    aria-hidden="true" style="position: relative;"/>
+                                </div>
+                                <div class="ml-3">
+                                    <span>#{aees_msg['workOrder']}</span>
+                                </div>
+                            </div>
+                            <div id="iEngeiner" class="badge-gerente cursor-pointer hidden" onclick="minList('engeiner', false)">
+                                <div>
+                                    <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon posicionGlytoContent2"
+                                    aria-hidden="true" style="position: relative;"/>
+                                </div>
+                                <div class="ml-3">
+                                    <span>#{gen_msg['engi']}</span>
+                                </div>
+                            </div>
+                            <div id="iEsr" class="badge-gerente cursor-pointer hidden" onclick="minList('esr', false)">
+                                <div>
+                                    <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon posicionGlytoContent2"
+                                    aria-hidden="true" style="position: relative;"/>
+                                </div>
+                                <div class="ml-3">
+                                    <span>ESR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <div class="flex flex-col h-full">
+                <div id="main" class="content-dashboard flex flex-col px-2 pb-2 pt-16 w-full h-full">
+                    <div id="content-list" class="flex flex-col md:flex-row h-full w-full">
+                        <div id="pn-1" class="flex h-1/2 md:h-full w-full md:w-1/2 flex-grow pr-0 md:pr-2 pb-2 md:pb-0">
+                            <nav id="list-customer" class="flex flex-col h-full w-1/2 flex-grow pr-2">
+                                <div class="styleHeaderMroholdings flex justify-between">
+                                    <div>
+                                        <span>#{gen_msg['cus']}</span>
+                                    </div>
+                                    <div class="image" >
+                                        <a class="nav-toggle cursor-pointer" onclick="minList('customer', true)">
+                                        <i id="mini1" class="gli-a glyphicon-chevron-up colorGlyphicon  parametroflechaHM1 gli-mroh"/>
+                                        <i id="maxi1" library="styleAE" class="gli-a glyphicon-chevron-down colorGlyphicon  gli-mroh" style="display: none;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="collapse1" class="bg-white h-content-calc overflow-y-auto" style="display:block;">
+                                    <h:form id="customer">
+                                        <c:forEach items="#{customerManagerBean.listado}" var="cus">
+                                            <div class="flex item-style">
+                                                <h:commandLink action="#{customerManagerBean.filtrocliente(cus.engId)}"
+                                                    onclick="closeGrafic();" class="w-name-cus-calc no-decoration text-left pl-4 pr-2 py-3">
+                                                    <div>
+                                                        <h:outputText  value="#{cus.engName}" /><br></br>
+                                                        <h:outputText  value="#{cus.company}" />
+                                                    </div>
+                                                    <f:ajax execute="@this" render="@this refremeta" onevent="showSpinner"/>
+                                                </h:commandLink>
+                                                <div class="flex justify-c w-badges-cus">
+                                                    <div class="flex flex-col lg:flex-row justify-around items-center w-full">
+                                                        <h:graphicImage library="styleAE" name="img/main/chart.png"
+                                                            class="imageChart pb-2 lg:pb-0" onclick="showGrafic('#{cus.engId}');">
+                                                        </h:graphicImage>
+                                                        <span class="badgeCloseGraphic badge label-#{cus.color}" onclick="closeGrafic();">#{cus.tasks}</span> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                        <!--No quitar esto-->
+                                        <h:dataTable/>
+                                        <!--No quitar esto-->
+                                    </h:form>
+                                </div>
+                                <div class="footerPanelHomeManager">
+                                    <h:outputLabel value="TOTAL AVG"/>
+                                    <h:form id="formlabal">
+                                        <h:outputText id="labelcont" value="#{customerManagerBean.conteoclientesgeneral}" />
+                                    </h:form>                
+                                </div>
+                            </nav>
+
+                            <article id="list-order" class="flex flex-col h-full w-1/2 flex-grow">
+                                <div class="styleHeaderMroholdings flex justify-between">
+                                    <div>
+                                        <span>#{aees_msg['workOrder']}</span>
+                                    </div>
+                                    <div class="image">
+                                        <a class="nav-toggle cursor-pointer"  onclick="minList('order', true)">
+                                        <i id="mini2" class="gli-a glyphicon-chevron-up colorGlyphicon  parametroflechaHM1 gli-mroh"/>
+                                        <i id="maxi2" library="styleAE" class="gli-a glyphicon-chevron-down colorGlyphicon  gli-mroh" style="display: none;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="collapse2" class="bg-white h-content-calc overflow-y-auto overflow-x-hidden" style="display:block;">
+                                    <h:form id="flota">
+                                        <c:forEach items="#{customerManagerBean.fleet}" var="item">
+                                            <h:commandLink action="#{customerManagerBean.filtroflota(item.workorder)}" onclick="closeGrafic();"
+                                                class="flex item-style py-3">
+                                                <div class="icon-dashboard flex justify-center">
+                                                    <div style="width: 36px !important; background-position-x: 0; background-size: contain;" class="imagenesDashBoardAirplane" />
+                                                </div>
+                                                <div class="w-content-dashboard">
+                                                    <div>
+                                                        <h:outputText id="idreg" value="#{item.workorder}-#{item.cola}"/><br></br>
+                                                        <h:outputText value="#{item.company}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="badge-dashboard flex justify-center items-center">
+                                                    <span class="badge label-#{item.color}">#{item.numflota}</span>
+                                                </div>
+                                                <f:ajax execute="@form" render="@this refremeta" onevent="showSpinner"/>
+                                            </h:commandLink>
+                                        </c:forEach>
+                                        <!--No quitar esto-->
+                                        <h:dataTable/>
+                                        <!--No quitar esto-->
+                                    </h:form>
+                                    <div id="tabGrafic" class="h-full" style="display: none;">
+                                        <div>
+                                            <h:panelGroup id="panelGrafic">
+                                                <script>
+                                                    var labels =#{graficas.label};
+                                                    var data =#{graficas.dato};
+                                                    var span = document.getElementById('counter');
+                                                    if (span) {
+                                                        span.innerHTML = #{graficas.conteo};
+                                                    }
+                                                    var pieGraphic = document.getElementById('pieGraphic');
+                                                    var graphic = pieGraphic ? new Chart(pieGraphic, {
+                                                        type: 'pie',
+                                                        data: {
+                                                            labels: data.map(function(d, index, array) {
+                                                                let sum = 0;
+                                                                array.forEach (function(d) {
+                                                                    sum = sum + d;
+                                                                });
+                                                                let percentage = Math.round((d / sum) * 100) + '%';
+                                                                return labels[index] + ': '+percentage;
+                                                            }),
+                                                            datasets: [{
+                                                                backgroundColor: [
+                                                                    '#78CD51',
+                                                                    '#FABB3D',
+                                                                    '#2FABE9',
+                                                                    '#FA5833',
+                                                                    '#FA3333',
+                                                                    '#BC33FA',
+                                                                    '#33FABC',
+                                                                    '#FA3371',
+                                                                    '#3371FA',
+                                                                ],
+                                                                borderColor: '#fff',
+                                                                borderWidth: 1,
+                                                                data: data,
+                                                                label: '#{aees_msg['ingeTag']}',
+                                                            }]
+                                                        },
+                                                        options: {
+                                                            maintainAspectRatio: false,
+                                                            legend: {
+                                                                position: 'top'
+                                                            },
+                                                            tooltips: {
+                                                                enabled: true,
+                                                                mode: 'single',
+                                                                callbacks: {
+                                                                    title: function (tooltipItem, data) {
+                                                                        var inf = data.labels[tooltipItem[0].index].split(': ');
+                                                                        return inf[0] + ': ' + data.datasets[0].data[tooltipItem[0].index];
+                                                                    },
+                                                                    label: function(tooltipItem, data) {
+                                                                        var inf = data.labels[tooltipItem.index].split(': ');
+                                                                        return inf[1];
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }) : null;
+                                                </script>
+                                                <div>                                    
+                                                    <div id="container-graphic" class="h-bar w-auto">
+                                                        <canvas id="pieGraphic" width="250" height="250"></canvas>
+                                                        <!-- div id="piechartEsrIngeniero" class="relative top-0"
+                                                            style="width: 1506px; height: 291px;"></div>-->
+                                                    </div>                                                                                                                                                   
+                                                    <div class="w-full flex justify-center py-4">
+                                                        <div class="total-graphic">                                         
+                                                            <span>TOTAL #{graficas.conteo}</span>                                                                                 
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="lineadivisionGraphic"></div>
+                                                <div class="contenedor2Conteos">
+                                                    <div>
+                                                        <span class="badge label-#{item.color}" onclick="closeGrafic();">#{item.tasks}</span>
+                                                        <h:dataTable value="#{graficas.conteos}" var="con" class="flex justify-center">
+                                                            <h:column class="graphCounts">
+                                                                <div class="styleLabelTituloConteo">
+                                                                    <span>ESR</span>
+                                                                </div>
+                                                                <div>
+                                                                    <!-- success warnig danger styles-->
+                                                                    <span class="badge label-success badgegrafic" >#{con[2]}</span>
+                                                                </div>
+                                                            </h:column>
+                                                            <h:column class="graphCounts">
+                                                                <div class="styleLabelTituloConteo">                                                    
+                                                                    <span>EO</span>
+                                                                </div>
+                                                                <div>                                                    
+                                                                    <span class="badge label-warning badgegrafic" >#{con[0]}</span>
+                                                                </div>
+                                                            </h:column>
+                                                            <h:column class="graphCounts">
+                                                                <div class="styleLabelTituloConteo">
+                                                                    <span>EA</span>
+                                                                </div>
+                                                                <div>
+                                                                    <span class="badge label-danger badgegrafic" >#{con[1]}</span>
+                                                                </div>
+                                                            </h:column>
+                                                        </h:dataTable>                                        
+                                                    </div>                                
+                                                </div>
+                                            </h:panelGroup>
+                                            <!-- linea division -->
+                                            <div class="lineadivisionCombo"></div>
+
+                                            <div class="contenedor3filtros">
+                                                <h:form id="formDropList">
+                                                    <h:panelGrid columns="3"  class="panelOpcionesfiltro">
+                                                        <h:selectOneMenu value="#{graficas.idCusto}" class="form-control">
+                                                            <f:selectItems value="#{customerManagerBean.listado}" var="item" itemValue="#{item.engId}" itemLabel="#{item.engName}" />
+                                                                    <f:ajax event="change" listener="#{graficas.generarGrafica()}" execute="@form" render="panelGrafic total-grafic refremeta" />                                            
+                                                        </h:selectOneMenu>
+                                                        <h:selectBooleanCheckbox value="#{graficas.filall}">
+                                                                    <f:ajax execute="@form" render="@form panelGrafic formDropList total-grafic refremeta" listener="#{graficas.generarGraficacheck()}"/>
+                                                        </h:selectBooleanCheckbox>
+                                                        <h:outputText value="#{gen_msg['showall']}" />
+                                                    </h:panelGrid>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="total-grafic" class="footerPanelHomeManager" style="display: none;">
+                                    <h:outputLabel value="TOTAL" />
+                                    <h:outputText id="counter" value="0" />
+                                </div>
+                                <div id="totalflota" class="footerPanelHomeManager">
+                                    <h:outputLabel value="TOTAL"/>
+                                    <h:form id="formlabalflt">
+                                        <h:outputText id="labelcontflt" value="#{customerManagerBean.conteoflotabycom}" />
+                                    </h:form>  
+                                </div>
+                            </article>
+                        </div>
+                        <div id="pn-2" class="flex h-1/2 md:h-full w-full md:w-1/2 flex-grow">
+                            <aside id="list-engeiner" class="flex flex-col h-full w-1/2 flex-grow pr-2">
+                                <div class="styleHeaderMroholdings flex justify-between">
+                                    <div>
+                                        <span>#{gen_msg['engi']}</span>
+                                    </div>
+                                    <div class="image">
+                                        <a class="nav-toggle cursor-pointer" onclick="minList('engeiner', true)">
+                                        <i id="mini3" class="gli-a glyphicon-chevron-up colorGlyphicon  parametroflechaHM1 gli-mroh"/>
+                                        <i id="maxi3" library="styleAE" class="gli-a glyphicon-chevron-down colorGlyphicon  gli-mroh" style="display: none;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="collapse3" class="bg-white h-content-calc overflow-y-auto" style="display:block;">
+                                    <h:form id="formula"> 
+                                        <c:forEach items="#{customerManagerBean.user}" var="eng">
+                                            <h:commandLink action="#{customerManagerBean.filtroinge(eng.usercode,eng.userName)}"
+                                                onclick="closeGrafic();" id="inge" class="flex item-style py-3">
+                                                <div class="icon-dashboard flex justify-center">
+                                                    <div id="img" class="draggableEng imagenesDashBoard" />
+                                                    <h:inputHidden id="codIng" value="#{eng.usercode}"/>
+                                                </div>
+                                                <div class="w-content-dashboard">
+                                                    <div>
+                                                        <h:outputText  value="#{eng.userName}"/><br/>
+                                                        <h:outputText value="#{eng.company}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="badge-dashboard flex justify-center items-center">
+                                                    <span class="badge label-#{eng.color}">#{eng.task}</span>
+                                                </div>
+                                                <f:ajax execute="@form" render="@this refremeta" onevent="showSpinner"/>
+                                            </h:commandLink>
+                                        </c:forEach>
+                                        <!--No quitar esto-->
+                                        <h:dataTable/>
+                                        <!--No quitar esto-->
+                                    </h:form>
+                                </div>
+                                <div class="footerPanelHomeManager">
+                                    <h:outputLabel value="TOTAL"/>
+                                    <h:form id="formlabaling">
+                                        <h:outputText value="#{customerManagerBean.conteouser}"/>
+                                    </h:form>
+                                </div>
+                            </aside>
+
+                            <div id="otro" class="flex flex-col h-full w-1/2 flex-grow">
+                                <div class="styleHeaderMroholdings flex justify-between">
+                                    <div>
+                                        <span>ESR</span>
+                                    </div>
+                                    <div class="image">
+                                        <a class="nav-toggle cursor-pointer" onclick="minList('esr', true)">
+                                        <i id="mini4" class="gli-a glyphicon-chevron-up colorGlyphicon  parametroflechaHM1 gli-mroh"/>
+                                        <i id="maxi4" library="styleAE" class="gli-a glyphicon-chevron-down colorGlyphicon  gli-mroh" style="display: none;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="collapse4" class="bg-white h-content-calc overflow-y-auto" style="display:block;">
+                                    <div>
+                                        <section class="ac-container" style="overflow: hidden;">
+                                            <h:panelGroup id="task">
+                                                <c:forEach  items="#{customerManagerBean.taskList}" var="item">
+                                                    <h:form id="linkrep#{item.esr}">
+                                                        <h:commandButton id="but" style="display: none;"  action="#{customerManagerBean.reportemngESR(item.esr.toString())}"
+                                                                         onclick="$('#repmodal').dialog('open');">
+                                                            <f:ajax execute="@form" render="@form reporteVentana repmodalform refremeta otroTab " />
+                                                        </h:commandButton>
+                                                    </h:form>
+                                                    <c:set var="truenull1" value="#{gen_msg['noasig']}#{item.usrCoduser}-#{item.reqProbdesc} #{item.reqCustomer}-#{item.reqRegistry}"/>
+                                                    <c:set var="falsenull1" value="#{item.usrCoduser}-#{item.reqProbdesc} #{item.reqCustomer}-#{item.reqRegistry}"/>
+                                                    <div id="acordi#{item.esr}">
+                                                        <input id="ac-#{item.esr}" class="input" name="accordion-1" type="radio"  onclick="showtaskman('${item.esr}');"
+                                                               title="#{item.usrCoduser eq null or item.usrCoduser eq '0' ? truenull1 : falsenull1 }"/>
+
+
+                                                        <label  for="ac-#{item.esr}" class="flex w-full mb-0">
+                                                            <div class="flex w-full h-full item-style cursor-pointer">
+                                                                <div class="flex flex-col w-full py-3 px-2">
+                                                                    <div>
+                                                                        <span class="font-extrabold">#{item.woorder}</span>
+                                                                    </div>
+                                                                    <div class="flex justify-between items-center">
+                                                                        <span class="font-light">#{item.reqCustomer}-#{item.reqRegistry}</span>
+                                                                        <div class="flex item-esr-icon justify-end items-center">
+                                                                            <div>
+                                                                                <c:if test="#{item.tieneHijos ne 0}">
+                                                                                    <span class="glyphicon glyphicon-arrow-down"/>
+                                                                                </c:if>
+                                                                                <c:if test="#{item.usrCoduser eq null or item.usrCoduser eq '0'}">
+                                                                                    <span class="glyphicon glyphicon-warning-sign"/>
+                                                                                </c:if>
+                                                                            </div>
+                                                                            <div class="ml-2">
+                                                                                <h:panelGroup rendered="#{customerManagerBean.verFecha(item.reqFechaIns) eq 1}"><div class="" rendered="true"><span class="badge badge-hw label-success span-success">O</span></div></h:panelGroup>
+                                                                                <h:panelGroup rendered="#{customerManagerBean.verFecha(item.reqFechaIns) eq 2}"><div class="" rendered="true"><span class="badge badge-hw label-warning span-warning">O</span></div></h:panelGroup>
+                                                                                <h:panelGroup rendered="#{customerManagerBean.verFecha(item.reqFechaIns) eq 3}"><div class="" rendered="true"><span class="badge badge-hw label-danger span-danger">O</span></div></h:panelGroup>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </c:forEach>
+                                            </h:panelGroup>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="footerPanelHomeManager">
+                                    <h:outputLabel value="TOTAL"/>
+                                    <h:form id="formlabaltask">
+                                            <h:outputText value="#{customerManagerBean.conteotask}"/>
+                                        </h:form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div id="menuCompanies" style="margin-top: -5px;">
+                        <h:form id="formcompany">
+                            <div id="btngrp" class="menu-company w-auto flex justify-start bottom-0 items-center z-10">
+                                <div class="label-company bg-aes-blue"><div class="plus-company"/></div>
+                                <h:commandButton id="butall" action="#{customerManagerBean.quitarcompany()}"
+                                    class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm active" value="#{gen_msg['all']}">
+                                    <f:ajax execute="@this" render="refremeta" onevent="showSpinner"/>
+                                </h:commandButton>
+                                <c:forEach items="#{companyBean.listado}" var="item" >
+                                    <h:commandButton id="but#{item.ciaCode}" action="#{customerManagerBean.filtroCompanyCustomer(item.ciaCode)}" title="#{item.ciaName}"
+                                        class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm" value="#{item.ciaCode}">
+                                        <f:ajax execute="@this" render=" refremeta" onevent="showSpinner"/>
+                                    </h:commandButton>
+                                </c:forEach>
+                            </div>
+                            <h:inputHidden id="companyhiden" value="#{customerManagerBean.seleccionCompany}"/>
+                        </h:form>
+                    </div>
+                </div>              
+            
+<!--            <h:form id="formcompany" class="w-full flex justify-center md:justify-start absolute bottom-0 py-2">
+                <div id="btngrp" class="group-btn-company inline-flex ml-2" role="group" aria-label="...">
+                    <h:commandButton id="butall" action="{customerManagerBean.quitarcompany()}"
+                        class="btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 px-4 text-sm active" value="{gen_msg['all']}" >
+                        <f:ajax execute="@this" render="refremeta" onevent="showSpinner"/>
+                    </h:commandButton>
+                    <c:forEach  items="{companyBean.listado}" var="item" >
+                        <h:commandButton title="{item.ciaName}" id="but{item.ciaCode}" action="{customerManagerBean.filtroCompanyCustomer(item.ciaCode)}"
+                            class="btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 px-4 text-sm" value="{item.ciaCode}" >
+                            <f:ajax execute="@this" render=" refremeta" onevent="showSpinner"/>
+                        </h:commandButton>
+                    </c:forEach>
+                </div>
+                <h:inputHidden id="companyhiden" value="#{customerManagerBean.seleccionCompany}"/>
+            </h:form>-->
+         
+            <div id="spinnerManager" class="dimensionesSpinner" style="display: none;" >
+                <div id="loader-wrapper" class="loadingif">
+                    <div id="loader">
+                    </div>
+                    <div id="content" class="spinnerManagerTitle">
+                        <h3>#{gen_msg['loading']}</h3>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var p1 = document.getElementById('pn-1');
+                var p2 = document.getElementById('pn-2');
+                var list1 = document.getElementById('list-customer');
+                var list2 = document.getElementById('list-engeiner');
+
+                var vCustomer = false;
+                var vOrder = false;
+                var vEngeiner= false;
+                var vEsr = false;
+                
+                function addactive(id)
+                {
+                    //var divgrop=$("#btngrp input[type=submit]");
+                    var idbut="formcompany:"+id;
+                    $("#btngrp input[type=submit]").each(function () {
+                        $(this).removeClass("active");
+                    });
+                    document.getElementById(idbut).className += " active";
+                    $("#tabGrafic").hide();
+                    $("#total-grafic").hide();
+                    $("#totalflota").show();
+
+                }
+                $(document).ready(function () {
+                    crearModal('#repmodal', '95%');
+                    var comSeleccionada = document.getElementById("formcompany:companyhiden").value;
+                    addactive(comSeleccionada);
+                });
+                function showtaskman(id) {
+                    $("#resultabtodos" + id + "\\:id"+id).val(id);
+                    $("#resultabtodos" + id + "\\:ref"+id).trigger("click");
+                    $("#linkrep" + id + "\\:but").trigger("click");
+                    
+                }
+                
+                function minList(list, state) {
+                    if (list == 'customer') {
+                        vCustomer = state;
+                        var customer = document.getElementById('list-customer');
+                        var iCustomer = document.getElementById('iCustomer');
+                        if(state) {
+                            customer.classList.add('hidden');
+                            iCustomer.classList.remove('hidden');
+                        } else {
+                            customer.classList.remove('hidden');
+                            iCustomer.classList.add('hidden');
+                        }
+                    }
+                    if (list == 'order') {
+                        vOrder = state;
+                        var ordera = document.getElementById('list-order');
+                        var iOrder = document.getElementById('iOrder');
+                        if(state) {
+                            ordera.classList.add('hidden');
+                            iOrder.classList.remove('hidden');
+                        } else {
+                            ordera.classList.remove('hidden');
+                            iOrder.classList.add('hidden');
+                        }
+                    }
+                    if (list == 'engeiner') {
+                        vEngeiner = state;
+                        var engeiner = document.getElementById('list-engeiner');
+                        var iEngeiner = document.getElementById('iEngeiner');
+                        if(state) {
+                            engeiner.classList.add('hidden');
+                            iEngeiner.classList.remove('hidden');
+                        } else {
+                            engeiner.classList.remove('hidden');
+                            iEngeiner.classList.add('hidden');
+                        }
+                    }
+                    if (list == 'esr') {
+                        vEsr = state;
+                        var esrl = document.getElementById('otro');
+                        var iEsr = document.getElementById('iEsr');
+                        if(state) {
+                            esrl.classList.add('hidden');
+                            iEsr.classList.remove('hidden');
+                        } else {
+                            esrl.classList.remove('hidden');
+                            iEsr.classList.add('hidden');
+                        }
+                    }
+                    responsivePanels();
+                    panelHandler();
+                }
+                
+                function responsivePanels () {
+                    var nav = document.getElementById('menu-min');
+                    var content = document.getElementById('content-list');
+                    if (vCustomer || vEngeiner || vOrder || vEsr) {
+                        switchPadding();
+                    } else {
+                        switchPadding();
+                    }
+                }
+                
+                function panelHandler() {
+                    removeClassPanel();
+                    if (!vCustomer &amp;&amp; !vOrder) {
+                        list1.classList.add('pr-2')
+                        if (!vEngeiner &amp;&amp; !vEsr) {
+                            p1.classList.add('md:w-1/2')
+                        } else {
+                            p1.classList.add('md:w-2/3')
+                        }
+                    } else if(!vCustomer || !vOrder) {
+                        p1.classList.add('md:w-1/3')
+                    } else {
+                        p1.classList.add('hidden')
+                    }
+                    if (!vEngeiner &amp;&amp; !vEsr) {
+                        list2.classList.add('pr-2')
+                        p1.classList.add('pb-2')
+                        if (!vCustomer &amp;&amp; !vOrder) {
+                            p2.classList.add('md:w-1/2')
+                        } else {
+                            p2.classList.add('md:w-2/3')
+                        }
+                    } else if(!vEngeiner || !vEsr) {
+                        p2.classList.add('md:w-1/3')
+                        p1.classList.add('pb-2')
+                    } else {
+                        p2.classList.add('hidden')
+                    }
+                }
+                
+                function removeClassPanel() {
+                    list1.classList.remove('pr-2')
+                    list2.classList.remove('pr-2')
+                    p1.classList.remove('md:w-1/2')
+                    p1.classList.remove('md:w-1/3')
+                    p1.classList.remove('md:w-2/3')
+                    p1.classList.remove('hidden')
+                    p1.classList.remove('pb-2')
+                    p2.classList.remove('md:w-1/2')
+                    p2.classList.remove('md:w-1/3')
+                    p2.classList.remove('md:w-2/3')
+                    p2.classList.remove('hidden')
+                }
+                
+                function switchPadding (state) {
+                    var search = document.getElementById('formrefre:btnrefre');
+                    var content = document.getElementsByClassName('content-dashboard')[0];
+                    var nav = document.getElementById('menu-min');
+                    content.classList.remove('pt-max');
+                    content.classList.remove('pt-4');
+                    content.classList.remove('pt-16');
+                    nav.classList.remove('hidden');
+                    if (!search.style.display &amp;&amp; (vCustomer || vEngeiner || vOrder || vEsr)) {
+                        content.classList.add('pt-max');
+                    } else if ((vCustomer || vEngeiner || vOrder || vEsr) || !search.style.display) {
+                        content.classList.add('pt-16');
+                    } else {
+                        content.classList.add('pt-4');
+                        nav.classList.add('hidden');
+                    }
+                }
+                var aw1 = null;
+                var fMedia = function (x) {
+                    aw1 = window.parent.document.querySelector("#container");
+                    var mainHtml = window.parent.document.getElementsByTagName('html')[0]
+                    var mainBody = window.parent.document.getElementById('smain');
+                    mainHtml.style.overflowY = 'hidden';
+                    mainHtml.style.height = '100%';
+                    mainBody.style.height = '100%';
+                    if(x.matches){
+                        aw1.style.height = 'calc(100% - 94px)';
+                    }else if(x.match){
+                        aw1.style.height = 'calc(100% - 108px)';
+                    }else {
+                        aw1.style.height = 'calc(100% - 81px)';
+                    }
+                }
+                var fMedia2 = function (x) {
+                    aw1 = window.parent.document.querySelector("#container");
+                    var mainHtml = window.parent.document.getElementsByTagName('html')[0]
+                    var mainBody = window.parent.document.getElementById('smain');
+                    mainHtml.style.overflowY = 'hidden';
+                    mainHtml.style.height = '100%';
+                    mainBody.style.height = '100%';
+                    if(x.matches){
+                        aw1.style.height = 'calc(100% - 108px)';
+                    }else {
+                        aw1.style.height = 'calc(100% - 81px)';
+                    }
+                }
+                var pea2 = window.matchMedia("(max-width: 910px)");
+                var pea4 = window.matchMedia("(max-width: 400px)");
+                fMedia(pea2);
+                fMedia2(pea4);
+                pea2.addListener(fMedia);
+                pea4.addListener(fMedia2);
+            </script>
+        </h:body>
+        
+        <h:panelGroup id="reporteVentana">
+            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    function generateReport() {
+                        var win = window.open("/EngineeringManage/pages/reportes/repNavigation.xhtml","_blank");
+                    }
+                    generateReport();
+                </h:outputScript>
+        </h:panelGroup>
+
+    </f:view>
+</html>
+
+

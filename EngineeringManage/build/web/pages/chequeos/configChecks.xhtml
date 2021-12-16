@@ -1,0 +1,1150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->
+             <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>    
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+               <h:outputStylesheet library="styleAE" name="css/bootstrap.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="js/menu-slow.js" />
+            <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputStylesheet library="styleAE" name="css/paneleshome.css"/>
+            <h:outputScript library="styleAE" name="js/scriptspanelhome.js"/>
+            <h:outputScript library="styleAE" name="js/pdf.js"/>
+            <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>            
+            <link rel="stylesheet" href="../css/tailwind.min.css"/>
+            <link rel="stylesheet" href="../css/tailwind.css"/>
+            <style>
+                html, body {
+                    height: 100vh !important;
+                }
+                #ui-datepicker-div{
+                    background-color: white!important;
+                }
+                .ui-datepicker-today{
+                    background: lightgray!important;
+                    text-shadow: 0px 0px 0px transparent!important;
+                }
+                .ui-widget-header{
+                    font-weight: normal;
+                    text-shadow: inherit !important;
+                    border: 0!important;
+                    color: white !important;
+                }
+                .ui-datepicker .ui-datepicker-header {
+                    background: #e3e3e3;
+                    background: #e3e3e3 linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));
+                    background: #e3e3e3 -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0.8)),to(rgba(255,255,255,0)));
+                    background: #e3e3e3 -moz-linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));
+                    border-right: 0;
+                    border-left: none;
+                    border-top: 0;
+                    -moz-border-radius: 0;
+                    -webkit-border-radius: 0;
+                    border-radius: 0;
+                }
+                .ui-datepicker .ui-datepicker-calendar .ui-state-default {
+                    border: 0;
+                    color: #5f83b9;
+                }
+                .ui-datepicker .ui-datepicker-title{
+                    color: black;
+                }
+         
+             
+                 
+                 
+                 
+                 
+                         /*Nuevos estilos MroHolding*/
+                    .tablehand>tbody>tr:hover{
+                  background-color: gray !important;
+                  color: white !important;
+              }
+                       .dataTables_wrapper {
+
+                    background: rgba(205,204,204,0.65) !important; 
+
+                }
+                
+                     table.dataTable thead {
+
+                  background-color: gray !important;
+
+                } 
+                .btn-signin2{
+                    background-color: #003c72 !important;
+                    width: 100% !important;
+                    color: #fff !important;
+                    background-image: linear-gradient(to bottom right, #003c72, #003c72)!important;
+                }
+                
+               
+         
+            </style>
+            <script type="text/javascript" >
+               
+               /** function disableButton(status){
+                    let button = document.querySelector(".btn-signin2");
+                    button.disabled = status;
+                }
+                */
+                function updateCheck(idCheck,component){
+                        var idForm= $(component).parent().attr('id');                       
+                        var idNombre= idForm.split(":");                        
+                        $("#tabsFormEsr\\:idtab").val(idNombre[2]);                       
+                        $("#resultabtodos\\:id").val(idCheck);
+                        $("#resultabtodos\\:esrRepeat\\:"+idNombre[2]+"\\:ref").trigger("click");
+                }
+                
+                
+                function changeView(vista){
+                    if(vista===1){
+                        $("#engHoursView").hide();
+                        $("#checkView").show();
+                        $("#buttons\\:hoursB").show();
+                        $("#buttons\\:checkB").hide();
+                        $("#viewEmail").hide();
+                        
+                    }
+                    if(vista===2){
+                        /*$("#engHoursView").show();
+                        $("#checkView").hide();
+                        $("#buttons\\:hoursB").hide();
+                        $("#buttons\\:checkB").show();*/
+                    }
+                    
+                    if(vista===3){
+                        /*$("#viewEmail").show();
+                        $("#checkView").hide();
+                        $("#buttons\\:hoursB").hide();
+                        $("#buttons\\:checkB").show();*/
+                    }
+                }
+                
+                
+                /* JS para espacios de los botones de chequeps */
+                
+                     $(document).ready(function () {
+                        window.onload = function() {
+                        var myInput1 = document.getElementById('formChecks:chkTtsn');
+                        var myInput2 = document.getElementById('formChecks:chkTcsn');
+                        var myInput3 = document.getElementById('formChecks:chkEngManHrs');
+                        var myInput4 = document.getElementById('formChecks:chkClosed');
+                        var myInput5 = document.getElementById('formChecks:chkClosedEng');
+                        
+                        myInput1.onpaste = function(e) {
+                          e.preventDefault();
+                        }
+                        myInput2.onpaste = function(e) {
+                          e.preventDefault();
+                        }
+                        myInput3.onpaste = function(e) {
+                          e.preventDefault();
+                        }
+                        myInput4.onpaste = function(e) {
+                          e.preventDefault();
+                        }
+                        myInput5.onpaste = function(e) {
+                          e.preventDefault();
+                        }
+                      }
+//                        if ($('#formChecks\\:ingHoursB').is(':visible')){
+//                            $('#formChecks\\:AgregarChequeo').removeClass("col-md-offset-1");
+//                            $('#formChecks\\:cleanChequeo').removeClass("col-md-offset-0");
+//                            console.log("REMOVIENDO CLASE DE CHEQUEOS");
+//                        }
+//                        else{
+//                                $('#formChecks\\:AgregarChequeo').addClass("col-md-offset-1");
+//                                $('#formChecks\\:cleanChequeo').addClass("col-md-offset-0");
+//                                console.log("AGREGANDO CLASE");
+//                        }
+                        });
+                        function agregarEspacioChequeos(){
+//                                $('#formChecks\\:AgregarChequeo').addClass("col-md-offset-1");
+//                                $('#formChecks\\:cleanChequeo').addClass("col-md-offset-0");
+//                                 console.log("AGREGANDO CLASE DESDE EL DISCARD DE CHEQUEOS");
+                        }
+                
+                
+                
+                
+                
+            </script>
+            <style>
+                header, footer {
+                    display: block;
+                    /* margin: 4px; */
+                    /* padding: 5px; */
+                    height: 2% !important;
+                    background: transparent;
+                    margin-top: 0.3%;
+                }
+
+                
+
+                .dataTables_wrapper {
+
+                    background: rgba(205,204,204,0.65) !important; 
+
+                }
+
+                table.dataTable thead {
+
+                    background-color: gray !important;
+
+                }
+
+                ac-container {    
+                    height: 30% !important;
+                }                        
+                table.dataTable tbody tr{
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+                table.dataTable tbody tr.selected {
+                    background-color: #003f72;
+                    color: white !important;
+                    cursor: pointer;
+                }
+                table.dataTable.dtr-inline.collapsed>tbody>tr>selected:hover{
+                    background-color: #003f72;
+                    color: white !important;
+                    cursor: pointer !important;
+                }
+                table.dataTable tbody tr.selected label {              
+                    color: white !important;
+                }
+                table.dataTable tbody tr.selected td {              
+                    color: white !important;
+                }
+                
+                /* redimension de todos lo paneles al cambio minimo dado*/
+       
+            
+            /* modificacion para ajuste4 de los campos de los forumulario centrales]*/
+                    @media all and (max-width: 768px) {
+
+                    .tableeo.pararesponse tr{
+                        display: table;
+                        width: 100%;
+                    }
+                    
+                    .tableeo.pararesponse td.ten-prc{
+                        display: table-row;
+                    }
+                    
+                    .tableeo.pararesponse tr td{
+                        width: 30%;
+                        text-align: left;
+                    }
+                    
+                    #inputForm70\:wcc{
+                        width:  80% !important;
+                    }                    
+                 }                
+                 @media all and (min-width: 831px) and (max-width: 1403px) {
+                     #inputForm70\:wcc{
+                        width:  58.7% !important;
+                    }
+                    
+                 }
+                 
+                 @media all and (min-width: 768px) and (max-width: 830px){
+                     #inputForm70\:wcc{
+                        width:  51.8% !important;
+                    }
+                    
+                 }   
+                       .pararesponse{
+                     font-weight: bold;
+                 }
+                 
+                 #bodyChequeo{
+                     overflow-x: hidden;
+                     overflow: hidden;
+                 }
+                .margenCompanyChequeo{
+                    margin-left: 0%;
+                }
+                @media screen and (min-height:400px) and (max-height:449px){
+                    .fondoSection{
+                        height: 50%;
+                    }
+                }
+                @media screen and (min-height:450px) and (max-height:499px){
+                    .fondoSection{
+                        height: 55%;
+                    }
+                }
+                @media screen and (min-height:500px) and (max-height:514px){
+                    .fondoSection{
+                        height: 60%;
+                    }
+                }
+                @media screen and (min-height:515px) and (max-height:549px){
+                    .fondoSection{
+                        height: 65%;
+                    }
+                }
+                @media screen and (min-height:550px) and (max-height:574px){
+                    .fondoSection{
+                        height: 70%;
+                    }
+                }
+                @media screen and (min-height:575px) and (max-height:599px){
+                    .fondoSection{
+                        height: 75%;
+                    }
+                }
+                @media screen and (min-height:600px) and (max-height:700px){
+                    .fondoSection{
+                        height: 85%;
+                    }
+                }
+                @media(min-width:0px) and (max-width:900px){
+                    #bodyChequeo{
+                        position: relative;
+                        top: 31px;
+                        overflow: auto!important;
+                    }
+                }
+                
+                @media (max-height: 650px) and (min-width: 795px){
+                    .altoContenedorPrincipalChequeos {
+                        height: 90% !important;
+                    }
+                }
+                @media (max-height: 700px) and (min-width: 895px){
+                    .altoContenedorPrincipalChequeos {
+                        height: 95% !important;
+                    }
+                }
+                @media (max-width: 1600px) and (min-width: 1500px){
+                    .mainChequeosIng{
+                        position: absolute !important;
+                        margin: 2% 0% 0% 0% !important;
+                        width: 100%;
+                        height: 91% !important;
+                    }
+                    .mainChequeosIng > #das1 {
+                        height: 97% !important;                
+                    }
+                    .alturaCollapseCheck {
+                        height: 100% !important;
+                    }
+                    .altoContenedorPrincipalChequeos {
+                        height: 100%;
+                    }
+                }
+                body .ui-tooltip {
+                    border-width: 0px;
+                    background: #4f4f4f !important;
+                    z-index: 999999 !important;
+                }
+                               @media screen and (min-width:0\0) { 
+                    .min-h-ie {
+                        min-height: 24.72px;
+                    }
+                }
+                
+                 @media screen and (max-width: 1400px){
+                    .ui-dialog {
+                        margin-top: 30px !important;
+                    }
+                }
+                
+                @media (max-width: 946px) and (min-width: 895px){
+                    .posicionMenuManten {
+                        margin-left: 30% !important;
+                    }
+                }
+                
+                @media screen and (max-width: 950px){
+                    .modal-body > .row > .alin-izq {
+                        width: 65% !important;
+                        margin-left: 5% !important;
+                    }
+                }
+
+                @media screen and (max-width: 768px){
+                    .anchoModalBodyDispositionStatus, .anchoModalBodyAffectType, .anchoModalBodyDamageType, .anchoModalBodyDimension, .anchoModalBodyDamageDim {
+                        width: 450px !important;
+                        margin-left: 5% !important;
+                }}
+                
+                @media (max-width: 799px) and (min-width: 668px){
+                    .posicionMenuManten {
+                        margin-left: 10% !important;
+                    }
+                }
+          </style>
+                     
+        </h:head>
+        <h:body>
+             <h:panelGrid id="tool" class="hidden">
+                <script>
+                    $(function () {
+
+                            $(document).tooltip({
+
+                                position: {
+                                    my: "center bottom-20",
+                                    at: "center top",
+                                    using: function (position, feedback) {
+                                        $(this).css(position);
+                                        $("<div></div>")
+                                                .addClass("arrow")
+                                                .addClass(feedback.vertical)
+                                                .addClass(feedback.horizontal)
+                                                .appendTo(this);
+                                    }
+                                }
+                            });
+                        });
+                        
+                    $(document).ready(function () {
+                        crearModal('#modEngHours', '75%');
+                     /*   $( "#modEngHours" ).dialog("option", "heigth", "auto !important");*/
+                        $( "#modEngHours" ).dialog({ dialogClass: 'estiloModalHorasIngenieria' });
+                        $( "#modEngHours" ).dialog( "option", "title", "#{aees_msg['engHours']}" );
+                       
+                        
+                        
+                    });
+                    function cerrarCalendarios(){
+                        var cerrarcalend;
+                        if($("#formChecks\\:chkFinishdate").is(":focus")){                     
+                         cerrarcalend = $('#formChecks\\:chkFinishdate').datepicker( "option", "closeText" );
+                         $('#formChecks\\:chkFinishdate').datepicker( "option", "cerrarcalend", "Close" );
+                      }else if($("#formChecks\\:chkStartdate").is(":focus")){
+                          cerrarcalend = $("#formChecks\\:chkStartdate").datepicker( "option", "closeText" );
+                         $("#formChecks\\:chkStartdate").datepicker( "option", "cerrarcalend", "Close" );
+                      }else if($("#formChecks\\:chkArrivaldate").is(":focus")){
+                          cerrarcalend = $("#formChecks\\:chkArrivaldate").datepicker( "option", "closeText" );
+                         $("#formChecks\\:chkArrivaldate").datepicker( "option", "cerrarcalend", "Close" );
+                      }
+                      
+                        
+                    }
+                    
+                    
+                </script>
+            </h:panelGrid>
+            <div class="absolute top-0 right-0 py-1 mr-4 mt-16 it:mt-0">
+            
+                <h:form id="busqForm" class="flex" style="margin: 0 !important;">
+                    <h:outputLabel value="#{gen_msg['chkWork']}" id="limCaracteres"
+                        class="text-red-600" style="display: #{contCheckBean.caracteres ? 'block':'none'}"/>
+                     <div class="max-w-80 h-40px">
+                        
+                            <h:inputText value="#{contCheckBean.parBusqueda}" id="txtBusqueda"
+                                         class="w-full h-full border rounded text-gray-700 px-4" 
+                                         pt:placeholder="#{aees_msg['workOrder']} /  #{aees_msg['tailPlane']}" autocomplete="off">
+                                <f:ajax execute="@this" event="keyup" render="discar refremeta"/>
+                            </h:inputText>
+                            
+                        </div>
+                        
+                            <h:commandButton id="busque" value="#{gen_msg['search']}"
+                                class="w-20 bg-aes-blue text-white text-center py-3 mx-1 h-40px"
+                                action="#{contCheckBean.buscarChequeo()}"  >
+                                <f:ajax execute="@this txtBusqueda" render=":resultabtodos:cosa :resultabtodos:esrRepeat refremeta limCaracteres"/>
+                            </h:commandButton>
+                        
+                           <h:commandButton id="discar" value="#{gen_msg['discard']}" action="#{contCheckBean.discardBusqueda()}"
+                        class="w-24 bg-aes-blue text-white text-center py-3 ml-1 h-40px #{contCheckBean.parBusqueda eq '' or contCheckBean.parBusqueda eq null ? 'opacity-50' : ''}"
+                        style="cursor:#{contCheckBean.parBusqueda eq '' or contCheckBean.parBusqueda eq null ? 'default' : 'point'}">
+                        <f:ajax execute="@form" render="@form :resultabtodos:cosa :resultabtodos:esrRepeat matrizCheckbox refremeta"/>
+                    </h:commandButton>
+                     </h:form>
+                        </div>
+                    
+               
+             <div class="flex w-full h-full px-4 pb-4 flex-col">
+                <div class="flex w-full h-full pt-32 it:pt-16 flex-wrap lg:flex-row md:flex-row md:flex-wrap lg:flex-no-wrap sm:flex-col md:pb-10">
+                <nav id="das1" class="flex flex-col h-1/2 md:h-full w-1/4 md:w-2/4 pr-0 md:pr-2 flex-grow md:flex-grow-0 md:order-1 lg:w-1/4">
+                    
+                   <div id="close-bt2" class="styleHeaderMroholdings">#{aees_msg['ChkList']}
+                        <div id="divOcultarEsrTabns" class="image cursor-pointer"  title="#{gen_msg['hide']}">
+                            <a class="nav-toggle" >
+                                <i id="tog1Eng" class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaESRIngenieros" onclick="switchListCh(false);"/>                                
+                            </a>
+                        </div>
+                    </div>
+                    <div id="collapse2" class="w-full overflow-auto dashboard-content-h overflow-x-hidden">
+                        <section class="ac-container bg-white overflow-y-auto">                             
+                            <h:panelGroup id="taskeng">
+                                <h:form id="resultabtodos">
+                                    <h:inputText value="#{contCheckBean.itemId}" style="display: none;" id="id"><f:ajax event="change" render="@this refremeta" /></h:inputText>                                          
+                                    <h:panelGroup id="cosa">
+                                        <ui:repeat value="#{contCheckBean.listado}" var="itemConfigChk" id="esrRepeat">                          
+                                            <div id="acord#{itemConfigChk.contCheckId}" class="borderGrisAcordion" style="display: block;">
+                                                <h:panelGroup id="dejarlo#{item.contCheckId}">                                  
+
+                                                    <input id="ac-#{itemConfigChk.contCheckId}" class="input" name="accordion-1" type="radio" onclick="updateCheck('#{itemConfigChk.contCheckId}',this);changeView(1);">
+
+                                                    </input>                                    
+                                                    <label  for="ac-#{itemConfigChk.contCheckId}" class="label alignLabelIng fondoAcordiones2" id="labeel#{itemConfigChk.contCheckId}">                                                
+                                                            #{itemConfigChk.chkRegistry}-#{itemConfigChk.chkWo}<br/> <br/>#{itemConfigChk.chkModel}
+                                                    </label>
+                                                    <h:commandButton id="ref"  style="display: none;" action="#{contCheckBean.cargarCheckId(contCheckBean.itemId)}">
+                                                        <f:ajax execute="@form" render="formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR"/>
+                                                    </h:commandButton>
+                                                </h:panelGroup>  
+                                            </div>
+                                        </ui:repeat>
+                                    </h:panelGroup>
+                                </h:form>
+                            </h:panelGroup>
+                        </section>
+                        <h:form id="formCompanhyChek">
+                            <div id="btngrpchek" class="btn-group fuenteCompany margenCompanyChequeo" role="group" style="/*margin-top: 10px;margin-left: 7px;*/">
+                                <h:commandButton id="butCompanychek" action="#{contCheckBean.init()}" class="btn btn-default active" value="#{gen_msg['all']}" onclick="addactive(this);">
+                                    <f:ajax  render="resultabtodos taskeng formChecks:reqcomdg formChecks:addCheck formChecks:cleanCheck refremeta" execute="@form"  />
+                                </h:commandButton>
+                                <c:forEach  items="#{companyBean.listado}" var="item" >
+                                    <h:commandButton id="but-#{item.ciaCode}" action="#{contCheckBean.selectChek(item.ciaCode)}" title="#{item.ciaName}"
+                                                     class="btn btn-default" onclick="addactive(this);" value="#{item.ciaCode}">
+                                        <f:ajax  render="resultabtodos taskeng formChecks:reqcomdg formChecks:addCheck formChecks:cleanCheck formChecks:chkCucod refremeta" execute="@form"  />
+                                    </h:commandButton>
+                                </c:forEach>
+                            </div>
+                            <script type="text/javascript">
+                                function addactive(id)
+                                {
+                                    //var divgrop=$("#btngrp input[type=submit]");
+                                    var idbut2=id.id;
+                                    $("#btngrpchek input[type=submit]").each(function () {
+                                        $(this).removeClass("active");
+                                    });
+                                    document.getElementById(idbut2).className += " active";
+
+
+                                }
+                            </script>
+                        </h:form>
+
+                    </div>
+                </nav>
+                <article id="inf-checks" class="flex flex-col md:h-full w-full lg:mt-0 lg:order-1  md:mt-0 lg:w-2/4 md:w-4/4 md:mt-2 md:order-3 md:mt-2">
+                    <div id="close-bt2" class="styleHeaderMroholdings min-h-ie flex justify-between">
+                        <label style="margin-left: 1%">#{aees_msg['Chk']}</label>
+                        <div class="flex" style="margin-top: -6px;">
+                            <div id="open-list-ch" class="badge-min h-full flex px-3 mr-2" onclick="switchListCh(true)">
+                                <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                    aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                                <div class="flex items-center h-full cursor-pointer">
+                                    <label class="text-white mb-0 cursor-pointer" style="font-size: 8pt;">#{aees_msg['ChkList']}</label>
+                                </div>
+                            </div>
+                            <div id="open-parameter-ch" class="badge-min h-full flex px-3 mr-2" onclick="switchParamsCh(true)">
+                                <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon"
+                                    aria-hidden="true" style="top: 6px; left: -2px !important; position: relative !important;"/>
+                                <div class="flex items-center h-full cursor-pointer">
+                                    <label class="text-white mb-0 cursor-pointer">#{gen_msg['parameter']}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="checks" class="lg:overflow-y-auto bg-white">
+                       <div id="checkView">
+                            <h:form id="formChecks">
+                                <div onscroll="cerrarCalendarios();">
+                                    <h:panelGrid class="w-3/4 mx-auto mt-10" columns="2" columnClasses="twentyfive-prc, seventyfive-prc ">
+
+                                        <hr class="separadorFormularios" />
+                                    </h:panelGrid>                      
+                                    <h:panelGrid class="tableeo pararesponse estiloOperationformuESR" columns="4" columnClasses="ten-prc right-align, twentyfive-prc, ten-prc right-align, twentyfive-prc ">
+
+                                        <h:column>
+                                            <h:outputLabel value="#{gen_msg['company']}" for="reqcomdg"/> 
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column> 
+
+                                        <h:column>                           
+                                            <h:selectOneMenu id="reqcomdg" value="#{contCheckBean.elemento.checkCompany}" class="form-control" pt:data-live-search="true" 
+                                                             required="true" requiredMessage="#{gen_msg['company']} #{gen_msg['adjNecesario']}" disabled="#{tabEsrEaEoBean.roles eq '7' ? true : false}">
+                                                <f:selectItem itemLabel="..." itemValue="#{null}"/>
+                                                <f:selectItems value="#{companyBean.listado}" var="option" itemLabel="#{option.ciaName}" itemValue="#{option.ciaCode}"/>
+                                                <f:ajax execute="@this" event="change" render=" mescom reqcom addCheck cleanCheck chkRegistry chkModel chkCucod chkChecktype chkClosed
+                                                        chkWo chkYear chkEngManHrs chkClosedEng chkHangar refremeta" listener="#{tabEsrEaEoBean.hangarDesf(contCheckBean.elemento.checkCompany)}"/> 
+                                            </h:selectOneMenu>                         
+                                            <h:messages id="mescom" for="reqcomdg"  class="msgError"/>
+                                        </h:column> 
+                                        <h:column>
+                                            <h:outputLabel value="#{aees_msg['mb_abclient']}" for="chkCucod" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:selectOneMenu id="chkCucod"  value="#{contCheckBean.elemento.chkCucod}" class="form-control"  required="true" readonly ="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}"
+                                                             requiredMessage="#{aees_msg['mb_abclient']} #{gen_msg['adjNecesario']}">                           
+                                                <f:selectItem itemLabel="....." itemValue="#{null}"/>
+                                                <f:selectItems value="#{engMergeCustomerBean.listado2}" var="option" itemLabel="#{contCheckBean.elemento.checkCompany eq 'AESV' ? option.engId.engName:option.cstId.cstName}" itemValue="#{contCheckBean.elemento.checkCompany eq 'AESV' ? option.engId.engId:option.cstId.cstCode}"/>
+                                                <f:ajax event="change" execute="@this" render="@this meschkCucod refremeta"/>
+                                            </h:selectOneMenu>
+                                            <h:messages id="meschkCucod" for="chkCucod"  class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputLabel value="#{aees_msg['ChkRegistry']}" for="chkRegistry" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:inputText id="chkRegistry" value="#{contCheckBean.elemento.chkRegistry}" autocomplete="off" required="true" requiredMessage="#{aees_msg['ChkRegistry']} #{gen_msg['adjNecesario']}"  class="form-control" readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}">
+                                                <f:ajax event="change" execute="@this" render="@this mesRegistre refremeta"/>
+                                            </h:inputText>
+                                            <h:messages id="mesRegistre" for="chkRegistry"  class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputLabel value="#{aees_msg['ChkWo']}" for="chkWo" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column> 
+                                            <h:inputText id="chkWo" autocomplete="off" value="#{contCheckBean.elemento.chkWo}" class="form-control" required="true"
+                                                         readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}"  requiredMessage="#{aees_msg['ChkWo']} #{gen_msg['adjNecesario']}" >
+                                                <f:ajax event="change" execute="@this" render="@this meschkWo refremeta" />
+                                            </h:inputText>
+                                            <h:messages id="meschkWo" for="chkWo"  class="msgError"/>
+                                        </h:column>                                   
+
+                                        <h:column>
+                                            <h:outputLabel value="#{aees_msg['ChkStartdate']}" for="chkStartdate" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>                                        
+                                        <h:column>
+
+                                            <h:inputText id="chkStartdate" value="#{contCheckBean.elemento.chkStartdate}" class="form-control" 
+                                                         maxlength="10" pt:placeholder="#{gen_msg['frmtDateConv']}"
+                                                         converterMessage="#{gen_msg['finaccDateFormatMessage']}" autocomplete="off" 
+                                                         required="true" requiredMessage="#{aees_msg['ChkStartdate']} #{gen_msg['adjNecesario']}">
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                                <f:ajax execute="@this chkStartdate chkFinishdate" event="change" render="@this startdate chkDifereciaD save formChecks:addCheck refremeta" listener="#{contCheckBean.compararfecha()}"/>
+                                            </h:inputText>
+                                            <h:messages id="startdate" for="chkStartdate" class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+
+                                            <h:outputLabel value="#{aees_msg['ChkFinishdate']}" for="chkFinishdate" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            
+                                            <h:inputText id="chkFinishdate" value="#{contCheckBean.elemento.chkFinishdate}" class="form-control" 
+                                                         maxlength="10" pt:placeholder="#{gen_msg['frmtDateConv']}"
+                                                         converterMessage="#{gen_msg['finaccDateFormatMessage']}" autocomplete="off" required="true" requiredMessage="#{aees_msg['ChkFinishdate']} #{gen_msg['adjNecesario']}">
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                                <f:ajax execute="@this chkStartdate chkFinishdate" event="change" render="@this finishdatew chkDifereciaD save formChecks:addCheck refremeta" listener="#{contCheckBean.compararfecha()}"/>
+                                            </h:inputText>
+                                            <h:outputText value="  * #{gen_msg['inventory.menssage.fechaValidation']} " class="msgError" style="display: #{contCheckBean.validarDate eq 1 ? 'block;':'none;'}" id="chkDifereciaD"/>
+                                            
+                                            <h:messages id="finishdatew" for="chkFinishdate" class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputLabel value="#{aees_msg['ChkChecktype']}" for="chkChecktype" />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:inputText id="chkChecktype" autocomplete="off" value="#{contCheckBean.elemento.chkChecktype}" class="form-control" readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}" 
+                                                         required="true" requiredMessage="#{aees_msg['ChkChecktype']} #{gen_msg['adjNecesario']}">
+                                                <f:ajax event="change" execute="@this" render="@this meschktype refremeta"/>
+                                            </h:inputText>
+                                            <h:messages id="meschktype" for="chkChecktype"  class="msgError"/>
+                                        </h:column>  
+
+
+                                        <h:column>
+                                            <h:outputLabel value="#{gen_msg['fleet']}" for="chkModel" /> 
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column> 
+                                        <h:column>
+                                            <h:selectOneMenu id="chkModel"  value="#{contCheckBean.elemento.chkModel}" class="form-control"  required="true" requiredMessage="#{gen_msg['fleet']} #{gen_msg['adjNecesario']}" >   
+                                                <f:selectItem itemLabel="....." itemValue="#{null}"/>
+                                                <f:selectItems   value="#{coreAircraftTypeBean.listado}" var="option" itemLabel="#{option.arctypCode}" itemValue="#{option.arctypCode}"/>
+                                                <f:ajax event="change" execute="@this" render="@this mesModel refremeta"/>
+                                            </h:selectOneMenu>
+                                            <h:messages id="mesModel" for="chkModel"  class="msgError"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <h:outputLabel value="Hangar" for="chkHangar" /> 
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column> 
+                                        
+                                        <h:column>
+                                            <h:selectOneMenu id="chkHangar"  value="#{contCheckBean.elemento.chkHangarDef}" class="form-control"  required="true" requiredMessage="Hangar #{gen_msg['adjNecesario']}" readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}">   
+                                                <f:selectItem itemLabel="....." itemValue="#{null}"/>
+                                                <f:selectItems   value="#{tabEsrEaEoBean.listaHangares}" var="listHangares" itemLabel="#{listHangares}" itemValue="#{listHangares}"/>
+                                                <f:ajax event="change" execute="@this" render="@this mesHangar refremeta"/>
+                                            </h:selectOneMenu>
+                                            <h:messages id="mesHangar" for="chkHangar"  class="msgError"/>
+                                        </h:column>
+
+
+                                        <h:outputLabel value="#{gen_msg['tolHoras']}" for="chkTtsn" />
+                                        <h:inputText id="chkTtsn" value="#{contCheckBean.elemento.chkTtsn}" maxlength="8" 
+                                                     class="form-control" onkeypress="return NumCheck(event, this)" autocomplete="off"/>
+
+                                        <h:outputLabel value="#{gen_msg['tolCiclos']}" for="chkTcsn" />
+                                        <h:inputText id="chkTcsn" value="#{contCheckBean.elemento.chkTcsn}"  maxlength="8"
+                                                     class="form-control" onkeypress="return NumCheck(event, this)" autocomplete="off"/>
+
+                                        <h:outputLabel value="#{aees_msg['vn']}" for="chkVn" />
+                                        <h:column>
+                                            <h:inputText id="chkVn" value="#{contCheckBean.elemento.chkVn}" maxlength="22" 
+                                                         onkeyup="check(this,'warningchkVn','formChecks');" class="form-control" autocomplete="off"/>
+                                            <h:outputLabel id="warningchkVn" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ln']}" for="chkLn" />
+                                        <h:column>
+                                            <h:inputText id="chkLn" value="#{contCheckBean.elemento.chkLn}" maxlength="22" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkLn','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkLn" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['sn']}" for="chkSn" />
+                                        <h:column>
+                                            <h:inputText id="chkSn" value="#{contCheckBean.elemento.chkSn}" maxlength="22" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkSn','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkSn" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['bn']}" for="chkBn" />
+                                        <h:column>
+                                            <h:inputText id="chkBn" value="#{contCheckBean.elemento.chkBn}" maxlength="22" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkBn','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkBn" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+
+                                        <h:outputLabel value="#{aees_msg['ChkClosed']}" for="chkClosed" />
+                                        <h:inputText id="chkClosed" value="#{contCheckBean.elemento.chkClosed}" class="form-control" maxlength="1" autocomplete="off"
+                                                     readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}">
+                                            <f:ajax event="change" execute="@this" render="@this refremeta"/>
+                                        </h:inputText>
+
+                                        <h:outputLabel value="#{aees_msg['ChkArrivaldate']}" for="chkArrivaldate" />
+                                        <h:column>
+                                            <h:inputText id="chkArrivaldate" value="#{contCheckBean.elemento.chkArrivaldate}" class="form-control"
+                                                         pt:placeholder="#{gen_msg['frmtDateConv']}" maxlength="10" autocomplete="off"
+                                                         converterMessage="#{gen_msg['finaccDateFormatMessage']}">
+                                                <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/>
+                                                <f:ajax execute="@this" event="change" render="arrivaldate refremeta"/>
+                                            </h:inputText>
+                                            <h:messages id="arrivaldate" for="chkArrivaldate" class="msgError"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkGroundtime']}" for="chkGroundtime" />
+                                        <h:column>
+                                            <h:inputText id="chkGroundtime" value="#{contCheckBean.elemento.chkGroundtime}" maxlength="20" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkGroundtime','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkGroundtime" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkHangmanrespon']}" for="chkHangmanrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkHangmanrespon" value="#{contCheckBean.elemento.chkHangmanrespon}" maxlength="30" 
+                                                         onkeyup="check(this,'warningchkHangmanrespon','formChecks');" class="form-control" autocomplete="off"/>
+                                            <h:outputLabel id="warningchkHangmanrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkHangrespon']}" for="chkHangrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkHangrespon" value="#{contCheckBean.elemento.chkHangrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkHangrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkHangrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkCommrespon']}" for="chkCommrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkCommrespon" value="#{contCheckBean.elemento.chkCommrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkCommrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkCommrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkProdcontrespon']}" for="chkProdcontrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkProdcontrespon" value="#{contCheckBean.elemento.chkProdcontrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkProdcontrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkProdcontrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkWarehrespon']}" for="chkWarehrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkWarehrespon" value="#{contCheckBean.elemento.chkWarehrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkWarehrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkWarehrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkShopsrespon']}" for="chkShopsrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkShopsrespon" value="#{contCheckBean.elemento.chkShopsrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkShopsrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkShopsrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkPurchrespon']}" for="chkPurchrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkPurchrespon" value="#{contCheckBean.elemento.chkPurchrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkPurchrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkPurchrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkPlannrespon']}" for="chkPlannrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkPlannrespon" value="#{contCheckBean.elemento.chkPlannrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkPlannrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkPlannrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkEnginrespon']}" for="chkEnginrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkEnginrespon" value="#{contCheckBean.elemento.chkEnginrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkEnginrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkEnginrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkPowplantres']}" for="chkPowplantres" />
+                                        <h:column>
+                                            <h:inputText id="chkPowplantres" value="#{contCheckBean.elemento.chkPowplantres}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkPowplantres','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkPowplantres" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkQarespon']}" for="chkQarespon" />
+                                        <h:column>
+                                            <h:inputText id="chkQarespon" value="#{contCheckBean.elemento.chkQarespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkQarespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkQarespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['ChkQcrespon']}" for="chkQcrespon" />
+                                        <h:column>
+                                            <h:inputText id="chkQcrespon" value="#{contCheckBean.elemento.chkQcrespon}" maxlength="30" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkQcrespon','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkQcrespon" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                        <h:outputLabel value="#{aees_msg['msn']}" for="chkMsn" />
+                                        <h:column>
+                                            <h:inputText id="chkMsn" value="#{contCheckBean.elemento.chkMsn}" maxlength="22" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkMsn','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkMsn" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>                                    
+
+                                        <h:outputLabel value="#{aees_msg['ChkEngManHrs']}" for="chkEngManHrs" />
+                                        <h:inputText id="chkEngManHrs" value="#{contCheckBean.elemento.chkEngManHrs}"  class="form-control" readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}" autocomplete="off" maxlength="6" onkeypress="return NumCheck(event, this)" >
+                                            <f:ajax event="change" execute="@this" render="@this refremeta"/>
+                                        </h:inputText>
+
+                                        <h:outputLabel value="#{aees_msg['ChkClosedEng']}" for="chkClosedEng" />
+                                        <h:inputText id="chkClosedEng" value="#{contCheckBean.elemento.chkClosedEng}"  class="form-control" maxlength="1" autocomplete="off"
+                                                     readonly="#{contCheckBean.elemento.checkCompany eq 'AESV' ? 'true':'false'}">
+                                            <f:ajax event="change" execute="@this" render="@this refremeta"/>
+                                        </h:inputText>
+
+                                        <h:outputLabel value="#{gen_msg['des']}:" for="chkDescription" />
+                                        <h:column>
+                                            <h:inputText id="chkDescription" value="#{contCheckBean.elemento.chkDescription}" maxlength="20" autocomplete="off"
+                                                         onkeyup="check(this,'warningchkDescription','formChecks');" class="form-control"/>
+                                            <h:outputLabel id="warningchkDescription" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+                                       <h:column>
+                                            <h:outputLabel value="Manufacturer: "  />
+                                            <h:outputText value="  *  " class="msgError"/>
+                                        </h:column>
+                                        <h:column>                                        
+                                            <h:selectOneMenu id="chkManufact" value="#{contCheckBean.elemento.manufacturer}" class="form-control" 
+                                                disabled="#{not empty contCheckBean.fabricante}" 
+                                                required="true" requiredMessage="•  Manufacturer #{gen_msg['adjNecesario']}">
+                                                <f:selectItem itemLabel="..." itemValue="#{null}"/>
+                                                <f:selectItems   value="#{engDamageTypeManufactBean.listaManuf}" var="option"/>
+                                                <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                                            </h:selectOneMenu>
+                                        </h:column> 
+                                        <h:outputLabel value="#{gen_msg['des']}:" style="display: none;"/>
+                                        <h:column>
+                                            <h:inputText style="display: none;" maxlength="20" autocomplete="off"
+                                                         class="form-control"/>
+                                            <h:outputLabel  value="  Ã¢â‚¬Â¢  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                                        </h:column>
+
+                                    </h:panelGrid>
+                                </div>
+                                <script>
+                                   //                                    $(document).ready(function() {
+//                                             if($('#formChecks\\:emailB').is(':visible')){
+//                                                 $('#divSaveCheckSearch').removeClass("col-md-offset-1");
+//                                               
+//                                             }
+//                                             else(
+//                                                     $('#divSaveCheckSearch').addClass("col-md-offset-1")
+//                                                     )
+//                                     });
+                                     function AgregarEspaciodivSaveCheckSearche(){
+//                                          $('#divSaveCheckSearch').addClass("col-md-offset-1");
+                                     }
+                                </script>
+                                <div class="flex justify-center py-10">
+                                    <h:commandButton id="save" action="#{contCheckBean.actualizar()}" value ="#{gen_msg['genUpdate']}"
+                                                                              class="w-40 bg-aes-blue text-white text-center py-2 m-1 #{empty contCheckBean.elemento.contCheckId ? 'hidden':''}
+                                        #{!contCheckBean.edit or contCheckBean.validarDate eq 1 ? ' opacity-50' : ' hover:bg-aes-blue-hover'}"
+                                        disabled="#{!contCheckBean.edit or contCheckBean.validarDate eq 1}">                                        
+                                        <f:ajax execute="@form" render="@form success resultForm789 slithermail refremeta resultabtodos success"  />
+                                    </h:commandButton>
+                                    <h:commandButton id="clean" value ="#{gen_msg['discard']}" action="#{contCheckBean.limpiar()}"
+                                        onclick="AgregarEspaciodivSaveCheckSearche();agregarEspacioChequeos();"
+                                        class="w-40 bg-aes-blue text-white text-center py-2 m-1 #{empty contCheckBean.elemento.contCheckId ? 'hidden':''}
+                                        #{!contCheckBean.edit ? ' opacity-50' : ' hover:bg-aes-blue-hover'}" 
+                                        disabled="#{!contCheckBean.edit}">
+                                        <f:ajax execute="@this" render=" @form discard refremeta resultabtodos"/>
+                                    </h:commandButton> 
+                                    <h:commandButton id="hoursB" onclick="changeView(2); $('#modEngHours').dialog('open');" value ="#{aees_msg['engHours']}"
+                                        class="w-40 bg-aes-blue text-white text-center py-2 m-1 #{empty contCheckBean.elemento.contCheckId ? 'hidden':''}
+                                        #{!contCheckBean.edit ? ' opacity-50' : ' hover:bg-aes-blue-hover'}"
+                                        disabled="#{!contCheckBean.edit}">
+                                        <f:ajax execute="@this" render="dialogCall resultForm resultabtodos refremeta"/>
+                                    </h:commandButton>
+                                    <!--siempre oculto emailB-->
+                                    <h:commandButton id="emailB" style="display: none;" value ="#{gen_msg['emails']}" onclick="changeView(3);"
+                                        class="w-40 bg-aes-blue text-white text-center py-2 m-1 hover:bg-aes-blue-hover #{empty contCheckBean.elemento.contCheckId ? 'hidden':''}">
+                                        <f:ajax execute="@this" listener="#{tabEsrEaEoBean.viewEmail(contCheckBean.elemento.contCheckId)}" render="inputModalemail refremeta resultabtodos"/>
+                                    </h:commandButton>
+                                    <h:commandButton id="addCheck" action="#{contCheckBean.agregar()}" value ="#{gen_msg['genAdd']}" 
+                                        class="w-40 bg-aes-blue text-white text-center py-2 m-1
+                                        #{empty contCheckBean.elemento.contCheckId  ? '':'hidden'}
+                                        #{contCheckBean.elemento.checkCompany eq 'AESV' or contCheckBean.validarDate eq 1 ? 'opacity-50' : 'hover:bg-aes-blue-hover'}"
+                                        disabled="#{contCheckBean.elemento.checkCompany eq 'AESV' or contCheckBean.validarDate eq 1}">                                        
+                                        <f:ajax execute="@form" render="@form success resultForm789 slithermail refremeta divBotonesChequeo resultabtodos"  />
+                                    </h:commandButton>
+                                    <h:commandButton id="cleanCheck" value ="#{gen_msg['discard']}" action="#{contCheckBean.limpiar()}"
+                                        class="w-40 bg-aes-blue hover:bg-aes-blue-hover text-white text-center py-2 m-1
+                                        #{contCheckBean.elemento.checkCompany eq 'AESV' ? 'opacity-50' : 'hover:bg-aes-blue-hover'}
+                                        #{empty contCheckBean.elemento.contCheckId ? '' : ' hidden'}"
+                                        disabled="#{contCheckBean.elemento.checkCompany eq 'AESV'}">
+                                        <f:ajax execute="@this" listener="#{contCheckBean.limpiarForm()}" render=" @form discard refremeta resultabtodos chkCucod"/>
+                                    </h:commandButton>
+                                </div>
+                                        
+                                        
+                        
+                                <script>
+                                    $('#formChecks\\:chkStartdate').datepicker({autoclose: true,language:'#{swtLanguage.language}'});
+                                    $('#formChecks\\:chkFinishdate').datepicker({autoclose: true,language:'#{swtLanguage.language}'});
+                                    $('#formChecks\\:chkArrivaldate').datepicker({autoclose: true,language:'#{swtLanguage.language}'});
+                                </script>
+                            </h:form>
+                        </div>
+                        <h:form id="buttons" style=" display: none;">
+                            <h:panelGrid columns="2" style="margin: auto;" >
+                                <h:commandButton id="checkB" class="btn btn-signin" value ="#{aees_msg['Chk']}" 
+                                                 style=" display: none;"  onclick="changeView(1);" >
+                                   <f:ajax execute="@form" render="@none refremeta"/>
+                               </h:commandButton>                               
+                            </h:panelGrid>
+                        </h:form>
+                        
+                    </div>
+                      
+                </article>
+                
+                <aside id="das" class="h-1/2 md:h-full lg:w-1/4 md:w-2/4 md:pl-2 flex flex-col flex-grow md:flex-grow-0 pl-2 md:order-2 md:mb-2">
+                    <div id="close-bt4" class="styleHeaderMroholdings">#{gen_msg['parameter']}
+                        <div id="divOcultarEsrTabns" class="image cursor-pointer"  title="#{gen_msg['hide']}">
+                            <a class="nav-toggle" >
+                                <i id="tog1Eng" class="gli-a glyphicon glyphicon-chevron-up colorGlyphicon parametroflechaESRIngenieros" onclick="switchParamsCh(false);"/>                                
+                            </a>
+                        </div>
+                    </div>
+                    <div id="collapse4" class="dashboard-content-h fondoPanelderecho" style="display:block;">
+                        <section class="ac-container" >
+                            <div id="acor1" class="borderBlancoAcordion">
+                                <input id="ac-1" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label backcolor fondoAcordiones" for="ac-1">#{gen_msg['rep']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/esr/matrizESR.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acorEngHours2" class="borderBlancoAcordion">
+                                <input id="acEnghours-2" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label  backcolor fondoAcordiones" for="acEnghours-2">#{gen_msg['emails']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/chequeos/emailsEncChe.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acorMailDefault" class="borderBlancoAcordion">
+                                <input id="acMailDefault-2" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label  backcolor fondoAcordiones" for="acMailDefault-2">#{gen_msg['emails']} Default</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/chequeos/contDefaultMail.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acorCustomerCommer" class="borderBlancoAcordion">
+                                <input id="acCustomerCommer-2" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label  backcolor fondoAcordiones" for="acCustomerCommer-2">#{aees_msg['mb_abclient']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/chequeos/engMergeCustomer.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+                </div>
+                  <div id="idMenuConfig" style="margin-top: -15px;">
+                  <h:form id="btngrpchek" class="menu-company w-auto flex justify-start items-center z-10" style="position: fixed;bottom: 0;">
+                <div class="label-company bg-aes-blue"><div class="plus-company"/></div>
+                <h:commandButton id="butCompany" action="#{contCheckBean.init()}"
+                    class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm active" value="#{gen_msg['all']}" onclick="addactive(this);">
+                    <f:ajax  render="resultabtodos taskeng formChecks:reqcomdg formChecks:addCheck formChecks:cleanCheck refremeta" execute="@form"  />
+                </h:commandButton>
+                <c:forEach items="#{companyBean.listado}" var="item" >
+                    <h:commandButton id="but#{item.ciaCode}" action="#{contCheckBean.selectChek(item.ciaCode)}" title="#{item.ciaName}"
+                        class="item-company btn-company bg-white hover:bg-aes-blue text-black hover:text-white py-2 text-sm" onclick="addactive(this);" value="#{item.ciaCode}">
+                        <f:ajax  render="resultabtodos taskeng formChecks:reqcomdg formChecks:addCheck formChecks:cleanCheck formChecks:chkCucod refremeta" execute="@form"  />
+                    </h:commandButton>
+                </c:forEach>
+                <script type="text/javascript">
+                    function addactive(id) {
+                        //var divgrop=$("#btngrp input[type=submit]");
+                        var idbut2=id.id;
+                        $("#btngrpchek input[type=submit]").each(function () {
+                            $(this).removeClass("active");
+                        });
+                        document.getElementById(idbut2).className += " active";
+                    }
+                </script>
+            </h:form>
+            </div>
+                      </div>
+            <h:panelGroup id="success">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="discard">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                            
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+        
+            <h:panelGroup id="modEngHours" style="display:none;" pt:title="#{aees_msg['engHours']}" >
+              <div id="insEngHours" class="divHorasIng" style="padding-bottom:50px !important;">
+                    
+                     <ui:insert name="newContent">
+                        <ui:include src="/pages/engHours/EngineeringHours.xhtml"/>
+                    </ui:insert>
+                
+                <h:form id="modEngHoursForm" >
+
+                    <div class="flex flex-row justify-center w-full sm:flex-col md:flex-row">
+                        <div class="flex flex-row justify-center lg:w-4/12 sm:flex-col md:flex-row mt-4 sm:w-10/12 sm:ml-8 md:w-4/12">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" onclick="$('#modEngHours').dialog('close');" >
+                                <f:ajax execute="@this" render="@form refremeta" />
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+                    </div>
+            </h:panelGroup>
+            <script>
+                var stateList = true;
+                var stateParams = false;
+
+                function calcFormEsr() {
+                    var panel = document.getElementById('inf-checks');
+                    var params = document.getElementById('das');
+                    
+                    if (stateList || stateParams) {
+                        panel.classList.add('md:w-4/4');
+                    } else {
+                        var panelMedio= document.getElementById('inf-checks');
+                        panelMedio.classList.add('lg:w-full');
+                        panel.classList.add('md:w-full');
+                        panel.classList.add('h-full');
+                        panel.classList.add('mt-0');
+                    }
+                }
+
+                function switchListCh(state) {
+                    var panel = document.getElementById('das1');
+                    var button = document.getElementById('open-list-ch');
+                    stateList = state;
+                    if(state) {
+                        panel.classList.remove('hidden');
+                        button.classList.add('hidden');
+                    } else {
+                        panel.classList.add('hidden');
+                        button.classList.remove('hidden');
+                    }
+                    calcFormEsr();
+                }
+
+                function switchParamsCh(state) {
+                    var panel = document.getElementById('das');
+                    var button = document.getElementById('open-parameter-ch');
+                    var panelMedio= document.getElementById('inf-checks');
+                    stateParams = state;
+                    if(state) {
+                        button.classList.remove('lg:w-3/4')
+                        panelMedio.classList.add('lg:w-2/4');
+                        panel.classList.remove('hidden');
+                        button.classList.add('hidden');
+                    } else {
+                        panel.classList.add('hidden');
+                        panelMedio.classList.add('lg:w-3/4');
+                        button.classList.remove('hidden');
+                    }
+                    calcFormEsr();
+                }
+                switchListCh(true);
+            </script>
+        </h:body>
+    </f:view>
+</html>

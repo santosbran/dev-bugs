@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->
+            
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/>
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="js/menu-slow.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap-select.js" />
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputScript library="styleAE" name="js/scriptspanelhome.js"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/paneleshome.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap-select.css"/>
+           
+          
+        </h:head>
+        <h:body >
+            <h:panelGroup id="scrip">
+                    <h:outputScript library="styleAE" name="js/jquery.js" />
+                    <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+                    <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+                    <h:outputScript library="styleAE" name="js/datatables.min.js" />
+                    <h:outputScript library="styleAE" name="js/framework.js" />
+                    <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+                    <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+                <script type="text/javascript" >
+                    
+                $(function (){
+                var sel =document.getElementById("matrona2:idx").value;
+                
+                if(sel == 1){
+                $("#engHours").show();
+                $("#chekEmail").hide();
+                $("#EsrRela").hide();
+                $("#RepEsr").hide();
+                
+                }
+                else if(sel == 2){
+                    $("#chekEmail").hide();
+                    $("#RepEsr").hide();
+                    $("#engHours").hide();
+                    $("#EsrRela").show();
+                
+                } else if(sel == 3){
+                $("#chekEmail").show();
+                $("#RepEsr").hide();
+                 $("#engHours").hide();
+                $("#EsrRela").hide();
+                }               
+                });
+                
+                 
+                 </script>
+                </h:panelGroup>
+            <h:form id="matrona2">
+                <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+                <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+                <h:outputScript library="styleAE" name="js/jquery.js" />
+                <h:outputScript library="styleAE" name="js/datatables.min.js" />
+                <h:outputScript library="styleAE" name="js/framework.js"/>                
+                <h:inputHidden id="idx" value="#{reportesSeguiCheqBean.idx}"/>
+            </h:form>
+                <div class="text1">#{gen_msg['pm']}&nbsp;&nbsp;></div>
+                <div class="text2">#{gen_msg['tl']}&nbsp;&nbsp;></div>
+                <div class="text3">#{gen_msg['em']}&nbsp;&nbsp;></div>
+                
+                <header>
+ 
+                </header>
+                
+                    
+                    <div id='main'>
+                        
+                        <a id="handle1" class="handle1" style="background: rgb(237, 41, 57);color: white;display: none;"><span class="glyphicon glyphicon-forward parametroflecha " aria-hidden="true"/><label class="slide-label1">#{gen_msg['tal']}</label></a>
+                        <nav id="das1" style="display:block">
+                            <div id="close-bt2">#{gen_msg['tal']}<div class="image"><a href="#collapse2" class="nav-toggle" ><h:graphicImage library="styleAE" id="tog1" class="closepanel" name="img/menu/Maximize-Minimize-01.png" /></a></div></div>
+                            <div id="collapse2" class="bloque panelAj1" style="display:block;">
+                                <h:panelGroup style="width:100% !important;" id="buttos">
+                                    <h:panelGrid style="width: 100%" columns="1" columnClasses="ten-prc right-align, forty-prc, ten-prc right-align ,forty-prc">
+                                       
+                                        <h:form style="align-content: center">
+                                            <h:selectOneMenu id="woorder" value="#{reportesSeguiCheqBean.id}" class="selectpicker" pt:data-live-search="true">
+                                                <f:selectItems   itemValue="0" itemLabel="--"/>
+                                                <f:selectItems  value="#{workOrderBean.listado}" var="option" itemLabel="#{option.chkWo}" itemValue="#{option.contCheckId}"/>
+                                                 <f:ajax execute="@this" render="reports refremeta" />
+                                            </h:selectOneMenu>
+                                          </h:form> 
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                        <h:form>
+
+                            <h:panelGrid style="width: 100%" columns="2" columnClasses="fifty-prc center-align, fifty-prc center-align">
+                                <h:outputLabel value="#{gen_msg['status']}" />
+                                <h:outputLabel value="#{gen_msg['status']}" />
+                            </h:panelGrid>
+                            <h:panelGrid style="width: 100%" columns="4" columnClasses="ten-prc right-align, forty-prc, ten-prc right-align ,forty-prc">
+                                <h:outputLabel value="#{aees_msg['AWD']}" for="AWD" />
+                                <h:selectBooleanCheckbox id="AWD" value="#{aees_msg['AWD']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['AOP']}" for="AOP" />
+                                <h:selectBooleanCheckbox id="AOP" value="#{aees_msg['AOP']}"/>
+                                                                
+                                <h:outputLabel value="#{aees_msg['ACD']}" for="ACD" />
+                                <h:selectBooleanCheckbox id="ACD" value="#{aees_msg['ACD']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['ACP']}" for="ACP" />
+                                <h:selectBooleanCheckbox id="ACP" value="#{aees_msg['ACP']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['AWADA']}" for="AWADA" />
+                                <h:selectBooleanCheckbox id="AWADA" value="#{aees_msg['AWADA']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['AMF']}" for="AMF" />
+                                <h:selectBooleanCheckbox id="AMF" value="#{aees_msg['AMF']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['PIGDP']}" for="PIGDP" />
+                                <h:selectBooleanCheckbox id="PIGDP" value="#{aees_msg['PIGDP']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['PRIP']}" for="Prip"/>
+                                <h:selectBooleanCheckbox id="Prip" value="#{aees_msg['PRIP']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['IP']}" for="IP" />
+                                <h:selectBooleanCheckbox id="IP" value="#{aees_msg['IP']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['FPP']}" for="FPP" />
+                                <h:selectBooleanCheckbox id="FPP" value="#{aees_msg['FPP']}"/>
+                                
+                                <h:outputLabel value="#{aees_msg['FDP']}" for="FDP" />
+                                <h:selectBooleanCheckbox id="FDP" value="#{aees_msg['FDP']}"/>
+                                
+                                <h:selectBooleanCheckbox id="NFEAR" value="#{aees_msg['NFEAR']}"/>
+                                <h:outputLabel value="#{aees_msg['NFEAR']}" for="NFEAR" />
+                            </h:panelGrid>
+
+                            
+                        </h:form>
+                        
+                                    <h:form id="reports">
+                            <h:outputText id="uno" value="#{reportesSeguiCheqBean.id}" style="align-content: center"/>
+                            <h:panelGrid columns="6" style="margin:auto;">
+                                <h:commandButton class="btn btn-signin" value="#{gen_msg['repEsr']}" action="#{reportesSeguiCheqBean.llenarESR()}" pt:target="_blank" />
+                                
+                                <h:commandButton class="btn btn-signin" value="#{gen_msg['repEsrHist']}" action="#{reportesSeguiCheqBean.llenarHistorico()}">
+                                    
+                                </h:commandButton>
+                          
+                                <h:commandButton class="btn btn-signin" value="#{aees_msg['engHours']}">
+                                     <f:actionListener binding="#{reportesSeguiCheqBean.limpiar2(1)}"/>
+                                     <f:ajax execute="@this" listener="#{engHorasIngBean.redireccionar2}" render="collapse3 engHours resultForm scrip matrona2 refremeta" />
+                                     
+                                </h:commandButton> 
+                                
+                                <h:commandButton class="btn btn-signin" value="#{gen_msg['viewemail']}">
+                                  <f:actionListener binding="#{reportesSeguiCheqBean.limpiar2(3)}"/>
+                                <f:ajax execute="@this" listener="#{emailEnBean.somere()}" render="collapse3 chekEmail inputForm scrip matrona2 refremeta" />
+                                </h:commandButton>
+                                <h:commandButton class="btn btn-signin" value="#{gen_msg['repintern']}" action="#{reportesSeguiCheqBean.llenarCI()}">
+                                   
+                                </h:commandButton>
+                                <h:commandButton class="btn btn-signin" value="#{gen_msg['repesrre']}" >
+                                    <f:actionListener binding="#{reportesSeguiCheqBean.limpiar2(2)}"/>
+                                    <f:ajax execute="@this" listener="#{reportesSeguiCheqBean.esrelacionada()}" render="matrona2 collapse3 EsrRela resultForm66 scrip refremeta" />
+                                </h:commandButton>
+                            </h:panelGrid>
+                        </h:form>
+                         </h:panelGroup>
+                                
+                                
+                                
+                            </div>
+                        </nav>
+                        
+                        <article>
+                            <div id="close-bt3">
+                                                
+                                <div class="image"><a href="#collapse3" class="nav-toggle" onclick="toogle(2);"><h:graphicImage library="styleAE" class="closepanel" name="img/menu/Maximize-Minimize-01.png" /></a></div></div>
+                            <div id="collapse3"  class="bloque panelAj2" style="display:block; height: 732px; overflow-y: auto;">
+                                
+                                   <div id="engHours" class="panelea" style="display:none;">
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/engHours/engHours.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                                <div id="EsrRela" class="styleacordeon scroll" style="display:none;">
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/reportes/ReporteEsrRelacionados.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                                <div id="chekEmail" class="styleacordeon scroll" style="display:none;">
+                                    <ui:insert name="newContent">
+                                        <ui:include src="/pages/chequeos/emailsEncChe.xhtml"/>
+                                    </ui:insert>
+                                </div>
+                                
+                            </div>
+                        </article>
+                         <a id="handle" class="handle" style="background: rgb(237, 41, 57);color: white;"><span class="hidden-xs glyphicon glyphicon-backward parametroflecha" aria-hidden="true"/><label class="slide-label">#{gen_msg['parameter']}</label></a>
+
+                         <aside id="das" style="display:none" class="hidden-xs">
+                             <div id="close-bt4">#{gen_msg['parameter']}<div class="image" ><a href="#collapse4" class="nav-toggle" ><h:graphicImage id="tog" library="styleAE" class="closepanel" name="img/menu/Maximize-Minimize-01.png" /></a></div></div>
+                             <div id="collapse4" class="bloque panelAj3" style="display:block;height: 730px;"></div>
+                             
+                         </aside>
+                    </div>
+                    
+                
+                
+                <div style="float: right;bottom: 0;">
+                        <h:graphicImage library="styleAE" name="img/main/AddButton-01.png" onclick="addmenuslow();"/>
+                    </div>
+            
+        </h:body>
+    </f:view>
+</html>

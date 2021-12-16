@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#removeUpload01', '325px');
+                });
+            </h:outputScript>
+            <style>                
+                #dasTabECRN {
+                    position: fixed;
+                    margin-top: -32px;
+                    height: 75%;
+                    left: 75%;
+                    right: 0.99%;
+                }  
+                .two-prc {
+                    width: 2%;
+                }
+                .six-prc{
+                    width: 6%;
+                }
+                .eight-prc{                    
+                    width: 30% !important;
+                }
+                 
+                .engGECReport2{
+                    border-bottom: 3px solid #bf1e2d !important;
+                    border-left: 3px solid #bf1e2d !important;
+                    color: white !important;
+                    background-color: gray !important;
+                    padding: 6px 10px 0px 10px !important;
+                    text-transform: uppercase !important;
+                    font-size: 12px !important;
+                    color: white !important;
+                }
+                .menutPlantilla{
+                    position: absolute;
+                    top: 1%;
+                    float: right;
+                    z-index: 999;
+                    margin-left: 5% !important;
+                }
+                .ui-widget-content {   
+                    background: #fff !important;
+
+                }
+                .p.a {
+                    word-break: break-all;
+                }
+                #fmEsrTabNwECR > .scrollDashESES >  .dataTables_wrapper {
+                    width: 98%;
+                    left: 1%;
+                }
+                .scrollDashESES {
+                    display: block;
+                }
+                #fmEsrTabNwECR > .scrollDashESES > .engGECReport2 > .image > #handleESR > .paramECRoflecha {
+                        left: 3% !important;
+                        top: 18%;
+                        position: inherit;
+                    }
+                
+                
+                @media (min-width: 0px) and (max-width: 500px){
+                    .scrollDashESES{                        
+                        height: 430px;
+                    }
+                 #fmEsrTabNwECR > .scrollDashESES > .dataTables_wrapper {
+                        width: 144%;
+                        left: 1%;
+                    }
+                }
+               #fmEsrTabNwECR > .scrollDashESES >  .dataTables_wrapper{
+                    height: 65% !important;
+                    position: fixed;
+                    overflow: auto;
+
+                }
+                #icoBackDash{
+                    position: relative;
+                    top:18px; 
+                    z-index: 999999999999;
+                    height: 37px;
+                }
+                .scrollDashESES{
+                    padding: 50px 0 0 0;
+                }
+                .anchoTableMantenimientos {
+                    margin-left: 0.3% !important;
+                    margin-right: auto !important;
+                    width: 99% !important;
+                    height: 100% !important;
+                    overflow: auto !important;
+                    padding: 0 0 50px 0;
+
+                }
+                .anchoTableMantenimientos2 {
+                    margin-left: 0.3% !important;
+                    width: 99% !important;
+                    position: relative;
+                    top: -92px;
+                }
+                
+                
+                
+                .imageRet2{    
+                    background-image: url("#{resource['styleAE:img/main/back13.svg']}") !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 40% -5px !important;
+                    background-size: 23px 45px;
+                    margin-top: 2% !important;
+                }	
+   .imageRet2:hover{    
+  	 border-color: #bf1e2d !important;
+   }
+   
+
+@media screen and (max-width:1280px){
+    .imageRet2 {
+         margin-top: 3% !important;
+    }
+       
+}
+@media screen and (max-width:1180px){
+    .imageRet2 {
+         margin-top: 4% !important;
+    }
+       
+}
+
+@media (max-width: 895px) and (min-width: 0){
+ .imageRet2 {   
+    margin-top: 10% !important;
+    margin-left: 1% !important;
+      margin-top: 11% !important;
+}
+#aircraft{
+        margin-top: 10.5% !important;    
+}
+}
+
+@media  screen and (max-width: 800px) {
+ .imageRet2 {  
+ margin-top: 14% !important;
+}
+#aircraft{
+        margin-top: 13.5% !important;    
+}
+}
+@media screen and (max-width:700px){
+    #aircraft{
+        margin-top: 14.5% !important;    
+}
+    
+}
+@media screen and (max-width:630px){
+ .imageRet2 {   
+    margin-top: 18% !important;
+     
+}
+    #aircraft{
+        margin-top: 17.5% !important;    
+}
+}
+@media screen and (max-width:580px){
+ .imageRet2 {   
+    margin-top: 20% !important;
+      
+}
+
+  #aircraft{
+        margin-top: 19.5% !important;    
+}
+
+}
+@media screen and (max-width:515px){
+ .imageRet2 {   
+    margin-top: 34% !important;
+}
+  #aircraft{
+        margin-top: 23.5% !important;    
+}
+}
+                
+#aircraft{
+    background: #003f72;
+    float: right;
+    margin-top: 1.5%;
+    margin-right: 2%;
+    margin-bottom: 0.3%;
+    border: 1px solid #003f72;
+    padding: 6px 22px 7px 23px;
+    font-size: 13px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
+                #workOrder{
+                    position: fixed;
+                    top: 4px;
+                    font-size: 25px;
+                    font-weight: bold;
+                    left: 68%;
+                }
+                .closes{
+                    background: gray;
+                }
+                
+                @media screen and (max-width: 1250px){
+                    #formESRForAir{
+                        left: 90% !important;
+                    }   
+                }
+                      @media screen and (max-width: 898px){
+                          #formESRForAir{
+                              left: 87% !important;
+                          }   
+                        #fmEsrTabNwECR > .scrollDashESES >   .dataTables_wrapper {
+                              height: 50% !important;
+                          }
+                }
+                        @media screen and (max-width: 800px){
+                          #formESRForAir{
+                              left: 84% !important;
+                          }   
+                }
+                      @media screen and (max-width: 513px){
+                          #formESRForAir{
+                              top: 103% !important;
+                              left: 79% !important;
+                          }   
+                             #fmEsrTabNwECR > .scrollDashESES >  .dataTables_wrapper {
+                              height: 45% !important;
+                          }
+                }
+                       @media screen and (max-height:910px){
+                          #formESRForAir{
+                                 margin-top: -6%;
+                          }   
+                        
+                }
+                     @media screen and (max-height:810px){
+                          #formESRForAir{
+                                margin-top: -3%;
+                                left: 95% !important;
+                          }   
+                        
+                }
+                    @media screen and (max-height:700px){
+                          #formESRForAir{
+                            margin-top: -3%;
+                            left: 95% !important;
+                          }   
+                        
+                }
+                       @media screen and (max-height:600px){
+                          #formESRForAir{
+                                    margin-top: -5%;
+                          }   
+                        
+                }
+                 @media screen and (max-width: 1526px){
+                          #formESRForAir{
+                              margin-top: -8%;
+                          }   
+                }
+                @media screen and (max-width: 911px){
+                          #formESRForAir{
+                              margin-top: -11%;
+                                  left: 93% !important;
+                          }   
+                }
+                @media screen and (max-width: 644px){
+                    #formESRForAir {
+                        margin-top: -15%;
+                        left: 87% !important;
+                    }
+                }
+                @media screen and (max-width: 460px){
+                    #formESRForAir {
+                        margin-top: -25%;
+                        left: 87% !important;
+                    }
+                }
+                .setAddParame{
+                        overflow: scroll !important;
+                        -webkit-overflow-scrolling: touch !important;
+                        width: 74%;
+                        height: 75% !important;
+                        position: absolute;
+                        border-width: 0px;
+                        margin: 0px;
+                }
+                .setAddHeadParame{
+                    margin-top: -40px;  
+                    position: static; 
+                    width: 74%;  
+                    margin-left: 0.3% !important;
+                }
+                
+                .iframeClassESR{
+                    overflow: scroll !important; 
+                    -webkit-overflow-scrolling: touch !important;    
+                    width: 99%;
+                    height: 75% !important;
+                    position: absolute;
+                    border-width: 0px;
+                    margin: 0px;
+                }
+                
+                .tableFromESR{
+                    margin-top: -40px;  
+                    position: static; 
+                    width: 99%;  
+                    margin-left: 0.3% !important;
+                }
+            </style>  
+            <script>
+                function dragAddParamerECR(event) {
+                    $("#fmEsrTabNwECR").removeClass("tableFromESR");
+                    $("#fmEsrTabNwECR").addClass("setAddHeadParame");
+                    $("#Trakingframe").removeClass("iframeClassESR");
+                    $("#Trakingframe").addClass("setAddParame"); 
+                    $("#dasTabECRN").hide();                    
+                    $("#handleECR").hide();                   
+                     
+                }
+
+                function dragEndParameterECR(event) {
+                    $("#fmEsrTabNwECR").addClass("tableFromESR");
+                    $("#fmEsrTabNwECR").removeClass("setAddHeadParame");
+                    $("#Trakingframe").addClass("iframeClassESR");
+                    $("#Trakingframe").removeClass("setAddParame");
+                    $("#dasTabECRN").hide();
+                    $("#handleECR").show();
+                    
+                    
+                }
+                
+                function funalertcoreAF(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#removeUploadPlantilla\\:idDocumentUpload').val(id);
+                    return false;
+                }
+                function cargareventsFormECR(data) {                    
+                    var spinnerevents = document.getElementById("spinnerhmsECR");
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) { 
+                    console.log("corriendo BEGIN cargareventsFormECR()  ");
+                            $("#divengTabEsrNWSECR").hide();
+                              $("#divengTabEsrNWS").hide();
+                                $("#engineer").hide();                         
+                            $("#main").hide();
+                            $("#esr").hide();
+                            $("#ECR").hide();
+                               $("#engineerTools").show();
+                            $("#mainECR").show();
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            console.log("corriendo ELSE cargareventsFormECR() ");
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                  console.log("mostrando la ECR ");
+                              
+                                  $("#esr").hide(); 
+                               $("#ECR").show(); 
+                               
+                            }		
+                    }
+                }
+                function renderisarENGYTABECR(){
+                    $("#divengTabEsrNWSECR").hide();                 
+                    $("#divengTabEsrNWS").hide();
+                    $("#engineer").hide();
+                    $("#main").hide();
+                    $("#engineerTools").show();
+                    $("#mainECR").show();
+                    console.log("mostrando main ECR  ");
+                }
+                function volverAlDashBordECR(){
+                    $("#divengTabEsrNWS").hide();
+                    $("#divengTabEsrNWSECR").hide();
+                    $("#dashNavigationHangares").show();
+                    $("#insertarIDEECR\\:idLimpiarAvionECR").trigger("click");
+                    
+                }
+                
+                
+                function cargarEventTabECR(data) {
+                    var spinnerevents = document.getElementById("spinnerDash");
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                            $("#divengTabEsrNWSECR").hide();
+                            $("#dashNavigationHangares").hide();
+
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            
+                            if(statuseve === "success"){ 
+                                spinnerevents.style.display = "none";
+                                $("#dashNavigationHangares").show(); 
+                            }		
+                    }
+            } 
+
+            </script>
+        </h:head>
+        <h:body>
+        
+            <div class="row" style="display: none;">
+                <h:panelGroup id="panelEsrTabNwECR">
+                    <div id="divlEsrTabNwECR"  class="menutPlantilla" >
+                    </div>
+                </h:panelGroup>
+                <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburgerStatusDispo1" >
+                    <span>toggle menu</span>
+                </div>
+            </div>            
+            <h:panelGroup id="rendExitoEsrTabNwECR">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>                
+            </h:panelGroup>
+            <h:panelGroup id="rendEerrorEsrTabNwECR">
+                <h:outputScript rendered="#{facesContext.postback and  facesContext.validationFailed and plantillasBeen.contolador eq 0}">
+                    alertify.error("#{gen_msg['beanerror']}");
+                </h:outputScript>
+            </h:panelGroup>
+
+            <h:panelGroup id="rendEerrorDuplicadoEsrTabNwECR">
+                <h:outputScript rendered="#{facesContext.postback and  facesContext.validationFailed and plantillasBeen.contolador eq 1}">
+                    alertify.error("#{gen_msg['ifexist']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="removeEsrTabNwECR" style="display:none;" pt:title="#{gen_msg['delete']}">
+                    <h:form id="removeUploadEsrTabNwECR">
+                        <h:inputText value="#{plantillasBeen.idDocumentUpload}" style="display:none;" id="idDocumentUploadECR">
+                            <f:ajax event="change" render="@this refremeta" />
+                        </h:inputText>
+                        <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                            <h:outputLabel value="¿#{aees_msg['deleteitem']}?" class="margenlabelDelete"/> 
+                        </h:panelGrid>
+                        <div class="divBotonesModales">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{plantillasBeen.delete(plantillasBeen.idDocumentUpload)}" >
+                                    <f:ajax execute="@form" render="@form plantillaForm ondeleteUploadPlantilla slither25 refremeta"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" action="#{plantillasBeen.limpiar()}">
+                                    <f:ajax execute="@this" render="descartarEliminacionPlantilla refremeta" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            <h:panelGroup id="ondeleteUploadEsrTabNwECR">
+                <h:outputScript rendered="#{facesContext.postback}">
+                    $("#removeUpload01").dialog("close");
+                    alertify.log("#{aees_msg['removeitem']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="descartarEliminacionEsrTabNwECR">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                  
+                    $("#removeUpload01").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+            
+             <h:form id="insertarIDEECR">
+                 <h:inputHidden value="#{engtabEsrnwsVwBean.idESRTab}" id="idESTImputTECR">
+                                
+                 </h:inputHidden>  
+                    <h:commandButton id="idECRButton" action="#{engtabEsrnwsVwBean.seleccionarTabla(engtabEsrnwsVwBean.idESRTab)}" style="display: none;">
+                        <f:ajax execute="@form" render="xyz fpaneltaskECR matrona autoesr btnadd1:btnadd2
+                                                            inputModalhours resultenghours inputForm68 inputForm69 inputForm70ECR  
+                                                            scripEA scrptesr butcom resultabEa resultForm66 idorder nombs autocom butECR
+                                                            scriptx resultForm scriptAcTy slither0 scriptWT resultForm5 slither1 scriptEoSt
+                                                            resultForm2 slither22 scriptPrefx resultForm3 slither3 scriptPrio resultForm4
+                                                            slither4 reEaStatus slither13 scriptEa docsesr ftasks fpaneltaskECR dismenueaeo
+                                                            sacarea scripx scrip uploadEsrForm refremeta
+                                validarSeleccionNWSECR  resultabtodosComp  fmInfoWork" onevent="cargareventsFormECR" />
+                    </h:commandButton>                 
+                 <h:commandButton id="idLimpiarAvionECR" action="#{contCheckBean.limpiarPorAvion()}" style="display: none;">
+                     <f:ajax execute="@this" render="@this busqFormECR formDashBord inputForm70ECR resultabtodosComp refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR" onevent="cargarEventTabECR" />
+                    </h:commandButton>                 
+                 </h:form>
+            
+            <h:form id="fmInfoWorkECR" class="anchoTableMantenimientos2">
+                <h:commandButton id="icoBackDashECR" onclick="volverAlDashBordECR()"
+                     class="btn btn-signin butomclassesr imageRet2" title="Back" style="margin: 0% 0% 1% 1%;">
+                    <f:ajax execute="@this" render="@this refremeta formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR"/>
+                 </h:commandButton>  
+                <div  id="aircraftECR">
+                    <h:outputText value="#{engtabEsrnwsVwBean.airCraft2}" style="display: table-row"/>
+                    <h:outputText value="#{engtabEsrnwsVwBean.WO}" style="display: table-row"/>
+                    <h:outputText value="#{gen_msg['fini']}: #{engtabEsrnwsVwBean.fInicio}" style="display: table-row"/>
+                    <h:outputText value="#{gen_msg['ffin']}: #{engtabEsrnwsVwBean.fFin}" style="display: table-row"/>
+                </div>               
+                
+             </h:form>
+            
+            
+            <h:form id="fmEsrTabNwECR" class="tableFromESR">
+                 <div id="close-tabNwECR" class="engGECReport2"> <label style="margin-left: 1%">ECR Report</label>
+                        <div style="float: right;  margin-right: -180px;" >
+                            <a id="handleECR" onclick="dragAddParamerECR(event)">
+                                <span class="glyphicon glyphicon-chevron-left colorGlyphicon posicionGlyleft" aria-hidden="true"/>
+                                <label class="slide-label"></label>
+                            </a>
+                        </div>
+                 </div>
+                <div id="ordenPanelTabECR">                    
+                    <h:panelGroup id="panalTrakingframe">
+                        <iframe title="" name="Trakingframe" id="TrakingframeECR" class="iframeClassESR fondoFrameTablasPrime" src="/EngineeringManage/pages/ecr/newEngTableECR.xhtml" />                           
+                        <h:outputScript>
+                            $("#dasTabECRN").hide();
+                        </h:outputScript> 
+                    </h:panelGroup>
+                </div>
+            </h:form>
+
+            
+            
+            
+    
+            
+                
+            <h:form id="formESRForAirECR" style="position: absolute; z-index: 9999999999;  top: 100%;    left: 93%;">
+                 <h:commandButton id="addESRForAirECR" onclick="renderisarENGYTABECR();" class="btn-circle btn-xl btn-danger"  value="+"  action="#{engtabEsrnwsVwBean.autoCompleteECR()}" style="display: none;">
+                        <f:ajax execute="@this" render="@this inputForm70ECR fmEsrTabNwECR fmInfoWork refremeta"/>
+                    </h:commandButton>
+                <h:commandButton id="renderTABECR" value="+"  style="display: none;">
+                        <f:ajax execute="@this" render="@this fmEsrTabNwECR fmInfoWork refremeta"/>
+                    </h:commandButton>         
+                
+                
+            </h:form>
+            
+            <h:panelGroup id="validarSeleccionNWSECR">
+                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                        renderisarENGYTABECR();                        
+                    </h:outputScript>
+                </h:panelGroup>
+            
+        </h:body>
+    </f:view>
+</html>

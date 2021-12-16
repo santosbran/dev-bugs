@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:view  rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+                        
+            <style>
+                .thirtyone-prc {
+                    width: 31%;
+                }
+                .twentyfour-prc{
+                     width: 24%
+                }
+                .twentyeight-prc{
+                    width: 28%;
+                }
+                .twentynine-prc{
+                    width: 29%;
+                }
+                .fiftyfive-prc{
+                    width: 55%;
+                }
+                .seventyone-prc{
+                    width: 71%;
+                }
+                .seventysix-prc{
+                     width: 76%
+                }
+                
+            </style>
+        </h:head>
+        <h:body>
+            <div id="reporteTools">
+                    <h:form id="formrep" style="margin-top: 35px;" >
+                        <h:panelGrid columns="2" columnClasses="twentyfive-prc, seventyfive-prc" style="margin: auto;">
+                            
+                            <h:outputLabel value="#{aees_msg['partNumber']}" for="numpartrep"/>
+                            <h:inputText id="numpartrep"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['desrequest']}" for="desRep"/>
+                            <h:inputText id="desRep"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['asotaskcard']}" for="taskcard"/>
+                            <h:inputText id="taskcard"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['amontool']}" for="amoutools"/>
+                            <h:inputText id="amoutools"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="PO" for="po"/>
+                            <h:inputText id="po"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['rode']}" for="monto"/>
+                            <h:inputText id="monto"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['enginvertidas']}" for="enghrsinv"/>
+                            <h:inputText id="enghrsinv"  class="form-control"> 
+                            </h:inputText>
+                            
+                            <h:outputLabel value="#{gen_msg['engtaller']}" for="engtaller"/>
+                            <h:inputText id="engtaller"  class="form-control"> 
+                            </h:inputText>
+                            
+                        </h:panelGrid>
+                    </h:form>
+             </div>
+        </h:body>
+    </f:view>
+</html>
+                            

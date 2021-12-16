@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <f:view locale="#{swtLanguage.locale}">
+     <h:head>
+        <title>#{aees_msg['systemName']} - </title> <!-- Nombre de la página - aplicación -->
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            
+             <style type="text/css">
+                 .error {
+                    float: left;
+                    position: relative;
+                    top: 33%;
+                    width: 100%;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+             </style>
+     </h:head>
+        <body>
+        <div class="error">
+            <h:graphicImage id="imgerror" library="styleAE" name="img/main/loguito.png" style="width: 23%;"/> 
+            
+        </div>
+        <div class="error" >
+            <h:outputText  value="Expired Session" style="font-size: 35px;color: rgba(0,0,0,0.4);" rendered="#{swtLanguage.language eq 'en'}"/><br/>
+            <h:outputText  value="Reload Again" style="font-size: 20px;color: black;" rendered="#{swtLanguage.language eq 'en'}"/>
+            <h:outputText  value="Sesion Expirada" style="font-size: 35px;color: rgba(0,0,0,0.4);" rendered="#{swtLanguage.language eq 'es'}"/><br/>
+            <h:outputText  value="Vuelva a cargar" style="font-size: 20px;color: black;" rendered="#{swtLanguage.language eq 'es'}"/>
+        </div>
+        
+    </body>
+        </f:view>
+</html>

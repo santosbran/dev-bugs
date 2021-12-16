@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title>AEES - Sistema de ingenieria </title>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js" />
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModald', '600px');
+                    crearModal('#inputModal2', '600px');
+                });                
+            </h:outputScript>
+        </h:head>
+        <h:body>
+            
+                <div id="page-wrapper">
+                    <div class="container-fluid">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red;">
+                                    #{aees_msg['engDisposition']}
+                                </h1>
+                            </div>
+                        </div>
+                        
+                        <!--Modal Referencias -->
+                        <h:panelGroup id="inputModald" style="display:none;" pt:title="#{aees_msg['maReferences']}">
+                            <h:form id="inputFormld">
+                                <h:panelGrid style="width: 100%" columns="4" columnClasses="twentyfive-prc right-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc " >
+                                    <h:outputLabel value="#{aees_msg['idMessage']}:" for="IdMessage" />
+                                     <h:outputLabel id="IdMessage" value="000254" />
+                                    <h:outputLabel value="#{aees_msg['maNo']}:" for="maNo" style="margin-left: 25px" />
+                                    <h:outputLabel id="maNo" value="345678" />
+                                </h:panelGrid>
+                                <h:panelGrid  style="width: 100%"  columns="2" columnClasses="twentyfive-prc, seventyfive-prc ">
+                                    <h:outputLabel value="#{gen_msg['references']}:" for="references" />
+                                    <h:inputText id="references" class="form-control" title="references" />
+                                </h:panelGrid>
+                               
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!engWorktypes.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engWorktypes.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccesss @form resultForm refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engWorktypes.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccesss @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputForm:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="inputForm:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccesss">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModald").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <!--Modal Efectividades -->
+                        <h:panelGroup id="inputModal2" style="display:none;" pt:title="#{aees_msg['maEffectivities']}">
+                            <h:form id="inputForm2">
+                                <h:panelGrid  columns="2" columnClasses="twentyfive-prc, seventyfive-prc">
+                                    <h:outputLabel value="#{aees_msg['maNo']}:" for="maNo" />
+                                    <h:outputLabel id="maNo" value="387094"  />
+                                    <h:outputLabel value="#{gen_msg['effectivities']}:" for="effectivities" />
+                                    <h:inputText id="effectivities" class="form-control" title="effectivities" />
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!engWorktypes.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engWorktypes.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccesss2 @form resultForm refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engWorktypes.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccesss2 @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputForm2:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="inputForm2:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccesss2">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModal2").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        
+                            <h:panelGroup   pt:title="#{aees_msg['asesoDeMant']}">
+                                <h:form id="inputForm3" style="border: 1px;">
+                                    <h:panelGrid style="width: 15%" columns="2" style="margin: auto;" >
+                                        <h:outputLabel value="#{aees_msg['maNo']}:" for="maNo" />
+                                        <h:outputLabel id="maNo" value="000254" />
+                                    </h:panelGrid>
+                                    <h:panelGrid style="width: 65%;" columns="6" columnClasses="ten-prc left-align, twenty-prc,ten-prc right-align, twenty-prc,ten-prc right-align, twenty-prc" style="margin: auto;">
+                                        <h:outputLabel value="#{aees_msg['issueDate']}:" for="IssueDate" />
+                                        <h:inputText id="IssueDate" class="form-control" title="IssueDate" />
+                                        <h:outputLabel value="#{aees_msg['noRev']}:" for="noRev"/>
+                                        <h:inputText id="noRev" class="form-control" title="noRev" />
+                                        <h:outputLabel value="#{gen_msg['correlative']}:" for="correlative" />
+                                        <h:inputText id="correlative" class="form-control" title="correlative" />
+                                        <h:outputLabel value="#{gen_msg['company']}:" for="company" />
+                                        <h:inputText id="company" class="form-control" title="company" />
+                                        <h:outputLabel value="#{gen_msg['year']}:" for="year" />
+                                        <h:inputText id="year" class="form-control" title="year" /> 
+                                        <h:outputLabel value="#{gen_msg['ATA']}:" for="ATA" />
+                                        <h:inputText id="ATA" class="form-control" title="ATA" /> 
+                                    </h:panelGrid>
+                                    <h:panelGrid style="width: 65% ;" columns="2" columnClasses="ten-prc left-align, eighty-prc" style="margin: auto;">
+                                       <h:outputLabel value="#{gen_msg['topic']}:" for="subject" />
+                                        <h:inputTextarea id="subject" class="form-control"  />
+                                        <h:outputLabel value="#{gen_msg['to']}:" for="to" />
+                                        <h:inputTextarea id="to" class="form-control" title="to"  />
+                                        <h:outputLabel value="#{gen_msg['description']}:" for="description" />
+                                        <h:inputTextarea id="description" class="form-control" title="description"   />
+                                        <h:outputLabel value="#{gen_msg['action']}:" for="action" />
+                                        <h:inputTextarea id="action" class="form-control" title="action"  />
+                                    </h:panelGrid>
+                                    <h:messages class="msgError"/>
+
+                                    <h:panelGrid columns="2" style="margin: auto" >
+                                        <h:commandButton class="btn btn-signin" value ="#{!engWorktypes.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engWorktypes.guardar()}" >
+                                            <f:ajax execute="@form" render="onsuccesss3 @form resultForm refremeta"/>
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engWorktypes.limpiar()}" >
+                                            <f:ajax execute="@this" render="onsuccesss3 @form refremeta" />
+                                        </h:commandButton>
+                                    </h:panelGrid>
+                                    <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                    <h:outputScript>
+                                        basicDTP('[name="inputForm:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                        basicDTP('[name="inputForm:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    </h:outputScript>
+                                </h:form>
+
+                                <h:form id="dialogCall" prependId="false" style="margin: auto;">
+                                    <h:panelGrid style="width: 15%"  columns="3" columnClasses="thirtyfive-prc center-align, thirtyfive-prc center-align, thirty-prc center-align" style="margin: auto;">                                    
+                                        <h:commandButton class="btn btn-signin" value="#{gen_msg['references']}" onclick="mostrarModal('#inputModald');" >
+                                            <f:ajax execute="@form" render="onsuccesss3 @form resultForm refremeta"/>
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-signin" value="#{gen_msg['effectivities']}" onclick="mostrarModal('#inputModal2');" >
+                                            <f:ajax execute="@form" render="s @form resultForm refremeta"/>
+                                        </h:commandButton>
+                                        <h:commandButton  class="btn btn-signin" value="#{gen_msg['report']}"/>
+                                    </h:panelGrid>
+                                </h:form>
+
+                                <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                                <h:panelGroup id="onsuccesss3" style="margin: auto;">
+                                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                        $("#inputModal3").dialog("close");
+                                    </h:outputScript>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                        
+                    </div>
+                </div>
+            
+        </h:body>
+    </f:view>
+</html>

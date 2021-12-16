@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+             <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>    
+                             <style>
+#main {
+
+    /*display: block*/;
+ 
+}
+     .label {
+    white-space:  inherit !important;
+}
+          </style>
+        </h:head>
+        <h:body>
+            <script type="text/javascript">
+                var esr;
+                function show2(id) {
+                    esr = id;
+                    $("#resulEsr\\:id").val(id);
+                    $("#resulEsr\\:ref").trigger("click");
+                    $('#inicialPageESR').hide();
+                    $('#divOtrosDocs').hide();
+                }
+                function show3(id) {
+                    esr = id;
+                    $("#resulEsr\\:id").val(id);
+                    $("#resulEsr\\:ref2").trigger("click");
+                    $('#inicialPageESR').hide();
+                    $('#divOtrosDocs').hide();
+                }
+                
+            </script>
+            <h:panelGroup id="resultabtodosComp">
+                <div class="hecien" >
+                    <div class="ingclas hecien">
+                        <section class="ac-container fondoSection" >
+                            <c:forEach  items="#{tabEsrEaEoBean.listesrcompanymec}" var="item" >
+                                <input id="ac2-#{item.esr}" onclick="show3('${item.esr}');" style="display: none;">
+
+                                </input>
+                                <div id="acord#{item.esr}" class="borderGrisAcordion">
+                                    <input id="ac-#{item.esr}" class="input" name="accordion-1" type="radio" onclick="show2('${item.esr}');" >
+
+                                    </input>
+                                    
+                                    <label  for="ac-#{item.esr}" class="label">
+                                        <div class="imgico" style="white-space: initial;width: 100%;float: left !important;">
+                                            <div style="    float: left;display: inline;width: 80%">
+                                                <span>#{item.woorder}</span>
+                                            </div>
+
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(item.reqFechaIns) eq 1}"><div class="imgico" rendered="true"><span class="badge label-success span-success">O</span></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(item.reqFechaIns) eq 2}"><div class="imgico" rendered="true"><span class="badge label-warning span-warning">O</span></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(item.reqFechaIns) eq 3}"><div class="imgico" rendered="true"><span class="badge label-danger span-danger">O</span></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{item.usrCoduser eq null or item.usrCoduser eq '0'}">
+                                                <span class="glyphicon glyphicon-warning-sign" style="float: right;margin-right: 5px;top: 5px;"/>
+                                            </h:panelGroup>
+                                        </div>
+                                        
+                                    </label>
+                                </div>
+
+                            </c:forEach>
+                            <h:form id="resulEsr">
+                                <h:inputText value="#{tabEsrEaEoBean.itemId}" style="display: none;" id="id">
+                                    <f:ajax event="change" render="@this refremeta" />
+                                </h:inputText>
+                                <h:commandButton id="ref"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.itemId)}">
+                                    <f:ajax execute="@form" render="@form matrona ftasks fpaneltask   
+                                            inputForm70 butesr  idorder scriptx inputForm70Inicial
+                                            nombs scrip  upload docsesr uploadEsrForm refremeta" onevent="cargarevents"/>
+                                </h:commandButton>
+                                <h:commandButton id="ref2"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.itemId)}" >
+                                    <f:ajax execute="@form" render="@form matrona ftasks fpaneltask   
+                                            inputForm70 butesr  idorder scriptx inputForm70Inicial
+                                            nombs scrip  upload docsesr uploadEsrForm refremeta" />
+                                </h:commandButton>
+                                <h:commandButton id="tukituki" value="#{tabEsrEaEoBean.homeManager()}" style="display: none;">
+                                    <f:ajax execute="@this" render="inputForm70 inputForm70Inicial refremeta"/>
+                                </h:commandButton>
+                            </h:form>
+
+                        </section>
+                    </div>
+                </div>
+            </h:panelGroup>
+
+        </h:body>
+    </f:view>
+</html>

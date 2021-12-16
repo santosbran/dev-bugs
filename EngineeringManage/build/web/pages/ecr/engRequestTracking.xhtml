@@ -1,0 +1,634 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/> 
+           
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="js/menu-slow.js" />
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            
+             <h:outputStylesheet library="styleAE" name="css/paneleshome.css"/>
+            <h:outputScript library="styleAE" name="js/scriptspanelhome.js"/>
+            <h:outputStylesheet library="styleAE" name="css/spinnergif.css"/>
+            <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>    
+            <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputStylesheet library="styleAE" name="css/stylecalendarbyprimefaces.css"/>
+
+            <title></title>
+            
+
+            <h:outputScript>
+                 var $j = jQuery.noConflict();
+            </h:outputScript>
+            
+            <script>
+                //valida check:
+                function verificarCheckF(cheque)
+                {
+                     var No = 'N';
+                     var Ys = 'Y';
+                        if (cheque.checked == true) {
+                                document.getElementById("inputFormtra:txtFirst").value = Ys;
+                            }
+                            else {
+                                document.getElementById("inputFormtra:txtFirst").value = No;
+                            }
+                   
+                }
+                function verificarCheckP(cheque)
+                {
+                     var No = 'N';
+                     var Ys = 'Y';
+                        if (cheque.checked == true) {
+                                document.getElementById("inputFormtra:txtPri").value = Ys;
+                            }
+                            else {
+                                document.getElementById("inputFormtra:txtPri").value = No;
+                            }
+                   
+                }
+                
+               
+                
+                function descModalTrac(){
+                    window.parent.document.getElementById("modTracingForm:btndescartarModal").click(); 
+                }
+                function susesModalTrac(){
+                    window.parent.document.getElementById("modTracingForm:btnsuseModal").click(); 
+                }
+                function susesModalTracError(){
+                    window.parent.document.getElementById("modTracingForm:btnErrorString").click(); 
+                }
+                 function findBlod(idBlod)
+                    {
+                        $j("#formReqResponses\\:idBlondAr").val(idBlod);
+                        $j("#formReqResponses\\:btnIDBlondAr").trigger("click");
+                    } 
+                    function findBlodSinID(idBlod)
+                    {
+                        $j("#formReqResponses\\:idBlondAr").val(idBlod);
+                        $j("#formReqResponses\\:btnIDBlondSID").trigger("click");
+                    } 
+                    function findDeleBlodSID(idBlod)
+                    {
+                        $j("#formReqResponses\\:idBlondAr").val(idBlod);
+                        $j("#formReqResponses\\:btnDeleBlondSID").trigger("click");
+                    } 
+                    
+                    
+                    
+                    
+                    
+                
+                     
+                                
+            function functionRT(div, availableTags,extractLast){
+            $j( div )
+               // don't navigate away from the field on tab when selecting an item
+               .on( "keydown", function( event ) {
+                 if ( event.keyCode === $j.ui.keyCode.TAB &amp;&amp;
+                     $j( this ).autocomplete( "instance" ).menu.active ) {
+                   event.preventDefault();
+                 }
+               })
+               .autocomplete({
+                 minLength: 0,
+                 source: function( request, response ) {
+                   // delegate back to autocomplete, but extract the last term
+                   response( $j.ui.autocomplete.filter(
+                     availableTags, extractLast( request.term ) ) );
+                 },
+                 focus: function() {
+                   // prevent value inserted on focus
+                   return false;
+                 },
+                 select: function( event, ui ) {
+                   var terms = split(this.value);
+                   // remove the current input
+                   terms.pop();
+                   // add the selected item
+                   terms.push( ui.item.value );
+                   // add placeholder to get the comma-and-space at the end
+                   terms.push( "" );
+                   this.value = terms.join( "," );
+                   return false;
+                 }
+                 
+               });
+              }
+              function split( val ) {
+                    return val.split( /,\s*/ );
+                }
+                
+                $j(document).ready(function (){
+                     $("#inputFormtra\\:btnSend" ).attr("disabled");
+                });
+                function disablx(){
+                    $("#inputFormtra\\:btnSend" ).removeAttr("disabled");
+                }
+                 function cargareventsFormTrackingNEW(data) {
+                    var spinnerevents = document.getElementById("spinnerTrackingECR");
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) { 
+                            $("#inputFormtra").hide();                            
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                               $("#inputFormtra").show(); 
+                            }		
+                    }
+                }
+            </script>
+            
+            <style>    
+                ::-webkit-scrollbar-thumb {height: 10px !important; background-color: #a8a8a8;border-radius: 3px;}
+                .divArchivosTracking {
+                    width: 70%;
+                    margin: 1% 0% 1% 18%;
+                    height: 70px !important;
+                    overflow-y: scroll;
+                }
+                @media all and (max-width: 768px) {
+
+                    .tableeo.pararesponse tr{
+                        display: table;
+                        width: 100%;
+                    }
+                    
+                    .tableeo.pararesponse td.ten-prc{
+                        display: table-row;
+                    }
+                    
+                    .tableeo.pararesponse tr td{
+                        width: 30%;
+                        text-align: left;
+                    }                  
+                 }  
+                 .pararesponse{
+                     font-weight: bold;
+                 }
+                    .divContenedorTracking{
+                        margin: 0% 1% 1% 0%;
+                        width: 236px;
+                        border: groove;
+                        position: relative;
+                        float: left;
+                        height: 70px;
+                    }
+                    .two-prc {
+                    width: 2%;
+                }
+                .six-prc{
+                    width: 6%;
+                }
+                .eight-prc{                    
+                    width: 30% !important;
+                }
+                .fifteen-prc
+                {                    
+                    width: 15% !important;
+                }
+                    .imgArchivosTracking{
+                        width: 56px; 
+                        margin: 5% 0% 5% 1%;
+                    }
+                    .divCrudTrackingSinID{
+                        width: 59%;   
+                        margin: 0% 0% 0% 69%;
+                    }
+                    .divCrudTracking{
+                        width: 59%;   
+                        margin: 0% 0% 0% 83%;
+                    }
+                    .imgCrudTracking{
+                        width: 75%; 
+                    }
+                    .divImageContenedor{
+                        width: 60px;
+                        position: relative;
+                        float: left;
+                    }
+                    .divContenedorCrud{
+                        width: 33px;
+                        margin-right: 1px;
+                        position: relative;
+                        min-height: 1px;
+                        float: left;
+                    }
+                    
+                table.dataTable.nowrap td {
+                    white-space: normal !important;
+                    word-break: break-word !important;
+                }
+                .file-caption-main{
+                    left: 12.6%;
+                }
+                
+                	
+                @media screen and (max-width: 650px){
+                    .row > .paddingIzq2{
+                        width: 78px;
+                    }
+                }
+               
+                
+                    .disable {
+                        opacity: 0.65; 
+                        cursor: not-allowed;
+                    }
+                    body .ui-fileupload .ui-fileupload-buttonbar .ui-button.ui-state-disabled {
+                        display: none;
+                    }
+                    .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left.ui-fileupload-upload {
+                        display: none;
+                    }
+                    .ui-button {
+                        background: #286090 !important;
+                        color: #ffffff !important;
+                        border: 1px solid #007ad9 !important;
+                        font-size: 14px;
+                        margin: 0;
+                        margin-right: .1em;
+                        outline: 0 none;
+                        -moz-transition: background-color 0.3s;
+                        -o-transition: background-color 0.3s;
+                        -webkit-transition: background-color 0.3s;
+                        transition: background-color 0.3s;
+                    }
+                    
+                    
+                    .ui-messages-error{
+                        width: 103%;
+                        overflow-y: scroll;
+                        height: 55px;
+                    }
+                    .ui-fileupload-files {
+                        width: 103%;
+                        overflow-y: scroll;
+                        height: 55px;
+                    }
+                    .ui-fileupload-content {
+                        padding: .2em .4em;
+                        background: white !important;
+                        margin-top: 0% !important;
+                        background: white !important;
+                        overflow-y: scroll;
+                        height: 60px;
+                        overflow-x: hidden;
+                    }
+                    
+                    @media screen and (max-width: 758px){
+                        
+                            .ui-fileupload-content {
+                            margin-top: 0% !important;
+                            background: white !important;
+                            overflow-y: scroll;
+                            height: 60px;
+                            overflow-x: hidden;
+                        }
+                    }
+                    .ui-growl{
+                        display: none;
+                    } 
+                    
+                       @media (min-width: 1745px) and (max-width: 1920px){
+                           #trackingMain{
+                               /*overflow-y: scroll !important;*/
+                           }     
+                       
+                       }
+                       .bbtn2{
+                    margin-block-end: 0.5%;
+                    margin-right: 1px;
+                    position: relative;
+                    float: left;
+                    /*margin: auto;*/
+                    padding: 2px 5px 3px 5px;
+                    left: 8%;
+                }
+                .divBotonEnviarTracking{
+                        margin: 0% 0% 0% 25%;
+                }
+                 @media (min-width: 0px) and (max-width: 700px){
+                   
+                    .bbtn2{
+                        width: 21%;
+                    }
+
+                }
+                .bodyTrackingECR{
+                    overflow-x: hidden; 
+                    /*overflow-y: scroll !important;*/
+                    width: 100%;
+                    /*height: 130%;*/
+                }
+                .font-trackingECR{
+                    font-size: 12px;
+                    font-family: 'Helvetica Neue', Helvetica,Arial,sans-serif !important;
+                }
+            </style>
+        </h:head>
+        <h:body id="trackingMain" class="bodyTrackingECR">
+            <h:form id="formReqResponses">             
+                
+                <h:inputText value="#{AdjuntosBean.idDocument}" id="idBlondAr" style="display: none;">
+                    <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                </h:inputText>
+                
+                <h:commandButton id="btnDeleBlondSID" action="#{RequestTracking.deleteBlod()}" style="display: none;">
+                    <f:ajax execute="@form" render="@form inputFormtra:msjAdjuntoAR inputFormtra:msjAdjuntoAR2 inputFormtra:msjAdjuntoAR3 inputFormtra:messageId refremeta"/>
+                </h:commandButton>
+                <h:commandButton id="btnIDBlondAr" action="#{AdjuntosBean.newDownloadfile()}" style="display: none;">                    
+                </h:commandButton>
+                <h:commandButton id="btnIDBlondSID" action="#{AdjuntosBean.newDownloadfile2()}" style="display: none;">                    
+                </h:commandButton> 
+            </h:form>
+                <!-- Tracking de la ECR en ingenieria -->
+                        <!-- Page Heading -->
+            <h:form id="docFormGeTraking">
+                <h:inputText id="iteDownloadGeTraking" value="#{RequestTracking.idReqResponse}" style="display: none;">
+                    <f:ajax event="change" render="@this refremeta"/>
+                </h:inputText>
+                <h:commandButton id="ejecutarGeTraking" action="#{RequestTracking.recuperarBlob()}" style="display: none;">
+                </h:commandButton>
+            </h:form>
+                        
+                        <div id="spinnerTrackingECR" class="dimensionesSpinner" style="display: none;" >
+                            <div id="loader-wrapper" class="loadingif">
+                                <div id="loader">
+                                </div>
+                                <div id="content">
+                                    <h3>#{gen_msg['loading']}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+    <h:form id="inputFormtra" class="formuTrackingECR" style="margin-bottom: 38px; padding-bottom: 38px; border-bottom: 38px;" enctype="multipart/form-data">
+        <h:inputText id="iteDownloadTracking" value="#{RequestTracking.idReqResponse}" style="display: none;">
+            <f:ajax event="change" render="@this refremeta"/>
+        </h:inputText>
+
+        <h:inputHidden id="idMensaje"  class="form-control"   value="#{RequestTracking.elemento.reqMessageid}"/>
+        <h:panelGrid class="pararesponse" columns="2" columnClasses="ten-prc right-align, forty-prc" style="width: 88%; margin-top: 12px;">
+            <h:column>
+                <h:outputLabel value="#{gen_msg['IdECO']}" for="idE" />
+                <h:outputText value="  *  " class="msgError"/>
+            </h:column> 
+            <h:column>
+                <h:outputText id="idE" value="#{RequestTracking.elemento.resCorrECR > 0 ? RequestTracking.elemento.resCorrECR: ''}#{RequestTracking.elemento.resCodMsj} "/> 
+            </h:column> 
+            
+           
+            <h:column>
+                <h:outputLabel value="#{gen_msg['to']}" for="to" />
+                <h:outputText value="  *  " class="msgError"/>
+            </h:column> 
+            <h:column>
+                <h:inputTextarea id="to" class="form-control camposTrackingmodalIng font-trackingECR"  style="height: 43px;" value="#{RequestTracking.elemento.resEmailsToMos}"  required="true" requiredMessage="#{gen_msg['to']} #{gen_msg['adjNecesario']}">                           
+                </h:inputTextarea>
+            </h:column>
+            <h:column>
+                <h:outputLabel value="#{gen_msg['subject']}" for="Asunto" />
+                <h:outputText value="  *  " class="msgError"/>
+            </h:column> 
+            <h:column>
+                <h:inputTextarea id="Asunto" class="form-control camposTrackingmodalIng font-trackingECR"  value="#{RequestTracking.elemento.resSubject}" style="height: 43px;"
+                                 required="true" requiredMessage="#{gen_msg['subject']} #{gen_msg['adjNecesario']}" disabled="#{tabECREaEoBean.roles eq 7 and tabECREaEoBean.companySelected eq 'FAS'}">
+                </h:inputTextarea>                       
+            </h:column>
+        </h:panelGrid>
+
+            <h:panelGroup id="msjAdjuntoAR3" style="display: #{RequestTracking.existeLista ? 'block':'none'};">   
+                <div class="divArchivosTracking">
+                    <h:panelGroup id="msjAdjuntoAR">
+                        <c:forEach items="#{AdjuntosBean.listado}" var="itemIcon" id="docIcon" varStatus="iconLoop">
+                            <div class="divContenedorTracking"  style="display: #{AdjuntosBean.esEA ? 'block':'none'};">                            
+                                <div class="divImageContenedor">
+                                    <a><h:graphicImage class="imgsize imgArchivosTracking" library="styleAE" name="img/iconos-tracking/icon-#{itemIcon.extension eq null ? 'error':itemIcon.extension}.svg"/></a>
+                                </div>
+                                <div>
+                                    <h:outputLabel value="#{itemIcon.nombreAcotado}" />
+                                </div>
+                                <div class="divCrudTracking">
+                                    <div class="divContenedorCrud file-upload-indicator">
+                                        <button type="button" class="kv-file-remove btn btn-xs btn-default"  onclick="findBlod(#{iconLoop.index})">
+                                                <h:graphicImage class="imgsize imgCrudTracking" library="styleAE" name="img/iconos-tracking/icon-download.svg"/>
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divContenedorTracking" style="display: #{AdjuntosBean.esEA ? 'none':'block'};" >                            
+                                <div class="divImageContenedor">
+                                    <a><h:graphicImage class="imgsize imgArchivosTracking" library="styleAE" name="img/iconos-tracking/icon-#{itemIcon.extension eq null ? 'error':itemIcon.extension}.svg"/></a>
+                                </div>  
+                                <div>
+                                    <h:outputLabel value="#{itemIcon.nombreAcotado}" />
+                                </div>
+                                <div class="divCrudTracking">
+                                    <div class="divContenedorCrud file-upload-indicator">
+                                        <button type="button" class="kv-file-remove btn btn-xs btn-default" onclick="findBlod(#{iconLoop.index})" >
+                                                <h:graphicImage class="imgsize imgCrudTracking" library="styleAE" name="img/iconos-tracking/icon-download.svg"/>
+                                        </button>
+                                        
+                                    </div> 
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:panelGroup>
+                    <h:panelGroup id="msjAdjuntoAR2">
+                        <c:forEach items="#{AdjuntosBean.listado2}" var="itemIcon2" id="docIcon2" varStatus="iconLoop2">                            
+                            <div class="divContenedorTracking" style=" display: #{AdjuntosBean.esEA ? 'none':'block'};" >                            
+                                <div class="divImageContenedor">
+                                    <a><h:graphicImage class="imgsize imgArchivosTracking" library="styleAE" name="img/iconos-tracking/icon-#{itemIcon2.extension eq null ? 'error':itemIcon2.extension}.svg"/></a>
+                                </div>  
+                                <div>
+                                    <h:outputLabel value="#{itemIcon2.nombreAcotado}" />
+                                </div>
+                                
+                                <div class="divCrudTrackingSinID">
+                                    <div class="divContenedorCrud file-upload-indicator">
+                                        <button type="button" class="kv-file-remove btn btn-xs btn-default"  onclick="findBlodSinID(#{iconLoop2.index})">
+                                                <h:graphicImage class="imgsize imgCrudTracking" library="styleAE" name="img/iconos-tracking/icon-download.svg"/>
+                                        </button>
+                                        
+                                    </div> 
+                                    <div class="divContenedorCrud file-upload-indicator">
+                                        <button type="button" class="kv-file-remove btn btn-xs btn-default" onclick="findDeleBlodSID(#{iconLoop2.index})">
+                                                <h:graphicImage class="imgsize imgCrudTracking" library="styleAE" name="img/iconos-tracking/icon-delete.svg"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:panelGroup>
+                </div>
+                <div class="alinearIzqmsgError">
+                    <h:messages for="to" class="msgError"/>
+                    <h:messages for="Asunto" class="msgError"/>
+                    <h:messages for="messageId" class="msgError"/>
+                </div>
+            </h:panelGroup> 
+        <div style="display: #{AdjuntosBean.esEA ? 'none;':'block;'}">
+            <div class="botomRow">                        
+                        <h:panelGroup id="uploadTracking" class="estiloUploadformuECR">                           
+                            <div style="width: 70%; margin: 1% 0% 0% 18%;">                                
+                                <p:fileUpload id="fileesTraking" fileUploadListener="#{RequestTracking.handleFileUpload}" value="#{RequestTracking.filex}"  mode="advanced" dragDropSupport="true" 
+                                              multiple="true"  update="messages msjAdjuntoAR2 msjAdjuntoAR3 messageId"  auto="true" allowTypes="/(\.|\/)(JPG|JPEG|PNG|GIF|TXT|PDF|DOCX|DOC|XLS|jpg|jpeg|png|gif|txt|pdf|docx|doc|xls)$/" >    
+                                </p:fileUpload>
+                                <p:growl id="messages" showDetail="true" /> 
+                                <h:commandButton  id="btnSendECR2" style="display: none;" action="#{RequestTracking.sendMail()}">
+                                    <f:ajax execute="@form" render=" @form  formP inputFormtraTbl  refremeta onsuccesstra"/>
+                                </h:commandButton>
+                                <script>
+                                            function donwloadTraking(ite){
+                                                var ideItem = ite;
+                                                $j("#docFormGeTraking\\:iteDownloadGeTraking").val(ideItem);
+                                                $j("#docFormGeTraking\\:ejecutarGeTraking").trigger("click");
+                                            }
+                                            
+                                            function cerrarAutoComplit(){
+                                                var cerrarcalend;
+                                                
+
+
+                                            }
+                                </script>                                
+                                <h:outputLabel value="#{gen_msg['adjFileIncorrecto']}  'JPG','JPEG', 'PNG','GIF','TXT','PDF','DOC','DOCX', 'XLS', 'jpg','jpeg', 'png','gif','txt','pdf','doc','docx', 'xls'" rendered="#{ECRDocumentBean.existeFile eq 1}" class="msgError"/>
+                                <h:outputScript library="styleAE" name="fileupload/es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+                                <script>
+                                            function limpiarUplo2(){
+                                            $j('.file-live-thumbs').remove();
+                                                    $j('.kv-file-remove').remove();
+                                                    $j('.file-caption-name').html('');
+                                                    $j('.file-drop-zone').append('<div class="file-drop-zone-title"></div>');
+                                            }
+                                </script>
+                                <hr></hr>
+                                <br></br>
+                            </div>
+                        </h:panelGroup>
+                </div> 
+            </div>
+        <h:panelGrid class="pararesponse" columns="2" columnClasses="ten-prc right-align, forty-prc" style="margin-bottom: 18px; width: 89%; #{AdjuntosBean.esEA ? 'margin: 0% 0% 0% 0%;':'margin: -4% 0% 0% 0%;' }">
+            <h:column>
+                <h:outputLabel value="#{gen_msg['msj']}" for="messageId" />  
+                <h:outputText value="  *  " class="msgError"/>
+            </h:column> 
+            <h:column>
+                <h:inputTextarea id="messageId"  class="form-control camposTrackingmodalIng font-trackingECR"   value="#{RequestTracking.elemento.resBody}"
+                    required="true" requiredMessage="#{gen_msg['msj']} #{gen_msg['adjNecesario']}" rows="#{RequestTracking.existeLista ? '19':'25'}" cols="40" style="resize:none;">
+                    <f:ajax execute="@this" event="keyup"/>
+                </h:inputTextarea>                     
+            </h:column>
+            <h:column>
+            </h:column>
+            
+            <h:column>
+            </h:column>
+            <!-- Pregunta adicionada -->
+            <h:column>
+                <h:outputLabel style="#{RequestTracking.display}" value="#{gen_msg['firstResponse']}" for="rsFirst" />  
+                <p:spacer width="50" height="15" /> 
+
+                 <h:selectBooleanCheckbox id="rsFirst" readonly="false" onclick="verificarCheckF(this)" value="#{RequestTracking.resFirstResp}" style="#{RequestTracking.display}" />
+                 <h:inputText id="txtFirst" class="fontECR form-control" value="#{RequestTracking.txtFirstResp}" autocomplete="off" style="display: none" />
+                
+                
+            </h:column>
+            <h:column>
+            </h:column>
+            <h:column>
+                <h:outputLabel value="#{gen_msg['ECRespuestaPri?']}" for="rsPri" style="#{RequestTracking.display}" />  
+                <p:spacer width="30" height="15" /> 
+                
+      
+                
+                <h:selectBooleanCheckbox id="rsPri" readonly="false" onclick="verificarCheckP(this)" value="#{RequestTracking.rECRespPri}" style="#{RequestTracking.display}" />
+                <h:inputText id="txtPri" class="fontECR form-control" value="#{RequestTracking.txtRespPri}" autocomplete="off" style="display: none" />
+                
+            </h:column>
+            
+            <h:column>
+            </h:column>
+            
+            <h:column >
+                <h:outputLabel value="#{gen_msg['Idseguimientos']}"  style="#{RequestTracking.display}" />
+                <p:spacer width="30" height="15"/> 
+                
+                <h:selectOneMenu  id="idSeguimiento" value="#{RequestTracking.elemento.resSegEng}" style="#{RequestTracking.display};margin-bottom: 28px;">
+                          <f:selectItem itemLabel="..." itemValue="#{null}"/>
+                          <f:selectItems value="#{RequestTracking.lstSeguimiento}" var="ls" itemLabel="#{ls.idMSJ}" itemValue="#{ls.idMSJ}"/>
+                           <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                </h:selectOneMenu>
+                
+                
+                
+            </h:column>
+            
+            <h:column>
+            </h:column>
+            
+            <h:column>
+                <h:panelGrid class="tableeo pararesponse estiloOperationformuECR" columns="6" style="border:none;margin:0 auto;width:100%;margin-bottom: 38px;">
+                    <h:commandButton  style="#{RequestTracking.pointer} width:100%" id="btnSendECR" class="btn btn-signin" value ="#{gen_msg['send']}" action="#{RequestTracking.sendMail()}" disabled="#{RequestTracking.elemento.resId != null ? true :false}" >
+                        <f:ajax execute="@form" render="@form onErrorMailECR onsuccesstra " onevent="cargareventsFormTrackingNEW"/>
+                    </h:commandButton> 
+                    <h:commandButton style="#{RequestTracking.pointer}width:100%"  class="btn btn-signin" value ="#{gen_msg['genAdd']}  #{gen_msg['new']}" action="#{RequestTracking.resetDisable()}" >
+                        <f:ajax execute="@this"   render="ondescartra @form inputFormtra"/>
+                    </h:commandButton>
+                    
+                    <h:commandButton id="btnUpdate" style="#{RequestTracking.display} width: 100%"  class="btn btn-signin" value ="#{gen_msg['genUpdate']}" action="#{RequestTracking.updateMsj()}" disabled="#{RequestTracking.elemento.resCorrECR > 0 ? false :true}" >
+                              <f:ajax execute="@form" render="@form onErrorMailECR onsuccesstra " onevent="cargareventsFormTrackingNEW"/>
+                    </h:commandButton>
+                </h:panelGrid>   
+            </h:column>
+        </h:panelGrid> 
+        </h:form>
+
+        <h:panelGroup id="onsuccesstra">
+            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed and RequestTracking.errorFile ne 1}">
+                susesModalTrac();
+            </h:outputScript>
+        </h:panelGroup> 
+        <h:panelGroup id="ondescartra">
+            <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                           
+                descModalTrac();
+            </h:outputScript>
+        </h:panelGroup>
+        <h:panelGroup id="onErrorMailECR">
+            <h:outputScript rendered="#{facesContext.postback and facesContext.validationFailed and !RequestTracking.errorMail}">                           
+                susesModalTracError();
+            </h:outputScript>
+        </h:panelGroup>
+                        
+        </h:body>
+    </f:view>
+</html>

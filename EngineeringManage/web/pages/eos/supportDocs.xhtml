@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title> </title>
+           
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModalc', '675px');
+                });
+                              
+            </h:outputScript>
+            <script>
+                function getIdFromNames(obj){ 
+                    var id = obj.id;
+                    document.getElementById(id+"0").value=  obj.value;
+                    }
+                    </script>
+        
+        </h:head>
+        <h:body>
+           
+                <div id="page-wrapper">
+                    <div class="container-fluid" style="margin: auto; width: 95%;">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red;">
+                                    #{aees_msg['sudoc']}
+                                </h1>
+                            </div>
+                        </div>
+                        <h:panelGroup id="inputModalc" style="display:none;" pt:title="#{aees_msg['sudoc']}">
+                            <h:form id="inputFormSupportDoc">
+                               
+
+                                <h:panelGrid style="width: 100%" columns="4" columnClasses="twentyfive-prc left-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc" >
+                                   
+                                  
+                                    <h:outputLabel value="#{aees_msg['docNum']}:" for="docNum"  />
+                                    <h:inputText id="docNum" style="resize: none" value="#{supportDocsBean.elemento.sdoDocNumber}" />                                                                  
+                                    <h:outputLabel value="#{aees_msg['docType']}:" for="docType"/>
+                                    <h:inputText id="docType" title="docType" value="#{supportDocsBean.elemento.sdoType}"/>
+                                    <h:outputLabel value="#{aees_msg['orderID']}:" for="orderID"/>
+                                    
+                                    <h:selectOneMenu  id="orderID" onchange="getIdFromNames(this);" value="#{supportDocsBean.elemento.eoIdord}" >
+                                       
+                                        <f:selectItems value="#{engOrdersBean.id_idord}" var="option" itemLabel="#{option}" itemValue="#{option}"/>
+                                                                             
+                                    </h:selectOneMenu>
+                                    
+                                    
+                              </h:panelGrid>
+                                <h:panelGrid style="width: 100%" columns="2" columnClasses="twentyfive-prc left-align , seventyfive-prc">
+                                    <h:outputLabel value="#{gen_msg['title']}:" for="Titulo" />
+                                    <h:inputTextarea id="title" style="resize: none; width: 100%;" value="#{supportDocsBean.elemento.sdoSubject}"/>
+                                    
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!supportDocsBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{supportDocsBean.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccess12 @form resultForm12 refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{supportDocsBean.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccess12 @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputForm:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="inputForm:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccess12">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalc").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <h:form id="resultForm12" style="width:100%;">
+                            <h:dataTable id="tblListado12" pt:name="tblListado12" value="#{supportDocsBean.listado}" var="item" class="table table-striped dt-responsive nowrap">
+                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['docId']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['docId']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.sdoId}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['docNum']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['docNum']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.sdoDocNumber}"/>
+                                </h:column>
+
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['docType']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['docType']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.sdoType}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['docTitle']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['docTitle']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.sdoSubject}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['orderID']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['orderID']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.eoIdord.eoIdord}"/>
+                                </h:column>
+                                
+                                         
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModalc');">
+                                        <f:setPropertyActionListener target="#{supportDocsBean.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{supportDocsBean.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="inputForm refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" action="#{supportDocsBean.eliminar(item)}">
+                                        <f:ajax execute="@this" render="@form refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListado12]','${swtLanguage.language}','#inputModalc');</h:outputScript>
+                        </h:form>
+                    </div>
+                </div>
+        </h:body>
+    </f:view>
+</html>

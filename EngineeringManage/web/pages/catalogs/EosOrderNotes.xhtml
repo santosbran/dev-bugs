@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            
+             <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+             <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+             <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+             <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModalON', '400px');
+                    crearModal('#alert1', '250px');
+                });
+            </h:outputScript>
+        </h:head>
+        <h:body>
+                <div style="padding: 0px 10px">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <h:panelGroup id="slither6">
+                                <div id="slideDer6" class="menut6" style="display: none;">
+
+                                </div>
+                            </h:panelGroup>
+                            
+                            <div class="c-hamburger c-hamburger--rot is-active" id="c-hamburger6" >
+                                <span>toggle menu</span>
+                            </div>
+                        </div>
+                        <script>
+                                 (function() {
+                                    "use strict";
+
+                                    var toggles = document.querySelectorAll("#c-hamburger6");
+
+                                    for (var i = toggles.length - 1; i >= 0; i--) {
+                                      var toggle = toggles[i];
+                                      toggleHandler(toggle);
+                                    };
+
+                                    function toggleHandler(toggle) {
+                                      toggle.addEventListener( "click", function(e) {
+                                        e.preventDefault();
+                                        $('#slideDer6').toggle("slow");
+                                        
+                                      });
+                                    }
+
+                                  })();
+                                  function funalert1(idModal,id){
+                                      
+                                        $(idModal).dialog("open");
+                                        $('#removeordernote\\:idornote').val(id);
+                                    return false;
+                                }
+                        </script>
+                        <h:panelGroup id="inputModalON" style="display:none;" pt:title="#{gen_msg['genAddEdit']}">
+                            <h:form id="inputFormOrderNotes">
+                                <h:panelGrid columns="2" style="min-width: 300px;">
+                                    <h:outputLabel value="#{gen_msg['code']}:" for="idnot" />
+                                    <h:inputText id="idnot" value="#{eosOrderNotesBean.elemento.idnot}" rendered="#{eosOrderNotesBean.elemento.idnot eq null}" title="Idnot" class="form-control" required="true" requiredMessage="#{gen_msg['msgCode']}."/>
+                                    <h:outputLabel id="idnot2" value="#{eosOrderNotesBean.elemento.idnot}" rendered="#{eosOrderNotesBean.elemento.idnot ne null}" class="form-control" title="Idnot"/>
+                                    <h:outputLabel value="#{gen_msg['note']}" for="name" />
+                                    <h:inputText id="name" value="#{eosOrderNotesBean.elemento.name}" title="Name" class="form-control" />
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton id="saveordernotes" class="btn btn-signin" value ="#{!eosOrderNotesBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{eosOrderNotesBean.guardar()}" >
+                                        <f:ajax execute="@form" render="onsuccess7 @form resultForm7 slither6 refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{eosOrderNotesBean.limpiar()}" >
+                                        <f:ajax execute="@this" render="ondescar1 @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>                         
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccess7">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalON").dialog("close");
+                                    $("#alert1").dialog("close");
+                                    alertify.success("#{aees_msg['exito']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                            <h:panelGroup id="ondelete1">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalON").dialog("close");
+                                    $("#alert1").dialog("close");
+                                    alertify.log("#{aees_msg['removeitem']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                            <h:panelGroup id="ondescar1">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalON").dialog("close");
+                                    $("#alert1").dialog("close");
+                                    alertify.custom = alertify.extend("custom");
+                                    alertify.custom("#{aees_msg['descardoperation']}");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                                             
+                        <h:form id="resultForm7" style="width:100% !important;font-size: 7px;">
+                            <h:dataTable id="tblListado7" class="table table-striped dt-responsive" pt:name="tblListado7" value="#{eosOrderNotesBean.listado}" var="item" style="width: 100% !important">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['code']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idnot}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{gen_msg['note']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer" >
+                                        <h:outputText value="#{gen_msg['note']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModalON');">
+                                        <f:setPropertyActionListener target="#{eosOrderNotesBean.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{eosOrderNotesBean.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="inputFormOrderNotes refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" onclick="funalert1('#alert1','${item.idnot}');" >
+                                        <f:ajax execute="@this"  />
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                           
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListado7]','${swtLanguage.language}','#inputModalON','.menut6');</h:outputScript>
+                        </h:form>
+                        <h:panelGroup id="alert1" style="display:none;" pt:title="#{gen_msg['delete']}">
+                                
+                                <h:form id="removeordernote">
+                                    <h:inputText value="#{eosOrderNotesBean.idalert1}" style="display: none;" id="idornote"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                                    
+                                    <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                                       <h:outputLabel value="¿#{aees_msg['deleteitem']}?"/> 
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="2" style="margin:auto;">
+                                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{eosOrderNotesBean.delete(eosOrderNotesBean.idalert1)}" >
+                                            <f:ajax execute="@form" render="ondelete1 @form resultForm7 slither6 refremeta"/>
+                                        </h:commandButton>
+                                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" >
+                                            <f:ajax execute="@this" render="ondescar1 @form refremeta" />
+                                        </h:commandButton>
+                                    </h:panelGrid>
+                                    
+                                </h:form>
+                            
+                        </h:panelGroup>
+                </div>
+        </h:body>
+    </f:view>
+</html>

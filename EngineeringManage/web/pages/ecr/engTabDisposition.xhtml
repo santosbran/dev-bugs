@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title></title>   
+            <h:outputScript>
+                $(document).ready(function (){ 
+                crearModal('#alertDispoECR', '335px');
+                });                
+
+            </h:outputScript>
+            <style>                
+                #dasTabECR {
+                    position: fixed;
+                    margin-top: -170px;
+                    height: 65%;
+                    left: 75%;
+                    right: 0.99%;
+                }  
+                .two-prc {
+                    width: 2%;
+                }
+                .six-prc{
+                    width: 6%;
+                }
+                .eight-prc{                    
+                    width: 30% !important;
+                }
+                .ui-widget-content {   
+                    background: #fff !important;
+
+                }
+                .p.a {
+                    word-break: break-all;
+                }
+                #fmECRTabNw > .scrollDashES >  .dataTables_wrapper {
+                    width: 98%;
+                    left: 1%;
+                }
+                .scrollDashES {
+                    display: block;
+                }
+                
+                
+                @media (min-width: 0px) and (max-width: 500px){
+                    .scrollDashES{                        
+                        height: 430px;
+                    }
+                 #fmECRTabNw > .scrollDashES > .dataTables_wrapper {
+                        width: 144%;
+                        left: 1%;
+                    }
+                }
+               #fmECRTabNw > .scrollDashES >  .dataTables_wrapper{
+                    height: 65% !important;
+                    position: fixed;
+                    overflow: auto;
+
+                }
+                #icoBackDash{
+                    position: relative;
+                    top:18px; 
+                    z-index: 999999999999;
+                    height: 37px;
+                }
+                .scrollDashES{
+                    position: relative;
+                    top: 9px; 
+                    padding: 50px 0 0 0;
+                }
+                .anchoTableMantenimientos {
+                    margin-left: 0.3% !important;
+                    margin-right: auto !important;
+                    width: 99% !important;
+                    height: 100% !important;
+                    overflow: auto !important;
+                    padding: 0 0 50px 0;
+
+                } 
+                #workOrder{
+                    position: fixed;
+                    top: 4px;
+                    font-size: 25px;
+                    font-weight: bold;
+                    left: 68%;
+                }
+                .closes{
+                    background: gray;
+                }
+                .menuTracking {
+                    z-index: 999; 
+                    margin: 0% 0% 0% 40%;
+                }
+                .menuDivTracking {
+                    background: rgba(205,204,204,0.65) !important;
+                }
+                .divTitleTracking{
+                    background-color: gray !important; 
+                    border-bottom: 3px solid #bf1e2d; 
+                    border-left: 3px solid #bf1e2d; 
+                    padding: 6px 10px 0px 10px !important;
+                }
+                .labelTitleTracking{
+                    margin-left: 1%; 
+                    text-transform: uppercase !important; 
+                    font-size: 12px !important; 
+                    color: white !important;
+                }
+                .menuDivTracking > .menuTracking > .dt-button{
+                    margin-top: 0.5%
+                }
+                .fmTrackingTabAS{
+                    height: 87%; 
+                    margin: 0% 1% 0% 1%; 
+                    overflow: auto !important;
+                }
+                
+                
+                 @media (max-width: 895px) and (min-width: 816px){
+                    #fmTrackingTabNw{
+                        margin: 11% 1% 0% 1%; 
+                    }
+                    #menuTabTrackingAS > .btn {
+                        top: -23px !important;
+                    }
+                }
+                @media (max-width: 815px) and (min-width: 791px){
+                    #fmTrackingTabNw{
+                        margin: 13% 1% 0% 1%; 
+                    }
+                    #menuTabTrackingAS > .btn {
+                        top: -8px !important;
+                    }
+                }
+                @media (max-width: 790px) and (min-width: 650px){
+                    #fmTrackingTabNw{
+                        margin: 16% 1% 0% 1%; 
+                    }
+                    #menuTabTrackingAS > .btn {
+                        top: 15px !important;
+                    }
+                }
+                @media (max-width: 649px) and (min-width: 500px){
+                    #fmTrackingTabNw{
+                        margin: 21% 1% 0% 1%; 
+                    }
+                    #menuTabTrackingAS > .btn {
+                        top: 15px !important;
+                    }
+                }
+                
+                
+            </style>
+            <script>
+                
+                function selectTabTracking(tr){
+                        $("#selectIDTracking\\:idTrackingImputT").val(tr);
+                        $("#selectIDTracking\\:idTrackingButton").trigger("click");
+                    }
+                function backTabDisposition(){
+                    $('#newDispositionEng').hide(); 
+                    $('#newDispositionEngP2').hide(); 
+                    $('#engineer').show();
+                    $('#main').show();    
+                    $('#supervisor').show();
+                }
+            function oliface2(tr){
+                        $("#insertarIDDisposition\\:idDispositionImputT").val(tr);
+                        $("#insertarIDDisposition\\:idDispositionButton").trigger("click");
+                        $('#newDispositionEng').hide(); 
+                        $('#newDispositionEngP2').show(); 
+                        
+                    }
+            function addDisposition(){
+                $('#newDispositionEng').hide(); 
+                $('#newDispositionEngP2').show(); 
+                $("#insertarIDDisposition\\:cleanDisposition").trigger("click");
+            }
+                           
+                        
+            </script>
+        </h:head>
+        <h:body>
+            <h:form id="insertarIDDisposition" style="display: none;">
+                <h:inputHidden value="#{engReqIngaction.idDispTab}" id="idDispositionImputT">
+
+                </h:inputHidden>  
+                <h:commandButton id="idDispositionButton" action="#{engReqIngaction.findIDDis(engReqIngaction.idDispTab)}" style="display: none;">
+                    <f:ajax execute="@form" render="inputForm11590 resultadosDisp refremeta" />
+                </h:commandButton>
+                <h:commandButton id="cleanDisposition" action="#{engReqIngaction.limpiar()}" style="display: none;">
+                    <f:ajax execute="@form" render="inputForm11590 resultadosDisp refremeta" />
+                </h:commandButton>
+
+            </h:form>
+            
+            <h:form id="menuTabDispositionAS"> 
+                <h:commandButton id="icoBackTabDisposition" 
+                                 class="btn btn-signin butomclassECR imageRet" title="Back" action="#{engReqIngaction.limpiarTab()}" onclick="backTabDisposition();" style="position: fixed;top: 15px;height: 38px;">
+                    <f:ajax execute="@this" render="@this refremeta inputForm70:status"  />
+                </h:commandButton> 
+            </h:form>
+            <h:form id="fmDispositionTabNw" class="fmTrackingTabAS" >  
+                <div class="divTitleTracking">
+                    <label class="labelTitleTracking">#{gen_msg['list']}</label>
+                </div>
+                    
+                    <h:dataTable id="tblListadosDispositionTabNw" class="table table-striped dt-responsive anchoTableMantenimientos2"  value='#{engReqIngaction.listado2}'
+                                 pt:name="tblListadosDispositionTabNw" var="item" columnClasses="two-prc,twenty-prc,two-prc,ten-prc,twenty-prc,twenty-prc,ten-prc" style="cursor: pointer; position: initial;">                   
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['id']}"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="#{gen_msg['id']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.einActionId}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['desactype']}"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="#{gen_msg['desactype']}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.einDescription}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{gen_msg['hours']}"/>                                     
+                        </f:facet>
+                        <f:facet name="footer" > 
+                            <h:outputText value="#{gen_msg['hours']}"/>                                     
+                        </f:facet>
+                        <h:outputText id="codigo" value="#{item.einHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{aees_msg['creatDate']}"/>                                     
+                        </f:facet>
+                        <f:facet name="footer" > 
+                            <h:outputText value="#{aees_msg['creatDate']}"/>                                     
+                        </f:facet>
+                        <h:outputText  value="#{item.einFechaIns}">
+                            <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" timeZone="GMT-6" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{aees_msg['usrInsert']}"/>                                     
+                        </f:facet>
+                        <f:facet name="footer" > 
+                            <h:outputText value="#{aees_msg['usrInsert']}"/>                                     
+                        </f:facet>
+                        <h:outputText  value="#{item.einUserIns}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{aees_msg['preDateUpd']}"/>                                     
+                        </f:facet>
+                        <f:facet name="footer" > 
+                            <h:outputText value="#{aees_msg['preDateUpd']}"/>                                     
+                        </f:facet>
+                        <h:outputText  value="#{item.einDateUpd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" timeZone="GMT-6" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{aees_msg['usrChange']}"/>                                     
+                        </f:facet>
+                        <f:facet name="footer" > 
+                            <h:outputText value="#{aees_msg['usrChange']}"/>                                     
+                        </f:facet>
+                        <h:outputText  value="#{item.einUserUpd}"/>                   
+                    </h:column> 
+                     </h:dataTable>
+                <script >
+                    formatTable('table[name=tblListadosDispositionTabNw]','#{swtLanguage.language}','#tblListadosDispositionTabNw','.menuDispo'); 
+                    
+                </script>
+                <h:panelGroup id="scriptDisposition">
+                    <h:outputScript>
+                        function splitDispo(){ 
+                            $("#fmDispositionTabNw .dt-buttons .buttons-mas").each(function (index) {
+                                var selTrac=$(this);
+                                selTrac.attr('onclick', 'addDisposition()');
+                                selTrac.attr('id', 'idDispo'+index);                        
+                            }); 
+                        }
+                        splitDispo();
+                    </h:outputScript>
+                </h:panelGroup>
+                <h:panelGroup id="scroptP22" rendered="#{engReqIngaction.listado2.size()>0}"> 
+                <h:outputScript>
+                    splitmesa2();
+                    function splitmesa2(){ 
+                        $("#fmDispositionTabNw\\:tblListadosDispositionTabNw tbody tr").each(function (index) {
+                        if($(this).children("td")[0] !== undefined){
+                            var chel=$(this);
+                            var text1=$(this).children("td")[0].textContent;  
+                            chel.attr('onclick', 'oliface2('+text1+');');
+                            chel.attr('id', 'idDispoECR'+index);
+                        }
+                        }); 
+                    }
+                    
+                </h:outputScript>
+                    </h:panelGroup>
+            </h:form>            
+            <h:form id="formDispositionForAir" style="position: absolute; z-index: 9999999999;  top: 100%;    left: 93%; display: none;">
+                 <h:commandButton id="addDispositionForAir" class="btn-circle btn-xl btn-danger"  value="+"  action="#{engtabECRnwsVwBean.autoComplete()}">
+                        <f:ajax execute="@this" render="@this inputForm70 refremeta"/>
+                    </h:commandButton>
+                <h:commandButton id="renderTABDisposition" value="+"  style="display: none;">
+                        <f:ajax execute="@this" render="@this fmECRTabNw fmInfoWork"/>
+                    </h:commandButton>                   
+            </h:form>
+            
+        </h:body>
+    </f:view>
+</html>
+
+           

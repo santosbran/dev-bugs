@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+          
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>        
+        <script>
+            $(function () {
+                $("#tabs3").tabs();
+            });
+           function companying(idcom){
+               $("#forming"+idcom+"\\:id").val(idcom);
+               $("#forming"+idcom+"\\:but").trigger("click");
+           }
+           function allowDropaaa(ev, idesr) {
+       ev.preventDefault();
+        //document.getElementById(id.id).style.borderColor="red";
+        $("#"+idesr.id).addClass('hoverdrag');
+    }
+
+
+    function dragaaa(ev,idinge) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        var text = idinge.value;
+        document.getElementById("formdrag:drauser").value = text;
+        
+    }
+    function removerclshover(idesr){
+    $("#"+idesr.id).removeClass('hoverdrag');
+    }
+
+    function removeNode(node) {
+        node.parentNode.removeChild(node);
+      }
+
+          function dropaaa(ev, idesr) {
+            ev.preventDefault();
+            $("#"+idesr.id).removeClass('hoverdrag');
+            console.log(idesr.id);
+            var nuevo = $("#"+idesr.id+" > :input")[0].id;
+            var text = document.getElementById(nuevo).value;
+            document.getElementById("formdrag:draesr").value = text;
+            console.log(text);
+            $("#formdrag\\:updateesr").trigger("click");
+            ev.stopPropagation();
+            return false;
+          }
+       //   $("body").on("click","tr.ClaseobtenerId",function(){
+         //     var idfila=($(this).index());
+          //    document.getElementById("formula:tableing:"+idfila+":comanlinkSel").click();
+           //   console.log("olii");
+             //            });
+          
+          function otrodrag(ev,tr){
+              ev.dataTransfer.setData("text", ev.target.id);
+              var td = $(tr).children("td");
+              var idinge = td[0].children[0].children[1];
+              dragaaa(ev,idinge);
+              
+          }
+
+        </script>
+        <style>       
+            .table>dataTable>tr:hover{
+                background-color: gray !important;
+                color: white !important;
+                font-weight: 700 !important;
+            }     
+            .imagenesDashBoard{        
+                background:url("#{resource['styleAE:img/menu/movil/Menu-Icon-02-blue.svg']}");
+                width: 52px !important;         
+                background-repeat: no-repeat !important;
+                background-size: 51px;
+                background-position-y: -6px;
+                height: 35px !important;
+
+                /*          width: 52px !important;         
+                          background-repeat: no-repeat !important;
+                          background-size: 35px;*/
+            }
+            .colorhover:hover > td > div > .imagenesDashBoard{        
+                background:url("#{resource['styleAE:img/menu/movil/Menu-Icon-White-02.svg']}") !important;
+                /*            width: 52px !important;          
+                            background-repeat: no-repeat !important;
+                            background-size: 35px;*/
+                width: 52px !important;          
+                background-repeat: no-repeat !important;
+                background-size: 51px !important;
+                background-position-y: -6px !important;
+                height: 35px !important;
+            }
+        </style>
+           </h:head>
+    <h:body>
+        <!-- Panel Ingenieros en las ESR de supervisores -->
+        <div class="">
+            <div id="tabs-all" class="">
+                <section class="w-full overflow-auto">
+                    <h:panelGroup id="idGrupoIngSup">
+                        <h:form id="formula" class="ingclas fondoPanelIzquierdo formupanelIngenierosSuper">      
+                            <c:forEach items="#{ingenierBean.listado}" var="eng">
+                                <div class="flex item-style py-3 cursor-pointer" onclick="ClickPanel('#{eng.company}', '#{eng.usercode}')">
+                                    <div draggable="true" class="icon-dashboard flex justify-center"
+                                        ondragstart="dragaaa(event,this)">
+                                        <div class="image-ing" />
+                                    </div>
+                                    <div  class="w-content-dashboard">
+                                        <div>
+                                            <h:outputText value="#{eng.userName}"/><br></br>
+                                            <h:outputText value="#{eng.company}"/>
+                                        </div>
+                                    </div>
+                                    <div class="badge-dashboard flex justify-center items-center">
+                                        <span class="badge label-#{eng.color}">#{eng.task}</span>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                            <script>
+                                function ingeTR(){
+                                    $("#formula\\:tableing tbody tr").each(function (index) {
+                                        var aa=$(this); 
+                                        aa.attr('draggable', 'true');
+                                        aa.attr('ondragstart', 'otrodrag(event,this)');
+                                        aa.attr('onclick','ClickPanel(this)');
+
+
+                                    }); 
+                                }
+                                ingeTR();
+                                function ClickPanel(company, user){
+                                    document.getElementById("formula:tempIngeniero").value = user;
+                                    document.getElementById("formula:tempEmpresa").value = company;
+                                    document.getElementById("formula:refreshIn").click();  
+                                }
+                            </script>
+                            <h:inputText style="display: none;" id='tempIngeniero' value="#{ingenierBean.ingenieroP}"/> 
+                            <h:inputText style="display: none;" id='tempEmpresa' value="#{ingenierBean.empresaP}"/> 
+                            <h:commandButton  id="refreshIn" style="display: none;" action="#{ingenierBean.filtroIngeniero(ingenierBean.ingenieroP,ingenierBean.empresaP)}" >
+                                <f:ajax execute="@form" render="@form panelTODOS refremeta totalesr"/>
+                            </h:commandButton>
+                        </h:form>
+                    </h:panelGroup>
+                </section>
+            </div>
+            
+
+        </div>
+    </h:body>
+</html>

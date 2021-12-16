@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title> </title>
+            
+            <h:outputScript library="styleAE" name="js/jquery.MultiFile.js" />
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#inputModalt', '400px');
+                });
+            </h:outputScript>
+        </h:head>
+        <h:body>
+            
+                <div id="page-wrapper">
+                    <div class="container-fluid">
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red;">
+                                   #{gen_msg['instructions']}
+                                    
+                                    
+                                </h1>
+                            </div>
+                        </div>
+                        <h:panelGroup id="inputModalt" style="display:none;" pt:title="#{gen_msg['instructions']}">
+                            <h:form id="inputFormlt" enctype = "multipart/form-data">
+                                <h:panelGrid columns="2" style="min-width: 300px;">
+                                    <h:outputLabel value="order id:" for="eosIdord" />
+                                    <h:inputText  id="eosIdord" value="#{instructionsBean.elemento.eosIdord.eoIdord}" title="eosidord" required="true" requiredMessage="#{gen_msg['msgeidor']}."/>
+
+                                    <h:outputLabel value="#{gen_msg['instructions']}:" for="docBody"  />
+                                    <h:inputFile id="docBody" style="border:#999 solid 3px; padding:10px; width: 100%"  title="File"  size="1000" value="#{instructionsBean.file}" />                                    
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{!instructionsBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{instructionsBean.agregar()}" >
+                                        <f:ajax execute="@form" render="onsuccess9 @form resultForm9 refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{instructionsBean.limpiar()}" >
+                                        <f:ajax execute="@this" render="onsuccess9 @form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                                <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                                <h:outputScript>
+                                    basicDTP('[name="inputFormlt:wtyDateIns"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                    basicDTP('[name="inputFormlt:wtyDateUpd"', "${resource['styleAE:img/calendar.gif']}", "${gen_msg['frmtDateUI']}");
+                                </h:outputScript>
+                            </h:form>
+                            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+                            <h:panelGroup id="onsuccess9">
+                                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                                    $("#inputModalt").dialog("close");
+                                </h:outputScript>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <h:form id="resultForm9" style="width: 100% ;" class="table table-striped dt-responsive nowrap">
+                            <h:dataTable id="tblListado9" pt:name="tblListado9" value="#{instructionsBean.listado}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                   <h:outputText value="#{item.insId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="order id"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="order id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.eosIdord.eoIdord}"/>
+                                </h:column>              
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{aees_msg['instruc']}"/>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputText value="#{aees_msg['instruc']}"/>
+                                    </f:facet>
+                                   
+                                    <h:commandLink  action="#{instructionsBean.recuperarBlob(item.insId)}">
+                                    <span class="glyphicon glyphicon-paperclip"></span>
+                                    </h:commandLink>
+                                </h:column>                           
+                                
+                                <h:column>
+                                    <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModalt');">
+                                        <f:setPropertyActionListener target="#{instructionsBean.elemento}" value="#{item}"/>
+                                        <f:setPropertyActionListener target="#{instructionsBean.edit}" value="#{true}"/>
+                                        <f:ajax execute="@this" render="inputFormlt refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn-round-69 icon-remove-69" action="#{instructionsBean.eliminar(item)}">
+                                        <f:ajax execute="@this" render="@form refremeta" />
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                            <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                            <h:outputScript>formatTable('table[name=tblListado9]','${swtLanguage.language}','#inputModalt');</h:outputScript>
+                        </h:form>
+                    </div>
+                </div>
+        </h:body>
+    </f:view>
+</html>

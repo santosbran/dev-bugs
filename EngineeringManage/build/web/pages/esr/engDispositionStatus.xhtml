@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <link rel="stylesheet" href="../css/tailwind.min.css"/>
+            <link rel="stylesheet" href="../css/tailwind.css"/>
+            <title> </title>
+              <h:outputStylesheet library="styleAE" name="css/bootstrap.css"/>
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#inputModals98status', '675px');
+                crearModal('#alertStaDispo', '325px');
+                });
+            </h:outputScript>
+            <style>
+         
+          .ui-widget-content {   
+    background: #fff !important;
+
+}
+@media screen and (max-width: 1400px){
+                .anchoModalBodyDispositionStatus, .anchoModalBodyAffectType, .anchoModalBodyDamageType, .anchoModalBodyDimension, .anchoModalBodyDamageDim {
+                    width: unset !important;
+                    margin-left: unset !important;
+            }}
+            
+            @media screen and (max-width: 768px){
+                .anchoModalBodyDispositionStatus, .anchoModalBodyAffectType, .anchoModalBodyDamageType, .anchoModalBodyDimension, .anchoModalBodyDamageDim {
+                    width: unset !important;
+                    margin-left: unset !important;
+            }}
+            
+            
+            .anchoModalBodyDispositionStatus .row div:nth-child(1){
+                min-width: 120px !important;
+            }
+            </style>
+            <script>
+                function funalertcoreAFam(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#removeStaDispo\\:idStadispo').val(id);
+                    return false;
+                }
+                
+                /*$(document).ready(function () {
+                    //Disable paste
+                    $('body').bind('paste', function (e) {
+                        e.preventDefault();
+                    });                   
+                    
+                    
+                }); */
+                
+                function ValidarCaracteresEsp(e) {
+                    var tecla = (document.all) ? e.keyCode : e.which;
+
+                    //Tecla de retroceso para borrar, siempre la permite
+                    if (tecla == 8) {
+                        return true;
+                    }
+
+                    // Patron de entrada, en este caso solo acepta numeros y letras
+                    patron = /[A-Za-z0-9]/;
+                    tecla_final = String.fromCharCode(tecla);
+                    return patron.test(tecla_final);
+                }
+                
+                $(document).on('keyup','input',function() {  
+                    /* Obtengo el valor contenido dentro del input */
+                    var value = $(this).val();
+
+                    if (value.trim() == ""){
+                        /* Elimino todos los espacios en blanco que tenga la cadena delante y detrás */
+                        var value_without_space = $.trim(value);
+
+                        /* Cambio el valor contenido por el valor sin espacios */
+                        $(this).val(value_without_space);
+                        } 
+                });
+            </script>
+        </h:head>
+        <h:body>
+            <div>
+            <!-- Page Heading -->
+            <div class="row menuMantenimientos">
+                <h:panelGroup id="slither23">
+                    <div id="slideDer2" class="menut2Dispo posicionMenuManten" >
+                    </div>
+                </h:panelGroup>
+                <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburgerStatusDispo" >
+                    <span>toggle menu</span>
+                </div>
+            </div>
+
+            <h:panelGroup id="inputModals98status" style="display:none;" pt:title="#{gen_msg['disposition']}">
+                <h:form id="inputFormdis98">
+                    <div class="modal-body anchoModalBodyDispositionStatus md:pr-24 lg:pr-0 flex md:flex-col lg:flex-col sm:flex-col lg:pl-20 lg:pr-40"> 
+                        <div class="row botomRow"> 
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 paddingIzq">
+                                <h:outputLabel value="#{gen_msg['mtoCode']}" for="code" /> 
+                                <h:outputText value="  *  " class="msgError"/>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-izq">
+                                <h:inputText id="code" class="form-control" maxlength="3" value="#{engReqIngactionStatus.elemento.estCode}" 
+                                             required="true" requiredMessage="#{gen_msg['mtoCode']} #{gen_msg['adjNecesario']}" autocomplete="off"
+                                             onkeypress="return ValidarCaracteresEsp(event)"/> 
+                          
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 paddingIzq">
+                                <h:outputLabel value="#{gen_msg['description']}" for="inputdelatarea"/>
+                                <h:outputText value="  *  " class="msgError"/>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-izq">
+                                <h:inputText id="inputdelatarea" value="#{engReqIngactionStatus.elemento.estDesc}"  class="form-control" maxlength="40" 
+                                             required="true" requiredMessage="#{gen_msg['description']} #{gen_msg['adjNecesario']}"
+                                             onkeyup="check(this,'warninginputdelatarea','inputFormdis98');" autocomplete="off"
+                                             onkeypress="return ValidarCaracteresEsp(event)"/> 
+                                <h:outputLabel id="warninginputdelatarea" value="  •  #{gen_msg['limitchar']}" class="msgError" style="display: none;"/>
+                              
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 paddingIzq">
+                                <h:outputLabel value="#{aees_msg['engDisposition']}" for="engDispo"/>
+                                <h:outputText value="  *  " class="msgError"/>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-izq">
+                                <h:selectOneMenu  id="engDispo" value="#{engReqIngactionStatus.elemento.estStatus}" class="form-control"
+                                                  required="true" requiredMessage="#{aees_msg['engDisposition']} #{gen_msg['adjNecesario']}">
+                                    <f:selectItem itemLabel="...." itemValue="NON"/>
+                                    <f:selectItem itemLabel="#{gen_msg['active']}" itemValue="A"/>
+                                    <f:selectItem itemLabel="#{aees_msg['mb_abinactive']}" itemValue="I"/>
+                                </h:selectOneMenu>
+                            
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 paddingIzq">
+                                <h:outputLabel value="#{gen_msg['actorN']}" for="reqcomName"/>
+                                <h:outputText value="  *  " class="msgError"/>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-izq">
+                                <h:selectOneMenu id="reqcomName" value="#{engReqIngactionStatus.idActor}" class="form-control" 
+                                                     required="true" requiredMessage="#{gen_msg['actorN']} #{gen_msg['adjNecesario']}">
+                                    <f:selectItem itemLabel="..." itemValue="#{engReqIngactionStatus.idActor}"/>
+                                    <f:selectItems value="#{engActorBean.listado}" var="option" itemLabel="#{option.actName}" itemValue="#{option.actId}"/>
+                                    <f:ajax execute="@this" event="change" render="@this refremeta"/> 
+                                </h:selectOneMenu>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="alinearIzqmsgError">
+                        <h:messages for="code" class="msgError"/>
+                        <h:messages for="inputdelatarea" class="msgError"/>
+                        <h:messages for="engDispo" class="msgError"/>
+                        <h:messages for="reqcomName" class="msgError"/>
+                    </div>
+                    <div class="divBotonesModales">
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                            <h:commandButton class="btn btn-signin" value ="#{!engReqIngactionStatus.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engReqIngactionStatus.guardar()}" >
+                                <f:ajax execute="@form" render="successH98 @form resultFormdis inputForm11590 slither23 refremeta"/>
+                            </h:commandButton>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['close']}" action="#{engReqIngactionStatus.limpiar()}" >
+                                <f:ajax execute="@this" listener="#{engReqIngactionStatus.limpiarformDispoESt()}" render="onsuccess98 @form resultFormdis slither23 refremeta" />
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+                
+            </h:panelGroup>
+            <h:panelGroup id="alertStaDispo" style="display:none;" pt:title="#{gen_msg['delete']}">
+                <h:form id="removeStaDispo">
+                    <h:inputText value="#{engReqIngactionStatus.idStaDispo}" style="display: none;" id="idStadispo"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+
+                    <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                        <h:outputLabel value="¿#{aees_msg['deleteitem']}?" class="margenlabelDelete"/> 
+                    </h:panelGrid>
+
+                    <div class="divBotonesModales">
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{engReqIngactionStatus.delete(engReqIngactionStatus.idStaDispo)}" >
+                                <f:ajax execute="@form" render="ondeleteStaDispo onErrorDeleteDispo beanerrStaDispo @form inputForm11590 resultFormdis inputFormdis98 slither23 refremeta pCount"/>
+                            </h:commandButton>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" action="#{engReqIngactionStatus.limpiar()}">
+                                <f:ajax execute="@this" render="onsuccess98 @form resultFormdis slither23 refremeta" />
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+            <h:panelGroup id="onsuccess98">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#inputModals98status").dialog("close");
+                    $("#alertStaDispo").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="successH98">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#inputModals98status").dialog("close");
+                    $("#alertStaDispo").dialog("close");
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="beanerrStaDispo">
+                <h:outputScript rendered="#{engReqIngactionStatus.menscons eq 1}">
+                    $("#alertStaDispo").dialog("close");
+                    alertify.error("#{gen_msg['errorconstFleet']}");
+
+                </h:outputScript>                        
+            </h:panelGroup>
+            <h:panelGroup id="ondeleteStaDispo">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#inputModals98status").dialog("close");
+                    $("#alertStaDispo").dialog("close");
+                    alertify.log("#{aees_msg['removeitem']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="onErrorDeleteDispo">
+                <h:outputScript rendered="#{facesContext.postback and facesContext.validationFailed and engReqIngactionStatus.pCount gt 0}">
+                    $("#inputModals98status").dialog("close");
+                    $("#alertStaDispo").dialog("close");
+                    alertify.error("#{aees_msg['notdelete']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:form id="resultFormdis" class="anchoTableMantenimientos">
+                <h:dataTable id="tblListadodis" class="table table-striped dt-responsive anchoTableMantenimientos" pt:name="tblListadodis" 
+                             value="#{engReqIngactionStatus.listado}" var="itemDis">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{itemDis.estDesc}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="Status"/>
+                        </f:facet>
+                        <h:outputText value="#{itemDis.estStatus}"/>
+                    </h:column>
+                    <h:column>                        
+                        <h:commandButton class="btn-round-24 icon-edit-24" onclick="mostrarModal('#inputModals98status');">
+                            <f:setPropertyActionListener target="#{engReqIngactionStatus.elemento}" value="#{itemDis}"/>
+                            <f:setPropertyActionListener target="#{engReqIngactionStatus.idActor}" value="#{itemDis.estIdactor.actId}"/>
+                            <f:setPropertyActionListener target="#{engReqIngactionStatus.edit}" value="#{true}"/>
+                            <f:ajax execute="@this" render="inputFormdis98 slither23 refremeta" />
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton class="btn-round-69 icon-remove-69" onclick="funalertcoreAFam('#alertStaDispo', '${itemDis.estId}');">
+                            <f:ajax execute="@this" render="@this refremeta" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                <h:outputScript>
+                    
+                    formatTable('table[name=tblListadodis]','${swtLanguage.language}','#inputModals98status','.menut2Dispo');
+                </h:outputScript>
+
+            </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>

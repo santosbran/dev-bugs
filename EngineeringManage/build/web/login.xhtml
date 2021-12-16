@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title>#{aees_msg['loginScreen']}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            <h:outputStylesheet library="styleAE" name="boots/css/login.css"/>
+            <h:outputStylesheet library="styleAE" name="boots/css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="boots/css/bootstrap.css"/>
+        </h:head>
+        <h:body class="body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7" id="imgcontent" >
+                        <br></br>
+                        <h:graphicImage library="styleAE" name="img/login/LoginPieces-02.png"  class="img-responsive pull-left"/>
+
+                    </div>
+
+                    <div class="col-md-5">
+
+                        <div class="row borde" style="background-color: rgba(250,250,250,0.5);">
+
+                            <div class="col-md-8 col-md-offset-2 col-xs-6 col-xs-offset-3">
+
+
+                                <h:form class="login" >
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><em class="glyphicon glyphicon-user"/></span>
+                                        <h:inputText value= "#{Login.usuario}" class="form-control"  p:placeholder="Username" required="true" requiredMessage="#{aees_msg['userRequired']}" id="user"/>
+                                    </div>
+                                    <div class="form-group input-group separate">
+                                        <span class="input-group-addon"><em class="glyphicon glyphicon-lock"/></span>
+                                        <h:inputSecret value= "#{Login.password}" class="form-control"  p:placeholder="Password" required="true" requiredMessage="#{aees_msg['passwordRequired']}" id="password"/>
+                                    </div>
+                                    <div class="form-group separate">
+                                        <h:outputLabel id="language">#{gen_msg['language']}:</h:outputLabel>
+                                        <h:selectOneMenu  value="#{swtLanguage.language}" class="form-control" >
+                                            <f:selectItem itemValue="es" itemLabel="Español" />
+                                            <f:selectItem itemValue="en" itemLabel="English" />                                                                       
+                                            <f:ajax execute="@this" render="psw usn language lo refremeta" />
+                                        </h:selectOneMenu>
+
+                                    </div>
+                                    <div class="buttom separate">
+                                        <h:commandButton class="btn-login btn  btn-primary" value="#{aees_msg['login']}" action="#{Login.usersValidator}" id="lo"/>
+                                    </div>
+                                    <div class="form-group separate">
+                                        <label>
+                                            <a href="#" class="bstrong">can't access your acount? ></a>
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <a href="#" class="bstrong">Privacy Policy > </a>
+                                        </label>
+                                    </div>
+
+                                </h:form>
+
+                                
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+<h:graphicImage library="styleAE" name="img/login/LoginPieces-03.png"  class="img-responsive pull-right downimg" alt=""/>
+
+            </div>
+
+        </h:body>
+    </f:view>
+</html>

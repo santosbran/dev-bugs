@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+        <h:head>
+            <title></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            
+            <script>
+                function generateReport() {
+
+                    var win = window.open("/EngineeringManage/pages/reportes/repNavigation.xhtml","_blank");
+                }
+            </script>
+        </h:head>
+        <h:body>
+            <h:panelGroup id="ontabECR">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ontabECRSucces">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed and tabEsrEaEoBean.existeArchivo}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ontabECRDoc">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed and esrDocumentBean.existeFile ne 1}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="errortabECR">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.error("#{gen_msg['beanerror']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondeletefileECR">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+
+                    alertify.log("#{aees_msg['delfile']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondeletetaskcardecr">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+
+                    alertify.log("#{aees_msg['removeitem']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondescarTaskCardecr">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                            
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                    $('#inputForm70\\:responsedate').datepicker({autoclose: true, language: '#{swtLanguage.language}'});
+                    $('#inputForm70\\:fechaVencM').datepicker({autoclose: true, language: '#{swtLanguage.language}'});
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondespuesecr">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">   
+                    //$("#inputForm70\\:clean2").trigger("click");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="probandomecanicoecr">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed and tabEsrEaEoBean.roles eq '7'}">
+                    $("#ac2-"+ECR).trigger("click");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="nohayArchivoecr">
+                <h:outputScript rendered="#{facesContext.postback and facesContext.validationFailed and esrDocumentBean.seleccionarArchivo}">
+
+                    alertify.log("#{gen_msg['selectFile']}");
+                </h:outputScript>
+            </h:panelGroup>
+            
+        </h:body>
+    </f:view>
+</html>

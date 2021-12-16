@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+             <h:panelGroup id="refremeta">
+                <meta http-equiv="refresh" name="viewport-refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/pages/error/error.xhtml"/>  
+                <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            </h:panelGroup>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="css/autocomstyle.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/> 
+
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputStylesheet library="styleAE" name="css/paneleshome.css"/>
+            <h:outputScript library="styleAE" name="js/scriptspanelhome.js"/>
+            <h:outputScript library="styleAE" name="js/moment.js" />  
+            <h:outputScript library="styleAE" name="js/tooltip.js" />
+            <h:outputStylesheet library="styleAE" name="css/spinnergif.css"/>
+            
+            <style>
+                #ui-datepicker-div{
+                    background-color: white!important;
+                }
+                .ui-datepicker .ui-datepicker-header{
+                    color: #333;
+                    background: #e3e3e3 -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0.8)),to(rgba(255,255,255,0)));
+                }
+                
+                .ui-datepicker-today{
+                    background: lightgray!important;
+                    text-shadow: 0px 0px 0px transparent!important;
+                }
+                .ui-datepicker .ui-datepicker-calendar .ui-state-default{
+                    color: #5f83b9 !important;
+                }
+            </style>
+            <script>
+                function mostrar(chk) {
+                    if(document.getElementById(chk).checked &amp;&amp; chk==='ac-tmr'){
+
+                            $("#tmr").show();
+                            $("#toolsReport").hide();
+                            $("#prueba").hide();
+                            $("#collapse3 input[type=checkbox]").each(function () {
+                            $(this).prop('checked', false);
+                        });
+                        document.getElementById(chk).checked = true;
+                    }
+                    else if(document.getElementById(chk).checked &amp;&amp; chk==='ac-reports'){ 
+                            $("#tmr").hide();
+                            $("#toolsReport").show();
+                            $("#prueba").hide();
+                            $("#collapse3 input[type=checkbox]").each(function () {
+                            $(this).prop('checked', false);
+                        });
+                        document.getElementById(chk).checked = true;
+                    }
+                    else if(document.getElementById(chk).checked &amp;&amp; chk==='ac-inbox'){ 
+                            $("#tmr").hide();
+                            $("#toolsReport").hide();
+                            $("#prueba").show();
+                            $("#collapse3 input[type=checkbox]").each(function () {
+                            $(this).prop('checked', false);
+                        });
+                        document.getElementById(chk).checked = true;
+                    }
+                    else if(document.getElementById(chk).checked &amp;&amp; chk==='ac-enghrs'){ 
+                            $("#tmr").hide();
+                            $("#toolsReport").hide();
+                            $("#prueba").show();
+                            $("#collapse3 input[type=checkbox]").each(function () {
+                            $(this).prop('checked', false);
+                        });
+                        document.getElementById(chk).checked = true;
+                    }
+                    else{
+                        $("#tmr").hide();
+                        $("#toolsReport").hide();
+                        $("#prueba").hide();
+                    }
+                }
+            </script>
+        </h:head>
+        <h:body style="background: transparent;">
+            <header>
+                <h:form>
+                    <div class="menudes" style="background: transparent">
+                        <h:graphicImage library="styleAE" name="img/main/AEIS-Logo-02.png" class="img-responsive hidden-xs ninety-prc"/> 
+                    </div>
+                </h:form>
+            </header>
+            
+            <div id='main'>
+                <a id="handle1" class="handle1" style="background: transparent;color: red;display: none;">
+                    <h:graphicImage library="styleAE" class="parametroflecha" name="img/menu/Menu-Icon-11-derecha.png" />
+                    <label class="slide-label1"></label></a>
+                <nav id="das1" style="display:block">
+
+                    <div id="close-bt2"><label id="moduleopt">#{gen_msg['options']}</label>
+                        <div class="image">
+                            <a href="#collapse2" class="nav-toggle" >
+                                <h:graphicImage library="styleAE" id="tog1" class="closepanel" name="img/menu/Maximize-Minimize-01.png" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <section class="ac-container" >
+                        <div id="collapse3" class="bloque panelAj1" style="display:block;background: rgba(205,204,204,0.65);height: 99%;">                            
+                            <div id="acor10">
+                                <input id="ac-inbox" class="input" name="accordion-component" onclick="mostrar(this.id)"
+                                       type="checkbox" value="#{gen_msg['inbox']}" />
+                                <label class="label" for="ac-inbox" >#{gen_msg['inbox']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor11"><!--tmr = Tool Marking Request -->
+                                <input id="ac-tmr" class="input" name="accordion-component" onclick="mostrar(this.id)"
+                                       type="checkbox" value="#{gen_msg['tmr']}" />
+                                <label class="label" for="ac-tmr">#{gen_msg['tmr']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/tools/tmrForm.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor12">
+                                <input id="ac-enghrs" class="input" name="accordion-component" onclick="mostrar(this.id)"
+                                       type="checkbox" value="#{gen_msg['hing']}"/>
+                                <label class="label" for="ac-enghrs">#{gen_msg['hing']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acor13">
+                                <input id="ac-reports" class="input" name="accordion-component" onclick="mostrar(this.id)"
+                                       type="checkbox" value="#{gen_msg['reports']}"/>
+                                <label class="label" for="ac-reports">#{gen_msg['reports']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </nav>
+                <article>                    
+                    <div id="close-bt3">#{gen_msg['tmr']}<label id="modulename" ></label>                 
+                        <div class="image">
+                            <a href="#collapse3" class="nav-toggle" >
+
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div id="tmr" style="display: none;height: 100%;" >
+                        <h:panelGroup id="iframetmr" >
+                            <iframe title="" name="tmrframe" id="tmrframe" class="iframe-wh" 
+                                    src="/EngineeringManage/pages/tools/tmrPrimeFaces.xhtml"  style="background: rgba(205,204,204,0.65);"/>
+                        </h:panelGroup>
+                    </div>
+                    <div id="toolsReport" style="display: none;background: rgba(205,204,204,0.65);height: 100%;">
+                        <ui:insert name="newContent" >
+                            <ui:include src="/pages/tools/reportForm.xhtml" />
+                        </ui:insert>
+                    </div>
+                    <div id="prueba" style="display: none;height: 100%;">
+                        <h:panelGroup id="iframepru" >
+                            <iframe title="" name="pruframe" id="pruframe" class="iframe-wh" 
+                                    src="/EngineeringManage/pages/tools/prueba.xhtml"  style="background: rgba(205,204,204,0.65);"/>
+                        </h:panelGroup>
+                    </div>
+                    
+                </article>
+                <script>
+                    jQuery(document).ready(function ($) {
+                    $('.handleNo').on('click', function () {
+
+                        if ($('#dasNo').css('display') === 'none') {
+                            //$('#das').css('display', 'block');
+                            $('.handleNo').css('top', '90px');
+                            $('.handleNo').css('right', '9px');
+                            $('.handleNo').css('display', 'none');
+                            // $( "#das" ).show( "slide", {direction: 'right', className: "ui-effects-wrapper"});
+                            $( "#dasNo" ).show();
+                        } else {
+                            $('#dasNo').css('display', 'none');
+                            $('.handleNo').css('right', '9px');
+
+                        }
+                    });
+                });
+                jQuery(document).ready(function ($) {
+                    
+                    $('#tog').on('click', function () {
+
+                        if ($('#dasNo').css('display') === 'none') {
+                            //$('#das').css('display', 'block');
+                            $('.handleNo').css('top', '90px');
+                            $('.handleNo').css('right', '9px');
+                            //$( "#das" ).show( "slide", {direction: 'right', className: "ui-effects-wrapper"});
+                            $( "#dasNo" ).show();
+                        } else {
+                            //$('#dasNo').css('display', 'none');
+                            $('.handleNo').css('right', '9px');
+                            $('.handleNo').css('display', 'block');
+                            $( '#dasNo' ).hide();
+                            
+                        }
+                    });
+                });
+                
+                
+                </script>
+
+
+                <a id="handleNo" class="handleNo handle" style="background: transparent;color: red;" >
+                    <h:graphicImage library="styleAE" class="parametroflecha" name="img/menu/Menu-Icon-11.png" />
+                    <label class="slide-label"></label>
+                </a>
+
+                <aside id="dasNo" style="display:none" >
+                    <div id="close-bt4">#{gen_msg['parameter']}<div class="image" ><a href="#collapse4" class="nav-toggle" >
+                                <h:graphicImage id="tog" library="styleAE" class="closepanel" name="img/menu/Maximize-Minimize-01.png" />
+                            </a></div></div> 
+                    <div id="collapse4" class="bloque panelAj3" style="display:block;height: 100%;background: rgba(205,204,204,0.65);">
+                        <section class="ac-container" >
+                            <div id="acorpart">
+                                <input id="ac-part" class="input" name="accordion-1" type="checkbox"/>
+                                <label class="label" for="ac-part">#{aees_msg['partNumber']}</label>
+                                <article class="ac-large">
+                                    <div class="styleacordeon">
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/catalogs/partNumber.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            <div id="acorPriori">
+                                <input id="ac-Priori" class="input" name="accordion-1" type="checkbox" />
+                                <label class="label" for="ac-Priori">#{gen_msg['priorities']}</label> 
+                                <article class="ac-large">
+                                    <div class="styleacordeon" render="cruzroja refremeta" >
+                                        <ui:insert name="newContent">
+                                            <ui:include src="/pages/catalogs/engPriorities.xhtml"/>
+                                        </ui:insert>
+                                    </div>
+                                </article>
+                            </div>
+                            
+                        </section>
+                    </div>
+                </aside>
+            </div>
+        </h:body>
+    </f:view>
+</html>

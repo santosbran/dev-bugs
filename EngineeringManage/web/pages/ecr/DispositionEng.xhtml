@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            
+            <script type="text/javascript">
+                
+                function backDispositionESR(){                    
+                    $('#newDispositionEng').hide(); 
+                    $('#engineer').show();
+                    $('#main').show();    
+                    $('#supervisor').show();
+                }
+            </script>
+            <script>
+                 function cargareventsDisposition(data) {
+                    var spinnerevents = document.getElementById("spinnerDisposition");
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                            $("#inputForm11590").hide();
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){
+                                $("#inputForm11590").show();
+                            }		
+                    }
+            }
+            </script>
+            <style>
+                .engGetReport2{
+                    border-bottom: 3px solid #bf1e2d !important;
+                    border-left: 3px solid #bf1e2d !important;
+                    color: white !important;
+                    background-color: gray !important;
+                    padding: 6px 10px 0px 10px !important;
+                    text-transform: uppercase !important;
+                    font-size: 12px !important;
+                    color: white !important;
+                }
+                .tamDeDisposition{
+                    display: flex; 
+                    height: 94%;
+                }
+                @media (max-width: 910px) and (min-width: 0px){
+                    .tamDeDisposition{
+                        display: flex;
+                        height: 73%;
+                        margin: 20% 0% 0% 0%;
+                    }
+                }
+            </style>
+            
+
+        </h:head>
+        <h:body>
+
+            <h:panelGroup id="scripx">
+                <script type="text/javascript">
+                function selectItemDis(tr){
+                    $("#menuDisposition\\:idDispositionImputT2").val(tr);
+                    $("#menuDisposition\\:idDispositionButton2").trigger("click");                        
+                }
+                function dragAddParamerDisp() { 
+                    $("#restaurarPanelDisposition").show();
+                    $("#das12Dispo").hide();
+                }
+                function dragEndParameterDisp() {
+                    $("#restaurarPanelDisposition").hide();
+                    $("#das12Dispo").show();                    
+                    
+                }
+                function funalertDispoEsr(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#removeDispoEsr\\:idDispoEsr').val(id);
+                    return false;
+                } 
+                            
+                </script>
+            </h:panelGroup>
+            <h:form id="menuDisposition"> 
+                <h:inputHidden value="#{engReqIngaction.idDispTab}" id="idDispositionImputT2"/>
+                
+                <h:commandButton id="idDispositionButton2" action="#{engReqIngaction.findIDDis(engReqIngaction.idDispTab)}" style="display: none;">
+                    <f:ajax execute="@form" render="inputForm11590 resultadosDisp refremeta" />
+                </h:commandButton>
+                
+                <h:commandButton id="icoBackDisposition" 
+                                 class="btn btn-signin butomclassesr imageRet" title="Back" action="#{engReqIngaction.limpiar()}"  style="position: fixed;top: 15px;height: 38px;">
+                    <f:ajax execute="@this" render="@this fmDispositionTabNw refremeta backDispositionESRN" listener="#{tabEsrEaEoBean.engDispositioPanelDerecho(esrBean.elemento.reqMessageid)}"/>
+                </h:commandButton> 
+            </h:form>
+            <div class="dimensionesMenuDispo">
+                <h:panelGroup id="slitherDispo" style="display: none;">
+                    <div id="slideDerDispo" class="menuDispoIng">
+                    </div>
+                </h:panelGroup>
+
+                <div class="c-hamburger c-hamburger--rot is-active" id="c-hamburgerDispo" style="display: none;">
+                    <span>toggle menu</span>
+                </div>
+
+            </div>
+            <h:panelGroup id="inputModals159" style="display:none;" pt:title="#{aees_msg['engDisposition']}">
+
+                <h:form id="inputForm1159">                     
+                    <div class="modal-body anchoModalDispositionIng">
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputLabel value="#{aees_msg['msjId']}"  />
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:inputText value="#{engReqIngaction.elemento.reqMessageid}" disabled="true" class="form-control"/> 
+                            </div>
+                        </div>
+
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{gen_msg['description']}" for="inputdelatarea0" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:inputTextarea id="inputdelatarea0" value="#{engReqIngaction.elemento.einDescription}"  class="form-control campodelatarea0" rows="2" cols="40" 
+                                                  style="resize:none;" required="true" requiredMessage="#{gen_msg['description']} #{gen_msg['adjNecesario']}"/>
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{gen_msg['hours']}" for="horas0" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:inputText value="#{engReqIngaction.elemento.einHours}" id="horas0" class="form-control"
+                                             onkeypress="if (event.which &lt; 46 || event.which &gt; 57) if (event.which != 8) return false;"
+                                             required="true" requiredMessage="#{gen_msg['hours']} #{gen_msg['adjNecesario']}" maxlength="10" autocomplete="off"
+                                             converterMessage="#{gen_msg['hours']} #{gen_msg['numalo']}">
+                                    <f:convertNumber type="number" pattern="#0.00"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{aees_msg['engDisposition']}" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:selectOneMenu  id="engDispo" value="#{engReqIngaction.elemento.einStatus}" class="form-control" 
+                                                  required="true" requiredMessage="#{aees_msg['engDisposition']} #{gen_msg['adjNecesario']}">
+                                    <f:selectItem itemLabel="...." itemValue="#{null}"/>
+                                    <f:selectItems  value="#{engReqIngaction.getListastatus()}" var="option" itemLabel="#{option.estDesc}" itemValue="#{option.estId}"/>
+                                    <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="alinearIzqmsgError">
+                        <h:messages for="inputdelatarea0" class="msgError" style="display: table-row;"/>
+                        <h:messages for="horas0" class="msgError" style="display: table-row;"/>
+                        <h:messages for="engDispo" class="msgError" style="display: table-row;"/>
+                    </div>
+                    <div class="divBotonesModalesIng">
+                        <div class="col-md-2 col-sm-2 col-lg-4 col-xs-2 d-flex">
+                            <h:commandButton class="btn btn-signin" value ="#{!engReqIngaction.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{esrBean.guardarDisposition(engR)}" >
+                            <f:ajax execute="@form" render="onsuccessDisp @form inputModal70 resultForm159 scripx refremeta inputForm70"/>
+                            </h:commandButton>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-4 col-xs-2 d-flex">
+
+                            <h:commandButton class="btn btn-signin" value="#{gen_msg['discard']}" action="#{engReqIngaction.limpiar()}" >
+                                <f:ajax execute="@form" listener="#{engReqIngaction.limpiarformDispo()}" render="ondescarDispo @form scripx refremeta inputForm70" />
+                            </h:commandButton>
+
+                        </div>
+                    </div>
+                </h:form>
+            </h:panelGroup> 
+            <div class="tamDeDisposition" > 
+            <nav id="das12Dispo" style="overflow: hidden !important; width: 24%;     margin-left: 1%;">
+                    <div id="close-bt2Dispo" class="estiloNewTracking">#{gen_msg['list']}<div class="image" id="ocultarPanelTracking" onclick="dragAddParamerDisp();"><a href="#collapse2" class="nav-toggle"><i  class="glyphicon glyphicon-chevron-up colorGlyphicon"/></a></div></div>
+                    <div id="collapse2Dispo" class="bloque" style="display:block; overflow-y: scroll !important; background: white; -webkit-overflow-scrolling: touch !important;">
+                        <h:panelGroup layout="block" id="listActitivesDispo">
+                            <section class="ac-container fondoSection2">                             
+                                <h:panelGroup id="disposieng">
+                                    <h:form id="resultadosDisp">                                     
+                                        <h:panelGroup id="cosaDispo">
+                                                <ui:repeat value="#{engReqIngaction.listado2}" var="itemConfigChk" id="esrRepeatSDis"> 
+                                                    <h:panelGrid class="select-activity" style="width: 100%" >
+                                                        <h:column>
+                                                        
+                                                            <div id="acord#{itemConfigChk.einActionId}" class="borderGrisAcordion" style="display: block;">
+                                                                <h:panelGroup id="dejarlo#{itemConfigChk.einActionId}">                                  
+
+                                                                    <input id="ac-#{itemConfigChk.einActionId}" class="input" name="accordion-1" type="radio" onclick="selectItemDis('#{itemConfigChk.einActionId}');">
+
+                                                                    </input>                                    
+                                                                    <label  for="ac-#{itemConfigChk.einActionId}" class="label alignLabelIng fondoAcordiones2" id="labeel#{itemConfigChk.einActionId}">                                                
+                                                                            #{itemConfigChk.einDescription}<br/> <br/>#{gen_msg['hours']} - #{itemConfigChk.einHours}
+                                                                    </label>
+                                                                    
+                                                                    <h:commandButton id="ref"  style="display: none;" action="#{contCheckBean.cargarCheckId(contCheckBean.itemId)}">
+                                                                        <f:ajax execute="@form" render="formChecks matrizCheckbox reports hoursView tool resultForm6 resultForm789 slithermail resultFormEngHours6 inputFormemail refremeta panRenderESR"/>
+                                                                    </h:commandButton>
+                                                                </h:panelGroup>  
+                                                            </div>
+                                                            
+                                                        </h:column>    
+                                                    </h:panelGrid>                                                      
+                                                </ui:repeat>    
+                                        </h:panelGroup>
+                                    </h:form>
+                                </h:panelGroup>
+                            </section>
+                        </h:panelGroup>
+                    </div>
+                </nav>
+                <div id="spinnerDisposition" class="dimensionesSpinner" style="display: none;" >
+                        <div id="loader-wrapper" class="loadingif">
+                            <div id="loader">
+                            </div>
+                            <div id="content">
+                                <h3>#{gen_msg['loading']}</h3>
+                            </div>
+                        </div>
+                    </div>
+                <h:form id="inputForm11590" style="width: 100% !important; margin: 0% 1% 0% 1%; background: white;     height: 98%;">
+                    <div id="restaurarPanelDisposition" onclick="dragEndParameterDisp();" style="margin: 0% 0% 0% 0%; display: none;">
+                        <a class="handle1Eng2">
+                            <span class="gli-a glyphicon glyphicon-chevron-right colorGlyphicon parametroflechaESRIngenieros2" aria-hidden="true"/>
+                            <label class="slide-label1"/>
+                        </a>
+                    </div>
+                    <div id="close-tabNw" class="engGetReport2"> 
+                        <label style="margin-left: 1%">#{aees_msg['engDisposition']}</label>
+                    </div>
+
+
+                    <div class="modal-body anchoModalDispositionIng">
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputLabel value="ESR"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:outputLabel id="idEsrwo" value="#{tabEsrEaEoBean.idEsrWo}"/> 
+                            </div>
+                        </div>
+
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{gen_msg['description']}" for="inputdelatarea" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:inputText id="inputdelatarea" value="#{engReqIngaction.elemento.einDescription}"  class="form-control"
+                                             required="true" requiredMessage="#{gen_msg['description']} #{gen_msg['adjNecesario']}" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{gen_msg['hours']}" for="horas" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:inputText value="#{engReqIngaction.elemento.einHours}" id="horas" class="form-control" 
+                                             onkeypress="if (event.which &lt; 46 || event.which &gt; 57) if (event.which != 8) return false;"
+                                             required="true" requiredMessage="#{gen_msg['hours']} #{gen_msg['adjNecesario']}"
+                                             converterMessage="#{gen_msg['hours']} #{gen_msg['numalo']}" autocomplete="off"> 
+                                    <f:convertNumber type="number" pattern="#0.00"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row botomRow"> 
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 paddingIzq2">
+                                <h:outputText value="*&nbsp;&nbsp;&nbsp;" class="msgError" style="display: inline"/>
+                                <h:outputLabel value="#{aees_msg['engDisposition']}" style="display: inline"/>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 alin-izq">
+                                <h:selectOneMenu  id="engDispo0" value="#{engReqIngaction.elemento.einStatus}" class="form-control"
+                                                  required="true" requiredMessage="#{aees_msg['engDisposition']} #{gen_msg['adjNecesario']}">
+                                    <f:selectItem itemLabel="...." itemValue="#{null}"/>
+                                    <f:selectItems  value="#{engReqIngaction.getListastatus()}" var="option" itemLabel="#{option.estDesc}" itemValue="#{option.estId}"/>
+                                    <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                                </h:selectOneMenu>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alinearIzqmsgError">
+                        <h:messages for="inputdelatarea" class="msgError" style="display: table-row;"/>
+                        <h:messages for="horas" class="msgError" style="display: table-row;"/>
+                        <h:messages for="engDispo0" class="msgError" style="display: table-row;"/>
+                    </div>
+                    <div class="divBotonesModalesIng">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-6 d-flex">                            
+                            <h:commandButton class="btn btn-signin" value ="#{!engReqIngaction.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{tabEsrEaEoBean.engDispositioPanelDerecho(esrBean.elemento.reqMessageid)}">
+                                <f:ajax  execute="@form" render="onsuccessDisp resultForm159 @form inputModal70 fmDispositionTabNw resultadosDisp inputForm11590 scripx scripz refremeta resultabtodosComp" listener="#{tabEsrEaEoBean.guardarDispositionEaEO(esrBean.elemento.reqMessageid)}" onevent="cargareventsDisposition"/>
+                            </h:commandButton>       
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-6 d-flex">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{engReqIngaction.limpiar()}" >
+                                <f:ajax execute="@this" render="@form scripx refremeta ondescarDispo" />
+                            </h:commandButton>                                    
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-6 d-flex" style="display: #{!engReqIngaction.edit ? 'none;':'block;'}">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['delete']}" onclick="funalertDispoEsr('#alertDispoEsr', '${engReqIngaction.elemento.einActionId}');" >
+                                <f:ajax execute="@this" render="@this refremeta" />
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>           
+            </div> 
+<h:panelGroup id="alertDispoEsr" style="display:none;" pt:title="#{gen_msg['delete']}">
+                    <h:form id="removeDispoEsr">
+                        <h:inputText value="#{engReqIngaction.idalert1}" style="display: none;" id="idDispoEsr"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+
+                        <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                            <h:outputLabel value="¿#{aees_msg['deleteitem']}?"  class="margenlabelDelete"/> 
+                        </h:panelGrid>
+                        <div class="divBotonesModales">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{esrBean.deleteDisposition(engReqIngaction.idalert1)}" >
+                                    <f:ajax execute="@form" render="ondeleteDispoEsr  @form fmDispositionTabNw inputForm11590 resultadosDisp resultForm159 slitherDispo refremeta" />
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" onclick="$('#modDisposition').dialog('open');">
+                                    <f:ajax execute="@this" render="ondescarDispo @form refremeta" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            <!--Se renderiza si no hay errores de forma que se cierre la modal al llamar descartar o guardar-->
+            <h:panelGroup id="backDispositionESRN">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    backDispositionESR();
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="onsuccessDisp">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#inputModals159").dialog("close");
+
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondeleteDispoEsr">
+                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                        $("#modDisposition").dialog("open");
+                        $("#alertDispoEsr").dialog("close");
+                        alertify.log("#{aees_msg['removeitem']}");
+                    </h:outputScript>
+                </h:panelGroup>
+            <h:panelGroup id="ondescarDispo">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    $("#inputModals159").dialog("close");
+                    $("#alertDispoEsr").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+
+        </h:body>
+    </f:view>
+</html>

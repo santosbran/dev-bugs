@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title>AEES - Sistema de ingenieria </title>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE"  name="fileupload/fileinput.css"/>
+            <link href="/EngineeringManage/javax.faces.resource/fileupload/fileinput.css.xhtml?ln=styleAE" media="all" rel="stylesheet" type="text/css" />
+            
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js" />
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="fileupload/fileinput.js" />
+             
+        </h:head>
+        <h:body>
+            <div class="container kv-main">
+                <h:form enctype="multipart/form-data">
+                    <input id="file-es" name="file-es" type="file" multiple="true" value="#{esrDocumentBean.file}"/>
+                    <h:commandButton class="btn btn-signin" value ="Subir Archivos" action="#{esrDocumentBean.savedocu('22667')}" style="margin-top: 0;" >
+                        <f:ajax execute="@form" render="@form refremeta"/>
+                    </h:commandButton>
+                    <script>
+                    $('#file-es').fileinput({
+                        language: 'es',
+                        uploadUrl: '#',
+                        allowedFileExtensions : ['jpg', 'png','gif','txt','pdf','docx'],
+                    });
+                    </script>
+                </h:form>
+                <hr></hr>
+                <br></br>
+                        </div>
+            
+        </h:body>
+        
+    </f:view>
+</html>
+
+

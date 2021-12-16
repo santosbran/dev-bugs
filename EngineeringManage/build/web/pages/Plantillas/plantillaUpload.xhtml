@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <f:view>
+        <h:head>
+            <title></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            
+            <style>
+                .menutPlantilla{
+                    position: absolute;
+                    top: 1%;
+                    float: right;
+                    z-index: 999;
+                    margin-left: 5% !important;
+                }
+                .ui-widget-content {   
+                    background: #fff !important;
+
+                }
+            </style> 
+            <h:outputScript>
+                $(document).ready(function (){
+                crearModal('#removeUpload01', '325px');
+                });
+            </h:outputScript>
+            <script>
+                function funalertcoreAF(idModal, id) {
+                    $(idModal).dialog("open");
+                    $('#removeUploadPlantilla\\:idDocumentUpload').val(id);
+                    return false;
+                }
+            </script>
+        </h:head>
+        <h:body>
+
+            <div class="row" style="display: none;">
+                <h:panelGroup id="slither25">
+                    <div id="slideDer4"  class="menutPlantilla" >
+                    </div>
+                </h:panelGroup>
+                <div class="c-hamburger c-hamburger--rot is-active"  id="c-hamburgerStatusDispo1" >
+                    <span>toggle menu</span>
+                </div>
+            </div> 
+            <h:form id="fileuploadPln"  class="anchoTableMantenimientos" enctype="multipart/form-data">
+                <h:panelGrid id="panelUpload" columns="2" style="margin: auto">
+                    <h:outputLabel value="File" style="color:black"></h:outputLabel>
+                    <h:inputFile id="adjuntofile" style="border:#999 solid 3px;  color:black;" value="#{plantillasBeen.file}" 
+                                 required="true" requiredMessage="#{gen_msg['attached']} #{gen_msg['adjNecesario']}"  pt:multiple="true">                        
+                        <f:ajax execute="@this" event="change" />
+                    </h:inputFile>
+                    <h:messages id="mespanelUpload" for="panelUpload"  class="msgError"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" style="margin: auto;">
+                    <h:commandButton class="btn btn-signin" value ="#{aees_msg['uploadfile']}"
+                                     action="#{plantillasBeen.savedocu()}">
+                        <f:ajax execute="@form" render="@form rendExitoPlantilla rendEerrorPlantilla rendEerrorDuplicadoPlantilla plantillaForm slither25 refremeta"/>
+                    </h:commandButton>
+                    <h:commandButton  class="btn btn-signin" value ="#{gen_msg['discard']}">
+                        <f:ajax execute="@this" render="@form refremeta"/>
+                    </h:commandButton>
+                </h:panelGrid>
+
+            </h:form>
+            <h:panelGroup id="rendExitoPlantilla">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>                
+            </h:panelGroup>
+            <h:panelGroup id="rendEerrorPlantilla">
+                <h:outputScript rendered="#{facesContext.postback and  facesContext.validationFailed and plantillasBeen.contolador eq 0}">
+                    alertify.error("#{gen_msg['beanerror']}");
+                </h:outputScript>
+            </h:panelGroup>
+
+            <h:panelGroup id="rendEerrorDuplicadoPlantilla">
+                <h:outputScript rendered="#{facesContext.postback and  facesContext.validationFailed and plantillasBeen.contolador eq 1}">
+                    alertify.error("#{gen_msg['ifexist']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="removeUpload01" style="display:none;" pt:title="#{gen_msg['delete']}">
+                    <h:form id="removeUploadPlantilla">
+                        <h:inputText value="#{plantillasBeen.idDocumentUpload}" style="display:none;" id="idDocumentUpload">
+                            <f:ajax event="change" render="@this refremeta" />
+                        </h:inputText>
+                        <h:panelGrid columns="1" columnClasses="cien-prc center-align" class="cien-prc">
+                            <h:outputLabel value="¿#{aees_msg['deleteitem']}?" class="margenlabelDelete"/> 
+                        </h:panelGrid>
+                        <div class="divBotonesModales">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 alin-der">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['acept']}" action="#{plantillasBeen.delete(plantillasBeen.idDocumentUpload)}" >
+                                    <f:ajax execute="@form" render="@form plantillaForm ondeleteUploadPlantilla slither25 refremeta"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 alin-izq">
+                                <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" action="#{plantillasBeen.limpiar()}">
+                                    <f:ajax execute="@this" render="descartarEliminacionPlantilla refremeta" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            <h:panelGroup id="ondeleteUploadPlantilla">
+                <h:outputScript rendered="#{facesContext.postback}">
+                    $("#removeUpload01").dialog("close");
+                    alertify.log("#{aees_msg['removeitem']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="descartarEliminacionPlantilla">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">                  
+                    $("#removeUpload01").dialog("close");
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+
+            <h:form id="plantillaForm" class="anchoTableMantenimientos">
+                
+                <h:dataTable id="tblListadosPlantilla" class="table table-striped dt-responsive anchoTableMantenimientos" value='#{plantillasBeen.listado}'
+                             pt:name="tblListadosPlantilla" var="item" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="FIle"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="FIle"/>
+                        </f:facet>   
+                        <h:outputText value="#{item.nameDocument}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Extencion"/>
+                        </f:facet>
+                        <f:facet name="footer" >
+                            <h:outputText value="Extencion"/>
+                        </f:facet>      
+                        <h:outputText value="#{item.extenDocument}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton class="btn-round-69 icon-remove-69" onclick="funalertcoreAF('#removeUpload01','${item.idDocument}');">
+                            <f:ajax execute="@this" render="@this refremeta" />
+                        </h:commandButton>
+                    </h:column>
+
+
+                </h:dataTable>   
+                 
+                
+                <h:outputScript>
+
+                    formatTable('table[name=tblListadosPlantilla]','${swtLanguage.language}','#ghhghf','.menutPlantilla');
+                </h:outputScript>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

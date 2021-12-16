@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title> </title>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js" />
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputScript library="styleAE" name="js/EoJS.js" />
+            <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+
+        </h:head>
+        <h:body>
+
+            <h:panelGroup id="inputModal69" >
+                <h:form id="inputForm69" class="fondo">
+                    <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js" />
+            <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+            <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+                    <h:panelGroup id="autocom">
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                var objSelect = document.getElementById("inputForm69:eoOwner");
+                                var input = document.getElementById("inputForm69:eoOwner0").value;
+                                for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                    if (objSelect.options[i].value == input) {
+                                        objSelect.options[i].selected = true;
+                                        return;
+                                    }
+                                }
+                            });
+                            $(function () {
+                                $("#inputForm69\\:ataNumata").autocomplete({
+                                    source: #{contAtas.atascod}
+                                });
+                                $("#inputForm69\\:fltCod").autocomplete({
+                                    source: #{contFleets.flota}
+                                });
+                                $("#inputForm69\\:priCod").autocomplete({
+                                    source: #{engPriorities.priorities}
+                                });
+                                $("#inputForm69\\:prefix").autocomplete({
+                                    source: #{engPrefixes.preefixes}
+                                });
+                                $("#inputForm69\\:workType").autocomplete({
+                                    source: #{engWorktypes.workTipes}
+                                });
+                                $("#inputForm69\\:acctionType").autocomplete({
+                                    source: #{engActionTypes.actionTypes}
+                                });
+                            });
+                        </script>
+                    </h:panelGroup>
+                    <h:inputHidden id="ATAS"/>
+                    <h:inputHidden id="FLOTAS"/>
+                    <h:inputHidden id="PRIORIDAD"/>
+                    <h:inputHidden id="PREFIX"/>
+                    <h:inputHidden id="WORK"/>
+                    <h:inputHidden id="ACTION"/>    
+                    <h:inputHidden id="eoIdord0" value="#{engOrdersBean.idmaxea}"/>
+                    <h:panelGrid class="tableeo" columns="4" columnClasses="twentyfive-prc left-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc ">
+                        <h:outputLabel value="#{aees_msg['codEO']}:"  for="eoIdord" />
+                        <h:outputLabel id="eoIdord" value="#{engOrdersBean.elemento.eoIdord}"/>
+                        <h:outputLabel value="#{aees_msg['nEO']}:" for="eoRev" />
+                        <h:inputText id="eoRev" value="#{engOrdersBean.elemento.eoRev}"  />
+                        <h:outputLabel value="#{aees_msg['creatDate']}:" for="eoCreationDate" />
+                        <h:inputText id="eoCreationDate" value="#{engOrdersBean.elemento.eoCreationDate}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:inputText>
+                    </h:panelGrid>
+
+                    <h:panelGrid class="tableeo" columns="4" columnClasses="twentyfive-prc left-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc ">
+                        <h:outputLabel value="#{gen_msg['status']}:" for="estado"/>
+                        <h:selectOneMenu onchange="getIdFromNames(this);" id="estado" value="#{engOrdersBean.elemento.stsEoCod}" >
+                            <f:selectItems value="#{engEoStatus.listado}" var="option" itemLabel="#{option.stsDescription}" itemValue="#{option.stsEoCod}"/>
+                        </h:selectOneMenu>  
+                        <h:outputLabel value="#{aees_msg['dateRev']}:" for="eoRevDate"  />
+                        <h:inputText id="eoRevDate" value="#{engOrdersBean.elemento.eoRevDate}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:inputText>
+                    </h:panelGrid>
+
+                    <h:panelGrid class="tableeo" columns="4" columnClasses="twentyfive-prc left-align,twentyfive-prc,twentyfive-prc right-align,twentyfive-prc">                                    
+                        <h:outputLabel value="#{aees_msg['dateExe']}: "  />
+                        <h:inputText  value="#{engOrdersBean.elemento.eoExeDate}"></h:inputText>
+                        <h:outputLabel value="#{gen_msg['ATA']}: " for="ataNumata" />
+                        <h:inputText id="ataNumata"  value="#{engOrdersBean.elemento.ataNumata}"  required="true" styleClass="drop2" autocomplete="on" requiredMessage="Campo Requerido"/>
+                        <h:outputLabel value="#{gen_msg['fleet']}: " for="fltCod" />
+                        <h:inputText id="fltCod"   value="#{engOrdersBean.elemento.fltCod}" required="true" styleClass="dropFlota2" autocomplete="on" requiredMessage="Campo Requerido"/>
+                        <h:outputLabel value="#{gen_msg['priority']}: " for="priCod" />
+                        <h:inputText id="priCod"  value="#{engOrdersBean.priCod}" required="true" autocomplete="on" requiredMessage="Campo Requerido">
+                            <f:ajax event="change" render="autocom refremeta"/>
+                        </h:inputText>                                    
+                    </h:panelGrid>
+
+                    <h:inputHidden id="eoOwner0" value="#{engOrdersBean.elemento.eoOwner}"/> 
+                    <h:inputHidden id="estado0" value="#{engOrdersBean.elemento.stsEoCod}"/>  
+
+                    <h:panelGrid columns="2"  class="tableeo" columnClasses="twentyfive-prc left-align, seventyfive-prc">
+                        <h:outputLabel value="#{aees_msg['engiManag']}:" for="eoOwner"/>
+                        <h:selectOneMenu onchange="getIdFromName(this);" id="eoOwner"  >
+                            <f:selectItems value="#{coreUsers.listado}" var="option" itemLabel="#{option.fullUserName}" itemValue="#{option.codigo86}"/>
+                        </h:selectOneMenu>  
+                    </h:panelGrid>
+
+                    <h:panelGrid class="tableeo" columns="4" columnClasses="twentyfive-prc left-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc">
+                        <h:outputLabel value="#{gen_msg['prefix']}: " for="prefix" />
+                        <h:inputText id="prefix"   value="#{engOrdersBean.codpre}" required="true"  autocomplete="on" requiredMessage="Campo Requerido">
+                            <f:ajax event="change" render="autocom refremeta"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{gen_msg['warranty']}:"  for="eoWarranty" />                                    
+                        <h:inputText id="eoWarranty"   value="#{engOrdersBean.elemento.eoWarranty}" />
+                        <h:outputLabel value="#{aees_msg['workType']}:" for="workType"  />
+                        <h:inputText id="workType" value="#{engOrdersBean.wtycod}" required="true"  autocomplete="on" requiredMessage="Campo Requerido">
+                            <f:ajax event="change" render="autocom refremeta"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{aees_msg['acctionType']}:" for="acctionType" />
+                        <h:inputText id="acctionType"   value="#{engOrdersBean.actcod}"  required="true"  autocomplete="on" requiredMessage="Campo Requerido" >
+                            <f:ajax event="change" render="autocom refremeta"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{aees_msg['hrHombre']}:" for="eoManHourCost"  />
+                        <h:inputText id="eoManHourCost"  value="#{engOrdersBean.elemento.eoManHourCost}" required="true"  autocomplete="on" requiredMessage="Campo Requerido"/>
+                        <h:outputLabel value="#{aees_msg['repEvery']}:"  />
+                        <h:inputText id="eoReptType"  value="#{engOrdersBean.elemento.eoReptType}" />                                    
+                    </h:panelGrid>
+
+                    <h:inputHidden id="eoMaterials0" value="#{engOrdersBean.elemento.eoMaterials}"/>
+                    <h:inputHidden id="eoEffectWb0" value="#{engOrdersBean.elemento.eoEffectWb}"/>
+                    <h:inputHidden id="equip0" value="#{engOrdersBean.elemento.eoNdtequipment}"/>
+                    <h:inputHidden id="herra0" value="#{engOrdersBean.elemento.eoSpecialTool}"/>                                
+                    <h:inputHidden id="otros0" value="#{engOrdersBean.elemento.eoOther}"/>
+                    <h:inputHidden id="retroal0" value="#{engOrdersBean.elemento.eoFeedback}"/>
+                    <h:inputHidden id="men0" value="#{engOrdersBean.elemento.eoMinor}"/>
+                    <h:inputHidden id="may0" value="#{engOrdersBean.elemento.eoMajorref}"/>
+                    <h:panelGrid class="tableeo" columns="4" columnClasses="twentyfive-prc left-align, twentyfive-prc, twentyfive-prc right-align, twentyfive-prc">
+                        <h:outputLabel value="#{gen_msg['materials']}: " for="eoMaterials" />                                    
+                        <h:selectBooleanCheckbox id="eoMaterials" onchange="getIdChecked(this)" />
+                        <h:outputLabel value="#{aees_msg['efectWeight']}:" for="eoEffectWb" />
+                        <h:selectBooleanCheckbox id="eoEffectWb" onchange="getIdChecked(this)" />
+                        <h:outputLabel value="#{aees_msg['setNDT']}: " for="equip" />
+                        <h:selectBooleanCheckbox id="equip" onchange="getIdChecked(this)" />
+                        <h:outputLabel value="#{aees_msg['toolsSpecial']}:" for="herra" />
+                        <h:selectBooleanCheckbox id="herra" onchange="getIdChecked(this)"/>
+                        <h:outputLabel value="#{gen_msg['others']}: " for="otros" />
+                        <h:selectBooleanCheckbox id="otros" onchange="getIdChecked(this)"/>
+                        <h:outputLabel value="#{gen_msg['feedback']}: " for="retroal" />
+                        <h:selectBooleanCheckbox id="retroal" onchange="getIdChecked(this)"/>
+                        <h:outputLabel value="#{gen_msg['minor']}:" for="men" />
+                        <h:selectBooleanCheckbox id="men" onchange="getIdChecked(this)"/>
+                        <h:outputLabel value="#{aees_msg['majorSTC']}:" for="may" />
+                        <h:selectBooleanCheckbox id="may" onchange="getIdChecked(this)"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid class="tableeo" columns="2" columnClasses="twentyfive-prc left-align, seventyfive-prc">
+                        <h:outputLabel value="#{gen_msg['RAS']}: " />
+                        <h:inputText id="ras0" value="#{engOrdersBean.elemento.eoRas}"/>
+
+                    </h:panelGrid>
+                    <h:panelGrid class="tableeo"  columns="2" columnClasses="twentyfive-prc left-align, seventyfive-prc">
+                        <h:outputLabel value="#{gen_msg['title']}:" for="Titulo"/>
+                        <h:inputTextarea id="Titulo"  value="#{engOrdersBean.elemento.eoSubject}" style="width: 90%" required="true" requiredMessage="Campo Requerido"/>
+                        <h:outputLabel value="#{gen_msg['topic']}:" for="Asunto"/>
+                        <h:inputTextarea id="Asunto" value="#{engOrdersBean.elemento.eoEngAssmnt}" style="width: 90%"/>
+                        <h:outputLabel value="#{gen_msg['summary']}:" for="Resumen"/>
+                        <h:inputTextarea id="Resumen"  value="#{engOrdersBean.elemento.eoSummary}" style="width: 90%"/>
+                        <h:outputLabel value="#{gen_msg['comments']}:" for="Comentarios"/>
+                        <h:inputTextarea id="Comentarios" value="#{engOrdersBean.elemento.eoComments}" style="width: 90%"/>
+                        <h:outputLabel value="#{aees_msg['revRecord']}:" for="Revrecord"/>
+                        <h:inputTextarea id="Revrecord" value="#{engOrdersBean.elemento.eoRevRecord}" style="width: 90%"/>
+
+                    </h:panelGrid>
+                    <h:messages class="msgError"/>
+                    <h:panelGrid columns="2" style="margin:auto;">
+                        <h:commandButton class="btn btn-signin" value ="#{!engOrdersBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" action="#{engOrdersBean.guardar()}" >
+                            <f:ajax execute="@form" render="ontabeo @form resultForm resultForm69 resultabEo inputForm69 autocom refremeta"/>
+                        </h:commandButton>
+                        <h:commandButton class="btn btn-signin" value ="Descartar" action="#{engOrdersBean.limpiar()}" >
+                            <f:ajax execute="@form" render=" @form inputForm69 autocom refremeta"/>
+                        </h:commandButton>
+                    </h:panelGrid>
+                    <!-- aplicando formato a los DTP, se ejecuta de esta forma para que cuando se rerenderize el elemento se vuelva a aplicar el formato-->
+                    <h:outputScript>                                 
+                    </h:outputScript>
+                </h:form>
+                <h:panelGroup id="ontabeo">
+                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                        alertify.success("#{aees_msg['exito']}");
+                    </h:outputScript>
+                </h:panelGroup>
+            </h:panelGroup>
+
+
+        </h:body>
+    </f:view>
+</html>

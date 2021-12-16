@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+        </h:head>
+        <h:body>  
+                <div id="page-wrapper">                    
+                    <div class="container-fluid">
+                        <div class="row">
+                            
+                            <div class="col-lg-12">
+                                <h1 class="page-header">
+                                    #{gen_msg['esr']}
+                                    
+                                </h1>
+                            </div>
+                        </div>
+                        <div style="align-items: center"> 
+                                <h:selectOneMenu id="fltCod" value="#{engApprovalConfig.engWT}" converter="exampleConv"  title="FltCod" style="width: 25%;">
+                                    <f:selectItems value="#{engWorktypes.listado}" var="item" itemValue="#{item}" itemLabel="#{item.wtyCod} - #{item.wtyDescription}"/>                                    
+                        </h:selectOneMenu>
+                        <h:commandButton class="btn btn-signin-model" value ="Generar" onclick=""/></div>
+                           
+                    </div>                 
+                  </div>                             
+        </h:body>
+    </f:view>
+</html>
+

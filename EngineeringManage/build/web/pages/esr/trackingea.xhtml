@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head>
+            <title> </title>
+            <h:outputStylesheet library="styleAE" name="css/engStyles.css"/>
+            <h:outputScript library="styleAE" name="js/engLibrary.js" />
+            <h:outputScript>
+                $(document).ready(function (){
+                    crearModal('#inputModal', '400px');
+                });
+                
+                $(document).ready(function (){
+                    var input = document.getElementById("inputForm73:idMensaje").value;
+                     document.getElementById("inputForm73:messageId").value = input;
+                     
+                     
+                     var input = document.getElementById("inputForm73:pdfIds").value;
+                     document.getElementById("inputForm73:pdfId").value = input;
+                     
+                     
+                    });
+                      
+            </h:outputScript>
+            
+            <script>
+                    $( function() {
+                        var tagsAvailable = #{RequestTracking.emails};
+                        var divTracking1 = "#inputFormtra\\:to";
+                        var divTracking2 = "#inputFormtra\\:CC"
+                    
+                    
+                        function split( val ) {
+                            return val.split( /,\s*/ );
+                        }
+                        function extraction( term ) {
+                            return split( term ).pop();
+                        }
+
+                        functionTracking(divTracking1,tagsAvailable,extraction);
+                        functionTracking(divTracking2,tagsAvailable,extraction);
+                } );
+                    
+
+                    
+                    
+                    function functionTracking(div, tagsAvailable,extraction){
+
+                            $( div ).on( "keydown", function( event ) {
+                                 if ( event.keyCode === $.ui.keyCode.TAB &amp;&amp;
+                                     $( this ).autocomplete( "instance" ).menu.active ) {
+                                   event.preventDefault();
+                                 }
+                               }).autocomplete({
+                                 minLength: 0,
+                                 source: function( request, response ) {
+                                   // delegate back to autocomplete, but extract the last term
+                                   response( $.ui.autocomplete.filter(
+                                     tagsAvailable, extraction( request.term ) ) );
+                                 },
+                                 focus: function() {
+                                   // prevent value inserted on focus
+                                   return false;
+                                 },
+                                 select: function( event, ui ) {
+                                   var terms = split( this.value );
+                                   // remove the current input
+                                   terms.pop();
+                                   // add the selected item
+                                   terms.push( ui.item.value );
+                                   // add placeholder to get the comma-and-space at the end
+                                   terms.push( "" );
+                                   this.value = terms.join( "," );
+                                   return false;
+                                 }
+                               });
+                           }
+            </script>
+            
+            
+            
+            
+      
+            
+        </h:head>
+        <h:body>
+                
+                            <h:form id="inputForm73" style="width: 96% !important;margin: auto;background: white;" enctype="multipart/form-data">
+                                <script type="text/javascript">
+                                        /*$(function () {
+                                       $("#inputForm73\\:to").autocomplete({
+                                               source: #{RequestTracking.emails}
+                                           });
+                                           });*/
+
+                                          $(document).ready(function (){
+                                           var input = document.getElementById("inputForm73:EsrId").value;
+                                            document.getElementById("inputForm73:idMensaje").value = input;
+
+                                            var input = document.getElementById("inputForm73:pdfIds").value;
+                                                document.getElementById("inputForm73:pdfId").value = input;
+                                           });
+                                   </script>
+                                <h:inputHidden id="idMensaje"  class="form-control"   value="#{RequestTracking.elemento.reqMessageid}"/>
+                               
+                                <h:panelGrid columns="2" style="width: 100%; margin: auto" columnClasses="twentyfive-prc, seventyfive-prc">
+                                    <h:outputLabel value="#{gen_msg['to']}" for="to" />
+                                    <h:inputTextarea id="to" class="form-control" value="#{RequestTracking.elemento.resEmailsTo}"/>                                   
+                                    <h:outputLabel value="#{gen_msg['cc']}" for="CC" />                                    
+                                    <h:inputTextarea id="CC" class="form-control" value="#{RequestTracking.elemento.resEmailsCc}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" style="width: 100%; margin: auto" columnClasses="twentyfive-prc, seventyfive-prc">
+                                    <h:outputLabel value="Message Id" for="EsrId" />
+                                    <h:inputText id="EsrId" class="form-control" disabled="true" value="#{eaPdfBean.esrid}"/>
+                                    <h:outputLabel value="#{gen_msg['topic']}" for="Asunto" />
+                                    <h:inputText id="Asunto" class="form-control" value="#{RequestTracking.elemento.resSubject}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" style="width: 100%; margin: auto" columnClasses="twentyfive-prc, seventyfive-prc">
+                                    <h:outputLabel value="#{gen_msg['msj']}" for="messageId" />                                    
+                                    <h:inputTextarea id="messageId" class="form-control" value="#{RequestTracking.elemento.resBody}"/>                                 
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" style="width: 100%; margin: auto" columnClasses="twentyfive-prc, seventyfive-prc">
+                                    <h:outputLabel value="#{gen_msg['document']} EA" for="Adjunto" />
+                                    <h:column>
+                                            <span class="glyphicon glyphicon-paperclip"></span>
+                                            <h:outputText id="pdffile" value="#{eaPdfBean.elements2.pdfFilename}" />
+                                    </h:column>
+                                    <h:inputHidden id="pdfIds" value="#{eaPdfBean.elements2.pdfId}" />
+                                    <h:inputHidden id="pdfId" value="#{RequestTracking.pdfId}"/>
+                                </h:panelGrid>
+                                <h:messages class="msgError"/>
+                                <h:panelGrid columns="2" style="margin:auto;">
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['send']}" action="#{RequestTracking.sendMailEA()}" >
+                                        <f:ajax execute="@form" render="onsuccess73 @form inputForm73 inputFormtraTbl2 inputForm68 butea:sacarea butea:cancelea refremeta"/>
+                                    </h:commandButton>
+                                    <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{RequestTracking.limpiar()}" >
+                                        <f:ajax execute="@this" render="@form refremeta" />
+                                    </h:commandButton>
+                                </h:panelGrid>
+                            </h:form>
+                        
+                        
+                            <h:form id="inputFormtraTbl2" style="width: 96% !important;border: 2px solid rgba(0,0,0,0.1);margin: auto;background: white;">
+
+                                <h:dataTable id="tblTrackingEsr2" class="table table-striped dt-responsive" pt:name="tblTrackingEsr2" value="#{RequestTracking.listado2}" var="item" style="width: 100% !important">
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['trackmail']}"/>                                     
+                                        </f:facet>
+                                        <f:facet name="footer" > 
+                                            <h:outputText value="#{aees_msg['trackmail']}"/>                                     
+                                        </f:facet>
+                                        <h:outputText  value="#{item.resCodUsrMsg}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{gen_msg['to']}"/>
+                                        </f:facet>                                    
+                                        <h:outputText value="#{item.resEmailsTo}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{gen_msg['cc']}"/>
+                                        </f:facet>                                    
+                                        <h:outputText value="#{item.resEmailsCc}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{gen_msg['topic']}"/>
+                                        </f:facet>                                    
+                                        <h:outputText value="#{item.resSubject}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['ataDateIns']}"/>
+                                        </f:facet>                                    
+                                        <h:outputText value="#{item.resDateMsg}">
+                                            <f:convertDateTime type="date" pattern="#{gen_msg['frmtDateConv']}"/>
+                                        </h:outputText>
+                                    </h:column>
+                                </h:dataTable>
+                                <h:outputScript>
+                                   
+                                           formatTable('table[name=tblTrackingEsr2]','${swtLanguage.language}','#inputModal','.menut777');
+                                                                 
+                                </h:outputScript>
+                            </h:form>
+            <h:panelGroup id="onsuccess73">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            
+        </h:body>
+    </f:view>
+</html>

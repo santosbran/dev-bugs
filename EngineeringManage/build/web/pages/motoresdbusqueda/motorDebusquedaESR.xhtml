@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view  rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title>
+           
+            <style>
+                html .ui-autocomplete {
+                    height: 200px;
+                    overflow-y: auto;
+                    overflow-x: hidden;                   
+                    background: #f0f0f0; 
+                    color: #0F1957;
+                }
+                html .ui-state-focus{
+                    font-weight: bold !important;
+                    color: #0F1957 !important;
+                    border: none !important;
+                }
+                .row1{
+                    background: #d6d6d6;
+                }
+                .row2{
+                    background: #c5c5c5;
+                }
+                .row1:focus,.row2:focus{
+                    background: #badfc9;
+                }
+                .slitherMotorEsr{
+                    position: absolute;
+                    top: 10px;
+                    right: 2% !important;
+                    float: right;
+                    z-index: 999;
+                }
+            </style>
+
+        </h:head>
+        <h:body>
+            
+                <!-- Page Heading -->
+                    
+               <div class="row" style="display: none;">
+                    <h:panelGroup id="slitherMotorEsr">
+                        <div id="sliMotorEsr" class="slitherMotorEsr" >
+                        </div>
+                    </h:panelGroup>
+                    <div class="c-hamburger c-hamburger--rot is-active" id="c-hamburgerMotorEsr">
+                        <span>toggle menu</span>
+                    </div>
+                </div>
+                            
+
+                            
+
+                <h:form id="resultFormBusEsr" class="estiloFormTablasIngenieria" >   
+
+                    <h:dataTable id="tblListado" pt:name="tblListadoesr" class="table dt-responsive anchoTablasIngenieria" 
+                                             value="#{motorBusquedaEsrBean.esrResultados}" var="item"  >
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['colAirp']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['colAirp']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText  value="#{item.reqRegistry}" /></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['numESR']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['numESR']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.reqEsr}"/></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{gen_msg['ATA']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{gen_msg['ATA']}"/>
+                                        </f:facet>
+                                        <div  class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.ataNumata}"/></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['modelAirp']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['modelAirp']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.chkModel}"/></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['workOrder']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['workOrder']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.chkWo}"/></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['mb_abclient']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['mb_abclient']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.reqCustomer}"/></div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{aees_msg['engAttendant']}"/>
+                                        </f:facet>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{aees_msg['engAttendant']}"/>
+                                        </f:facet>
+                                        <div class="estiloItemTablasSearch">
+                                            <h:outputText value="#{item.reqCodName}"/></div>
+                                    </h:column>
+
+                                </h:dataTable>
+                                
+                                <!--Aplicando el formato a la datatable, se hace de esta forma para que se aplique nuevamente tras el rerenderizado del form-->
+                                <h:outputScript>formatTable('table[name=tblListadoesr]','${swtLanguage.language}','#inputModal','.slitherMotorEsr');</h:outputScript>
+
+                               
+                                
+                            </h:form>
+
+                       
+               
+                
+        </h:body>
+    </f:view>
+</html>

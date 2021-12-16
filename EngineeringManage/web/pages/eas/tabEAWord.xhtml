@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view>
+        <h:head >
+            <title> </title>  
+            <style>
+                table{
+                    margin-bottom: 10px;
+                }
+                .ui-datepicker-trigger{
+                    height: 40%;
+                }
+                #ui-datepicker-div{
+                    background: white !important;
+                    z-index: 99999 !important;
+                }
+               
+            </style>
+            <style type="text/css">
+                .classDrag{
+                    border: dashed 2px #ec1c24;
+                    border-radius: 9px;
+                }
+            </style> 
+            <script type="text/javascript"  src="../plugins/js/tinymce/tinymce.min.js"></script>
+            <script src="../plugins/js/FileSaver.js" type="text/javascript"></script>
+            <script src="../plugins/js/jquery.wordexport.js" type="text/javascript"></script>
+            <link rel="stylesheet"  href="../plugins/css/styless.css" type="text/css"/>            
+            <script src="../plugins/js/jsPDF-master/dist/jspdf.debug.js" type="text/javascript"></script>
+            <script src="../plugins/js/html2canvas/dist/html2canvas.js" type="text/javascript"></script>       
+            <script type="text/javascript" src="../plugins/js/edit.js"></script>
+            
+        </h:head>
+        <h:body style="width: 100%; height: 100%;">
+                <h:panelGroup id="inptEA"  > 
+                    <div id="formEA" style="font-size: 100%; background: white; width: 90%; margin: auto;">
+                        <div id="tinyea" style="text-align: center !important; height: 12%;">
+                        </div>
+                        <h:form id="forrrrm" style="margin: auto;" > 
+                            <script type="text/javascript"  src="../plugins/js/tinymce/tinymce.min.js"></script>
+                            <script type="text/javascript" src="../plugins/js/edit.js"></script>   
+                            
+                            <table border="1"  style=" border-collapse: collapse; margin: auto; width: 80%;" id="tdaa" class="widd">
+                                <tbody>
+                                    <tr style="height: 50%;">
+                                        <td rowspan="2">
+                                            <p style=" text-align: center; margin: 0; color: black;">
+                                                <h:graphicImage library="styleAE" name="img/main/Logo.png" style="width: 70% !important;"/>
+                                            </p>
+                                        </td>
+                                        <td class="notEditable" rowspan="2" style="width: 40%; color: black;">
+                                            <p  style=" text-align: center; margin: 0;">
+                                                #{gen_msg['panelea']} 
+                                            </p>
+                                        </td>
+                                        <td class="notEditable" style="width: 15%; color: black;">
+                                            <p  style="margin: 0; color: black;">
+                                                #{aees_msg['idEA']}:
+                                            </p>
+                                        </td>
+                                        <td class="notEditable" style="color: black;">
+                                            <p  style="color: black;">#{engAutorizationBean.elemento.eagId}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="notEditable" style=" margin: 0; color: black;" >
+                                            <p  style=" margin: 0; color: black;">
+                                                    #{aees_msg['noEA']}:
+                                            </p>
+                                        </td>
+                                        <td  id="correlative1" >
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto" class="widd">
+                                <tbody>
+                                    <tr style="border-collapse: collapse;">
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000  ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['reqMess']}</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['model']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; ">
+                                                <p>#{aees_msg['compoPN']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{aees_msg['compoSN']}:</p>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                        <td class="notEditable" style="border:  solid 1px !important;border-collapse: collapse;"  id="aircraft1" onkeyup="if(/\D/g.test($(this).text()))$(this).text($(this).text().replace(/\D/g, ''));">
+                                            #{engAutorizationBean.elemento.reqMessageid}
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="model1" class="editable">
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="cmppn1" class="editable">
+                                        </td>
+                                        <td style="border: solid 1px !important;border-collapse: collapse;" id="compsn1" class="editable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p>
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr class="notEditable" style="border-collapse: collapse;">
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{gen_msg['ATA']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; ">
+                                                <p>#{gen_msg['status']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; ">
+                                                <p>#{aees_msg['noRev']}:</p>
+                                        </td>  
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center;">
+                                                <p>#{aees_msg['dateRev']}:</p>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse; padding: 0; width: 44.4%" id="ata1" >   
+                                            <div class="droptarget" ondrop="dropataea(event)" id="dropDivataea" >
+                                                <h:selectOneMenu id="ATA"  value="#{engAutorizationBean.elemento.eagAta}" onchange="$('#inputs\\:ATA').val(this.value);"   class="form-control"  pt:data-live-search="true" required="true" requiredMessage="Campo requerido">  
+                                                    
+                                                    <f:selectItem itemLabel="....." itemValue="#{null}"/>
+                                                    <f:selectItems   value="#{contAtas.listado}" var="option" itemLabel="#{option.ataNumata}-#{option.ataDescription}" itemValue="#{option.ataNumata}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </td>
+                                        
+                                        
+                                        
+                                        <td class="notEditable" style="border: solid 1px #000 ;border-collapse: collapse;padding: 0; width: 13.85%" id="estatus1"> 
+                                            <div class="droptarget"  id="dropDivst" >
+                                                <h:outputText value="#{engAutorizationBean.status}"/>
+
+                                             </div>
+                                        </td>
+
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse; width: 13.9%" id="revision1" >                                             
+                                        </td>
+                                        <td  style="border: solid 1px #000 ;border-collapse: collapse;" class="notEditable" >
+                                            <h:inputText value="#{engAutorizationBean.elemento.aegDateRev}" id="feRev" class="form-control" pt:placeholder="mm/dd/yyyy"
+                                                         style="width: 100%;height: 100%;" onchange="$('#inputs\\:frev').val(this.value)">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" timeZone="GMT-6"/>
+                                            </h:inputText>                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto" class="widd">
+                                <tbody>
+                                    <tr class="notEditable" style="border-collapse: collapse;">
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center; width: 26%" >
+                                                <p>#{gen_msg['year']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; width: 32.2% ">
+                                                <p>#{gen_msg['fleet']}:</p>
+                                        </td>
+                                        <td  class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; ">
+                                                <p>#{gen_msg['company']}:</p>
+                                        </td>  
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;" >
+                                        <td  style="border: solid 1px #000 ;border-collapse: collapse;" id="year" class="editable" onkeyup="validarAnio(this)">
+                                        </td>
+                                        <td  class="notEditable" style="border: solid 1px #000 ;border-collapse: collapse;padding: 0;">
+                                            <h:outputText value="#{engAutorizationBean.elemento.fltCod}"/>
+
+                                        </td>
+                                        <td class="notEditable" style="border: solid 1px #000 ;border-collapse: collapse;" >
+                                            <h:outputText value="#{engAutorizationBean.elemento.company}"/>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table  style="border-collapse: collapse;border: solid 1px #000 ; width: 80%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr class="notEditable" style="border-collapse: collapse;">
+                                        <td class="notEditable" style="background: #cecece;  border: solid 1px #000 ;border-collapse: collapse; text-align: center; width: 26%">
+                                                <p>#{aees_msg['tailPlane']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; width: 32.2%">
+                                                <p>#{aees_msg['fltCustomerId']}:</p>
+                                        </td>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; text-align: center; ">
+                                                <p>#{aees_msg['serialNumber']}:</p>
+                                        </td>  
+                                    </tr>
+                                    <tr style="height: 30px;border: solid 1px #000 ;border-collapse: collapse;">
+                                        <td class="notEditable" style="border: solid 1px #000 ;border-collapse: collapse;" >
+                                            <h:outputText value="#{engAutorizationBean.elemento.eagTail}"/>
+
+                                        </td>
+                                        <td class="notEditable" style="border: solid 1px #000 ;border-collapse: collapse;" >
+                                            <h:outputText value="#{engAutorizationBean.elemento.eagCustomer}"/>
+
+                                        </td>
+                                        <td  style="border: solid 1px #000 ;border-collapse: collapse;" id="nserie" class="editable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; margin: auto;" class="widd" >
+                                <tbody>
+                                    <tr style="height: 40px">
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; ">
+                                            <p>#{gen_msg['title']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse;" id="subject" class="editable" >
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin: 0; padding: 0;"></p> 
+                            <table style="border-collapse: collapse;border: solid 1px #000 ;width: 80%; height: 7%; margin: auto;" class="widd">
+                                <tbody>
+                                    <tr>
+                                        <td class="notEditable" style="background: #cecece; border: solid 1px #000 ;border-collapse: collapse; width: 26%; height: 40%; width: 26%">
+                                            <p>#{aees_msg['engiManag']}:</p>
+                                        </td>
+                                        <td style="border: solid 1px #000 ;border-collapse: collapse;padding: 0;" id="inge" >
+                                            <h:selectOneMenu value="#{engAutorizationBean.elemento.aegIngComm}"  onchange="getIdfromMenu(this)" id="eoOwner" style="width: 100%;height: 100%;" class="form-control">
+                                                <f:selectItem itemLabel="....." itemValue="#{null}"/>
+                                                <f:selectItems value="#{coreUsers.listado}" var="option" itemLabel="#{option.fullUserName}" itemValue="#{option.codigo86}"/>
+                                            </h:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="editor"></div>
+                            <script>
+                                $('#forrrrm\\:feRev').datepicker({autoclose: true, language: '#{swtLanguage.language}'});
+                                eeditEa();
+                            </script>
+                            <div id="msj"></div>
+                            <script >
+                                function  getIdSelected(ObjSelected) {
+                                    var id = ObjSelected.id;
+                                    document.getElementById("inputs:Estatus").value = ObjSelected.value;
+                                }
+
+                                function getIdfromMenu(obj) {
+                                    var id = obj.id;
+                                    document.getElementById("inputs:Ingeniero").value = obj.value;
+                                    //inputForm68:eoOwner0
+                                }
+                                $(document).ready(function () {
+                                    var objSelect = document.getElementById("forrrrm:eoOwner");
+//                                    var Estatuss = document.getElementById("forrrrm:statusSelect");
+                                    var Flotass = document.getElementById("forrrrm:flotasSelect");
+                                    var input = document.getElementById("inputs:Ingeniero").value;
+                                    //var input2 = document.getElementById("inputs:Estatus").value;
+                                    var input3 = document.getElementById("inputs:Flota").value;
+                                    for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == input) {
+                                            objSelect.options[i].selected = true;
+                                            return;
+                                        }
+                                    }
+//                                    for (var i = 0; i &lt; Estatuss.options.length; i++) {
+//                                        if (Estatuss.options[i].value == input2) {
+//                                            Estatuss.options[i].selected = true;
+//                                            return;
+//                                        }
+//                                    }
+                                    for (var i = 0; i &lt; Flotass.options.length; i++) {
+                                        if (Flotass.options[i].value == input3) {
+                                            Flotass.options[i].selected = true;
+                                            return;
+                                        }
+                                    }
+                                    if(input==''){
+                                        document.getElementById("inputs:Ingeniero").value=objSelect.options[0].value;
+                                    }  
+//                                    if(input2==''){
+//                                        document.getElementById("inputs:Estatus").value=Estatuss.options[0].value;
+//                                    } 
+                                    if(input3==''){
+                                        document.getElementById("inputs:Flota").value=Flotass.options[0].value;
+                                    } 
+                                });
+                                
+                                $(function () {
+                                    $("#forrrrm\\:ATA").autocomplete({
+                                        source:#{contAtas.atascod},
+                                        position: { my : "right top", at: "right bottom" }
+                                    });
+                                });
+                                
+                                function isNumber(number){
+                                    if(number=="1")return true;
+                                    if(number=="2")return true;
+                                    if(number=="3")return true;
+                                    if(number=="4")return true;
+                                    if(number=="5")return true;
+                                    if(number=="6")return true;
+                                    if(number=="7")return true;
+                                    if(number=="8")return true;
+                                    if(number=="9")return true;
+                                    if(number=="0")return true;
+                                    return false;
+                                }
+                                
+                                function formatHtmClean(form, text, num){
+                                    var words=text;
+                                    words=words.replace(/-/g, " - ");
+                                    words=words.split(" ");
+                                    formaaat=form;
+                                    formaaat=formaaat.replace(/APLICA/g, ",");
+                                    formaaat=formaaat.replace(/SAPLICA/g, "'");
+                                    if(words.length&gt;(num+1)){
+                                        for(var varria; varria &lt;=num;varria++ ){
+                                            if(varria==num){
+                                                var todas="";
+                                                for(var aux=varria; aux &lt;=words.length;aux++ ){
+                                                    todas+=words[aux];
+                                                }
+                                                formaaat=formaaat.replace("txt"+num,todas);
+                                            }
+                                            else{
+                                                formaaat=formaaat.replace("txt"+varria,"");
+                                            }                                            
+                                        }
+                                    }
+                                    for(var esta=0; esta &lt; words.length;esta++ ){
+                                        formaaat=formaaat.replace("txt"+esta,words[esta]);
+                                    }
+                                    if(words.length!=(num+1)){
+                                        for(var dos=esta-1; dos &lt;= num;dos++ ){
+                                            formaaat=formaaat.replace("txt"+dos,"");
+                                        }
+                                    }
+                                    words=""+num+"";
+                                    words=words.split("");
+                                    formaaat=formaaat.substring(words.length);
+                                    return formaaat;
+                                }
+                                function manteEa() {
+                                    cleanea();
+                                var format='#{engAutorizationBean.elemento.format}';
+                                
+                                    if(format != 'undefined' &amp;&amp; format != '' &amp;&amp; format != null){
+                                        var sec=[];
+                                        sec=format.split(",");
+                                        for(var cant=0; cant&lt;sec.length; cant++){
+                                            var y=0;
+                                            var temp=sec[cant].split(""); 
+                                            if(isNumber(temp[0])){
+                                            var isNum=true;
+                                            var cantidad='';
+                                            while (isNum) {
+                                                if(isNumber(temp[y])){ 
+                                                    cantidad+= temp[y];
+                                                    y++;
+                                                }
+                                                else{
+                                                    isNum=false;
+                                                }
+                                            }
+                                            if(cantidad!=''){
+                                                var num=parseInt(cantidad);
+                                                if(cant==0){
+                                                    $("#correlative1").html(formatHtmClean(sec[0],"#{engAutorizationBean.elemento.eagCorrelative}", num));        
+                                                }
+                                                if(cant==1){
+                                                    $("#aircraft1").html(formatHtmClean(sec[1],"#{engAutorizationBean.elemento.reqMessageid}",num));     
+                                                }
+                                                if(cant==2){
+                                                    $("#model1").html(formatHtmClean(sec[2],"#{engAutorizationBean.elemento.eagModel}", num));        
+                                                }
+                                                if(cant==3){
+                                                    $("#cmppn1").html(formatHtmClean(sec[3],"#{engAutorizationBean.elemento.eagCmpPn}", num));        
+                                                }
+                                                if(cant==4){
+                                                    $("#compsn1").html(formatHtmClean(sec[4],"#{engAutorizationBean.elemento.eagCmpSn}", num));        
+                                                }
+                                                if(cant==5){
+                                                    $("#revision1").html(formatHtmClean(sec[5],"#{engAutorizationBean.elemento.aegRevNum}", num));        
+                                                }
+                                                if(cant==6){
+                                                    $("#year").html(formatHtmClean(sec[6],"#{engAutorizationBean.elemento.eagYear}", num));        
+                                                }
+                                               
+                                                if(cant==7){
+                                                    $("#nserie").html(formatHtmClean(sec[7],"#{engAutorizationBean.elemento.eagSn}", num));        
+                                                }
+                                                if(cant==8){
+                                                     $("#subject").html(formatHtmClean(sec[8],"#{engAutorizationBean.elemento.eagTitle}", num));                                                        
+                                                }
+                                                
+                                            }
+                                            else{
+                                                if(cant==8){
+                                                    sec[8]=forrrr(sec[8]);
+                                                     $("#subject").html(sec[8].replace("txt","#{engAutorizationBean.elemento.eagTitle}"));                                               
+                                                }
+                                                
+                                                if(cant==7){
+                                                    sec[7]=forrrr(sec[7]);
+                                                    $("#nserie").html(sec[7].replace("txt","#{engAutorizationBean.elemento.eagSn}"));   
+                                                }
+                                                if(cant==6){
+                                                    sec[6]=forrrr(sec[6]);
+                                                    $("#year").html(sec[6].replace("txt","#{engAutorizationBean.elemento.eagYear}"));   
+                                                }
+                                                if(cant==5){
+                                                    sec[5]=forrrr(sec[5]);
+                                                    $("#revision1").html(sec[5].replace("txt","#{engAutorizationBean.elemento.aegRevNum}"));       
+                                                }
+                                                if(cant==4){
+                                                    sec[4]=forrrr(sec[4]);
+                                                    $("#compsn1").html(sec[4].replace("txt","#{engAutorizationBean.elemento.eagCmpSn}"));
+                                                }
+                                                if(cant==3){
+                                                    sec[3]=forrrr(sec[3]);
+                                                    $("#cmppn1").html(sec[3].replace("txt","#{engAutorizationBean.elemento.eagCmpPn}"));
+                                                }
+                                                if(cant==2){
+                                                    sec[2]=forrrr(sec[2]);
+                                                    $("#model1").html(sec[2].replace("txt","#{engAutorizationBean.elemento.eagModel}"));   
+                                                }
+                                                if(cant==1){
+                                                    sec[1]=forrrr(sec[1]);
+                                                    $("#aircraft1").html(sec[1].replace("txt","#{engAutorizationBean.elemento.reqMessageid}"));        
+                                                }
+                                                if(cant==0){
+                                                    sec[0]=forrrr(sec[0]);
+                                                    $("#correlative1").html(sec[0].replace("txt","#{engAutorizationBean.elemento.eagCorrelative}"));
+                                                }
+                                            }                                            
+                                            }
+                                            else{
+                                            if(cant==1){
+                                                    sec[1]=forrrr(sec[1]);
+                                                    $("#aircraft1").html(sec[1].replace("txt","#{engAutorizationBean.elemento.reqMessageid}"));        
+                                                }
+                                            if(cant==0){
+                                                    sec[0]=forrrr(sec[0]);
+                                                    $("#correlative1").html(sec[0].replace("txt","#{engAutorizationBean.elemento.eagCorrelative}"));
+                                                }
+                                                if(cant==3){
+                                                    sec[3]=forrrr(sec[3]);
+                                                    $("#cmppn1").html(sec[3].replace("txt","#{engAutorizationBean.elemento.eagCmpPn}"));
+                                                }
+                                                
+                                                if(cant==2){
+                                                    sec[2]=forrrr(sec[2]);
+                                                    $("#model1").html(sec[2].replace("txt","#{engAutorizationBean.elemento.eagModel}"));   
+                                                }
+                                                if(cant==5){
+                                                    sec[5]=forrrr(sec[5]);
+                                                    $("#revision1").html(sec[5].replace("txt","#{engAutorizationBean.elemento.aegRevNum}"));       
+                                                }
+                                                
+                                                if(cant==4){
+                                                    sec[4]=forrrr(sec[4]);
+                                                    $("#compsn1").html(sec[4].replace("txt","#{engAutorizationBean.elemento.eagCmpSn}"));
+                                                }
+                                                
+                                                if(cant==6){
+                                                    sec[6]=forrrr(sec[6]);
+                                                    $("#year").html(sec[6].replace("txt","#{engAutorizationBean.elemento.eagYear}"));   
+                                                }
+                                               if(cant==8){
+                                                    sec[8]=forrrr(sec[8]);
+                                                    $("#subject").html(sec[8].replace("txt","#{engAutorizationBean.elemento.eagTitle}"));                                               
+                                                }
+                                                if(cant==7){
+                                                    sec[7]=forrrr(sec[7]);
+                                                    $("#nserie").html(sec[7].replace("txt","#{engAutorizationBean.elemento.eagSn}"));   
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                    else{
+                                    if("#{engAutorizationBean.elemento.eagId}"!=""){
+                                    
+                                        $("#correlative1").html("<p>"+"#{engAutorizationBean.elemento.eagCorrelative}"+"</p>");
+                                        $("#aircraft1").html("<p>"+"#{engAutorizationBean.elemento.reqMessageid}"+"</p>");
+                                        $("#model1").html("<p>"+"#{engAutorizationBean.elemento.eagModel}"+"</p>");
+                                        $("#cmppn1").html("<p>"+"#{engAutorizationBean.elemento.eagCmpPn}"+"</p>");
+                                        $("#compsn1").html("<p>"+"#{engAutorizationBean.elemento.eagCmpSn}"+"</p>");
+                                        $("#revision1").html("<p>"+"#{engAutorizationBean.elemento.aegRevNum}"+"</p>");
+                                        $("#year").html("<p>"+"#{engAutorizationBean.elemento.eagYear}"+"</p>");
+                                        /*$("#company").html("<p>"+"#{engAutorizationBean.elemento.company}"+"</p>");
+                                        $("#tail1").html("<p>"+"#{engAutorizationBean.elemento.eagTail}"+"</p>");
+                                        $("#customer1").html("<p>"+"#{engAutorizationBean.elemento.eagCustomer}"+"</p>");*/
+                                        $("#nserie").html("<p>"+"#{engAutorizationBean.elemento.eagSn}"+"</p>");
+                                        $("#subject").html("<p>"+"#{engAutorizationBean.elemento.eagTitle}"+"</p>");
+                                    }
+                                    }
+                                    
+                                }
+                                function forrrr(format){
+                                       format=format.replace(/APLICA/g, ",");
+                                       format=format.replace(/SAPLICA/g, "'");
+                                       return format;
+                                }
+                                function dragStartst(event) {
+                       event.dataTransfer.setData("Text", event.target.id);
+                        $("#dropDivst").addClass("classDrag");
+                        //document.getElementById("demo").innerHTML = "Started to drag the p element";
+                        }
+
+                        function dragEndst(event) {
+                            $("#dropDivst").removeClass("classDrag");
+                        }
+
+                        /* Events fired on the drop target */
+                        function allowDropst(event) {
+                            event.preventDefault();
+                        }
+                            function dropsta(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                            var objSelect= document.getElementById("forrrrm:statusSelect");
+                              for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs:Estatus").value=data;
+                                            //return;
+                                        }
+                                    }
+                                }
+                                
+                                function dropataea(event) {
+                            event.preventDefault();
+                            var data = event.dataTransfer.getData("Text");
+                            console.log(data);
+                             var objSelect= document.getElementById("forrrrm:ATA");
+                             for (var i = 0; i &lt; objSelect.options.length; i++) {
+                                        if (objSelect.options[i].value == data) {
+                                            objSelect.options[i].selected = true;
+                                            document.getElementById("inputs:ATA").value=data;
+                                            }
+                                    }  
+                            }
+                            
+                            </script>
+                        </h:form>
+                    </div>
+                    <h:form id="botonesigrea" style="text-align: center;">
+                        <h:commandButton id="btn" onclick="cargar();cleanea();" value="#{!engAutorizationBean.edit ? gen_msg['genAdd'] : gen_msg['genUpdate']}" 
+                                         class="btn btn-signin" rendered="#{engAutorizationBean.usrCoduser ne '0'}">
+                            <f:ajax render="@this refremeta" /></h:commandButton>
+                        <h:commandButton class="btn btn-signin" value ="#{gen_msg['discard']}" action="#{tabEsrEaEoBean.limpiar2(1)}" >
+                            <f:ajax render="@form inputs forrrrm refremeta"  />
+                        </h:commandButton>
+                    </h:form>
+                </h:panelGroup>
+            <div >
+                <h:form id="inputs">
+                    <label>aircraft</label>
+                    <h:inputText  value="#{engAutorizationBean.elemento.eagId}" /><br/><label>iud</label>
+                    <h:inputText id="aircraft" value="#{engAutorizationBean.elemento.reqMessageid}" /><br/><label>Model:</label>
+                    <h:inputText id="model" value="#{engAutorizationBean.elemento.eagModel}" required="false"/><br/><label>Component P/N:</label>
+                    <h:inputText id="comppn" value="#{engAutorizationBean.elemento.eagCmpPn}" required="false"/><br/><label>Component S/N:</label>
+                    <h:inputText id="compsn" value="#{engAutorizationBean.elemento.eagCmpSn}" required="false"/><br/><label>ATA:</label>
+                    <h:inputText id="ATA" value="#{engAutorizationBean.elemento.eagAta}" required="true"/><br/><label>Estatus:</label>
+                    <h:inputText id="Estatus" value="#{engAutorizationBean.elemento.estEstatus}" required="true"/><br/><label>Revision:</label>
+                    <h:inputText id="Revision" value="#{engAutorizationBean.elemento.aegRevNum}" onkeyup="if(/\D/g.test($(this).text()))$(this).text($(this).text().replace(/\D/g, ''));" required="false"/><br/><label>Fecha Revision</label>                    
+                    <h:inputText id="frev" value="#{engAutorizationBean.elemento.aegDateRev}" required="false" >
+                        <f:ajax event="change" execute="@form"/>
+                        <f:convertDateTime pattern="#{gen_msg['frmtDateConv']}" timeZone="GMT-6"/></h:inputText><br/><label>Año:</label>
+                    <h:inputText id="Año" value="#{engAutorizationBean.elemento.eagYear}" required="false"/><br/><label>Flota:</label>
+                    <h:inputText id="Flota" value="#{engAutorizationBean.elemento.fltCod}" required="true"/><br/><label>Compañia:</label>
+                    <h:inputText id="Compañia" value="#{engAutorizationBean.elemento.company}" required="false"/><br/><label>Tail:</label>
+                    <h:inputText id="Tail" value="#{engAutorizationBean.elemento.eagTail}" required="false"/><br/><label>Customer:</label>
+                    <h:inputText id="Customer" value="#{engAutorizationBean.elemento.eagCustomer}"/><br/><label>No Serie:</label>
+                    <h:inputText id="Serie" value="#{engAutorizationBean.elemento.eagSn}" required="false"/><br/><label>Subject:</label>
+                    <h:inputText id="Subject" value="#{engAutorizationBean.elemento.eagTitle}" required="false"/><br/><label>Ingeniero encargado:</label>
+                    <h:inputText id="Ingeniero" value="#{engAutorizationBean.elemento.aegIngComm}" required="true"/>
+                    <h:inputText id="correlative" value="#{engAutorizationBean.elemento.eagCorrelative}" required="false"/>
+                    <h:inputText id="format" value="#{engAutorizationBean.elemento.format}" required="false"/>
+                    <h:commandButton id="carga" action="#{tabEsrEaEoBean.insertea()}" >
+                        <f:ajax execute="@form" render="@form forrrrm limpiar ontabwordea matrona inputForm68 inputForm69 inputForm70 inputForm71 
+                                idorder nombs scrip part inptEA taskeng tasksup refremeta"/>
+                    </h:commandButton>                     
+                
+                
+                <script type="text/javascript">
+                    function nuevocompanyea(valor) {
+                            document.getElementById("inputs:Compañia").value = valor.value;
+                        }
+                        function nuevotailea(valor) {
+                            document.getElementById("inputs:Tail").value = valor.value;
+                        }
+                        function nuevocusea(valor) {
+                            document.getElementById("inputs:Customer").value = valor.value;
+                        }
+                    function cargar() {
+                        var aircraft = remSpaces($("#aircraft1").text());
+                        var model = remSpaces($("#model1").text());
+                        var comppn = remSpaces($("#cmppn1").text());
+                        var compsn = remSpaces($("#compsn1").text());
+                        var Revision = remSpaces($("#revision1").text());
+                        //var frev = toDate("#forrrrm\\:feRev");
+                        var Año = remSpaces($("#year").text());
+                        //var Compañia = remSpaces($("#company").text());
+                        var Issue = remSpaces($("#issdate").text());
+                        //var Tail = remSpaces($("#tail1").text());
+                        //var Customer = remSpaces($("#customer1").text());
+                        var Serie = remSpaces($("#nserie").text());
+                        var Subject = remSpaces($("#subject").text());
+                        var correlative = remSpaces($("#correlative1").text());
+                        if(aircraft==''&amp;&amp;model==''&amp;&amp;comppn==''&amp;&amp;compsn==''&amp;&amp;Revision==''&amp;&amp;
+                                Año==''&amp;&amp;Issue==''&amp;&amp;Serie==''&amp;&amp;Subject==''&amp;&amp;correlative==''){
+                                    $("#msj").text('');
+                                    $("#msj").text('Complete los campos requerridos');
+                                    return;
+                                }
+                        if(aircraft==''){
+                            $("#msj").text('');
+                            $("#msj").text('Required Messaje is required');
+                            return;
+                        }
+                        if(Año==''){
+                            $("#msj").text('');
+                            $("#msj").text('year is required');
+                            return;
+                        }
+                        if(isNaN(Revision))Revision='';
+                        //if(frev=='NaN-undefined-NaN')frev='';
+                        if(isNaN(Año))Año='';
+                        $("#inputs\\:aircraft").val(parseInt(aircraft));
+                        $("#inputs\\:model").val(model);
+                        $("#inputs\\:comppn").val(comppn);
+                        $("#inputs\\:compsn").val(compsn);
+                        /*segundo grupo de tabs*/
+                        $("#inputs\\:Revision").val(isNaN(parseInt(Revision))?'':parseInt(Revision));
+                        //$("#inputs\\:frev").val(frev);
+                        /*tercer grupo de tabs*/
+                        $("#inputs\\:Año").val(isNaN(parseInt(Año))?'':parseInt(Año));
+                        //$("#inputs\\:Compañia").val(Compañia);
+                        // $("#inputs\\:Issue").val(Issue);
+                        /*cuarto grupo de tabs*/
+                        //$("#inputs\\:Tail").val(Tail);
+                        //$("#inputs\\:Customer").val(Customer);
+                        $("#inputs\\:Serie").val(Serie);
+                        /*quinto y sexto grupo de tabs*/
+                        $("#inputs\\:Subject").val(Subject);
+                        $("#inputs\\:correlative").val(correlative);
+                        
+                        var correlativeF = formatHTML($("#correlative1").html(),correlative);
+                        var aircraftF = formatHTML($("#aircraft1").html(),aircraft);
+                        var modelF = formatHTML($("#model1").html(),model);
+                        var comppnF = formatHTML($("#cmppn1").html(),comppn);
+                        var compsnF = formatHTML($("#compsn1").html(),compsn);
+                        var RevisionF = formatHTML($("#revision1").html(),Revision);
+                        var AñoF = formatHTML($("#year").html(),Año);
+                        //var CompañiaF = formatHTML($("#company").html(),Compañia);
+                        //var TailF = formatHTML($("#tail1").html(),Tail);
+                        //var CustomerF = formatHTML($("#customer1").html(),Customer);
+                        var SerieF = formatHTML($("#nserie").html(),Serie);
+                        var SubjectF = formatHTML($("#subject").html(),Subject);
+                        var formats= '';
+                        formats=correlativeF+','+aircraftF+','+modelF+','+comppnF+','+compsnF+','+RevisionF+','+AñoF+','/*+CompañiaF+','+TailF+','+CustomerF+','*/+SerieF+','+SubjectF;
+                        $("#inputs\\:format").val(formats);
+                        $("#inputs\\:carga").trigger("click"); 
+                    }
+                    function toDate(selector) {
+                        var from = $(selector).val().split("-");
+                        var m;
+                        if (from[1] == 'Ene' || from[1] == 'ene')
+                            m = 00;
+                        if (from[1] == 'Feb' || from[1] == 'feb')
+                            m = 01;
+                        if (from[1] == 'Mar' || from[1] == 'mar')
+                            m = 02;
+                        if (from[1] == 'Abr' || from[1] == 'abr')
+                            m = 03;
+                        if (from[1] == 'May' || from[1] == 'may')
+                            m = 04;
+                        if (from[1] == 'Jun' || from[1] == 'jun')
+                            m = 05;
+                        if (from[1] == 'Jul' || from[1] == 'jul')
+                            m = 06;
+                        if (from[1] == 'Ago' || from[1] == 'ago')
+                            m = 07;
+                        if (from[1] == 'Sep' || from[1] == 'sep')
+                            m = 08;
+                        if (from[1] == 'Oct' || from[1] == 'oct')
+                            m = 09;
+                        if (from[1] == 'Nov' || from[1] == 'nov')
+                            m = 10;
+                        if (from[1] == 'Dic' || from[1] == 'dic')
+                            m = 11;
+                        return $.datepicker.formatDate('dd-M-yy', new Date(from[2], m, (parseInt(from[0]) + 1)));
+                    }
+                    var anio;
+                    function validarAnio(obj){
+                        if (/\D/g.test($(obj).text())){
+                            $(obj).text($(obj).text().replace(/\D/g, ''));
+                        }
+                        if($(obj).text().length &gt;=5){
+                            $(obj).text(anio);                            
+                        }
+                        else{
+                                 anio=$(obj).text(); 
+                        }
+                        
+                    }
+                    
+                    function formatHTML(obj, txt){   
+                        var formateado;
+                        
+                        if(txt!=""){
+                            formateado=obj.replace(/&amp;nbsp;/g, " ");
+                            //console.log(formateado.indexOf(txt));
+                           /* if(formateado.indexOf(txt)==-1){
+                                formateado=formateado.replace(txt.trim(),'txt')
+                            }
+                            else{
+                                formateado=formateado.replace(txt,'txt');
+                            }*/
+                            if(formateado.indexOf("txt")==-1){
+                                var words=[];
+                                txt=txt.replace(/-/g, " - ");
+                                words=txt.split(" ");
+                                if(words.length!=1){
+                                    for(var con=0;con&lt;words.length;con++ ){
+                                        formateado=formateado.replace(words[con].trim(),'txt'+con);
+                                    }
+                                    formateado=(words.length-1)+formateado;
+                                }else{
+                                    formateado=formateado.replace(txt.trim(),'txt');
+                                }
+                            }
+                        }else{
+                            formateado=obj.replace(/&amp;nbsp;/g, "txt");
+                        }       
+                        formateado=formateado.replace(/,/g, "APLICA");
+                        formateado=formateado.replace(/'/g, "SAPLICA");
+                        return formateado;
+                    }
+                    
+                    function remSpaces(obj){
+                        am=obj;
+                         if(am==undefined)
+                        {
+                        am=" ";
+                         }
+                        if(am.trim()==""){
+                            return "";
+                        }
+                        return am;
+                    }
+                    function  cleanea(){
+                        //$(".editable").html(""); 
+                        $("#correlative1").html("");
+                        $("#aircraft1").html("");
+                        $("#model1").html("");
+                        $("#cmppn1").html("");
+                        $("#compsn1").html("");
+                        $("#revision1").html("");
+                        $("#year").html("");
+                        /*$("#company").html("");
+                        $("#tail1").html("");
+                        $("#customer1").html("");*/
+                        $("#nserie").html("");
+                        $("#subject").html("");
+                        $("#subject").text("");
+                        //$(".editable").html(""); 
+                    }
+                    
+                    manteEa();
+                </script>
+                    </h:form>
+            </div>
+            <h:panelGroup id="ontabwordea">
+                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                        alertify.success("#{aees_msg['exito']}");
+                    </h:outputScript>
+                </h:panelGroup>
+        </h:body>
+    </f:view>
+</html>

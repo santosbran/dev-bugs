@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title>#{aees_msg['loginScreen']}</title>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />  
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <style>
+                .cont {
+                position: fixed;
+                float: right;
+                width: 44%;
+                left: 56.5%;
+                height: 100%;
+                top: 0px;
+                background-color: rgba(250,250,250,0.5);
+            }
+                .login {
+                position: fixed;
+                width: 20%;
+                left: 69%;
+                height: 271px;
+                top: 235px;
+            }
+            .body{
+                background-image: url("/EngineeringManage/javax.faces.resource/img/login/background-01.png.xhtml?ln=styleAE");
+               background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            .image{
+                position: fixed;
+                background-repeat: no-repeat;
+                top: 0px;
+                float: left;
+                height: 100%;
+                left: 0px;
+                background-size: 745px 1003px;
+                width: 100%;
+            }
+                    .buttom {
+                        position: relative;
+                        float: right;
+                    }
+            .icon1 {
+                position: absolute;
+                float: left;
+                left: -14%;
+                top: 4px;
+                width: 15%;
+                height: 11%;
+                background: gray;
+            }
+            .icon2 {
+                position: absolute;
+                left: -14.3%;
+                background: gray;
+                width: 15%;
+                height: 11%;
+                top: 55px;
+            }
+            .input1 {
+                position: relative;
+                left: -1%;
+                z-index: 2;
+            }
+            .input2 {
+                position: relative;
+                left: -1%;
+                z-index: 2;
+            }
+            .form-login {
+                display: block;
+                width: 100%;
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #555;
+                background-color: #fff;
+                background-image: none;
+                border: 3px solid #fff!important;
+                border-radius: 9px !important;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            }
+            .btn-login{
+               border-radius: 9px !important; 
+            }
+            .login-logo {
+                top: 15%;
+                float: left;
+                left: 60%;
+                position: absolute;
+            }
+            .img1 {
+                position: absolute;
+                left: 25%;
+                top: 19%;
+            }
+            .img2 {
+                position: absolute;
+                left: 15%;
+                top: 32%;
+            }
+            .linkLogin{
+                bottom: -30%;
+                position: absolute;
+                font-weight: bold;
+            }
+            .linkLogin1{
+                bottom: -45%;
+                position: absolute;
+                font-weight: bold;
+            }
+            .piezafinal{
+                float: right;
+                top: 90%;
+                position: absolute;
+                right: 6%;
+            }
+            .linkfinal{
+                top: 94%;
+                position: relative;
+                float: right;
+                right: 5.4%;
+                font-weight: bold;
+            }
+            .formulario{
+                width: 20%;
+    float: right;
+    top: 30%;
+    position: absolute;
+    right: 11%;
+            }
+            </style>
+        </h:head>
+        <h:body class="body">
+            <div class="lineaabajo">
+                <h:graphicImage library="styleAE" name="img/main/BottomLine-01.png" style="width: 100%"/>
+            </div>
+            <div class="piezafinal"><h:graphicImage library="styleAE" name="img/login/LoginPieces-03.png" /></div>
+            <div class="linkfinal">2016 · all rights reserved</div>
+            
+                    
+                        <div class="login-logo">
+                            <h:graphicImage class="img-responsive" library="styleAE" name="img/login/LoginPieces-02.png"/>
+                        </div>
+            <h:form  class="formulario">
+                            <div class="form-group">
+                                <div class="icon1"><div class="img1"><h:graphicImage class="img-responsive"  library="styleAE" name="img/login/LoginPieces-04.png"/></div></div>
+                                <div class="input1">
+                                    <h:inputText value= "#{Login.usuario}" class="form-login"  p:placeholder="Username" required="true" requiredMessage="#{aees_msg['userRequired']}" id="user"/>
+                                </div>
+                                <h:message for="user" class="msgError"/>                            
+                            </div>
+                            <div class="form-group">
+                                <div class="icon2"><div class="img2"><h:graphicImage class="img-responsive"  library="styleAE" name="img/login/LoginPieces-05.png"/></div></div>
+                                <div class="input2">
+                                <h:inputSecret value= "#{Login.password}" class="form-login"  p:placeholder="Password" required="true" requiredMessage="#{aees_msg['passwordRequired']}" id="password"/>
+                                </div>
+                                <h:message for="password" class="msgError"/>                      
+                            </div>
+                            
+                            <div class="form-group">
+                                <h:outputLabel id="language">#{gen_msg['language']}:</h:outputLabel>
+                                <h:selectOneMenu  value="#{swtLanguage.language}" class="form-login" >
+                                    <f:selectItem itemValue="es" itemLabel="Español" />
+                                    <f:selectItem itemValue="en" itemLabel="English" />                                                                       
+                                    <f:ajax execute="@this" render="psw usn language lo refremeta" />
+
+                                </h:selectOneMenu>
+                                
+                            </div>
+
+                            <div class="buttom">
+                                <h:commandButton class="btn-login btn btn-block btn-signin" value="#{aees_msg['login']}" action="#{Login.usersValidator}" id="lo"/>
+                            </div>
+                            
+                           
+                            <div class="linkLogin">Can't access your Account?&nbsp;&nbsp;></div>
+                            <div class="linkLogin1">privacy policy&nbsp;&nbsp;></div>
+                            
+                        </h:form>
+                        
+            
+        </h:body>
+    </f:view>
+</html>
+

@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" style="height: 100%;">
+    <f:view rendered="#{tabEsrEaEoBean.homeManager()}" locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la pÃ¡gina - aplicaciÃ³n -->
+            <h:panelGroup id="refremeta">
+                <meta http-equiv="refresh" name="viewport-refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/pages/error/error.xhtml"/>   
+                <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            </h:panelGroup>
+                    <h:outputStylesheet library="styleAE" name="css/styleAEIS.css"/>   
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+            <h:outputScript library="styleAE" name="js/datatables.min.js" />
+            <h:outputScript library="styleAE" name="js/framework.js"/>             
+            <h:outputScript library="styleAE" name="js/table-slow.js" />
+            <h:outputScript library="styleAE" name="js/menu-slow.js" />
+            <h:outputStylesheet library="styleAE" name="css/estilos2.css"/>
+            <h:outputScript library="styleAE" name="js/funcionesJS.js"/>
+            <h:outputScript library="styleAE" name="js/funcionessinnombre.js"/>
+            <h:outputStylesheet library="styleAE" name="css/paneleshome.css"/>
+            <h:outputScript library="styleAE" name="js/scriptspanelhomesup.js"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap-select.css"/>            
+            <h:outputStylesheet library="styleAE" name="css/spinnergif.css"/>
+            <h:outputStylesheet library="styleAE" name="css/stylecalendarbyprimefaces.css"/>
+            <h:outputScript library="styleAE" name="js/excelJS.js" />
+            <h:outputScript library="styleAE" name="alerts/alertify.js"/>
+            <h:outputScript library="styleAE" name="alerts/alertify.min.js"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.core.css"/>
+            <h:outputStylesheet library="styleAE" name="alerts/alertify.default.css"/>
+            <h:outputStylesheet library="css" name="supervisor.css"/>
+            <link rel="stylesheet" href="../css/tailwind.min.css"/>
+            <link rel="stylesheet" href="../css/tailwind.css"/>
+            <script >
+                $(function () {
+                        $(document).tooltip({
+
+                            position: {
+                                my: "center bottom-20",
+                                at: "center top",
+                                using: function (position, feedback) {
+                                    $(this).css(position);
+                                    $("<div></div>")
+                                            .addClass("arrow")
+                                            .addClass(feedback.vertical)
+                                            .addClass(feedback.horizontal)
+                                            .appendTo(this);
+                                }
+                            }
+                        }).off('focusin');
+                    });
+                
+                $(function () {
+                    
+                    $("#tabs3").tabs();
+                });
+                function esrcompany1(com) {
+                    $("#butcomeng\\:id").val(com);
+                    $("#butcomeng\\:but1").trigger("click");
+                }
+                function esrcompany2(com) {
+                    $("#butcomeng\\:id").val(com);
+                    $("#butcomeng\\:but2").trigger("click");
+                }
+                function esrcompany3(com) {
+                    $("#butcomeng\\:id").val(com);
+                    $("#butcomeng\\:but3").trigger("click");
+                }
+                
+
+function cargareventssup(data) {
+	var spinnerevents = document.getElementById("spinnerhms");
+	var statuseve = data.status;
+	if (statuseve === "begin" ) {
+                $("#esr").hide();
+                
+		spinnerevents.style.display = "block";
+	} else { 
+		
+		spinnerevents.style.display = "none";
+		if(statuseve === "success"){
+                    $("#esr").show();
+		}else{
+                    $("#esr").hide();
+		}		
+	}
+}
+     </script>
+            <style type="text/css">
+                html, body {
+                    height: 100%;
+                    width: 100%;
+                    margin: 0 !important;
+                }
+                	
+                .imageRet:hover{    
+                    border-color: #bf1e2d !important;
+                }               
+                @media (max-width: 895px) and (min-width: 0){
+                    .imageRet {   
+                        margin-top: 10% !important;
+                        margin-left: 1% !important;
+                    }
+                }.imageRet{    
+                    background-image: url("#{resource['styleAE:img/main/back13.svg']}") !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 40% -5px !important;
+                    background-size: 23px 45px;
+                }
+                
+                @media screen and (max-width:580px){
+                    .imageRet {   
+                        margin-top: 12% !important;
+                    }
+                }
+                @media screen and (max-width:515px){
+                    .imageRet {   
+                        margin-top: 13% !important;
+                    }
+                }
+                @media screen and (max-width:630px){
+                    .imageRet {   
+                        margin-top: 11% !important;
+                    }
+                }
+            
+            @media (min-width: 1650px)  and (max-width: 1780px) {
+                .butomclassesr{  
+                    width: 3% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            .butomclassesr{  
+                width: 3% !important;
+                height: 0%;
+                margin: 0% 0% 0% 0.456%;
+            }
+            @media (min-width: 1300px)  and (max-width: 1499px) {
+                .butomclassesr{  
+                    width: 4% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 1500px)  and (max-width: 1649px) {                
+                .butomclassesr{  
+                    width: 3% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+
+            }
+            
+            
+            @media (min-width: 950px)   and (max-width: 1099px) {
+                .butomclassesr{  
+                    width: 5% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 1100px)  and (max-width: 1299px) {
+                .butomclassesr{  
+                    width: 4% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            
+            @media (min-width: 801px)   and (max-width: 909px)  {
+                .butomclassesr{  
+                    width: 6% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 910px)   and (max-width: 949px)  {
+                .butomclassesr{  
+                    width: 5% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            
+            @media (min-width: 526px)   and (max-width: 690px)  {
+                .butomclassesr{  
+                    width: 8% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 500px)   and (max-width: 525px)  {
+                .butomclassesr{  
+                    width: 9% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 691px)   and (max-width: 800px)  {
+                .butomclassesr{  
+                    width: 7% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+            @media (min-width: 0px) and (max-width: 499px)  {
+                .butomclassesr{  
+                    width: 16% !important;
+                    height: 0%;
+                    margin: 0% 0% 0% 0.456%;
+                }
+            }
+                
+          .divBotonEnviarTracking{ 
+		width: 60%;
+		margin-left: 38%;
+		margin-right: 2%;
+		padding-bottom: 1%; 
+		}
+                .estiloFormTrackingmodalIng {
+                    overflow: auto !important;
+                    -webkit-overflow-scrolling: touch !important;
+                }
+                 @media screen and (max-width: 890px){
+                    .estiloFormTrackingmodalIng > .iframe-wh {
+                        height: 200% !important;
+                    }
+                }
+                @media screen and (max-width: 1200px){
+                    .estiloFormTrackingmodalIng {
+                        overflow: auto !important;
+                        height: 73% !important;
+                            overflow-x: hidden !important;
+                    }
+                    .formuTrackingESR{
+                        width: 96% !important;
+                        margin-left: 10% !important;
+                    }
+                    .divBotonEnviarTracking{
+                        width: 140% !important;
+                        margin-left: 25% !important;
+                    }
+                }
+                @media screen and (max-width: 758px){
+                    .divBotonEnviarTracking{
+                        width: 166% !important;
+                        margin-left: 19% !important;
+
+                    }
+                }
+                @media screen and (max-width: 758px){
+                    .divBotonEnviarTracking{
+                        width: 230% !important;
+                        margin-left: 19% !important;
+
+                    }
+                }
+                @media screen and (max-width: 999px){
+                    .estiloFormTrackingmodalIng {
+                        overflow: auto !important;
+                        height: 460px !important;
+                    }
+                }
+                .alertify-logs {
+                        position: fixed;
+                        z-index: 9999999;
+                        bottom: 10px;
+                        right: 10px;
+                        width: 300px;
+                }
+            </style>
+            <script>
+                $(document).ready(function () {
+                    crearModal('#modTracking', '75%');
+                    crearModal('#modDisposition', '50%');
+                    crearModal('#modReporte', '50%');
+                    mobileMenuENG();
+                    $("#modReporte").dialog( "option", "title", "#{gen_msg['rep']}" );
+                    $( "#modTracking" ).dialog( "option", "title", "#{aees_msg['engRequestTracking']}" );
+                });  
+                function cargarSpinner(){
+
+//                        var miDiv = document.getElementById("spinnerGraphics");
+//                        mostrar = function(){
+//                            miDiv.style.display = "block";
+//                            setTimeout(ocultar, 2300); // 5 seconds
+//                            $("#graphics").hide();
+//                            $("#igrafica").hide();
+//                            $("#Dataframe").hide();
+//                          },
+//
+//                          ocultar = function(){
+//                            miDiv.style.display = "none";
+//                             $("#graphics").show();
+//                             $("#igrafica").show();
+//                             $("#Dataframe").show();
+//                          };
+                        
+//                        mostrar();
+
+                      }
+                      
+               function ocultarbtn(){
+                $("#menuDhashBordx2").addClass("btnNone"); 
+                }
+                function mostrarbtn(){
+                    $("#menuDhashBordx2").removeClass("btnNone"); 
+                }       
+            </script>
+      
+      
+        </h:head>
+        <!--rodrigo-->
+        <h:body onclick="mensajeNavegadorprincipal();" onload="mensajeNavegadorprincipal();" class="estiloHomeEng main" style="height: 100%; margin: 0 !important;">
+            <h:form id="butcomeng">
+                <h:inputText value="#{companyBean.company}" style="display: none;" id="id"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                <h:commandButton id="but1" style="display: none;" action="#{tabEsrEaEoBean.esrcompany(companyBean.company)}">
+                    <f:ajax  render="@form matrona butcom panelAESV refremeta" execute="@form"  />
+                </h:commandButton>
+                <h:commandButton id="but2" style="display: none;" action="#{tabEsrEaEoBean.esrcompany(companyBean.company)}">
+                    <f:ajax  render="@form matrona butcom panelFSM refremeta" execute="@form"  />
+                </h:commandButton>
+                <h:commandButton id="but3" style="display: none;" action="#{tabEsrEaEoBean.esrcompany(companyBean.company)}">
+                    <f:ajax  render="@form matrona butcom panelMEX refremeta" execute="@form"  />
+                </h:commandButton>
+            </h:form>
+            <h:form id="cerrarSes" style="display: none;">
+                <h:commandLink id="logout" value="logout" action="#{tabEsrEaEoBean.logout()}" >
+                </h:commandLink>
+            </h:form>
+            
+            <h:form id="res1">
+                <h:commandButton id="solorender3" style="display: none;">
+                    <f:ajax execute="@form" render=" res matrona idesr butesr compnay @form idesrm refremeta" />
+                </h:commandButton>
+            </h:form>
+            <h:form id="res" >
+                <h:inputText value="#{companyBean.company}" style="display: none;" id="compnay"><f:ajax execute="@form" event="change" render="@form res idesr refesr refremeta" /></h:inputText>
+                <h:inputText value="#{tabEsrEaEoBean.nuwitem}" style="display: none;" id="idesr"><f:ajax execute="@form" event="change" render="@form res idesr compnay refesr refremeta" /></h:inputText>
+                <h:commandButton id="refesr"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.nuwitem)}">
+                    <f:ajax  render="@form matrona autoesr inputModalhours resultenghours inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71
+                             resultabEo resultabEa resultForm66 idorder nombs scrip autocom resul#{tabEsrEaEoBean.nuwitem}#{companyBean.company}
+                             docsesr refremeta" execute="@form"  onevent="cargareventssup"/>
+                </h:commandButton>
+                <h:commandButton id="solorender2" style="display: none;" onclick="oli2();">
+                    <f:ajax execute="@form" render=" res matrona idesr compnay refesr @form refremeta"/>
+                </h:commandButton>
+            </h:form>
+            <h:form id="matrona" style="display: none;">
+                <h:inputText id="navegador" value="#{tabEsrEaEoBean.navegador}" >
+                    <f:ajax execute="@this" event="change" render="@this refremeta"/>
+                </h:inputText>
+                <h:commandButton id="validNav" action="#{tabEsrEaEoBean.trust(tabEsrEaEoBean.navegador)}" >
+                    <f:ajax execute="@form" render="btnUp refremeta"/>
+                </h:commandButton>
+                <h:inputText value="#{tabEsrEaEoBean.nuwitem}" style="display: none;" id="idesrm"><f:ajax execute="@form" event="change" render="@form res idesr compnay refesr refremeta" /></h:inputText>
+            
+                <h:inputHidden id="idorder" value="#{tabEsrEaEoBean.idor}"/>
+                <h:inputHidden id="idorde" value="#{eaPdfBean.idor}"/>
+                <h:inputText value="#{tabEsrEaEoBean.itemId}" style="display: none;" id="id"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                <h:commandButton id="ref"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.itemId)}">
+                    <f:ajax  render=" onsucess @form inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71 docsesr  idorder nombs scrip refremeta" execute="@form"  />
+                </h:commandButton>
+                <h:commandButton id="acteo"  style="display: none;" action="#{tabEsrEaEoBean.actEO(tabEsrEaEoBean.itemId.toString())}">
+                    <f:ajax  render=" onsucess @form matrona inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71 idorder nombs scrip refremeta" execute="@form"  />
+                </h:commandButton>
+                <h:commandButton id="actea"  style="display: none;" action="#{tabEsrEaEoBean.actEA(tabEsrEaEoBean.itemId.toString())}">
+                    <f:ajax  render=" onsucess @form matrona inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71 idorder nombs scrip refremeta" execute="@form"  />
+                </h:commandButton>
+                <h:commandLink  id="link3" action="#{tabEsrEaEoBean.acteng(tabEsrEaEoBean.itemId.toString())}" style="display: none;" >
+                    <f:ajax render="formula1 formula3 resultForm33 resultForm34 resultForm35 refremeta" />
+                </h:commandLink>
+            </h:form>
+            <h:panelGroup id="scrip">
+            
+                <script>
+                    $(function (){
+                        var sel = document.getElementById("matrona:idorder").value;
+                        if (sel == 1) {
+                            $("#eo").hide();
+                            $("#ea").show();
+                            $("#esr").hide();
+                            $("#docea").hide();
+                            $("#butesr").hide();
+                        }
+                        else if (sel == 2) {
+                            $("#eo").hide();
+                            $("#ea").hide();
+                            $("#esr").show();
+                            $("#docea").hide();
+                            $("#viewReportes").hide();
+                            $("#butesr").show();
+                            $("#EsrRep").hide();
+                        } else if (sel == 3) {
+                            $("#eo").show();
+                            $("#ea").hide();
+                            $("#esr").hide();
+                            $("#docea").hide();
+                        } else if (sel == 4) {
+                            $("#eo").hide();
+                            $("#ea").hide();
+                            $("#esr").hide();
+                            $("#docea").show();
+                        } else if (sel == 5){
+                            $("#eo").hide();
+                            $("#ea").hide();
+                            $("#esr").hide();
+                            $("#docea").hide();
+                        }else if (sel == 10){
+                            $("#eo").hide();
+                            $("#ea").hide();
+                            $("#esr").hide();
+                            $("#docea").hide();
+                            $("#butesr").hide();
+                            $("#EsrRep").show();
+                            $("#viewReportes").show();
+                        }
+                    });
+                    
+
+                    
+                    $(function () {
+                        $("#tabs7").tabs();
+                    });
+                    $(function () {
+                        $("#tabs8").tabs();
+                    });
+                    
+                   
+    
+</script>
+            </h:panelGroup>
+            <h:form id="formdrag">
+                <h:inputText id="drauser" style="display: none;" value="#{tabEsrEaEoBean.draguser}"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                <h:inputText id="draesr" style="display: none;" value="#{tabEsrEaEoBean.dragesr}"><f:ajax execute="@this" event="change" render="@form updateesr refremeta" /></h:inputText>
+                <h:commandButton action="#{tabEsrEaEoBean.updateesrbyuser(tabEsrEaEoBean.draguser, tabEsrEaEoBean.dragesr)}" style="display: none;" id="updateesr" >
+                    <f:ajax execute="@form" render="@form allesr tasksup formula scrip inputForm70 warning idGrupoIngSup resultabtodosComp refremeta" />
+                </h:commandButton>
+            </h:form>
+            <header class="hidden">
+                <h:form>
+                    <div class="menudes" style="background: transparent;display: none;">                        
+                        <h:graphicImage library="styleAE" name="img/main/AEIS-Logo-01.png" class="img-responsive hidden-xs ninety-prc" onclick="window.parent.location.reload();" style="cursor: pointer;"/> 
+                    </div>
+                    <div class="icosetting" style="background: transparent;display: none">
+                        <h:graphicImage library="styleAE" name="img/main/TopButton-04.png" class="img-responsive"/> 
+                    </div>
+                </h:form>
+                
+                
+            </header>
+            
+            <h:panelGroup id="btnUp" >
+                <div id="contenidoMenu" >
+                    <ui:insert name="contenidoMenuAeis">
+                        <ui:include src="/pages/navigation/menuAeis.xhtml"/>
+                    </ui:insert>
+                </div>
+            </h:panelGroup>
+
+            
+            
+            <div id="checks" style="display: none; height: 100vh !important;">
+                <h:panelGroup id="iChecks">
+                    <iframe title="" name="ChecksFrame" id="ChecksFrame" class="w-full h-full border-0" 
+                        src="/EngineeringManage/pages/chequeos/configChecks.xhtml" />
+                </h:panelGroup>  
+                 <h:form id="formChecks" style="display: none;">
+                    <h:commandButton id="btnChecks">
+                        <f:ajax render="iChecks refremeta"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+            
+            <div id="supervisor" class="h-full w-full">
+                <ui:insert name="newContent">
+                    <ui:include src="/pages/motoresdbusqueda/supervisor.xhtml"/>
+                </ui:insert>
+            </div>
+            
+            <div id="tabTackingESRNew" class="h-full w-full" style="display: none;">
+                <ui:insert name="newContent">
+                    <ui:include src="/pages/esr/engNewRequestTracking.xhtml"/>
+                </ui:insert>
+            </div>
+            <div id="eaForm" class="h-full w-full pb-16" style="display: none;">
+                <h:form id="menuDhashBordxEA4" class="flex py-1 w-full absolute"  style="height: 48px;"> 
+                    <div class="flex items-center pl-4 w-full justify-between">
+                        <h:commandButton id="icoBackEA4" title="Back" onclick="backTabEANew();"
+                            class="btn-menu backButton bg-aes-blue hover:bg-aes-red text-gray-800 font-bold py-2 px-4 m-px flex justify-center cursor-pointer z-10">
+                             <f:ajax execute="@this" render="inputForm70 menuDhashBordx2 refremeta"/>
+                        </h:commandButton>  
+                    </div>
+                </h:form>
+                <div id="divNewea"  class="h-full w-full h-full px-4 pt-16 pb-4">
+                    <div id="close-bt2" class="styleHeaderMroholdings"> 
+                        <label style="margin-left: 15px;">EA</label>
+                    </div>
+                    <ui:insert name="newContent">
+                        <ui:include src="/pages/eas/tabEa.xhtml"/>
+                    </ui:insert>
+                 </div>  
+            </div>
+            <div id="docea" class="h-full w-full" style="display: none;">
+                <h:form id="menuDhashBordxEADoc4" class="flex py-1 w-full absolute"  style="height: 48px;">
+                    <div class="flex items-center pl-4 w-full justify-between">
+                        <h:commandButton class="btn-menu backButton bg-aes-blue hover:bg-aes-red text-gray-800 font-bold py-2 px-4 m-px flex justify-center cursor-pointer z-10"
+                            id="icoBackEADoc4" title="Back" onclick="$('#eaForm').show(); $('#docea').hide();">
+                            <f:ajax execute="@this" render="inputForm70 menuDhashBordx2 refremeta"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+                <div id="divNeweaDoc"  class="w-full h-full px-4 pt-16 pb-4">
+                    <div id="close-bt2" class="styleHeaderMroholdings"> 
+                        <label style="margin-left: 15px">EA Document</label>
+                    </div>
+                    <ui:insert name="newContent">
+                        <ui:include src="/pages/eas/docsEA.xhtml"/>
+                    </ui:insert>
+                 </div>  
+            </div>
+            <div id="otherDocESR" class="h-full w-full" style="display: none;">
+                <h:form id="menuDhashBordx4" class="flex py-1 w-full absolute"  style="height: 48px;">
+                    <div class="flex items-center pl-4 w-full justify-between">
+                        <h:commandButton id="icoBack4" class="btn-menu backButton bg-aes-blue hover:bg-aes-red text-gray-800 font-bold py-2 px-4 m-px flex justify-center cursor-pointer z-10"
+                           title="Back" onclick="backTabOtherDocNew();">
+                           <f:ajax execute="@this" render="inputForm70 menuDhashBordx2 refremeta"/>
+                        </h:commandButton>
+                    </div>
+               </h:form>
+                <div id="divNewOtherDoc"  class="w-full h-full px-4 pt-16 pb-4">
+                    <div id="close-bt2" class="styleHeaderMroholdings"> 
+                        <label style="margin-left: 15px;">#{gen_msg['others']} #{gen_msg['document']}</label>
+                    </div>
+                    <ui:insert name="newContent">
+                        <ui:include src="/pages/esr/engEsrProv.xhtml"/>
+                    </ui:insert>
+                 </div>  
+            </div>
+            
+            <div id="newDispositionEng" class="h-full w-full" style="display: none;">
+                   
+                <ui:insert name="newContent">
+                    <ui:include src="/pages/esr/newDispositionESR.xhtml"/>
+                </ui:insert>
+              
+            </div>
+
+            <div id="graphics" class="" style="display: none;">
+                <h:panelGroup id="igrafica">
+                    <iframe title="" name="Dataframe" id="Dataframe" class="w-screen h-screen pt-16" 
+                        src="/EngineeringManage/pages/reportes/graficos.xhtml" />
+                </h:panelGroup>  
+                <h:form id="formGrafica" style="display: none;">
+                    <h:commandButton id="btnGrafica" onclick="cargarSpinner();">
+                        <f:ajax render="igrafica refremeta" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+            
+            <div id="homeMotores" class="h-full" style="display: none;">
+                 <h:panelGroup id="iMotors">
+                     <iframe title="" name="MotorsFrame" id="MotorsFrame" class="h-full w-full pt-16"
+                        src="/EngineeringManage/pages/motoresdbusqueda/homeMotores.xhtml" />
+                </h:panelGroup>  
+                <h:form id="formMotors" style="display: none;">
+                    <h:commandButton id="btnMotors">
+                        <f:ajax render="iMotors refremeta"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <div id="spinnerGraphics" class="dimensionesSpinner absolute" style="display: none;" >
+                <div id="loader-wrapper" class="loadingif">
+                    <div id="loader">
+                    </div>
+                    <div id="content">
+                        <h3>#{gen_msg['loading']}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal de Tracking desde la vista de la ESR -->
+            <h:panelGroup id="modTracking" style="display:none;" class="modalhe">            
+                <h:form id="modTracingForm" style="display: none">                                 
+                    <h:panelGrid columns="1" style="margin:auto;">                        
+                        <h:commandButton id="btndescartarModal" class="btn btn-signin" value ="#{gen_msg['desc']}" >
+                            <f:ajax execute="@this" render="ondescarTabTracking resultadosTracking panalTrakingframe refremeta"/>
+                        </h:commandButton>
+                        <h:commandButton id="btnsuseModal" class="btn btn-signin" value ="#{gen_msg['add']}">
+                            <f:ajax execute="@this" render="onTabTracking fmTrackingTabNw sliTracking resultadosTracking panalTrakingframe refremeta"/>
+                        </h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </h:panelGroup>
+            <h:panelGroup id="onTabTracking">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.success("#{aees_msg['exito']}");
+                </h:outputScript>
+            </h:panelGroup>
+            <h:panelGroup id="ondescarTabTracking">
+                <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    alertify.custom = alertify.extend("custom");
+                    alertify.custom("#{aees_msg['descardoperation']}");
+                </h:outputScript>
+            </h:panelGroup>
+            
+            <!-- Modal de Disposition desde la vista de la ESR -->
+            <h:panelGroup id="modDisposition" style="display:none;" class="modalhe" > 
+                <div id="insDisposition" class="scroll estiloFormDispositionmodalIng">
+                    <ui:insert name="newContent">
+                        
+                    </ui:insert>
+                </div>
+
+                <h:form id="modDispositionForm">
+                    <div class="divBotonesmodalTablas">
+                        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+                            <h:commandButton class="btn btn-signin" value ="#{gen_msg['cancel']}" onclick="cerrar();">
+                                <f:ajax execute="@this" render="onsuccess159eng @form  scrip refremeta" />
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+            <h:panelGroup id="onsuccess159eng">
+                <script>
+                    function cerrar(){
+                        $("#modDisposition").dialog("close");
+                    }
+                </script>
+            </h:panelGroup>
+            
+            
+        </h:body>
+    </f:view>
+</html>
+

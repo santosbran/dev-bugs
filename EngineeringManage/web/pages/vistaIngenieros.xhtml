@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+        <h:outputStylesheet library="styleAE" name="css/dataTables.css"/>
+        <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+        <h:outputStylesheet library="styleAE" name="css/dataTables.min.css"/>
+        <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+        <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+        <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+        <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+        <h:outputScript library="styleAE" name="js/jquery.js" />
+        <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+        <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+        <h:outputScript library="styleAE" name="js/datatables.min.js" />
+        <h:outputScript library="styleAE" name="js/framework.js" />
+        <h:outputScript library="jquiAE" name="js/datepicker-es.js" rendered="#{swtLanguage.language eq 'es'}"/> 
+        <h:outputScript library="jquiAE" name="js/datatable-es.js" rendered="#{swtLanguage.language eq 'es'}"/>
+        <h:outputScript library="styleAE" name="js/table-slow.js" />
+        <h:outputStylesheet library="styleAE" name="css/estilos.css"/>
+        <script>
+            $(function () {
+                $("#tabs3").tabs();
+            });
+            $(function () {
+                $(Document).tooltip();
+            });
+            function showallesr(id) {
+                $("#resultabAll" + id + "\\:id" + id).val(id);
+                $("#resultabAll" + id + "\\:ref" + id).trigger("click");
+            }
+        </script>
+    </h:head>
+    <h:body>
+        <div id="tabs3">
+            <div id="tabs-all">
+                <section class="ac-container" >
+                    <c:forEach  items="#{tabEsrEaEoBean.listfiltro}" var="itemall" >
+
+                        <c:set var="truenull1" value="#{gen_msg['noasig']}#{itemall[7]}-#{itemall[4]} #{itemall[5]}-#{itemall[6]}"/>
+                        <c:set var="falsenull1" value="#{itemall[7]}-#{itemall[4]} #{itemall[5]}-#{itemall[6]}"/>
+                        <div id="acord#{itemall[0]}" title="#{itemall[7] eq null ? truenull1 : falsenull1 }" >
+                            <input id="ac-#{itemall[0]}" class="input" name="accordion-1" type="checkbox" onclick="showallesr('${itemall[0]}');" >
+                                <div class="imgico">
+
+                                    <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(itemall[3])eq 1}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/GreenLight.png" /></div></h:panelGroup>
+                                    <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(itemall[3])eq 2}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/YellowLight.png" /></div></h:panelGroup>
+                                    <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(itemall[3])eq 3}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/RedLight.png" /></div></h:panelGroup> 
+
+                                </div>
+                            </input>
+                            <label class="label" for="ac-#{itemall[0]}" class="#{itemall[7] eq null ? 'backgro':''}">#{itemall[1]}</label>
+                            <article class="ac-large">
+                                <div class="ingclas styleacordeon" >
+                                    <h:form id="resultabAll#{itemall[0]}">
+                                        <h:dataTable id="tbltabAll#{itemall[0]}" pt:name="tbltabAll#{itemall[0]}"  value="#{tabEsrEaEoBean.listAll}" var="item1" class="table dt-responsive nowrap table-hover " style="width: 100% !important">
+
+                                            <h:column>
+                                                <h:commandLink  action="#{tabEsrEaEoBean.actTodas(item1)}" class="califa" style="color:black;">
+                                                    <h:outputLabel  value="#{item1[0]}#" class="califa"/>
+                                                    <h:outputLabel  value="#{item1[0] eq 'EO' ? item1[1].eoIdord : item1[1].eagId}-" class="califa"></h:outputLabel>
+                                                    <h:outputLabel  value="#{item1[0] eq 'EO' ? item1[1].eoSubject : item1[1].eagTitle}" class="califa"></h:outputLabel>
+                                                    <f:ajax execute="@form" render="@this mostrarEAtoriN inputForm68 resultFormEAList nombs resultForm66 inptEA scriptEa reEaStatus slither13 butea inputs refremeta" listener="#{tabEsrEaEoBean.refreshEA()}"/>
+                                                </h:commandLink>
+                                            </h:column>
+                                        </h:dataTable>
+                                        <h:inputText value="#{tabEsrEaEoBean.itemId}" style="display: none;" id="id#{itemall[0]}"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                                        <h:commandButton id="ref#{itemall[0]}"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.itemId.toString())}">
+                                            <f:ajax  render="@form matrona resultabAll#{itemall[0]} inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71 resultabEo resultabEa resultForm66 idorder nombs scrip autocom ingesr refremeta" execute="@form"  />
+                                        </h:commandButton>
+                                    </h:form>
+
+                                </div>
+                            </article>
+                        </div>
+                    </c:forEach>
+
+                </section>
+            </div>
+
+            <c:forEach  items="#{companyBean.listado}" var="item" >
+                <div id="tabs-#{item.ciaCode}">
+                    <section class="ac-container" >
+                        <h:panelGroup id="panelesr#{item.ciaCode}">
+                            <c:forEach  items="#{tabEsrEaEoBean.listesrcompany}" var="com" >
+                                <c:set var="truenull2" value="#{gen_msg['noasig']}#{com[7]}-#{com[4]} #{com[5]}-#{com[6]}"/>
+                                <c:set var="falsenull2" value="#{com[7]}-#{com[4]} #{com[5]}-#{com[6]}"/>
+                                <div id="acord#{com[0]}" title="#{com[7] eq null ? truenull1 : falsenull1 }">
+                                    <input id="acesr-#{com[0]}" class="input" name="accordion-1" type="checkbox" onclick="showcompany('#{com[0]}', '#{item.ciaCode}');" >
+                                        <div class="imgico">
+
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(forch[3])eq 1}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/GreenLight.png" /></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(forch[3])eq 2}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/YellowLight.png" /></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{tabEsrEaEoBean.verFecha(forch[3])eq 3}"><div class="imgico" rendered="true"><h:graphicImage library="styleAE" name="img/main/RedLight.png" /></div></h:panelGroup> 
+
+                                        </div>
+                                    </input>
+                                    <label class="label" for="acesr-#{com[0]}" class="#{com[7] eq null ? 'backgro':''}">#{com[1]}</label>
+                                    <article class="ac-large">
+                                        <div class="ingclas styleacordeon" >
+                                            <h:form id="esrcompany#{item.ciaCode}#{com[0]}">
+                                                <h:dataTable id="tblcompani#{com[0]}" pt:name="tblcompani#{com[0]}" class="table dt-responsive nowrap table-hover " value="#{tabEsrEaEoBean.listAll}" var="item1" style="width: 100% !important">
+
+                                                    <h:column>
+                                                        <h:commandLink  action="#{tabEsrEaEoBean.actTodas(item1)}" class="califa" style="color:black;">
+                                                            <h:outputLabel  value="#{item1[0]}#" class="califa"/>
+                                                            <h:outputLabel  value="#{item1[0] eq 'EO' ? item1[1].eoIdord : item1[1].eagId}-" class="califa"></h:outputLabel>
+                                                            <h:outputLabel  value="#{item1[0] eq 'EO' ? item1[1].eoSubject : item1[1].eagTitle}" class="califa"></h:outputLabel>
+                                                            <f:ajax  render="@form matrona inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71 idorder nombs scrip part ingesr refremeta" execute="@form"  />
+                                                        </h:commandLink>
+                                                    </h:column>
+                                                </h:dataTable>
+                                                <h:inputText value="#{tabEsrEaEoBean.itemId}" style="display: none;" id="id#{com[0]}"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                                                <h:commandButton id="ref#{com[0]}"  style="display: none;" action="#{tabEsrEaEoBean.actESR(tabEsrEaEoBean.itemId)}">
+                                                    <f:ajax  render="@form matrona tabsporcompany esrcompany#{companyBean.company}#{tabEsrEaEoBean.itemId} inputForm68 resultFormEAList inputForm69 inputForm70 inputForm71  resultForm66 idorder nombs scrip ingesr refremeta" execute="@form"  />
+                                                </h:commandButton>
+                                            </h:form>
+
+                                        </div>
+                                    </article>
+                                </div>
+                            </c:forEach>
+                        </h:panelGroup> 
+                    </section>
+                </div>
+            </c:forEach>
+
+            <ul>
+                <li><a href="#tabs-all">#{gen_msg['all']}</a></li>
+
+                <c:forEach  items="#{companyBean.listado}" var="item" >
+                    <li title="#{item.ciaName}" onclick="company('#{item.ciaCode}');"><a href="#tabs-#{item.ciaCode}">#{item.ciaCode}</a></li>
+                    <h:form id="form#{item.ciaCode}">
+                        <h:inputText value="#{companyBean.company}" style="display: none;" id="id#{item.ciaCode}"><f:ajax event="change" render="@this refremeta" /></h:inputText>
+                        <h:commandButton id="but#{item.ciaCode}" action="#{tabEsrEaEoBean.esrcompany(companyBean.company)}" style="display: none;" >
+                            <f:ajax  render="@form matrona idorder nombs scrip autocom panelesr#{item.ciaCode} refremeta" execute="@form"  />
+                        </h:commandButton>
+                    </h:form>
+                </c:forEach>
+            </ul>
+        </div>
+        <script>
+            function company(id) {
+                $("#form" + id + "\\:id" + id).val(id);
+                $("#form" + id + "\\:but" + id).trigger("click");
+            }
+            function showcompany(id, company) {
+                $("#esrcompany" + company + id + "\\:id" + id).val(id);
+                $("#esrcompany" + company + id + "\\:ref" + id).trigger("click");
+            }
+        </script>
+    </h:body>
+</html>

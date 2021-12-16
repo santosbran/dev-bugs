@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view locale="#{swtLanguage.locale}">
+        <h:head>
+            <title></title> <!-- Nombre de la página - aplicación -->
+            
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.css"/>
+            <h:outputStylesheet library="styleAE" name="css/jquery-ui.theme.css"/>
+            <h:outputStylesheet library="styleAE" name="css/main-styles.css"/>
+            <h:outputStylesheet library="styleAE" name="font-awesome/css/font-awesome.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/bootstrap.min.css"/>
+            <h:outputStylesheet library="styleAE" name="css/sign-styles.css"/>
+            <h:outputScript library="styleAE" name="js/jquery.js" />
+            <h:outputScript library="styleAE" name="js/bootstrap.min.js" />
+            <h:outputScript library="styleAE" name="js/jquery-ui.js" />
+        </h:head>
+        <h:body>  
+                <div id="page-wrapper">                    
+                    <div class="container-fluid">
+                        <div class="row">
+                            
+                            <div class="col-lg-12">
+                                <h1 class="page-header" style="color: red;">
+                                    #{gen_msg['esr']}
+                                    <small style="color: #3E3D40;">#{gen_msg['genMant']}</small>
+                                </h1>
+                            </div>
+                        </div>
+                      
+                        <h:panelGroup id="contenedor" layout="block" >
+                            <h:outputLink  value="#{request.contextPath}/pages/esr/engSupportRequest.xhtml" class="navblock" >
+                                <h:graphicImage library="styleAE" name="img/mantainance/additional-hours.png" />
+                                <h:outputText value="#{gen_msg['esr']}"/>
+                            </h:outputLink>
+                          
+                        </h:panelGroup>
+                    </div>                 
+                  </div>                             
+        </h:body>
+    </f:view>
+</html>

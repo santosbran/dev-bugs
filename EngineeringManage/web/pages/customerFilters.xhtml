@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      style="width: 100%;   heigth: 100%;">
+    <h:head> 
+
+                    <title></title>
+        <style>
+            .rowCustomerFilter1{                            
+                margin: 0% 0% 10% 42%;
+                text-align: center;
+            }
+            .rowCustomerFilter2{                            
+                margin: 0% -40% 10% 30%;
+                text-align: center;
+            }
+            .rowCustomerFilter3{                            
+                margin: 0% -40% 10% 19%;
+                text-align: center;
+            }
+            .rowCustomerFilter4{                            
+                margin: 0% -25% 10% 12%;
+                text-align: center;
+            }
+            .rowCustomerFilter5{                            
+                margin: 0% 0% 10% 11%;
+                text-align: center;
+            }
+            .rowCustomerFilter6{                            
+                margin: 0% 4% 10% 0%;
+                text-align: center;
+            }            
+            .clientesDivs{
+        
+                padding: 10px;                        
+                border-radius: 4px;
+                background-color: #FFF;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                border:solid;
+            }
+            .pricing1{
+                margin: auto;
+                position: relative;
+                top: -40px;
+            }
+            .pricing2{
+                margin: auto;
+            }  
+            .pricing3{
+                margin: auto;
+            }  
+            .pricing4{
+                margin: auto;
+            }  
+            .pricing5{
+                margin: auto;
+            }  
+            .pricing6{
+                margin: auto;
+            }  
+            .price-title {
+                padding: 20px 20px 10px;   
+            }
+            .pricing1 .unit {             
+                min-width: 250px;
+            }
+            .pricing2 .unit {             
+                min-width: 250px;
+            }
+            .pricing3 .unit {             
+                min-width: 250px;
+            }
+            .pricing4 .unit {             
+                min-width: 250px;
+            }
+            .pricing5 .unit {             
+                min-width: 250px;
+            }
+            .pricing6 .unit {             
+                min-width: 250px;
+            }
+            .pricing1 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing2 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing3 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing4 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing5 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing6 .unit.active .price-title h3 {
+                font-size: 40px;
+            }
+            .pricing1 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing2 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing3 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing4 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing5 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing6 .price-body {
+                padding: 20px 20px 10px;
+            }
+            .pricing1 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing2 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing3 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing4 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing5 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing6 .price-foot {
+                padding: 20px;              
+                border-bottom-left-radius: 4px;              
+                border-bottom-right-radius: 4px;
+                background-color: #E6E9ED;
+            }
+            .pricing1 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing2 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing3 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing4 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing5 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing6 .price-success .price-title {
+                background-color: #ffff;
+            }
+            .pricing1 .price-success .price-body {
+                background-color: #B40404;
+            }
+            .pricing2 .price-success .price-body {
+                background-color: #B40404;
+            }
+            .pricing3 .price-success .price-body {
+                background-color: #B40404;
+            }
+            .pricing4 .price-success .price-body {
+                background-color: #B40404;
+            }
+            .pricing5 .price-success .price-body {
+                background-color: #B40404;
+            }
+            .pricing6 .price-success .price-body {
+                background-color: #B40404;
+            }            
+            .lineaCustomer{
+                border-top: 5px solid #B40404; 
+                width: 60%; 
+                position: absolute;   
+                bottom: 2%;  
+                left: 20%;
+            } 
+            
+         
+            @media (min-height: 718px) and (max-height: 1000px){
+                .lineaCustomer{                   
+                      margin: 0px 0px 0px 10px;             
+                      
+                }
+            }       
+            @media (min-width: 500px) and (max-width: 1000px){
+                .lineaCustomer{
+                        margin-left: 0px;
+                        margin-bottom: -220px;
+                }
+            }
+            
+                       
+            @media (min-width: 1505px)  and (max-width: 1780px) {                
+                .rowCustomerFilter1{                            
+                    margin: 0% 0% 10% 42%;                
+                }
+                .rowCustomerFilter2{                            
+                    margin: 0% -40% 10% 30%;
+                }
+                .rowCustomerFilter3{                            
+                    margin: 0% -40% 10% 19%;
+                }
+                .rowCustomerFilter4{                            
+                    margin: 0% -14% 10% 10%;
+                }
+                .rowCustomerFilter5{                            
+                    margin: 0% 0% 10% 4%;
+                }
+                .rowCustomerFilter6{                            
+                    margin: 0% 5% 10% 19%;
+                }
+                .pricing1{
+                    width: 19%;
+                    float: left;
+                    height: 162px; 
+                    
+                }
+                .pricing2{
+                    width: 18%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing3{
+                    width: 17%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing4{
+                    width: 18%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing5{
+                    width: 18%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing6{
+                    width: 26%; 
+                    float: left;
+                    height: 162px; 
+                }
+            }
+            @media (min-width:  1190px) and (max-width: 1505px) {        
+                    .rowCustomerFilter1{                            
+                        margin: 0% 0% 0% 38%;              
+                    }
+                    .rowCustomerFilter2{                            
+                        margin: 0% 0% 5% 23%;
+                    }
+                    .rowCustomerFilter3{                            
+                        margin: 0% 11% 5% 14%;
+                        transform: scale(0.7);
+                    }
+                    .rowCustomerFilter4{                            
+                        margin: 0% 0% 0% 0%;
+                    }
+                    .rowCustomerFilter5{                            
+                        margin: 0% -4% 0% 11%;
+                    }
+                    .rowCustomerFilter6{                            
+                        margin: 0% -4% 0% 11%;
+                    } 
+                    .pricing1{
+                        width: 25%;
+                        float: left;
+                        height: 162px; 
+                    }
+                    .pricing2{
+                        width: 32%; 
+                        float: left;
+                        height: 162px; 
+                    }
+                    .pricing3{
+                        width: 29%; 
+                        float: left;
+                        height: 162px; 
+                    }
+                    .pricing4{
+                        width: 25%; 
+                        float: left;
+                        height: 162px;
+                    }
+                    .pricing5{
+                        width: 26%; 
+                        float: left;
+                        height: 162px; 
+                    }
+                    .pricing6{
+                        width: 26%;
+                        float: left;
+                        height: 162px; 
+                    }
+                }           
+            @media (min-width: 1001px)  and (max-width: 1189px) {
+                .rowCustomerFilter1{
+                    margin: 0% 0% 0% 33%;
+                }
+                .rowCustomerFilter2{
+                    margin: 0% 14% 26% 16%;
+                }
+                .rowCustomerFilter3{
+                    margin: 0% 10% 5% 16%;
+                    transform: scale(0.7);
+                }
+                .rowCustomerFilter4{
+                    margin: 0% 0% 5% -4%;
+                }
+                .rowCustomerFilter5{                       
+                    margin: 0% 0% 18% 0%;
+                    height: 350px;
+                }
+                .rowCustomerFilter6{                        
+                    margin: 0% 0% 18% 0%;
+                    height: 350px;
+                }
+                .pricing1{
+                    width: 29%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing2{
+                    width: 46%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing3{
+                    width: 42%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing4{
+                    width: 24%; 
+                    float: left;
+                    height: 162px;
+                }
+                .pricing5{
+                    width: 31%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing6{
+                    width: 31%; 
+                    float: left;
+                    height: 162px; 
+                }
+            }
+            @media (min-width: 717px)   and (max-width: 1000px) {
+                .rowCustomerFilter1{
+                    margin: 0% 0% 0% 29%;
+                }
+                .rowCustomerFilter2{
+                    margin: 0% 0% 32% 3%;
+                }
+                .rowCustomerFilter3{
+                     margin: 0% -8% 0% 9%;
+                     transform: scale(0.7);
+                }
+                .rowCustomerFilter4{                        
+                    margin: 0% -14% 5% 10%;
+                    height: 450px;
+                }
+                .rowCustomerFilter5{                    
+                    margin: 0% -8% 16% 9%;
+                    height: 450px;
+                }
+                .rowCustomerFilter6{
+                    margin: 0% -8% 16% 9%;
+                    height: 450px;
+                }
+                .pricing1{
+                    width: 29%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing2{
+                    width: 46%; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing3{
+                    width: 35%!important; 
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing4{
+                    width: 34%;
+                    float: left;
+                    height: 162px;
+                }
+                .pricing5{
+                    width: 35%!important;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing6{
+                    width: 36%;
+                    float: left;
+                    height: 162px; 
+                }
+            }
+            @media (min-width: 544px)   and (max-width: 716px)  {
+                .rowCustomerFilter1{
+                    margin: 0% 0% 0% 21%;
+                }
+                .rowCustomerFilter2{
+                    margin: 0% 0% 29% -3%;
+                        
+                }
+                .rowCustomerFilter3{
+                    margin: 0% 3% 24% -4%;
+                }
+                .rowCustomerFilter4{
+                     margin: 0% 3% 24% -4%;
+                     height: 450px;
+                      
+                }
+                .rowCustomerFilter5{
+                    margin: 0% 4% 24% -6%;
+                    height: 450px;
+                }
+                .rowCustomerFilter6{                    
+                    margin: 0% 4% 24% -5%;
+                    height: 450px;
+                }
+                .pricing1{
+                    width: 46%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing2{
+                    width: 46%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing3{
+                    width: 46%!important;                    
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing4{
+                    width: 46%;                    
+                    float: left;
+                    height: 162px;
+                }
+                .pricing5{
+                    width: 46%!important;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing6{
+                    width: 46%;
+                    float: left;
+                    height: 162px; 
+                }                
+            }
+            @media (min-width: 500px)   and (max-width: 543px)  {
+                .rowCustomerFilter1{
+                    margin: 0% 0% 0% 15%;
+                }
+                .rowCustomerFilter2{
+                    margin: 0% 0% 29% -14%;
+                        
+                }
+                .rowCustomerFilter3{
+                    margin: 0% 2% 3% -10%;
+                }
+                .rowCustomerFilter4{
+                     margin: 0% -6% 3% -8%;
+                     height: 550px;
+                      
+                }
+                .rowCustomerFilter5{
+                     margin: 0% -6% 3% -8%;
+                     height: 550px;
+                }
+                .rowCustomerFilter6{
+                     margin: 0% -6% 3% -8%;
+                     height: 550px;
+                }
+                .pricing1{
+                    width: 46%;                    
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing2{
+                    width: 46%;
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing3{
+                    width: 46%;                    
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing4{
+                    width: 46%;               
+                    float: left;
+                    height: 162px;
+                    height: 162px; 
+                }
+                .pricing5{
+                    width: 46%;                   
+                    float: left;
+                    height: 162px; 
+                }
+                .pricing6{
+                    width: 46%;                    
+                    float: left;
+                    height: 162px; 
+                }
+                
+            }
+            @media (min-width: 0)   and (max-width: 499px)      {
+                .rowCustomerFilter4{                            
+                    margin: 0% 0% 0% -5%;
+                    text-align: center;
+                    overflow: scroll;
+                    height: 430px;
+                    width: 103%;
+                }
+                .lineaCustomer{
+                    display: none;
+                }
+            }
+            
+             .w-company {
+                width: 310px;
+                height: 200px;
+            } 
+            
+        </style>
+        <script>      
+            function menuDashFilter() {
+                //funcion para mostrar el menu respectivo en el dash de aviones
+                // y ocultar los otros botones
+                $("#ico0").css("display", "");
+                $("#ico1").css("display", "");
+                $("#ico2").css("display", "");
+                $("#ico3").css("display", "");
+
+                $("#openAcMenu").css("display", "");
+                $("#menuNewAirPlane").css("display", "");
+
+                $("#menuPrintReport").css("display", "none");
+                $("#menuHours").css("display", "none");
+                $("#menuACInfo").css("display", "none");
+
+                $("#botoneraESR").css("display", "none");
+            }
+            function cargarEventDashHan(data) {
+                    var spinnerevents = document.getElementById("spinnerDash");   
+                    var validarHangar = document.getElementById("formOcutoCusto:validarHangares").value;
+                    var statuseve = data.status;
+                    if (statuseve === "begin" ) {
+                            $("#customerFilters").hide();
+                            $("#dashNavigationHangares").hide();
+
+                            spinnerevents.style.display = "block";
+                    } else { 
+                            spinnerevents.style.display = "none";
+                            if(statuseve === "success"){ 
+                                if ( validarHangar !== "ESR"){
+                                $("#botonesOcultosDASH\\:renderDashNW").trigger("click");
+                                $("#dashNavigationHangares").show();  
+                                menuDashFilter();
+                            }else{
+                                $("#dashNavigationHangares").hide();
+                                $("#engineer").show();
+                                //$("#checks").hide();
+                                $("#main").show();
+                                
+                               // $("#busqFormESR\\:ocDiscarESR").trigger("click");
+                                $("#inputForm70\\:clean2").trigger("click"); 
+                            }
+                            }else{
+                                $("#dashNavigationHangares").hide();
+                            }		
+                    }
+                    window.switchSpaceNav();
+            }            
+        </script>
+        
+    </h:head>
+    <h:body>
+        <h:form id="formOcutoCusto"> 
+            <h:inputText id="validarHangares" value="#{esrBean.validarCoDash}" style="display: none;"/>
+            <h:commandButton id="filtarCompanyDash" value="com" action="#{tabEsrEaEoBean.companyFilter()}" style="display: none;">
+                <f:ajax execute="@this" render=" @this customerDashESRas formCompanhy refremeta"/>
+            </h:commandButton>
+            
+        </h:form>      
+        <div class="h-full w-full pt-16">
+        <h:form id="customerDashESRas" class="min-w-full h-full flex flex-wrap justify-center items-center overflow-y-auto pb-20">
+            
+            
+                <c:forEach items="#{companyBean.listado2}" var="item" id="esrListadoCompany" varStatus="status">
+                     <div class="w-company m-5">
+                        <h:commandLink action="#{esrBean.infoDash(item.ciaCode)}"
+                            class="flex flex-col items-center item-company-list rounded p-10" style="height:200px;">
+                            <div>
+                                 <h:graphicImage  library="styleAE" value="data:image/#{item.ciaLogoExt};base64,#{item.logoBase64}" style="width: 100%; display: #{item.ciaLogo eq null ? 'none': 'block'}"/> 
+                                 <h:graphicImage  library="styleAE" name="img/login/logomroh.png" style="width: 100%;height: 84px; display: #{item.ciaLogo eq null ? 'block': 'none'}"/> 
+                            </div>                                
+                            <div class="#{item.ciaLogo eq null ? 'flex-1 justify-center pt-16': 'w-full flex justify-center pt-10'}">
+                                <span style="display: #{item.ciaLogo eq null ? 'none': 'block'}">
+                                    #{item.ciaName}
+                                </span>
+                            </div>
+                          
+                            <f:ajax execute="@this" render="@form formOcutoCusto:validarHangares refremeta" onevent="cargarEventDashHan"/>
+                        </h:commandLink>
+<!--                        <div class="unit price-success active">
+                            <div class="price-title">
+                                
+                            </div>                                
+                            <div class="price-foot">
+                                <h:commandButton style="background:  #B40404; color: #FFF;" class="btn" value="{item.ciaName}" action="{esrBean.infoDash(item.ciaCode)}" onclick="">
+                                    <f:ajax execute="@this" render="@form formOcutoCusto:validarHangares refremeta" onevent="cargarEventDashHan"/>
+                                </h:commandButton>    
+                            </div>
+                        </div>                      -->
+                    </div>
+                </c:forEach>
+            </h:form>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#formOcutoCusto\\:filtarCompanyDash").trigger("click"); 
+            });
+        </script>
+        
+        <h:panelGroup id="dasESRDash" >
+                    <h:outputScript rendered="#{facesContext.postback and not facesContext.validationFailed and esrBean.validarCoDash eq ('ESR')}">
+                        $("#customerFilters").hide();
+                        $("#dashNavigationHangares").hide();
+                        $("#engineer").show();
+                        //$("#checks").hide();
+                        window.switchSpaceNav();
+                    //    $("#busqFormESR\\:ocDiscarESR").trigger("click");
+                        $("#inputForm70\\:clean2").trigger("click");                        
+                    </h:outputScript>
+        </h:panelGroup>      
+    </h:body>
+</html>
